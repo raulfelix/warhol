@@ -1,0 +1,22 @@
+@import 'util';
+
+.footer {
+  background-color: #F197D5;
+  color: #C81019;
+  font-size: em(14);
+  height: em(55, 14);
+  padding: 0 em(10, 14);
+
+  .footer-legals {
+    @extend %pull-left;
+    line-height: em(55, 14);
+  }
+
+  .footer-links {
+    @extend %pull-right;
+    line-height: em(55, 14);
+    a {
+      color: #C81019;
+    }
+  }
+}
