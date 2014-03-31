@@ -1,8 +1,14 @@
 @import 'util';
 
-.row {
+.grid {
   max-width: em(1140);
   margin: 0 auto;
+}
+
+.row {
+  @extend %relative;
+  @extend %clearfix;
+  padding: 0 em(10);
 }
 
 // proportions
