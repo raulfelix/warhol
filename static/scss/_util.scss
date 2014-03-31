@@ -6,7 +6,10 @@ $base_font_size: 16;
 //
 // colours
 //
+$white: #FFFFFF;
 $highlight: #FF68C3;
+$pink: #F197D5;
+$body-copy: #000;
 
 //
 // Mixins
@@ -47,6 +50,9 @@ $highlight: #FF68C3;
 //
 // Functions
 //
+@function rem($size) {
+  @return #{ (1 / $base_font_size) * $size }rem;
+}
 
 // convert a pixel value to ems using base font size
 // or another base font size if supplied

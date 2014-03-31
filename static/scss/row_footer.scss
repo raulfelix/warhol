@@ -1,0 +1,51 @@
+@import 'util';
+
+.footer {
+  background-color: $pink;
+  font-size: rem(14);
+  height: rem(55);
+
+  .footer-legals, .footer-links {
+    color: #C81019;
+    line-height: rem(55);
+  }
+
+  .footer-legals {
+    @extend %pull-left;
+  }
+
+  .footer-links {
+    @extend %pull-right;
+    a {
+      color: #C81019;
+    }
+  }
+}
+
+.next {
+  @extend %relative;
+  color: $body-copy;
+  height: auto;
+  text-align: center;
+
+  .next-content {
+    padding: rem(100) 0;
+  }
+}
+
+.next-feature {
+  color: $white;
+
+  .next-bg {
+    @extend %absolute;
+    background: url('images/next.png') no-repeat center center;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .footer-legals, 
+  .footer-links a {
+    color: $white;
+  }
+}
