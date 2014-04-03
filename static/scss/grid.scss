@@ -1,8 +1,21 @@
 @import 'util';
 
-.row {
-  max-width: em(1140);
+.grid {
+  max-width: rem(1160);
   margin: 0 auto;
+  @extend %relative;
+}
+
+.row {
+  @extend %clearfix;
+  padding: 0 rem(10);
+
+  & > div {
+    @extend %pull-left;
+  }
 }
 
 // proportions
+.row-1 {
+  width: 100%;
+}
