@@ -43,6 +43,34 @@
       width: rem(30);
       height: rem(32);
     }
+
+    .nav-links {
+      margin-left: rem(-200);
+      width: rem(400);
+      .nav-links-primary li {
+        font-size: rem(40);
+        margin: rem(40) 0; 
+      }
+
+      .nav-links-secondary li {
+        font-size: rem(28);
+        margin: 0 rem(30); 
+      }
+    }
+  }
+
+  .nav-active {
+    .nav-menu { 
+      a:before {
+        font-size: rem(24);
+        right: rem(88);
+        top: rem(41);
+      }
+      i {
+        width: rem(38);
+        height: rem(36);
+      }
+    }
   }
 
   .h-1 {

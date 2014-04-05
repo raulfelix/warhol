@@ -41,10 +41,11 @@
 
 .nav {
   @extend %absolute;
+  background-color: $white;
   height: 0;
   width: 100%;
   z-index: 5;
-  
+
   .logo {
     @extend %pull-left;
     background: url('images/logo@2x.png') no-repeat left center;
@@ -82,5 +83,60 @@
       width: rem(24);
       height: rem(25);
     }
+  }
+
+  .nav-links {
+    display: none;
+    @extend %absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: rem(-165);
+    margin-left: rem(-160);
+    width: rem(320);
+    text-align: center;
+    
+    li {
+      list-style: none;
+    }
+
+    .nav-links-primary li {
+      font-size: rem(24);
+      margin: rem(40) 0; 
+    }
+
+    .nav-links-secondary li {
+      display: inline-block;
+      font-size: rem(16);
+      margin: 0 rem(30); 
+    }
+  }
+
+  .f-row {
+    height: 100%;
+  }
+}
+
+.nav-active {
+  height: 100%;
+
+  .nav-menu { 
+    a:before {
+      content: 'close';
+      color: $highlight;
+      font-size: rem(18);
+      @extend %absolute;
+      right: rem(54);
+      top: rem(60);
+    }
+
+    i {
+      background: url('images/close@2x.png') no-repeat left center;
+      background-size: 100% auto;
+      display: inline-block;
+    }
+  }
+
+  .nav-links {
+    display: block;
   }
 }

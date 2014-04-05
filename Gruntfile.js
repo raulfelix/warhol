@@ -15,11 +15,16 @@ module.exports = function(grunt) {
     },
 
     watch: {
+      js: {
+        files: 'static/scripts/*.js',
+        tasks: ['jshint', 'concat'],
+      },
       src: {
         files: ['static/scss/*.scss'],
         tasks: ['sass'],
         options: {
-          interrupt: true
+          interrupt: true,
+          reload: true
         }
       }
     },
@@ -29,15 +34,16 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc',
       },
       files: [
-        'scripts/nav.js'
+        'static/scripts/*.js',
+        '!static/scripts/jquery-2.0.3.min.js'
       ]
     },
 
     concat: {
       dist: {
         files: {
-          'dist/build.js' : [
-            'scripts/*.js'
+          'static/dist/build.js' : [
+            'static/scripts/*.js'
           ]
         }
       }
