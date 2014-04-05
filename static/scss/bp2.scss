@@ -2,4 +2,57 @@
 
 @media all and (max-width: rem(767)) { 
 
+  .header {
+    .content {
+      padding: rem(180) 0;
+    }
+    .link { 
+      font-size: rem(24);
+    }
+  }
+
+  .feature {
+    .content {
+      padding: rem(260) 0;
+    }
+  }
+
+  .next-feature {
+    .next-bg {
+      background-size: 180% auto;
+    }    
+  }
+
+  .nav {
+    .logo {
+      margin-top: rem(15);
+      width: rem(125);
+      height: rem(93);
+    }
+    .nav-item {
+      margin-top: rem(40);
+    }
+    .nav-menu {
+      margin-right: rem(20);
+      i {
+        width: rem(36);
+        height: rem(33);
+      }
+    }
+    .nav-search i {
+      width: rem(30);
+      height: rem(32);
+    }
+  }
+
+  .h-1 {
+    font-size: rem(56);
+  }
+  .h-2 {
+    font-size: rem(28);
+  }
+  .h-4 {
+    font-size: rem(24);
+  }
+
 }
