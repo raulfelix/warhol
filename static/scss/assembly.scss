@@ -1,5 +1,9 @@
 @import 'util';
 
+body {
+  background-color: #fff;
+}
+
 .blanket {
   @extend %absolute;
   width: 100%;

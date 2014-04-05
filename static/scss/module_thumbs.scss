@@ -1,0 +1,36 @@
+@import 'util';
+
+.thumb {
+  margin-bottom: rem(60);
+
+  .thumb-feature {
+    @extend %relative;
+    margin-bottom: rem(20);
+  }
+
+  .thumb-time, .thumb-views {
+    @extend %absolute;
+    font-size: rem(14);
+    color: $white;
+    bottom: rem(20);
+  }
+
+  .thumb-time {
+    left: rem(20);
+  }
+
+  .thumb-views {
+    right: rem(20);
+  }
+
+  .thumb-link {
+    @extend %block;
+    color: $pink;
+    margin-bottom: rem(20); 
+  }
+
+  img {
+    width: 100%;
+    display: block;
+  }
+}

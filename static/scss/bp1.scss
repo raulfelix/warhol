@@ -17,4 +17,18 @@
       background-size: 180% auto;
     }    
   }
+
+  .bp1-1 {
+    width: 100%;
+  }
+
+  .thumb {
+    .thumb-caption, .thumb-link, .thumb-time, .thumb-views {
+      font-size: rem(28);
+    }
+
+    .thumb-title {
+      font-size: rem(40);
+    }
+  }
 }
