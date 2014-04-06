@@ -43,6 +43,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'static/dist/build.js' : [
+            'static/scripts/jquery-2.0.3.min.js',
             'static/scripts/*.js'
           ]
         }
