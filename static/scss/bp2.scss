@@ -1,6 +1,17 @@
 @import 'util';
 
 @media all and (max-width: rem(767)) { 
+  
+  .bp2-1 {
+    width: 100%;
+  }
+  .bp2-1-2 {
+    width: 50%;
+  }
+
+  .section-thumb-bg .thumb {
+    min-height: rem(430);
+  }
 
   .header {
     .content {
