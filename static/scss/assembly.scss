@@ -1,7 +1,3 @@
-body {
-  background-color: #fff;
-}
-
 .blanket {
   @extend %absolute;
   width: 100%;
@@ -32,5 +28,133 @@ body {
     &:hover {
       color: #000;
     }
+  }
+}
+
+//------------------
+// buttons 
+//------------------
+.button-row {
+  padding-top: rem(30);
+  padding-bottom: rem(60);
+  @extend %text-center;
+}
+
+.button {
+  @extend %relative;
+  @extend %pink;
+  border: 2px solid $pink;
+  border-radius: 40px;
+  display: inline-block;
+  font-size: rem(18);
+  text-align: center;
+  padding: rem(14) rem(30);
+  margin: 0 auto;
+
+  &:hover {
+    border-color: $highlight;
+  }
+}
+
+.button-large {
+  padding: rem(14) rem(80);
+}
+
+.button-disabled, .button-disabled:hover {
+  color: #D3D3D3;
+  border-color: #D3D3D3;
+}
+
+.button-share {
+  width: auto;
+  .icon-share {
+    background: url('images/share@2x.png') no-repeat left center;
+    background-size: auto 100%;
+    height: rem(20);
+    width: rem(20);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: rem(6);
+  }
+}
+
+.button-url {
+  padding-right: rem(200);
+  max-width: rem(600);
+  white-space: nowrap;
+  overflow: hidden;
+  color: #000;
+
+  .button-url-copy {
+    right: 0;
+    top: 0;
+    background-color: $white;
+    border-left: 2px solid $pink;
+    display: block;
+    padding: rem(14) rem(40);
+    @extend %pink;
+    @extend %absolute;
+
+    &:hover {
+      border-left-color: $highlight;
+      color: $highlight;
+    }
+  }
+}
+
+.button-next .icon-arrow-right, 
+.button-prev .icon-arrow-left {
+  height: rem(20);
+  width: rem(25);
+  left: rem(20);
+  top: rem(15);
+  @extend %absolute;
+}
+
+.button-prev {
+  padding-left: rem(60);
+  .icon-arrow-left {
+    background: url('images/icon-arrow-left@2x.png') no-repeat left center;
+    background-size: auto 100%;
+  }
+}
+
+.button-next {
+  padding-right: rem(60);
+  .icon-arrow-right {
+    background: url('images/icon-arrow-right@2x.png') no-repeat left center;
+    background-size: auto 100%;
+    right: rem(20);
+    left: auto;
+  }
+}
+
+.button-search {
+  .icon {
+    background: url('images/search@2x.png') no-repeat left center;
+    background-size: auto 100%;
+    height: rem(25);
+    width: rem(25);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: rem(6);
+  }
+}
+
+.dropdown {
+  padding: 0;
+  .dropdown-label {
+    @extend %pink;
+    display: block;
+    padding: rem(14) rem(40) rem(14) rem(30);
+  }  
+  .icon-triangle {
+    background: url('images/triangle@2x.png') no-repeat left center;
+    background-size: auto 100%;
+    height: rem(6);
+    width: rem(8);
+    right: rem(20);
+    top: rem(22);
+    @extend %absolute;
   }
 }
