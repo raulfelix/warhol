@@ -1,5 +1,3 @@
-@import "util";
-
 html, body, div, img, ol, ul, li, a, h1, h2, h3, h4, h5, h6, p,
 header, footer, section, article, figure, figcaption {
   border: 0;
@@ -15,6 +13,7 @@ html {
 }
 
 body {
+  background-color: #fff;
   // better font rendering
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

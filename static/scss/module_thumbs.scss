@@ -1,5 +1,3 @@
-@import 'util';
-
 .section-thumb {
   padding-top: rem(60);
 }
@@ -33,7 +31,7 @@
 
   .thumb-link {
     @extend %block;
-    color: $pink;
+    @extend %pink;
     margin-bottom: rem(20); 
   }
 
