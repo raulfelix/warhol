@@ -13,4 +13,22 @@
       font-size: rem(40);
     }
   }
+
+
+
+  .button {
+    width: 100%;
+    font-size: rem(24);
+    
+    .icon-share {
+      font-size: rem(24);
+      margin-right: rem(10);
+    }
+  }
+
+  .details-row {
+    .button {
+      margin-top: rem(20);
+    }
+  }
 }
