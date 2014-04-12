@@ -43,12 +43,14 @@
     }
     .nav-menu {
       margin-right: rem(20);
-      i {
+      .icon-menu {
+        font-size: rem(40);
         width: rem(36);
         height: rem(33);
       }
     }
-    .nav-search i {
+    .nav-search .icon-search {
+      font-size: rem(36);
       width: rem(30);
       height: rem(32);
     }

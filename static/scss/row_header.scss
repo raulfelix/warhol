@@ -60,25 +60,25 @@
     @extend %pull-right;
     margin-top: rem(60);
     a {
+      color: $white;
       display: block;
     }
   }
 
   .nav-menu {
-    i {
-      background: url('images/menu@2x.png') no-repeat left center;
-      background-size: 100% auto;
+    .icon-menu {
+      font-size: rem(28);
       display: block;
       width: rem(24);
       height: rem(22);
+      line-height: 0.9;
     }
   }
 
   .nav-search {
     margin-right: rem(60);
-    i {
-      background: url('images/search@2x.png') no-repeat left center;
-      background-size: 100% auto;
+    .icon-search {
+      font-size: rem(26);
       display: block;
       width: rem(24);
       height: rem(25);
@@ -129,9 +129,9 @@
       top: rem(60);
     }
 
-    i {
-      background: url('images/close@2x.png') no-repeat left center;
-      background-size: 100% auto;
+    .icon-menu {
+      @extend %icon-close;
+      color: $highlight;
       display: inline-block;
     }
   }

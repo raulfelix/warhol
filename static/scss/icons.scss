@@ -23,7 +23,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-lwa_menu:before {
+.icon-menu:before {
   content: "\e601";
 }
 .icon-search:before {
@@ -31,6 +31,9 @@
 }
 .icon-eye:before {
   content: "\e603";
+}
+.icon-close:before, %icon-close:before {
+  content: "\e604";
 }
 .icon-share:before {
   content: "\e600";
