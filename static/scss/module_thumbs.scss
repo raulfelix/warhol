@@ -40,3 +40,12 @@
     display: block;
   }
 }
+
+.data-views {
+  display: inline-block;
+  i {
+    font-size: 14px;
+    line-height: 17px;
+    margin-right: rem(5);
+  }
+}

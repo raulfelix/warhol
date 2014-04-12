@@ -92,4 +92,12 @@
     font-size: rem(24);
   }
 
+  .article-row {
+    p, ul {
+      padding: 0;
+    }
+    .details-row {
+      padding: rem(20) 0;
+    }
+  }
 }
