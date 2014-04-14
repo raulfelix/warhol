@@ -1,0 +1,26 @@
+.modal {
+  .modal-close {
+    font-size: rem(32);
+  }
+
+  .modal-view {
+    height: rem(500);
+    margin-top: rem(-250);
+  }
+}
+
+.modal-share-actions {
+  padding: 0;
+  .button {
+    margin: 0 0 rem(10) 0;
+    width: 100%;
+  }
+}
+
+.modal-share-primary {
+  margin-bottom: rem(30);
+}
+
+.modal-share-secondary {
+  margin-bottom: rem(30);
+}

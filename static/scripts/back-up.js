@@ -1,5 +1,5 @@
 /* global LWA */
-window.LWA = window.LWA || { Views: {} };
+window.LWA = window.LWA || { Views: {}, Modules: {} };
 
 LWA.Views.BackUp = (function() {
 

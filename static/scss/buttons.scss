@@ -5,10 +5,11 @@
   font-size: rem(18);
   padding: rem(14) rem(30);
   margin: 0 auto;
+  min-width: rem(170);
   @extend %relative;
   @extend %pink;
   @extend %text-center;
-  
+
   &:hover {
     color: $highlight;
     border-color: $highlight;
@@ -27,6 +28,15 @@
 .button-share {
   width: auto;
   .icon-share {
+    font-size: rem(22);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: rem(6);
+  }
+}
+
+.button-search {
+  .icon-search {
     font-size: rem(22);
     display: inline-block;
     vertical-align: middle;
@@ -82,18 +92,6 @@
     background-size: auto 100%;
     right: rem(20);
     left: auto;
-  }
-}
-
-.button-search {
-  .icon {
-    background: url('images/search@2x.png') no-repeat left center;
-    background-size: auto 100%;
-    height: rem(25);
-    width: rem(25);
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: rem(6);
   }
 }
 

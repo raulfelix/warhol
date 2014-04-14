@@ -51,7 +51,7 @@
         <a href="#">TwentyFour</a>
         <span>8d</span>
         <span class="data-views"><i class="icon-eye"></i>286</span>Facebook
-        <a class="button button-share" href="#"><i class="icon-share"></i>share this</a>
+        <a class="button button-share" href="javascript:void(0)"><i class="icon-share"></i>share this</a>
       </div>
 
       <p class="intro">
@@ -78,7 +78,7 @@
         <li>We flew a kite</li>
       </ul>
       <div class="button-row">
-        <a class="button button-share" href="#"><i class="icon-share"></i>share this</a>
+        <a class="button button-share" href="javascript:void(0)"><i class="icon-share"></i>share this</a>
       </div>
       <div class="details-row details-row-secondary">
         Words by Christopher Kevin Au<span class="bullet"></span>Photos by Mitchel Tomlinson<span class="bullet"></span>12 Feburary 2014
@@ -108,6 +108,32 @@
       </div>
     </div>
   </footer>
+
+  <div id="modal-share" class="modal">
+    <a class="modal-close" href="javascript:void(0)"><i class="icon-close"></i></a>
+    <div class="modal-view">
+      <div class="modal-share-secondary">Share this</div>
+      <div class="modal-share-primary">Chris Gibbs knows how to influence streetwear</div>
+      <div class="modal-share-actions">
+        <a class="button" href="#">Facebook</a>
+        <a class="button" href="#">Twitter</a>
+        <a class="button" href="#">Google+</a>
+      </div>
+      <div class="modal-share-actions">
+        <div class="button button-url">
+          http://www.someurlthatisquitelongtoremember.com.au
+          <a class="button-url-copy" href="#">Copy URL</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script type="text/javascript" src="../dist/build.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      LWA.Modules.Modal.init('.button-share', '#modal-share');
+    });
+  </script>
+
 </body>
 </html>

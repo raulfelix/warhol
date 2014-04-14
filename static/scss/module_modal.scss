@@ -1,0 +1,58 @@
+.modal {
+  background-color: $white;
+  display: none;
+  top: 0;
+  left: 0; 
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+
+  &.modal-active {
+    display: block;
+  }
+  .modal-close {
+    color: $pink;
+    display: block;
+    font-size: rem(24);
+    right: rem(30);
+    top: rem(30);
+    z-index: 10;
+    @extend %absolute;
+    
+    &:hover {
+      color: $highlight;
+    }
+  }
+
+  .modal-view {
+    margin-top: rem(-225);
+    height: rem(450);
+    width: 100%; 
+    top: 50%;
+    padding: 0 em(20);
+    @extend %absolute;
+  }
+}
+
+.modal-share-actions, .modal-share-primary, .modal-share-secondary {
+  @extend %text-center;
+}
+
+.modal-share-actions {
+  padding: rem(40) 0;
+  .button {
+    margin: 0 rem(5);
+  }
+}
+
+.modal-share-primary {
+  font-size: rem(40);
+  font-weight: bold;
+  margin-bottom: rem(50);
+}
+
+.modal-share-secondary {
+  font-size: rem(24);
+  margin-bottom: rem(60);
+}
