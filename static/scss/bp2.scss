@@ -111,6 +111,32 @@
       margin-right: rem(10);
     }
   }
-  
-  @import 'module_modal_bp2'
+
+  @import 'module_modal_bp2';
+
+  .search-row {
+    
+    & > div {
+      padding: 0 rem(10);
+    }
+
+    .search-row-input {
+      top: rem(60);
+      right: rem(10);
+      left: rem(10);
+      width: auto;
+    }
+
+    .search-row-results {
+      top: rem(240);
+    }
+
+    .button-search {
+      position: relative;
+      top: auto;
+      right: auto;
+      margin: rem(20) 0;
+      width: 100%;
+    }
+  }
 }

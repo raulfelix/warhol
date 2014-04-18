@@ -8,6 +8,7 @@
 
 .thumb {
   margin-bottom: rem(60);
+  @extend %clearfix;
 
   .thumb-feature {
     @extend %relative;
@@ -38,6 +39,38 @@
   img {
     width: 100%;
     display: block;
+  }
+}
+
+.thumb-search {
+  margin-bottom: rem(40);
+
+  .thumb-feature {
+    margin-bottom: 0;
+    width: rem(168);
+    @extend %pull-left;
+  }
+
+  .thumb-details {
+    margin-left: rem(190);
+  }
+
+  .thumb-time {
+    left: rem(10);
+    bottom: rem(10);
+  }
+  
+  .thumb-link {
+    font-size: 16px;
+    margin-bottom: rem(5);
+  }
+
+  .h-2 {
+    font-size: 24px;
+  }
+
+  .h-5 {
+    margin-bottom: 0;
   }
 }
 

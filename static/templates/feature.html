@@ -111,7 +111,7 @@
 
   <div id="modal-share" class="modal">
     <a class="modal-close" href="javascript:void(0)"><i class="icon-close"></i></a>
-    <div class="modal-view">
+    <div class="modal-view modal-share-view">
       <div class="modal-share-secondary">Share this</div>
       <div class="modal-share-primary">Chris Gibbs knows how to influence streetwear</div>
       <div class="modal-share-actions">
@@ -128,10 +128,67 @@
     </div>
   </div>
 
+  <div id="modal-search" class="modal">
+    <a class="modal-close" href="javascript:void(0)"><i class="icon-close"></i></a>
+    <div class="modal-view f-grid f-row search-row">
+      <div class="f-1 search-row-input">
+        <input class="input-search" type="text" placeholder="Search for something">
+        <a class="button button-search" href="#"><i class="icon-search"></i>Search</a>
+      </div>
+      <div class="f-1 search-row-results">
+        <div class="thumb thumb-search">
+          <div class="thumb-feature">
+            <img src="../images/thumb3.png">
+            <span class="thumb-time">5d</span>
+          </div>
+          <div class="thumb-details">
+            <a class="h-5 thumb-link" href="#">Parties & Bullshit</a>
+            <h2 class="h-2 thumb-title">Hip-hop's most iconic and ignorant fashion accessories</h2>
+            <div class="h-5 thumb-caption">Vitale's home exudes sensitivity to the simple and quotidian pleasures of life.</div>
+          </div>
+        </div>
+        <div class="thumb thumb-search">
+          <div class="thumb-feature">
+            <img src="../images/thumb3.png">
+            <span class="thumb-time">5d</span>
+          </div>
+          <div class="thumb-details">
+            <a class="h-5 thumb-link" href="#">Parties & Bullshit</a>
+            <h2 class="h-2 thumb-title">Hip-hop's most iconic and ignorant fashion accessories</h2>
+            <div class="h-5 thumb-caption">Vitale's home exudes sensitivity to the simple and quotidian pleasures of life.</div>
+          </div>
+        </div>
+        <div class="thumb thumb-search">
+          <div class="thumb-feature">
+            <img src="../images/thumb3.png">
+            <span class="thumb-time">5d</span>
+          </div>
+          <div class="thumb-details">
+            <a class="h-5 thumb-link" href="#">Parties & Bullshit</a>
+            <h2 class="h-2 thumb-title">Hip-hop's most iconic and ignorant fashion accessories</h2>
+            <div class="h-5 thumb-caption">Vitale's home exudes sensitivity to the simple and quotidian pleasures of life.</div>
+          </div>
+        </div>
+        <div class="thumb thumb-search">
+          <div class="thumb-feature">
+            <img src="../images/thumb3.png">
+            <span class="thumb-time">5d</span>
+          </div>
+          <div class="thumb-details">
+            <a class="h-5 thumb-link" href="#">Parties & Bullshit</a>
+            <h2 class="h-2 thumb-title">Hip-hop's most iconic and ignorant fashion accessories</h2>
+            <div class="h-5 thumb-caption">Vitale's home exudes sensitivity to the simple and quotidian pleasures of life.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script type="text/javascript" src="../dist/build.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-      LWA.Modules.Modal.init('.button-share', '#modal-share');
+      LWA.Modules.Modal('.button-share', '#modal-share');
+      LWA.Modules.Modal('.nav-search a', '#modal-search');
     });
   </script>
 

@@ -46,3 +46,7 @@ a {
     color: $highlight;
   }
 }
+
+input:focus {
+  outline: none;
+}
