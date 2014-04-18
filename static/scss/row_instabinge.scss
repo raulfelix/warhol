@@ -16,30 +16,14 @@
 
 .belt {
   height: rem(300);
-  overflow: hidden;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
   @extend %relative;
 
-  .belt-container {
-    @extend %absolute;
-    white-space: nowrap;
+  .belt-slides {
     li {
-      display: inline-block;
-      margin-left: -2px;
+      margin-right: 2px;
     }
-  }
-
-  .belt-control {
-    color: $white;
-    display: block;
-    margin-top: rem(-20);
-    top: 50%;
-    left: rem(20);
-    z-index: 10;
-    @extend %absolute;
-  }
-
-  .belt-control-right {
-    left: auto;
-    right: em(20);
   }
 }

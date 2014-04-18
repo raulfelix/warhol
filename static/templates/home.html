@@ -187,10 +187,8 @@
 
   <div class="instabinge">
     <div class="h-1">@lifewithoutandy</div>
-    <div class="belt">
-      <a class="belt-control" href="javascript:void(0)"><i class="icon-arrow-left">L</i></a>
-      <a class="belt-control belt-control-right" href="javascript:void(0)"><i class="icon-arrow-left">R</i></a>
-      <ul class="belt-container">
+    <div class="belt flexslider">
+      <ul class="belt-slides slides">
         <li>
           <img src="../images/insta1.png">
           <a class="instabinge-link" href="#">@elliejeancoffey</a></li>        
@@ -225,5 +223,15 @@
     </div>
   </footer>
   <script type="text/javascript" src="../dist/build.js"></script>
+  <script type="text/javascript">
+    $('.belt').flexslider({
+      animation: 'slide',
+      animationLoop: false,
+      controlNav: false,
+      slideshow: false,
+      itemWidth: 262,
+      itemMargin: 2
+    });
+  </script>
 </body>
 </html>
