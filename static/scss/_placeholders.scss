@@ -16,7 +16,7 @@
 }
 
 %clearfix:after {
-  content: '.';
+  content: '';
   height: 0;
   clear: both;
   display: block;
