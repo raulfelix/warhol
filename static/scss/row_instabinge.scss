@@ -1,0 +1,45 @@
+.instabinge {
+   padding: rem(80) 0;
+  .h-1 {
+    font-size: rem(40);
+    margin-bottom: rem(80);
+    @extend %text-center;
+  }
+
+  .instabinge-link {
+    color: $pink;
+    display: block; 
+    font-size: rem(14);
+    margin-top: rem(5);
+  }
+}
+
+.belt {
+  height: rem(300);
+  overflow: hidden;
+  @extend %relative;
+
+  .belt-container {
+    @extend %absolute;
+    white-space: nowrap;
+    li {
+      display: inline-block;
+      margin-left: -2px;
+    }
+  }
+
+  .belt-control {
+    color: $white;
+    display: block;
+    margin-top: rem(-20);
+    top: 50%;
+    left: rem(20);
+    z-index: 10;
+    @extend %absolute;
+  }
+
+  .belt-control-right {
+    left: auto;
+    right: em(20);
+  }
+}
