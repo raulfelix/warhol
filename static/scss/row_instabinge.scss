@@ -26,4 +26,10 @@
       margin-right: 2px;
     }
   }
+
+  .flex-direction-nav .flex-next,
+  .flex-direction-nav .flex-prev {
+    color: $white;
+    text-shadow: none;
+  }
 }
