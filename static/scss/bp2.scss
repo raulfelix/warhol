@@ -7,10 +7,6 @@
     width: 50%;
   }
 
-  .section-thumb-bg .thumb {
-    min-height: rem(430);
-  }
-
   .header {
     .content {
       padding: rem(180) 0;
@@ -29,7 +25,7 @@
       .flex-direction-nav {
         display: none;
       }
-      
+
       .flex-control-paging li {
         margin: 0 rem(26);
       }
@@ -134,6 +130,7 @@
   }
 
   @import 'module_modal_bp2';
+  @import 'module_thumb_bp2';
 
   .search-row {
     
