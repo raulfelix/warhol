@@ -101,6 +101,43 @@
   }
 }
 
+.category {
+  height: rem(290);
+
+  .feature-bg {
+    @extend %absolute;
+    background: url('images/header-category.png') no-repeat center center;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .category-branding {
+    text-align: right;
+    padding-top: rem(32);
+
+    .category-h2 {
+      margin-right: rem(5);
+    }
+    .category-h2, img { 
+      display: inline-block; 
+    }
+  }
+  .content {
+    padding: 0;
+    text-align: left;
+    margin-top: rem(185);
+  }
+
+  .category-h1 {
+    font-size: 44px;
+    margin-bottom: rem(10);
+  }
+  .category-h2 {
+    font-size: 14px;
+  }
+}
+
 .nav {
   @extend %absolute;
   background-color: $white;
@@ -179,7 +216,7 @@
 }
 
 .nav-active {
-  height: 100%;
+  height: rem(585);
 
   .nav-menu { 
     a:before {

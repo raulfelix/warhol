@@ -25,6 +25,7 @@
 
 .f-1-2 {
   width: 50%;
+  @extend %pull-left;
 }
 
 .f-2-3 {

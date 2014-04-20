@@ -46,6 +46,27 @@
   height: rem(430);
 }
 
+.thumb-category {
+  padding: rem(80) 0;
+
+  & > div {
+    float: right;
+  }
+  
+  .thumb-title {
+    font-size: 56px;
+    margin-bottom: rem(10);
+  }
+
+  .thumb-caption {
+    font-size: 18px;
+  }
+
+  .thumb, .thumb-feature {
+    margin-bottom: 0;
+  }
+}
+
 .thumb-search {
   margin-bottom: rem(40);
 

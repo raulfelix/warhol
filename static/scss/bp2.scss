@@ -43,6 +43,24 @@
     }
   }
 
+  .category {
+    .content {
+      padding: 0;
+    }
+
+    .category-h2, .category-branding .category-h2 {
+      display: none;
+    }
+
+    .category-h1 {
+      margin-bottom: 0;
+      margin-top: rem(36);
+    }
+    .category-branding img {
+      margin-top: rem(10);
+    }
+  }
+
   .next-feature {
     .next-bg {
       background-size: 180% auto;
@@ -88,6 +106,7 @@
   }
 
   .nav-active {
+    height: rem(780);
     .nav-menu { 
       a:before {
         font-size: rem(24);
@@ -126,6 +145,19 @@
     .icon-share {
       font-size: rem(24);
       margin-right: rem(10);
+    }
+  }
+
+  .button-row-paginate {
+    .button-prev {
+      float: left;
+      width: auto;
+      margin: 0;
+    }
+    .button-next {
+      float: right;
+      width: auto;
+      margin: 0;
     }
   }
 
