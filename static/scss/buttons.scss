@@ -23,6 +23,7 @@
 .button-disabled, .button-disabled:hover {
   color: #D3D3D3;
   border-color: #D3D3D3;
+  cursor: default;
 }
 
 .button-share {
@@ -70,26 +71,24 @@
 
 .button-next .icon-arrow-right, 
 .button-prev .icon-arrow-left {
+  font-size: 30px;
   height: rem(20);
   width: rem(25);
   left: rem(20);
-  top: rem(15);
+  top: rem(8);
   @extend %absolute;
 }
 
 .button-prev {
   padding-left: rem(60);
   .icon-arrow-left {
-    background: url('images/icon-arrow-left@2x.png') no-repeat left center;
-    background-size: auto 100%;
+   
   }
 }
 
 .button-next {
   padding-right: rem(60);
   .icon-arrow-right {
-    background: url('images/icon-arrow-right@2x.png') no-repeat left center;
-    background-size: auto 100%;
     right: rem(20);
     left: auto;
   }
@@ -100,15 +99,15 @@
   .dropdown-label {
     @extend %pink;
     display: block;
-    padding: rem(14) rem(40) rem(14) rem(30);
+    padding: rem(14) rem(50) rem(14) rem(30);
+
+    &:hover {
+      color: $highlight;
+    }
   }  
-  .icon-triangle {
-    background: url('images/triangle@2x.png') no-repeat left center;
-    background-size: auto 100%;
-    height: rem(6);
-    width: rem(8);
-    right: rem(20);
-    top: rem(22);
+  .icon-arrow-down {
+    right: rem(18);
+    top: rem(15);
     @extend %absolute;
   }
 }
