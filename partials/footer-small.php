@@ -4,11 +4,9 @@
    */
 ?>
 
+<div class="up">
+  <a id="back-up" href="javascript:void(0)"><i></i>back to top</a>
+</div>
 <footer class="footer">
-  <div class="f-grid f-row">
-    <div class="f-1">
-      <div class="footer-legals">&copy; Life Without Andy since 2008. All Rights Reserved.</div>
-      <div class="footer-links"><a href="#">Disclaimer</a></div>
-    </div>
-  </div>
+ <?php get_template_part('partials/footer', 'legals'); ?>
 </footer>

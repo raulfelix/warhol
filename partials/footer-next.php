@@ -4,24 +4,40 @@
    * If there is a feature image it will display it else 
    * renders an imageless view.
    */
+
+  $next_post = get_next_post();
+  $next_css = 'next';
 ?>
 
-<footer class="footer next next-feature">
-  <div class="next-bg"></div>
-  <div class="blanket"></div>
-  <div class="f-grid f-row">
-    <div class="content">
-      <h3 class="h-3">Next up...</h3>
-      <h1 class="h-1">Up-close and personal with Kendrick Lamar</h1>
-      <h4 class="h-4">One of this generations best story tellers</h4>
-    </div>
-  </div>
-  <div class="f-grid f-row">
-    <div class="f-1">
-      <div class="footer-legals">&copy; Life Without Andy since 2008. All Rights Reserved.</div>
-      <div class="footer-links">
-        <a href="#">Disclaimer</a>
+<?php
+  if (!empty($next_post)): 
+    $post_thumbnail_id = get_post_thumbnail_id($next_post->ID);
+    if (strlen($post_thumbnail_id) > 0):
+      $next_css = 'next next-feature';
+      $img_url = wp_get_attachment_image_src($post_thumbnail_id, 'original');
+    endif;
+  endif; 
+?>
+
+<div class="up">
+  <a id="back-up" href="javascript:void(0)"><i></i>back to top</a>
+</div>
+<footer class="footer <?php echo $next_css; ?>">
+
+  <?php if (strlen($post_thumbnail_id) > 0): ?>
+    <div class="next-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
+    <div class="blanket"></div>
+  <?php endif; ?>
+
+  <?php if (!empty($next_post)): ?>
+    <div class="f-grid f-row">
+      <div class="content">
+        <h3 class="h-3">Next up...</h3>
+        <a href="<?php echo get_permalink($next_post->ID); ?>" class="h-1"><?php echo $next_post->post_title; ?></a>
+        <h4 class="h-4">One of this generations best story tellers</h4>
       </div>
     </div>
-  </div>
+  <?php endif; ?>
+
+  <?php get_template_part('partials/footer', 'legals'); ?>
 </footer>
