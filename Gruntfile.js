@@ -9,7 +9,8 @@ module.exports = function(grunt) {
           style: 'compressed'
         },
         files: {
-          'static/style.css': 'static/scss/master.scss'
+          'static/style.css': 'static/scss/master.scss',
+          'style.css': 'static/scss/master.scss'
         }
       }
     },
@@ -42,6 +43,10 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'static/dist/build.js' : [
+            'static/vendor/*.js',
+            'static/scripts/*.js'
+          ],
+          'scripts/build.js' : [
             'static/vendor/*.js',
             'static/scripts/*.js'
           ]

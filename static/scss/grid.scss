@@ -3,7 +3,7 @@
 // ------------------------------------------------
 
 .f-grid {
-  max-width: em(1160);
+  max-width: rem(1160);
   margin: 0 auto;
 }
 
@@ -15,7 +15,7 @@
 
   @extend %relative;
   @extend %clearfix;
-  padding: 0 em(10);
+  padding: 0 rem(10);
 }
 
 // proportions
