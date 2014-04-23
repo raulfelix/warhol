@@ -10,11 +10,11 @@
 ?>
 
 <?php
-  if (!empty($next_post)): 
-    $post_thumbnail_id = get_post_thumbnail_id($next_post->ID);
-    if (strlen($post_thumbnail_id) > 0):
+  if ( !empty($next_post) ): 
+    $post_thumbnail_id = get_post_thumbnail_id( $next_post->ID );
+    if (strlen( $post_thumbnail_id) > 0 ):
       $next_css = 'next next-feature';
-      $img_url = wp_get_attachment_image_src($post_thumbnail_id, 'original');
+      $img_url = wp_get_attachment_image_src( $post_thumbnail_id, 'original' );
     endif;
   endif; 
 ?>
@@ -24,17 +24,17 @@
 </div>
 <footer class="footer <?php echo $next_css; ?>">
 
-  <?php if (strlen($post_thumbnail_id) > 0): ?>
+  <?php if ( strlen( $post_thumbnail_id) > 0 ): ?>
     <div class="next-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
     <div class="blanket"></div>
   <?php endif; ?>
 
-  <?php if (!empty($next_post)): ?>
+  <?php if ( !empty($next_post) ): ?>
     <div class="f-grid f-row">
       <div class="content">
         <h3 class="h-3">Next up...</h3>
-        <a href="<?php echo get_permalink($next_post->ID); ?>" class="h-1"><?php echo $next_post->post_title; ?></a>
-        <h4 class="h-4">One of this generations best story tellers</h4>
+        <a href="<?php echo get_permalink( $next_post->ID ); ?>" class="h-1"><?php echo $next_post->post_title; ?></a>
+        <h4 class="h-4"><?php echo get_the_subtitle( $next_post->ID ); ?></h4>
       </div>
     </div>
   <?php endif; ?>
