@@ -22,6 +22,7 @@
 <div class="up">
   <a id="back-up" href="javascript:void(0)"><i></i>back to top</a>
 </div>
+
 <footer class="footer <?php echo $next_css; ?>">
 
   <?php if ( strlen( $post_thumbnail_id) > 0 ): ?>
@@ -30,13 +31,15 @@
   <?php endif; ?>
 
   <?php if ( !empty($next_post) ): ?>
-    <div class="f-grid f-row">
-      <div class="content">
-        <h3 class="h-3">Next up...</h3>
-        <a href="<?php echo get_permalink( $next_post->ID ); ?>" class="h-1"><?php echo $next_post->post_title; ?></a>
-        <h4 class="h-4"><?php echo get_the_subtitle( $next_post->ID ); ?></h4>
+    <a class="footer-navigate" href="<?php echo get_permalink( $next_post->ID ); ?>">
+      <div class="f-grid f-row">
+        <div class="content">
+          <h3 class="h-3">Next up...</h3>
+          <h1 class="h-1"><?php echo $next_post->post_title; ?></h1>
+          <h4 class="h-4"><?php echo get_the_subtitle( $next_post->ID ); ?></h4>
+        </div>
       </div>
-    </div>
+    </a>
   <?php endif; ?>
 
   <?php get_template_part('partials/footer', 'legals'); ?>
