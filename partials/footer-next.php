@@ -20,7 +20,7 @@
 ?>
 
 <div class="up">
-  <a id="back-up" href="javascript:void(0)"><i></i>back to top</a>
+  <a id="back-up" href="javascript:void(0)"><i class="icon-arrow-up"></i>back to top</a>
 </div>
 
 <footer class="footer <?php echo $next_css; ?>">

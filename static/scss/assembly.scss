@@ -20,25 +20,23 @@
 // Rows
 //------------------
 .up {
-  @extend %text-center;
-  @extend %relative;
   background-color: #94D7DE;
   height: rem(160);
+  @extend %text-center;
+  @extend %relative;
 
   a {
-    i {
-      background: url('images/arrow_up@2x.png') no-repeat left center;
-      background-size: auto 100%;
-      height: rem(17);
-      width: rem(20);
+    
+    .icon-arrow-up {
       display: inline-block;
       margin-right: rem(8);
     }
 
     font-size: rem(22);
     line-height: rem(160);
-    margin-top: rem(80); 
     background-size: auto 100%;
+    @extend %block;
+    
     &:hover {
       color: #000;
     }
