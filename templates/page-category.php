@@ -79,16 +79,16 @@
         $wp_query->the_post();
   ?>
 
-        <div class="f-1-3 bp2-1-2">
-          <div class="thumb thumb-third">
+        <div class="f-1-3 bp2-1-2 thumb-third">
+          <a href="<?php echo the_permalink(); ?>" class="thumb">
             <div class="thumb-feature">
               <?php the_post_thumbnail( 'medium'); ?>
               <span class="thumb-time"><?php echo when(); ?></span>
               <span class="thumb-views data-views"><i class="icon-views"></i>5,213</span>
             </div>
-            <a href="<?php echo the_permalink(); ?>" class="h-2 thumb-title"><?php the_title(); ?></a>
+            <div class="h-2 thumb-title"><?php the_title(); ?></div>
             <div class="h-5 thumb-caption"><?php the_subtitle(); ?></div>
-          </div>
+          </a>
         </div>
   
   <?php  
