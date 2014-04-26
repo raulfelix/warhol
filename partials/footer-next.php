@@ -5,7 +5,7 @@
    * renders an imageless view.
    */
 
-  $next_post = get_next_post();
+  $next_post = get_adjacent_post(true, '', true);
   $next_css = 'next';
 ?>
 
