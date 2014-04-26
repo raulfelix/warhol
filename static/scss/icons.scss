@@ -53,9 +53,9 @@
 .icon-arrow-up:before {
   content: "\e609";
 }
-.icon-arrow-right:before {
+.icon-arrow-right:before, .icon-arrow-next:before {
   content: "\e60a";
 }
-.icon-arrow-left:before {
+.icon-arrow-left:before, .icon-arrow-prev:before {
   content: "\e60b";
 }

@@ -17,4 +17,13 @@
 </head>
 
 <body>
-  <?php get_template_part('partials/header', 'feature'); ?>
+  <?php 
+    if ( is_page('home') ) {
+    } 
+    else if ( is_page() ) {
+      get_template_part('partials/header', 'category');
+    }
+    else {
+      get_template_part('partials/header', 'feature');
+    }
+  ?>

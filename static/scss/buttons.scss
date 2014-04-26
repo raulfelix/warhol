@@ -69,26 +69,27 @@
   }
 }
 
-.button-next .icon-arrow-right, 
-.button-prev .icon-arrow-left {
-  font-size: 30px;
-  height: rem(20);
-  width: rem(25);
-  left: rem(20);
-  top: rem(8);
+.button-next .icon-arrow-next, 
+.button-prev .icon-arrow-prev {
+  font-size: 24px;
+  top: rem(12);
   @extend %absolute;
 }
 
 .button-prev {
+  min-width: rem(130);
   padding-left: rem(60);
-  .icon-arrow-left {
-   
+  padding-right: rem(6);
+  .icon-arrow-prev {
+    left: rem(20);
   }
 }
 
 .button-next {
+  min-width: rem(130);
   padding-right: rem(60);
-  .icon-arrow-right {
+  padding-left: rem(6);
+  .icon-arrow-next {
     right: rem(20);
     left: auto;
   }

@@ -4,19 +4,88 @@
 // theme support
 // ------------------------------ 
 add_theme_support( 'post-thumbnails' ); 
-
 register_nav_menu( 'primary', 'Primary Menu' );
+
+// ------------------------------ 
+// custom time
+// ------------------------------ 
+function when() {
+  $time_patterns = array(
+    "/ mins/",
+    "/ min/",
+    "/ days/",
+    "/ day/",
+    "/ months/",
+    "/ month/",
+    "/ years/",
+    "/ year/"
+  );
+  $time_replacements = array(
+    "mn",
+    "mn",
+    "d",
+    "d",
+    "m",
+    "m",
+    "y",
+    "y"
+  );
+  $time = human_time_diff( get_the_time('U'), current_time('timestamp') );
+  return preg_replace($time_patterns, $time_replacements, $time);
+}
+
+// ------------------------------ 
+// next/prev pagination links
+// ------------------------------
+function get_pagination_link($type) {
+  $button_class = "button-$type";
+  
+  if ($type === 'prev') {
+    $link = get_previous_posts_link( $type );
+  } else {
+    $link = get_next_posts_link( $type );
+  }
+
+  if ($link === null) {
+    echo '<a class="button button-disabled '. $button_class .'" href="javascript:void(0)"><i class="icon-arrow-'. $type .'"></i>'. $type .'</a>';
+  } else {
+    preg_match('/(http:\/\/.+?)([ \\n\\r])/', $link, $matches );
+    echo '<a class="button '. $button_class .'" href="'. $matches[0] .'><i class="icon-arrow-'. $type .'"></i>'. $type .'</a>';
+  }
+}
+
+// ------------------------------ 
+// register custom post types
+// ------------------------------ 
+// function create_post_type() {
+//   register_post_type( 'lwa_feature',
+//     array(
+//       'labels' => array(
+//         'name' => __( 'Featured posts' ),
+//         'singular_name' => __( 'Featured' ),
+//       ),
+//       'description' => __( 'Featured articles are defined within this type' ),
+//       'show_ui' => true,
+//       'public' => true,
+//       'has_archive' => true,
+//       'rewrite' => array('slug' => '/', 'with_front' => false),
+//       'menu_position' => 5,
+//       'supports' => array( 'title', 'editor', 'thumbnail', 'revisions', 'page-attributes' ),
+//       'taxonomies' => array( 'category', 'subtitle' )
+//     )
+//   );
+
+// flush_rewrite_rules();
+
+// }
+// add_action( 'init', 'create_post_type' );
+
 
 // ------------------------------ 
 // add app JS in footer of page
 // ------------------------------ 
 function add_scripts() {
-  // wp_register_script( 'jq', get_template_directory_uri() . '/scripts/jquery-2.0.3.min.js', null, '', true );
   wp_register_script( 'build', get_template_directory_uri() . '/scripts/build.js', null, '', true );
-  // wp_register_script( 'slider', get_template_directory_uri() . '/scripts/jquery.flexslider-min.js', array( 'jq' ), '', true );
-  
-  // wp_enqueue_script( 'jq' );
-  // wp_enqueue_script( 'dist' );
   wp_enqueue_script( 'build' );
 }
 add_action( 'wp_enqueue_scripts', 'add_scripts', 999 );
