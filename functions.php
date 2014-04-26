@@ -13,6 +13,8 @@ function when() {
   $time_patterns = array(
     "/ mins/",
     "/ min/",
+    "/ hours/",
+    "/ hour/",
     "/ days/",
     "/ day/",
     "/ months/",
@@ -23,6 +25,8 @@ function when() {
   $time_replacements = array(
     "mn",
     "mn",
+    "h",
+    "h",
     "d",
     "d",
     "m",

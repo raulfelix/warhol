@@ -20,6 +20,7 @@
     if ( $feature_query->have_posts() ):
       while ( $feature_query->have_posts() ): 
         $feature_query->the_post();
+        $post_ID_no_repeat = get_the_ID();
   ?>
 
         <div class="f-grid">
@@ -29,7 +30,7 @@
                 <div class="thumb-feature">
                   <?php the_post_thumbnail( 'large'); ?>  
                   <span class="thumb-time"><?php echo when(); ?></span>
-                  <span class="thumb-views data-views"><i class="icon-eye"></i>5,213</span>
+                  <span class="thumb-views data-views"><i class="icon-views"></i>5,213</span>
                 </div>
               </div>
             </div>
@@ -66,6 +67,7 @@
     $args = Array(
       'posts_per_page' => 6,
       'paged' => $paged,
+      'post__not_in' => array( $post_ID_no_repeat ),
       'category__and' => array( $category_id )
     );
 
@@ -82,7 +84,7 @@
             <div class="thumb-feature">
               <?php the_post_thumbnail( 'medium'); ?>
               <span class="thumb-time"><?php echo when(); ?></span>
-              <span class="thumb-views data-views"><i class="icon-eye"></i>5,213</span>
+              <span class="thumb-views data-views"><i class="icon-views"></i>5,213</span>
             </div>
             <a href="<?php echo the_permalink(); ?>" class="h-2 thumb-title"><?php the_title(); ?></a>
             <div class="h-5 thumb-caption"><?php the_subtitle(); ?></div>
@@ -97,35 +99,14 @@
       <div class="f-row button-row button-row-paginate">
         <div class="f-1">
           <?php 
-            
             get_pagination_link( 'prev' );
             get_pagination_link( 'next' );
-
-            // $prev_link = get_previous_posts_link( 'prev' );
-            // if ($prev_link === null) {
-            //   echo '<a class="button button-prev button-disabled" href="javascript:void(0)">prev</a>';
-            // } else {
-            //   preg_match('/(http:\/\/.+?)([ \\n\\r])/', $prev_link, $matches );
-            //   echo '<a class="button button-prev" href="'. $matches[0] .'>prev</a>';
-            // }
-
-          ?>
-
-          <?php 
-            
-            // $next_link = get_next_posts_link( 'next' );
-            // if ($next_link === null) {
-            //   echo '<a class="button button-next button-disabled" href="javascript:void(0)">next</a>';
-            // } else {
-            //   preg_match('/(http:\/\/.+?)([ \\n\\r])/', $next_link, $matches );
-            //   echo '<a class="button button-next" href="'. $matches[0] .'>next</a>';
-            // }
-
           ?>
         </div>
       </div>
     </div>
   </div>
+
 <?php 
   /* Restore original Post Data */
   wp_reset_postdata();
