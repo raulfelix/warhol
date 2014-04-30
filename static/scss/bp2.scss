@@ -14,6 +14,9 @@
     .link { 
       font-size: rem(24);
     }
+    .h-1 {
+      font-size: rem(56);
+    }
   }
 
   .feature {
@@ -70,24 +73,12 @@
   .nav {
     .logo {
       margin-top: rem(15);
-      width: rem(125);
-      height: rem(93);
     }
     .nav-item {
       margin-top: rem(40);
     }
     .nav-menu {
       margin-right: rem(20);
-      .icon-menu {
-        font-size: rem(40);
-        width: rem(36);
-        height: rem(33);
-      }
-    }
-    .nav-search .icon-search {
-      font-size: rem(36);
-      width: rem(30);
-      height: rem(32);
     }
 
     .nav-links {
