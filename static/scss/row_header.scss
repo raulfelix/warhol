@@ -16,7 +16,7 @@
 }
 
 .feature {
-  height: rem(750);
+  height: rem(745);
   color: $white;
 
   .content {
@@ -40,6 +40,7 @@
 
   .feature-carousel {
     @extend %absolute;
+    width: 100%;
     z-index: 0;
 
     img {
@@ -60,6 +61,12 @@
     .flex-direction-nav .flex-next {
       color: #fff;
       opacity: 1;
+      &:before {
+        font-family: "LWA-icons";
+        font-size: 40px;
+        display: inline-block;
+        content: '\e60b';
+      }
     }
 
     .flex-direction-nav .flex-prev {
@@ -67,6 +74,9 @@
     }
     .flex-direction-nav .flex-next {
       right: 60px;
+      &:before { 
+        content: "\e60a";
+      }
     }
 
     .flex-control-nav {

@@ -19,6 +19,7 @@
 <body>
   <?php 
     if ( is_page('home') ) {
+      get_template_part('partials/header', 'home');
     } 
     else if ( is_page() ) {
       get_template_part('partials/header', 'category');

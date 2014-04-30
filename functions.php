@@ -7,7 +7,123 @@ add_theme_support( 'post-thumbnails' );
 register_nav_menu( 'primary', 'Primary Menu' );
 
 // ------------------------------ 
-// custom time
+// add editor/admin css files
+// ------------------------------ 
+function change_adminbar_css() {
+    wp_register_style( 'add-admin-stylesheet', get_template_directory_uri() . '/admin-styles.css' );
+    wp_enqueue_style( 'add-admin-stylesheet' );
+}
+add_action( 'admin_enqueue_scripts', 'change_adminbar_css' ); 
+
+// function add_editor_styles() {
+//   add_editor_style( 'editor-styles.css' );
+// }
+// add_action( 'init', 'add_editor_styles' );
+
+
+
+
+
+// ------------------------------ 
+// hide default posts menu option
+// ------------------------------ 
+function post_remove () {
+  remove_menu_page('edit.php');
+}
+add_action('admin_menu', 'post_remove'); 
+
+// --------------------------------- 
+// register custom taxonomies
+// --------------------------------- 
+function register_custom_taxonomies() {
+  $labels = array(
+    'name'              => _x( 'Categories', 'taxonomy general name' ),
+    'singular_name'     => _x( 'Category', 'taxonomy singular name' ),
+    'search_items'      => __( 'Search Categories' ),
+    'all_items'         => __( 'All Categories' ),
+    'parent_item'       => __( 'Parent Category' ),
+    'parent_item_colon' => __( 'Parent Category:' ),
+    'edit_item'         => __( 'Edit Category' ), 
+    'update_item'       => __( 'Update Category' ),
+    'add_new_item'      => __( 'Add New Category' ),
+    'new_item_name'     => __( 'New Category' ),
+    'menu_name'         => __( 'Categories' ),
+  );
+
+  $args = array(
+    'labels' => $labels,
+    'hierarchical' => true,
+    'rewrite' => array(
+      'with_front' => true
+    )
+  );
+
+  register_taxonomy( 'featured', 'lwa_feature', $args );
+  register_taxonomy( 'news', 'lwa_news', $args );
+
+  $carousel_labels = array(
+    'name'              => _x( 'Carousel', 'taxonomy general name' ),
+    'singular_name'     => _x( 'Carousel', 'taxonomy singular name' ),
+    'menu_name'         => __( 'Carousel' ),
+  );
+
+  $carousel_args = array(
+    'labels' => $carousel_labels,
+    'hierarchical' => true
+  );
+  register_taxonomy( 'carousel', 'lwa_carousel', $carousel_args );
+}
+
+add_action( 'init', 'register_custom_taxonomies' );
+
+// ------------------------------ 
+// register custom post types
+// ------------------------------ 
+function create_post_type() {
+  register_post_type( 'lwa_feature',
+    array(
+      'labels' => array(
+        'name' => __( 'Featured posts' ),
+        'singular_name' => __( 'Featured' ),
+      ),
+      'description' => __( 'Featured articles are defined within this type' ),
+      'hierarchical' => true, 
+      'show_ui' => true,
+      'public' => true,
+      'has_archive' => true,
+      'rewrite' => array('slug' => 'featured', 'with_front' => false),
+      'menu_position' => 5,
+      'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+      'taxonomies' => array( 'featured', 'subtitle', 'carousel' )
+    )
+  );
+
+  register_post_type( 'lwa_news',
+    array(
+      'labels' => array(
+        'name' => __( 'News posts' ),
+        'singular_name' => __( 'News' ),
+      ),
+      'description' => __( 'News articles are defined within this type' ),
+      'hierarchical' => true, 
+      'show_ui' => true,
+      'public' => true,
+      'has_archive' => true,
+      'rewrite' => array('slug' => 'news', 'with_front' => false),
+      'menu_position' => 5,
+      'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+      'taxonomies' => array( 'news', 'subtitle', 'carousel' )
+    )
+  );
+}
+add_action( 'init', 'create_post_type' );
+
+
+
+
+
+// ------------------------------ 
+// util: custom time
 // ------------------------------ 
 function when() {
   $time_patterns = array(
@@ -35,11 +151,11 @@ function when() {
     "y"
   );
   $time = human_time_diff( get_the_time('U'), current_time('timestamp') );
-  return preg_replace($time_patterns, $time_replacements, $time);
+  echo preg_replace($time_patterns, $time_replacements, $time);
 }
 
 // ------------------------------ 
-// next/prev pagination links
+// util: next/prev pagination links
 // ------------------------------
 function get_pagination_link($type) {
   $button_class = "button-$type";
@@ -59,30 +175,26 @@ function get_pagination_link($type) {
 }
 
 // ------------------------------ 
-// register custom post types
+// get the category helper
+// ------------------------------
+function category($post_type) {
+  $terms = get_the_terms( get_the_id(), $post_type === 'lwa_feature' ? 'featured' : 'news' );
+
+  foreach ( $terms as $term ) {
+    return array(
+      'name' => $term->name,
+      'permalink' => ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $term->slug
+      );
+  }
+}
+
+
 // ------------------------------ 
-// function create_post_type() {
-//   register_post_type( 'lwa_feature',
-//     array(
-//       'labels' => array(
-//         'name' => __( 'Featured posts' ),
-//         'singular_name' => __( 'Featured' ),
-//       ),
-//       'description' => __( 'Featured articles are defined within this type' ),
-//       'show_ui' => true,
-//       'public' => true,
-//       'has_archive' => true,
-//       'rewrite' => array('slug' => '/', 'with_front' => false),
-//       'menu_position' => 5,
-//       'supports' => array( 'title', 'editor', 'thumbnail', 'revisions', 'page-attributes' ),
-//       'taxonomies' => array( 'category', 'subtitle' )
-//     )
-//   );
-
-// flush_rewrite_rules();
-
-// }
-// add_action( 'init', 'create_post_type' );
+// Call to views plugin
+// ------------------------------
+function views() {
+  echo do_shortcode('[post_view]');
+}
 
 
 // ------------------------------ 
