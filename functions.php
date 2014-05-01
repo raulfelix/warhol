@@ -93,7 +93,7 @@ function create_post_type() {
       'has_archive' => true,
       'rewrite' => array('slug' => 'featured', 'with_front' => false),
       'menu_position' => 5,
-      'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+      'supports' => array('author', 'title', 'editor', 'thumbnail', 'revisions', 'excerpt' ),
       'taxonomies' => array( 'featured', 'subtitle', 'carousel' )
     )
   );
@@ -111,7 +111,7 @@ function create_post_type() {
       'has_archive' => true,
       'rewrite' => array('slug' => 'news', 'with_front' => false),
       'menu_position' => 5,
-      'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+      'supports' => array('author', 'title', 'editor', 'thumbnail', 'revisions', 'excerpt' ),
       'taxonomies' => array( 'news', 'subtitle', 'carousel' )
     )
   );
@@ -133,6 +133,8 @@ function when() {
     "/ hour/",
     "/ days/",
     "/ day/",
+    "/ weeks/",
+    "/ week/",
     "/ months/",
     "/ month/",
     "/ years/",
@@ -145,6 +147,8 @@ function when() {
     "h",
     "d",
     "d",
+    "w",
+    "w",
     "m",
     "m",
     "y",
@@ -183,7 +187,7 @@ function category($post_type) {
   foreach ( $terms as $term ) {
     return array(
       'name' => $term->name,
-      'permalink' => ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $term->slug
+      'permalink' => get_bloginfo('wpurl') . "/" . ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $term->slug
       );
   }
 }
