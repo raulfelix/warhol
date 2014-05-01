@@ -7,9 +7,12 @@
   <div class="f-grid f-row">
     <div class="f-1">
       <div class="content">
-        <a class="link h-5" href="#"><?php echo the_tags('') ?></a>
+        <?php 
+          $category = category($post->post_type); 
+        ?>
+        <a class="link h-5" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
         <h1 class="h-1"><?php the_title(); ?></h1>
-        <h4 class="h-4">We give you the complete run-down of the latest addition to the Air Max family</h4>
+        <h4 class="h-4"><?php the_subtitle(); ?></h4>
       </div>
     </div>
   </div>

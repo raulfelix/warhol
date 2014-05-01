@@ -1270,25 +1270,26 @@ LWA.Modules.Instabinge = (function() {
 window.LWA = window.LWA || { Views: {}, Modules: {} };
 
 /*
- *
+ * Overlay a modal view setting html element to 
+ * overflow hidden to prevent scrolling
  */
 LWA.Modules.Modal = function(triggerSelector, modalSelector) {
 
-  var $body, $modal;
+  var $html, $modal;
 
   function onOpen(ev) {
     ev.preventDefault();
     $modal.toggleClass('modal-active');
-    $body.toggleClass('no-scroll');
+    $html.toggleClass('no-scroll');
   }
 
   function onClose() {
     $modal.removeClass('modal-active');
-    $body.removeClass('no-scroll');
+    $html.removeClass('no-scroll');
   }
 
   function init() {
-    $body = $('body');
+    $html = $('html');
     $modal = $(modalSelector);
     $(triggerSelector).on('click', onOpen);
     $('.modal-close', $modal).click(onClose);
@@ -1333,5 +1334,6 @@ LWA.Modules.Share = (function() {
   // po.src = 'https://apis.google.com/js/plusone.js';
   // var s = document.getElementsByTagName('script')[0];
   // s.parentNode.insertBefore(po, s);
+  LWA.Modules.Modal('.button-share', '#modal-share');
 
 })();
