@@ -181,8 +181,6 @@
     .icon-menu {
       font-size: rem(28);
       display: block;
-      width: rem(24);
-      height: rem(22);
       line-height: 0.9;
     }
   }
@@ -192,8 +190,6 @@
     .icon-search {
       font-size: rem(26);
       display: block;
-      width: rem(24);
-      height: rem(25);
     }
   }
 
@@ -236,9 +232,9 @@
       content: 'close';
       color: $highlight;
       font-size: rem(18);
-      @extend %absolute;
       right: rem(54);
       top: rem(60);
+      @extend %absolute;
     }
 
     .icon-menu {

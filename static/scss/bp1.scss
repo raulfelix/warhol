@@ -2,6 +2,7 @@
 
   @import 'assembly_bp1';
   @import 'module_thumb_bp1';
+  @import 'row_header_bp1';
 
   // grid
   .f-row {
@@ -12,84 +13,31 @@
     width: 100%;
   }
 
-  .header {
-    height: rem(320);
-
-    .content {
-      padding: rem(80) 0 0 0;
-    }
-    
-    .link { 
-      font-size: rem(12);
-    }
-    
-    .h-4 {
-      font-size: rem(14);
-    }
-    
-    .h-1 {
-      font-size: rem(28);
-    }
-  }
-
-  .feature {
-    height: rem(400);
-
-    .content {
-      padding: rem(100) 0 0 0;
-    }
-
-    .flex-control-nav {
-      bottom: rem(10);
-    }
-  }
-
-  .nav {
-
-    .logo {
-      margin-top: rem(15);
-      width: rem(58);
-      height: rem(44);
-    }
-   
-    .nav-menu, .nav-item {
-      margin-top: rem(20);
-    }
-
-    .nav-links {
-      margin-left: rem(-160);
-      margin-top: rem(-117);
-      width: rem(320);
-      
-      .nav-links-primary li {
-        font-size: rem(20);
-        margin: 0 0 rem(30) 0; 
-      }
-
-      .nav-links-secondary li {
-        font-size: rem(14);
-        margin: 0 rem(20); 
-      }
-    }
-  }
-
-  .nav-active {
-    height: rem(400);
-    .nav-menu { 
-      a:before {
-        font-size: rem(12);
-        top: rem(20);
-      }
-      .icon-menu {
-        font-size: 18px;
-      }
-    }
-  }
-
+  // buttons
   .button {
+    font-size: rem(15);
     width: 100%;
   }
 
+  .button-large {
+    width: auto;
+    padding: rem(14) rem(30);
+  }
+
+  // instabinge 
+  .instabinge {
+    height: rem(335);
+    padding: rem(40) 0 0 0;
+    .h-1 {
+      font-size: rem(20);
+      margin-bottom: rem(40);
+    }
+    .belt {
+      height: rem(170);
+    }
+  }
+
+  //footer
   .footer {
     height: rem(30);
     font-size: 9px;
