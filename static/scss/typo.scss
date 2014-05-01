@@ -35,8 +35,29 @@ h1 {
   line-height: 1.3;
 }
 
-h3 {
+h2 {
   font-size: rem(22);
+  margin: rem(30) 0;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: rem(20);
+  margin: rem(40) 0 rem(20) 0;
+}
+
+h4 {
+  font-size: rem(18);
+  margin: rem(40) 0 rem(20) 0;
+}
+
+h5 {
+  font-size: rem(16);
+  margin: rem(40) 0 rem(20) 0;
+}
+
+h6 {
+  font-size: rem(14);
   margin: rem(40) 0 rem(20) 0;
 }
 

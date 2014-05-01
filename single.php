@@ -9,6 +9,7 @@
     
     if (have_posts()): while (have_posts()): the_post();
       get_template_part( 'partials/article', 'content' );
+      $permalink = get_the_permalink();
     endwhile; endif;
     
   ?>
@@ -24,7 +25,7 @@
       </div>
       <div class="modal-share-actions">
         <div class="button button-url">
-          http://www.someurlthatisquitelongtoremember.com.au
+          <?php echo $permalink; ?>
           <a class="button-url-copy" href="#">Copy URL</a>
         </div>
       </div>

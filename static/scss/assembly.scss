@@ -34,7 +34,6 @@
 
     font-size: rem(22);
     line-height: rem(160);
-    background-size: auto 100%;
     @extend %block;
     
     &:hover {
@@ -89,23 +88,26 @@
 .article-row {
   max-width: rem(912);
   
+  .article-row-content {
+    padding: rem(60) 0;
+    
+    img {
+      display: block;
+      width: 100%;
+      margin-bottom: rem(10);
+    }
+  }
+
   .details-row {
-    padding: rem(50) rem(100);
-  }
-
-  img {
-    width: 100%;
-    margin-bottom: rem(10);
-  }
-
-  .h-3 {
-    margin-top: rem(30);
-    margin-bottom: rem(5);
+    margin-top: rem(80);
+    padding: 0 rem(100);
   }
 
   .details-row-secondary {
-    padding-top: rem(25);
+    margin-top: 0;
+    padding: rem(60) rem(100) rem(100);
     color: #cccccc;
+    text-align: center;
   }
 }
 
