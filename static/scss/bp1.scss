@@ -13,20 +13,28 @@
   }
 
   .header {
-    height: rem(400);
+    height: rem(320);
+
+    .content {
+      padding: rem(80) 0 0 0;
+    }
     
     .link { 
       font-size: rem(12);
     }
+    
     .h-4 {
       font-size: rem(14);
     }
+    
     .h-1 {
       font-size: rem(28);
     }
   }
 
   .feature {
+    height: rem(400);
+
     .content {
       padding: rem(100) 0 0 0;
     }

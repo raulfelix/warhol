@@ -1,7 +1,17 @@
-<header class="header feature">
-  <?php $img_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original'); ?>
-  <div class="feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
+<?php 
   
+  $is_feature = has_post_thumbnail( get_the_id() );
+  if ($is_feature === true) {
+    $img_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original');
+  } 
+
+?>
+
+<header class="header <?php echo ($is_feature === true) ? 'feature': '' ?>">
+  <?php if ($is_feature === true): ?>
+    <div class="feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
+  <?php endif; ?>
+
   <?php get_template_part('partials/header', 'nav'); ?>
 
   <div class="f-grid f-row">
