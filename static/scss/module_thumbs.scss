@@ -6,6 +6,10 @@
   background: #F6F6F6;
 }
 
+.thumb-wrap {
+  height: rem(300);
+}
+
 .thumb {
   margin-bottom: rem(60);
   @extend %clearfix;
@@ -36,6 +40,10 @@
     margin-bottom: rem(20); 
   }
 
+  .thumb-title {
+    @extend %block;
+  }
+  
   img {
     width: 100%;
     display: block;

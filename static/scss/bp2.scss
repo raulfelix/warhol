@@ -21,27 +21,12 @@
 
   .feature {
     .content {
-      padding: rem(235) 0;
+      padding: rem(235) 0 0 0;
     }
 
     .feature-carousel {
       .flex-direction-nav {
         display: none;
-      }
-
-      .flex-control-paging li {
-        margin: 0 rem(26);
-      }
-      .flex-control-paging li a {
-        height: rem(16);
-        width: rem(16);
-      }
-
-      .flex-control-paging li .flex-active:after {
-        height: rem(36);
-        width: rem(36);
-        top: rem(-10);
-        left: rem(-10);
       }
     }
   }
@@ -70,47 +55,6 @@
     }    
   }
 
-  .nav {
-    .logo {
-      margin-top: rem(15);
-    }
-    .nav-item {
-      margin-top: rem(40);
-    }
-    .nav-menu {
-      margin-right: rem(20);
-    }
-
-    .nav-links {
-      margin-left: rem(-200);
-      width: rem(400);
-      .nav-links-primary li {
-        font-size: rem(40);
-        margin: rem(40) 0; 
-      }
-
-      .nav-links-secondary li {
-        font-size: rem(28);
-        margin: 0 rem(30); 
-      }
-    }
-  }
-
-  .nav-active {
-    height: rem(780);
-    .nav-menu { 
-      a:before {
-        font-size: rem(24);
-        right: rem(88);
-        top: rem(41);
-      }
-      i {
-        width: rem(38);
-        height: rem(36);
-      }
-    }
-  }
-
   .h-1 {
     font-size: rem(56);
   }
@@ -122,7 +66,7 @@
   }
 
   .article-row {
-    p, ul {
+    p, ul, h1, h2, h3, h4, h5, h6 {
       padding: 0;
     }
     .details-row {
@@ -130,14 +74,6 @@
     }
   }
 
-  .button {
-    font-size: rem(24);
-    
-    .icon-share {
-      font-size: rem(24);
-      margin-right: rem(10);
-    }
-  }
 
   .dropdown .icon-arrow-down {
     top: rem(17);
@@ -157,7 +93,6 @@
   }
 
   @import 'module_modal_bp2';
-  @import 'module_thumb_bp2';
 
   .search-row {
     

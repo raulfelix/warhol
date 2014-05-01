@@ -57,7 +57,7 @@
 
 
   <div class="section-thumb-bg">
-    <div class="f-grid section-thumb">
+    <div class="f-grid section-thumb section-thumb-news">
       <div class="f-row">
         <?php
 

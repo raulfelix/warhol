@@ -11,8 +11,8 @@
           $category = category($post->post_type); 
         ?>
         <a class="link h-5" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
-        <h1 class="h-1"><?php the_title(); ?></h1>
-        <h4 class="h-4"><?php the_subtitle(); ?></h4>
+        <div class="h-1"><?php the_title(); ?></div>
+        <div class="h-4"><?php the_subtitle(); ?></div>
       </div>
     </div>
   </div>

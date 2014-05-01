@@ -25,7 +25,7 @@
                 ?>
                 <a class="link h-5" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
                 <a href="<?php echo the_permalink(); ?>" class="link h-1"><?php the_title(); ?></a>
-                <h4 class="h-4"><?php the_subtitle(); ?></h4>
+                <div class="h-4"><?php the_subtitle(); ?></div>
               </div>
             </div>
           </div>
