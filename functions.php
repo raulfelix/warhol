@@ -200,6 +200,16 @@ function views() {
   echo do_shortcode('[post_view]');
 }
 
+function get_thumbnail() {
+  if (has_post_thumbnail( get_the_id() )) {
+    echo the_post_thumbnail( 'large' );
+  } else {
+    $gallery = new Attachments( 'my_attachments', get_the_id() );
+    if( $gallery->exist() ) {
+      echo $gallery->image( 'large', 0 );
+    }
+  }
+}
 
 // ------------------------------ 
 // add app JS in footer of page
@@ -253,50 +263,58 @@ add_action( 'wp_enqueue_scripts', 'add_scripts', 999 );
 // -------------------------- 
 // attachment plugin config
 // --------------------------
-// function my_attachments( $attachments )
-// {
-//   $fields         = array( );
+add_filter( 'attachments_default_instance', '__return_false' ); // disable the default instance
+function my_attachments( $attachments )
+{
+  $fields = array( 
+    // array(
+    //   'name'      => 'caption',                       // unique field name
+    //   'type'      => 'text',                          // registered field type
+    //   'label'     => __( 'Caption', 'attachments' ),  // label to display
+    //   'default'   => 'caption',                       // default value upon selection
+    // )
+  );
 
-//   $args = array(
+  $args = array(
 
-//     // title of the meta box (string)
-//     'label'         => 'Gallery Images',
+    // title of the meta box (string)
+    'label'         => 'Gallery',
 
-//     // all post types to utilize (string|array)
-//     'post_type'     => array( 'post'),
+    // all post types to utilize (string|array)
+    'post_type'     => array( 'lwa_feature', 'lwa_news'),
 
-//     // meta box position (string) (normal, side or advanced)
-//     'position'      => 'side',
+    // meta box position (string) (normal, side or advanced)
+    'position'      => 'side',
 
-//     // meta box priority (string) (high, default, low, core)
-//     'priority'      => 'high',
+    // meta box priority (string) (high, default, low, core)
+    'priority'      => 'high',
 
-//     // allowed file type(s) (array) (image|video|text|audio|application)
-//     'filetype'      => array('image'),
+    // allowed file type(s) (array) (image|video|text|audio|application)
+    'filetype'      => array('image'),
 
-//     // include a note within the meta box (string)
-//     'note'          => 'Please add your gallery images here.',
+    // include a note within the meta box (string)
+    'note'          => '',
 
-//     // by default new Attachments will be appended to the list
-//     // but you can have then prepend if you set this to false
-//     'append'        => true,
+    // by default new Attachments will be appended to the list
+    // but you can have then prepend if you set this to false
+    'append'        => true,
 
-//     // text for 'Attach' button in meta box (string)
-//     'button_text'   => __( 'Add to an image to gallery', 'attachments' ),
+    // text for 'Attach' button in meta box (string)
+    'button_text'   => __( 'Add to gallery', 'attachments' ),
 
-//     // text for modal 'Attach' button (string)
-//     'modal_text'    => __( 'Add', 'attachments' ),
+    // text for modal 'Attach' button (string)
+    'modal_text'    => __( 'Add', 'attachments' ),
 
-//     // which tab should be the default in the modal (string) (browse|upload)
-//     'router'        => 'browse',
+    // which tab should be the default in the modal (string) (browse|upload)
+    'router'        => 'browse',
 
-//     // fields array
-//     'fields'        => $fields,
+    // fields array
+    'fields'        => $fields,
 
-//   );
+  );
 
-//   $attachments->register( 'my_attachments', $args ); // unique instance name
-// }
-// add_action( 'attachments_register', 'my_attachments' );
+  $attachments->register( 'my_attachments', $args ); // unique instance name
+}
+add_action( 'attachments_register', 'my_attachments' );
  
-// ?>
+ ?>

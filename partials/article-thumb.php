@@ -8,7 +8,7 @@
 <div class="thumb">
   <a class="h-5 thumb-link" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
   <div class="thumb-feature">
-     <?php the_post_thumbnail( 'large' ); ?>  
+     <?php get_thumbnail(); ?>  
     <span class="thumb-time"><?php when(); ?></span>
     <span class="thumb-views data-views"><i class="icon-views"></i><?php views(); ?></span>
   </div>
