@@ -21,6 +21,7 @@
             <div class="f-1">
               <div class="content">
                 <?php 
+
                   $category = category($post->post_type); 
                 ?>
                 <a class="link h-5" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>

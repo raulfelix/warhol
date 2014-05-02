@@ -15,12 +15,14 @@
   
   .h-1 {
     font-size: rem(28);
+
   }
 }
 
 .feature {
   height: rem(400);
 
+  
   .content {
     padding: rem(100) 0 0 0;
   }
@@ -28,6 +30,11 @@
   .feature-carousel {
     .flex-control-nav {
       bottom: rem(10);
+    }
+
+    img {
+      margin-left: rem(-400);
+      width: rem(800);
     }
   }
 }

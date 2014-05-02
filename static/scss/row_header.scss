@@ -10,7 +10,7 @@
   }
 
   .link {
-    display: inline-block;
+    @extend %block;
     &:hover {
       color: $white;
     }
@@ -26,9 +26,24 @@
   }
 
   .link {
+    font-family:"Apercu Pro Medium", 'Trebuchet MS', Arial, sans-serif; 
+
     color: $white;
     &:hover {
-      color: $highlight;
+      color: $pink;
+    }
+  }
+  .h-4 {
+    font-family:"Apercu Pro Medium", 'Trebuchet MS', Arial, sans-serif;
+  }
+
+  .h-1 {
+    font-family:'AvantGardeGothicITCW01B 731063';
+  }
+
+  .link.h-1 {
+    &:hover {
+      color: $white;
     }
   }
 
@@ -198,7 +213,7 @@
     @extend %absolute;
     left: 50%;
     top: 50%;
-    margin-top: rem(-165);
+    margin-top: rem(-160);
     margin-left: rem(-160);
     width: rem(320);
     text-align: center;
@@ -209,7 +224,11 @@
 
     .nav-links-primary li {
       font-size: rem(24);
-      margin: rem(40) 0; 
+      margin: 0 0 rem(40) 0; 
+    }
+
+    .nav-links-secondary {
+      margin-top: rem(60);
     }
 
     .nav-links-secondary li {

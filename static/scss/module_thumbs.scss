@@ -43,17 +43,21 @@
 
   .thumb-link {
     color: #000;
-    @extend %pink;
 
     &:hover {
-      color: $highlight;
+      color: $pink;
     }
   }
 
   .thumb-title {
+    font-family:'AvantGardeGothicITCW01B 731063'; 
     @extend %block;
   }
   
+  .thumb-caption { 
+    font-family:"Apercu Pro Light", 'Trebuchet MS', Arial, sans-serif;
+  }
+
   img {
     width: 100%;
     display: block;
@@ -79,6 +83,7 @@
 
   .thumb-caption {
     font-size: 18px;
+    
   }
 
   .thumb, .thumb-feature {

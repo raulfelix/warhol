@@ -9,9 +9,17 @@
   @extend %relative;
   @extend %pink;
   @extend %text-center;
-
+  // @include transition(background-color 500ms ease);
   &:hover {
-    color: $highlight;
+    color: $white;
+    background-color: $pink;
+    border-color: $pink;
+  }
+
+  &:active {
+    @include transition(none);
+    color: #fff;
+    background-color: $highlight;
     border-color: $highlight;
   }
 }

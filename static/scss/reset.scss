@@ -1,7 +1,7 @@
 html, body, div, img, ol, ul, li, a, h1, h2, h3, h4, h5, h6, p,
 header, footer, section, article, figure, figcaption {
   border: 0;
-  font-family:"Apercu Pro Light", 'Trebuchet MS', Arial, sans-serif; 
+  font-family:"Apercu Pro Medium", 'Trebuchet MS', Arial, sans-serif;  
   font-weight:200; 
   font-style:normal;
   margin: 0;
@@ -45,7 +45,7 @@ a {
   color: #000;
   text-decoration: none;
   &:hover {
-    color: $highlight;
+    color: $pink;
   }
 }
 

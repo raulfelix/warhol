@@ -29,8 +29,8 @@ p {
   margin-bottom: rem(30);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family:"Apercu Pro Medium", 'Trebuchet MS', Arial, sans-serif; 
+h1, h2, h3, h4, h5, h6, .button {
+  
 }
 
 h1 {
@@ -65,13 +65,9 @@ h6 {
   margin: rem(40) 0 rem(20) 0;
 }
 
-.article-row {
-  a {
-    color: $pink;
-    text-decoration: none;
-    &:hover {
-      color: $highlight;
-    }
+.article-row-content {
+  p {
+    font-family:"Apercu Pro Light", 'Trebuchet MS', Arial, sans-serif; 
   }
 
   p, ul, h1, h2, h3, h4, h5, h6 {
@@ -86,5 +82,13 @@ h6 {
     font-size: rem(16);
     margin-left: rem(18);
     line-height: 1.7;
+  }
+
+  a {
+    color: $pink;
+    padding-bottom: 1px;
+    &:hover {
+      border-bottom: 1px solid $pink;
+    }
   }
 }
