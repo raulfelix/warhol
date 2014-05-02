@@ -8,11 +8,13 @@
 
   <?php
     // get the most recent feature article in current category
-    $category_id = get_cat_ID( get_the_title(get_the_ID()) );
-    
+    global $post;
+    $post_slug = $post->post_name;
+
     $feature_args = Array(
+      'post_type' => 'lwa_feature',
       'posts_per_page' => 1,
-      'category__and' => array( 8, $category_id ) // must be in both categories
+      'featured_category' => $post_slug
     );
 
     $feature_query = new WP_Query( $feature_args );
@@ -47,7 +49,7 @@
     endif;
 
     /* Restore original Post Data */
-    //wp_reset_postdata();
+    wp_reset_postdata();
   ?>
 
   <div class="section-thumb-bg">
@@ -68,7 +70,7 @@
       'posts_per_page' => 6,
       'paged' => $paged,
       'post__not_in' => array( $post_ID_no_repeat ),
-      'category__and' => array( $category_id )
+      'featured_category' => $post_slug
     );
 
     // todo exclude featured post above

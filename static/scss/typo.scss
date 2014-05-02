@@ -1,7 +1,7 @@
 .h-1 {
   font-size: rem(70);
-  font-weight: bold;
   margin-bottom: rem(30);
+  font-family:'AvantGardeGothicITCW01B 731063';
 }
 
 .h-2 {
@@ -27,6 +27,10 @@ p {
   font-size: rem(16);
   line-height: 1.7;
   margin-bottom: rem(30);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family:"Apercu Pro Medium", 'Trebuchet MS', Arial, sans-serif; 
 }
 
 h1 {

@@ -49,7 +49,6 @@
 
       wp_reset_query();
     ?>
-
     <div class="button-row">
       <a class="button button-large" href="#">load more features</a>
     </div>

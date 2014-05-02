@@ -15,8 +15,15 @@
   @extend %clearfix;
 
   .thumb-feature {
+    margin: rem(20) 0;
+    opacity: 1;
+    @extend %block;
     @extend %relative;
-    margin-bottom: rem(20);
+    @include transition(opacity 200ms ease);
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   .thumb-time, .thumb-views {
@@ -35,9 +42,12 @@
   }
 
   .thumb-link {
-    @extend %block;
+    color: #000;
     @extend %pink;
-    margin-bottom: rem(20); 
+
+    &:hover {
+      color: $highlight;
+    }
   }
 
   .thumb-title {

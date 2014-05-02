@@ -111,7 +111,7 @@
             <span class="thumb-time">53m</span>
             <span class="thumb-views data-views"><i class="icon-eye"></i>5,213</span>
           </div>
-          <h2 class="h-2 thumb-title">Chris Gibbs knows how to influence street wear</h2>
+          <a href="feature.html" class="h-2 thumb-title">Chris Gibbs knows how to influence street wear</a>
           <div class="h-5 thumb-caption">We spend twenty-four insightful hours with the Los Angeles retail uber-god and let this run over two lines max.</div>
         </div>
       </div>
@@ -336,6 +336,7 @@
   <script type="text/javascript" src="../dist/build.js"></script>
   <script type="text/javascript">
     LWA.Modules.Modal('.nav-search a', '#modal-search');
+    
     $('.belt').flexslider({
       animation: 'slide',
       animationLoop: false,
@@ -345,14 +346,7 @@
       itemMargin: 2
     });
 
-    $('.feature-carousel').flexslider({
-      // animation: 'slide',
-      // animationLoop: false,
-      // controlNav: false,
-      // slideshow: false,
-      // itemWidth: 262,
-      // itemMargin: 2
-    });
+    $('.feature-carousel').flexslider();
   </script>
 </body>
 </html>
