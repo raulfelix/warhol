@@ -52,14 +52,18 @@
   .content {
     padding: rem(70) 0 rem(34) 0;
   }
+
+  a {
+    color: #000;
+  }
 }
 
 .next-feature {
   color: $white;
 
   .next-bg {
+    background-position: center center;
     @extend %absolute;
-    background: url('images/next.png') no-repeat center center;
     width: 100%;
     height: 100%;
     z-index: 0;

@@ -17,3 +17,27 @@
     margin-top: rem(20);
   }
 }
+
+.article-row {
+  padding-top: 0;
+  
+  .article-row-content {
+    padding: 0;
+  }
+
+  .details-row {
+    margin-top: 0;
+  }
+  .button-row {
+    padding-bottom: 0;
+  }
+}
+
+.section-thumb {
+  padding-top: rem(30);
+}
+
+.button-row {
+  padding-bottom: rem(50);
+  padding-top: 0;
+}

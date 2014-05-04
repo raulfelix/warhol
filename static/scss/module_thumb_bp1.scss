@@ -1,5 +1,6 @@
 
 .thumb {
+  margin-bottom: rem(30);
 
   .thumb-feature {
     margin: rem(10) 0;
@@ -12,6 +13,7 @@
 
   .thumb-caption {
     font-size: rem(14);
+    margin-bottom: 0;
   }
 
   .thumb-views {
@@ -24,7 +26,8 @@
 
 .section-thumb-news {
   .thumb {
-    margin-bottom: rem(30);
+    margin-bottom: rem(0);
+    height: rem(230);
   }
 
   .thumb-title {
@@ -32,7 +35,7 @@
   }
   
   .thumb-caption {
-    margin-bottom: 0;
+    display: none;
   }
 
   .thumb-caption, .thumb-views, .thumb-time {

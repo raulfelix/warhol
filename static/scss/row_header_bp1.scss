@@ -22,7 +22,10 @@
 .feature {
   height: rem(400);
 
-  
+  .feature-bg {
+    background-size: rem(800) auto;
+  }
+
   .content {
     padding: rem(100) 0 0 0;
   }

@@ -4,11 +4,12 @@
    * If there is a feature image it will display it else 
    * renders an imageless view.
    */
-  $next_post = get_previous_post();
+  $next_post = get_previous_post(true, '', get_taxonomy_name($post->post_type));
 ?>
 
 <?php
   if ( !empty($next_post) ): 
+    $next_css = 'next';
     $post_thumbnail_id = get_post_thumbnail_id( $next_post->ID );
     if (strlen( $post_thumbnail_id) > 0 ):
       $next_css = 'next next-feature';

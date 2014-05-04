@@ -8,7 +8,7 @@
 ?>
 	
 	<?php 
-		if ( is_page() || is_page_template( 'templates/page-category.php' ) ) {
+		if ( is_page() || is_page_template( 'templates/page-category.php' ) || is_tax('news_tax')) {
 			get_template_part('partials/footer', 'small');
 		} 
 		else {

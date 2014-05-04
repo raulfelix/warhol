@@ -1,5 +1,6 @@
 <?php
 
+
 // ------------------------------ 
 // theme support
 // ------------------------------ 
@@ -37,7 +38,7 @@ add_action('admin_menu', 'post_remove');
 // --------------------------------- 
 function register_custom_taxonomies() {
   $labels = array(
-    'name'              => _x( 'Categories', 'taxonomy general name' ),
+    'name'              => _x( 'Feature categories', 'taxonomy general name' ),
     'singular_name'     => _x( 'Category', 'taxonomy singular name' ),
     'search_items'      => __( 'Search Categories' ),
     'all_items'         => __( 'All Categories' ),
@@ -53,13 +54,13 @@ function register_custom_taxonomies() {
   $args = array(
     'labels' => $labels,
     'hierarchical' => true,
-    'rewrite' => array(
-      'with_front' => true
+    'rewrite' => array (
+      'hierarchical' => true
     )
   );
 
-  register_taxonomy( 'featured', 'lwa_feature', $args );
-  register_taxonomy( 'news', 'lwa_news', $args );
+  register_taxonomy( 'featured_tax', 'lwa_feature', $args );
+  register_taxonomy( 'news_tax', 'lwa_news', $args );
 
   $carousel_labels = array(
     'name'              => _x( 'Carousel', 'taxonomy general name' ),
@@ -76,50 +77,77 @@ function register_custom_taxonomies() {
 
 add_action( 'init', 'register_custom_taxonomies' );
 
+
 // ------------------------------ 
 // register custom post types
 // ------------------------------ 
 function create_post_type() {
-  register_post_type( 'lwa_feature',
-    array(
-      'labels' => array(
-        'name' => __( 'Featured posts' ),
-        'singular_name' => __( 'Featured' ),
-      ),
-      'description' => __( 'Featured articles are defined within this type' ),
-      'hierarchical' => true, 
-      'show_ui' => true,
-      'public' => true,
-      'has_archive' => true,
-      'rewrite' => array('slug' => 'featured', 'with_front' => false),
-      'menu_position' => 5,
-      'supports' => array('author', 'title', 'editor', 'thumbnail', 'revisions', 'excerpt' ),
-      'taxonomies' => array( 'featured', 'subtitle', 'carousel' )
-    )
+  
+  $lwa_feature_post_type = array(
+    'labels' => array(
+      'name' => __( 'Featured posts' ),
+      'singular_name' => __( 'Featured' ),
+    ),
+    'description' => __( 'Featured articles are defined within this type' ),
+    'hierarchical' => true, 
+    'show_ui' => true,
+    'public' => true,
+    'has_archive' => true,
+    'rewrite' => array('slug' => 'featured/%featured_tax%', 'with_front' => false),
+    'menu_position' => 5,
+    'supports' => array('author', 'title', 'editor', 'thumbnail', 'revisions', 'excerpt' ),
+    'taxonomies' => array( 'featured_tax', 'subtitle', 'carousel' )
   );
 
-  register_post_type( 'lwa_news',
-    array(
-      'labels' => array(
-        'name' => __( 'News posts' ),
-        'singular_name' => __( 'News' ),
-      ),
-      'description' => __( 'News articles are defined within this type' ),
-      'hierarchical' => true, 
-      'show_ui' => true,
-      'public' => true,
-      'has_archive' => true,
-      'rewrite' => array('slug' => 'news', 'with_front' => false),
-      'menu_position' => 5,
-      'supports' => array('author', 'title', 'editor', 'thumbnail', 'revisions', 'excerpt' ),
-      'taxonomies' => array( 'news', 'subtitle', 'carousel' )
-    )
+  $lwa_news_post_type = array(
+    'labels' => array(
+      'name' => __( 'News posts' ),
+      'singular_name' => __( 'News' ),
+    ),
+    'description' => __( 'News articles are defined within this type' ),
+    'hierarchical' => true, 
+    'show_ui' => true,
+    'public' => true,
+    'has_archive' => true,
+    'rewrite' => array('slug' => 'news/%news_tax%', 'with_front' => false),
+    'menu_position' => 5,
+    'supports' => array('author', 'title', 'editor', 'thumbnail', 'revisions', 'excerpt' ),
+    'taxonomies' => array( 'news_tax', 'subtitle', 'carousel' )
   );
+
+  register_post_type( 'lwa_feature', $lwa_feature_post_type );
+  register_post_type( 'lwa_news', $lwa_news_post_type );
 }
+
 add_action( 'init', 'create_post_type' );
 
 
 
+
+function product_permastruct($link, $post) {
+
+  // Only mess with product permalinks
+  if ($post->post_type === 'lwa_feature') {
+    if ($cats = get_the_terms($post->ID, 'featured_tax'))
+      $link = str_replace('%featured_tax%', array_pop($cats)->slug, $link);
+      return $link;
+  } 
+  else if ($post->post_type === 'lwa_news') {
+    if ($cats = get_the_terms($post->ID, 'news_tax'))
+      $link = str_replace('%news_tax%', array_pop($cats)->slug, $link);
+      return $link;
+  } else {
+    return $link;
+  }
+ 
+  /* -----------------------------------------------------------------------------------
+    This is where we could really have fun. This just grabs the last
+    applied category and uses it. Depending on how you want permalinks
+    handled, you could change this behavior to include hierarchical
+    permalinks or anything else.  
+     ------------------------------------------------------------------------------------ */ 
+}
+add_filter('post_type_link', 'product_permastruct', 10, 2);
 
 
 // ------------------------------ 
@@ -182,16 +210,20 @@ function get_pagination_link($type) {
 // get the category helper
 // ------------------------------
 function category($post_type) {
-  $terms = get_the_terms( get_the_id(), $post_type === 'lwa_feature' ? 'featured' : 'news' );
+  $terms = get_the_terms( get_the_id(), get_taxonomy_name($post_type) );
 
   foreach ( $terms as $term ) {
     return array(
       'name' => $term->name,
-      'permalink' => get_bloginfo('wpurl') . "/" . ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $term->slug
+      'permalink' => get_bloginfo('wpurl') . "/" . ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $term->slug,
+      'slug' => $term->slug
       );
   }
 }
 
+function get_taxonomy_name($post_type) {
+  return $post_type === 'lwa_feature' ? 'featured_tax' : 'news_tax';
+}
 
 // ------------------------------ 
 // Call to views plugin
@@ -204,11 +236,43 @@ function get_thumbnail() {
   if (has_post_thumbnail( get_the_id() )) {
     echo the_post_thumbnail( 'large' );
   } else {
-    $gallery = new Attachments( 'my_attachments', get_the_id() );
-    if( $gallery->exist() ) {
-      echo $gallery->image( 'large', 0 );
-    }
+    bdw_get_images( get_the_id() );
+    // $gallery = new Attachments( 'my_attachments', get_the_id() );
+    // if( $gallery->exist() ) {
+    //   echo $gallery->image( 'large', 0 );
+    // }
   }
+}
+
+function bdw_get_images($post_id) {
+ 
+    // Get the post ID
+    // $iPostID = $post->ID;
+ 
+    // Get images for this post
+    $arrImages =& get_children('post_type=attachment&post_mime_type=image&post_parent=' . $post_id );
+ 
+    // If images exist for this page
+    if ($arrImages) {
+ 
+        // Get array keys representing attached image numbers
+        $arrKeys = array_keys($arrImages);
+ 
+        // Get the first image attachment
+        $iNum = $arrKeys[0];
+ 
+        // Get the thumbnail url for the attachment
+        // $sThumbUrl = wp_get_attachment_thumb_url($iNum);
+ 
+        // UNCOMMENT THIS IF YOU WANT THE FULL SIZE IMAGE INSTEAD OF THE THUMBNAIL
+        $sImageUrl = wp_get_attachment_url($iNum);
+ 
+        // Build the <img> string
+        $sImgString = '<img src="' . $sImageUrl . '" />';
+ 
+        // Print the image
+        echo $sImgString;
+    }
 }
 
 // ------------------------------ 
