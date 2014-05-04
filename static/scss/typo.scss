@@ -1,7 +1,7 @@
 .h-1 {
   font-size: rem(70);
   margin-bottom: rem(30);
-  font-family:'AvantGardeGothicITCW01B 731063';
+  @extend %gothic;
 }
 
 .h-2 {

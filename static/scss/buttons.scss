@@ -28,9 +28,11 @@
   padding: rem(14) rem(80);
 }
 
-.button-disabled, .button-disabled:hover {
+.button-disabled, 
+.button-disabled:hover {
   color: #D3D3D3;
   border-color: #D3D3D3;
+  background-color: transparent;
   cursor: default;
 }
 
@@ -85,19 +87,23 @@
   @extend %absolute;
 }
 
+.button-prev, 
+.button-next {
+  min-width: 0;
+  width: rem(115);
+}
+
 .button-prev {
-  min-width: rem(130);
-  padding-left: rem(60);
-  padding-right: rem(6);
+  padding-left: rem(34);
+  padding-right: 0;
   .icon-arrow-prev {
     left: rem(20);
   }
 }
 
 .button-next {
-  min-width: rem(130);
-  padding-right: rem(60);
-  padding-left: rem(6);
+  padding-left: 0;
+  padding-right: rem(34);
   .icon-arrow-next {
     right: rem(20);
     left: auto;
@@ -106,15 +112,20 @@
 
 .dropdown {
   padding: 0;
+
+  &:hover {
+    .dropdown-label {
+      color: $white;
+    }
+  }
+
   .dropdown-label {
     @extend %pink;
+    border-radius: 40px;
     display: block;
     padding: rem(14) rem(50) rem(14) rem(30);
-
-    &:hover {
-      color: $highlight;
-    }
   }  
+
   .icon-dropdown {
     right: rem(18);
     top: rem(15);

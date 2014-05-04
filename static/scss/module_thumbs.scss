@@ -50,7 +50,7 @@
   }
 
   .thumb-title {
-    font-family:'AvantGardeGothicITCW01B 731063'; 
+    @extend %gothic; 
     @extend %block;
   }
   
@@ -77,7 +77,6 @@
   }
   
   .thumb-title {
-    font-family:'AvantGardeGothicITCW01B 731063'; 
     font-size: 56px;
     line-height: 68px;
     margin-bottom: rem(10);
@@ -97,7 +96,7 @@
   .thumb .thumb-feature {
     margin-top: 0;
   }
-  
+
   .thumb-link.h-5 {
     display: none;
   }

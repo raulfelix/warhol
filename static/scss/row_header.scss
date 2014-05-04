@@ -38,7 +38,7 @@
   }
 
   .h-1 {
-    font-family:'AvantGardeGothicITCW01B 731063';
+    @extend %gothic;
   }
 
   .link.h-1 {
