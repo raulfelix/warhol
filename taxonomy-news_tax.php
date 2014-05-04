@@ -8,14 +8,15 @@
 
   <?php
 
-    // get the most recent feature article in current category
+    // get the most recent article in current category
     global $post;
     $post_slug = $post->post_name;
-
+    $category = category($post->post_type)['slug'];
+    
     $feature_args = Array(
-      'post_type' => 'lwa_feature',
+      'post_type' => 'lwa_news',
       'posts_per_page' => 1,
-      'featured_tax' => $post_slug
+      'news_tax' => $category
     );
 
     $feature_query = new WP_Query( $feature_args );
@@ -31,7 +32,7 @@
             <div class="f-2-3 bp2-1">
               <div class="thumb">
                 <a href="<?php echo the_permalink(); ?>" class="thumb-feature">
-                  <?php the_post_thumbnail( 'large'); ?>  
+                  <?php get_thumbnail(); ?>  
                   <span class="thumb-time"><?php when(); ?></span>
                   <span class="thumb-views data-views"><i class="icon-views"></i><?php views(); ?></span>
                 </a>
@@ -58,7 +59,7 @@
       <div class="f-row button-row button-row-left">
         <div class="f-1">
           <div class="button dropdown" href="#">
-            <a href="#" class="dropdown-label">sort by latest <i class="icon-dropdown"></i></a>
+            <a href="#" class="dropdown-label">sort by latest <i class="icon-arrow-down"></i></a>
           </div>
         </div>
       </div>
@@ -71,7 +72,7 @@
       'posts_per_page' => 6,
       'paged' => $paged,
       'post__not_in' => array( $post_ID_no_repeat ),
-      'featured_tax' => $post_slug
+      'news_tax' => $category
     );
 
     // todo exclude featured post above
@@ -82,7 +83,7 @@
         $wp_query->the_post();
   ?>
 
-        <div class="f-1-3 bp2-1-2 thumb-inline thumb-no-category">
+        <div class="f-1-3 bp2-1-2 thumb-inline">
           <?php get_template_part('partials/article', 'thumb'); ?>
         </div>
   
