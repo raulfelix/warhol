@@ -132,7 +132,7 @@
 
 .category {
   height: rem(300);
-
+  overflow: visible;
   .feature-bg {
     @extend %absolute;
     width: 100%;
