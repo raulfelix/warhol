@@ -1,9 +1,5 @@
 @media all and (max-width: rem(400)) {
 
-  @import 'assembly_bp1';
-  @import 'module_thumb_bp1';
-  @import 'row_header_bp1';
-
   // grid
   .f-row {
     padding: 0 rem(5);
@@ -26,7 +22,10 @@
     width: auto;
     padding: rem(14) rem(30);
   }
-
+  .dropdown {
+    width: auto;
+  }
+  
   // instabinge 
   .instabinge {
     height: rem(335);
@@ -39,6 +38,10 @@
       height: rem(170);
     }
   }
+
+  @import 'assembly_bp1';
+  @import 'module_thumb_bp1';
+  @import 'row_header_bp1';
 
   //footer
   .footer {

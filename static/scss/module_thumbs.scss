@@ -64,9 +64,9 @@
   }
 }
 
-.thumb-third {
-  height: rem(430);
-  margin-bottom: 0;
+.thumb-inline {
+  // height: rem(430);
+  // margin-bottom: 0;
 }
 
 .thumb-category {
@@ -90,6 +90,16 @@
 
   .thumb, .thumb-feature {
     margin-bottom: 0;
+  }
+}
+
+.thumb-no-category {
+  .thumb .thumb-feature {
+    margin-top: 0;
+  }
+  
+  .thumb-link.h-5 {
+    display: none;
   }
 }
 
@@ -125,7 +135,7 @@
   }
 }
 
-.data-views {
+.thumb-views {
   display: inline-block;
   i {
     font-size: 24px;

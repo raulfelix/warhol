@@ -16,11 +16,11 @@
   <div class="f-grid f-row">
     <div class="f-1">
       <div class="content">
-        <div class="f-1-2">
+        <div class="f-1-2 bp1-1">
           <div class="category-h1"><?php the_title(); ?></div>
           <div class="category-h2"><?php the_subtitle(); ?></div>
         </div>
-        <div class="f-1-2 category-branding">
+        <div class="f-1-2 bp1-1 category-branding">
           <div class="category-h2">in partnership with</div>
           <!-- <img src="../images/red_bull.png"> -->
         </div>

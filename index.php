@@ -74,7 +74,7 @@
               $news_query->the_post();
         ?>
           
-          <div class="f-1-3 bp2-1-2">
+          <div class="f-1-3 bp2-1-2 thumb-inline">
             <?php get_template_part('partials/article', 'thumb'); ?>
           </div>
 
