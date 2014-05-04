@@ -1,7 +1,8 @@
 .footer {
   background-color: $pink;
   font-size: rem(14);
-  height: rem(55);
+  min-height: rem(55);
+  @extend %relative;
 
   .footer-navigate {
     width: 100%;
@@ -37,14 +38,19 @@
   }
 }
 
+.footer-small {
+  bottom: 0;
+  width: 100%;
+  @extend %absolute;
+}
+
 .next {
-  @extend %relative;
   color: $body-copy;
-  height: auto;
+  min-height: rem(520);
   text-align: center;
 
   .content {
-    padding: rem(100) 0;
+    padding: rem(70) 0 rem(34) 0;
   }
 }
 

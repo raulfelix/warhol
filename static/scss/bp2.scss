@@ -1,4 +1,4 @@
-@media all and (max-width: rem(767)) { 
+@media all and (max-width: rem(599)) { 
   
   .bp2-1 {
     width: 100%;
@@ -49,21 +49,16 @@
     }
   }
 
-  .next-feature {
-    .next-bg {
-      background-size: 180% auto;
-    }    
-  }
-
-  .h-1 {
-    font-size: rem(56);
-  }
-  .h-2 {
-    font-size: rem(28);
-  }
-  .h-4 {
-    font-size: rem(24);
-  }
+  
+  // .h-1 {
+  //   font-size: rem(56);
+  // }
+  // .h-2 {
+  //   font-size: rem(28);
+  // }
+  // .h-4 {
+  //   font-size: rem(24);
+  // }
 
   .article-row {
     p, ul, h1, h2, h3, h4, h5, h6 {

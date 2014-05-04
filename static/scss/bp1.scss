@@ -1,4 +1,4 @@
-@media all and (max-width: rem(599)) {
+@media all and (max-width: rem(400)) {
 
   @import 'assembly_bp1';
   @import 'module_thumb_bp1';
@@ -6,7 +6,10 @@
 
   // grid
   .f-row {
-    padding: 0;
+    padding: 0 rem(5);
+    & > div {
+      padding: 0 rem(5);
+    }
   }
 
   .bp1-1 {
@@ -39,11 +42,33 @@
 
   //footer
   .footer {
-    height: rem(30);
+    min-height: rem(30);
     font-size: 9px;
 
     .footer-legals, .footer-links {
       line-height: rem(30);
     }
   }
+
+  .next {
+    min-height: rem(320);
+    .h-3, .h-4 {
+      font-size: rem(14);
+      margin: 0; 
+    }
+    .h-1 {
+      font-size: rem(28);
+      margin: rem(20);
+    }
+    .content {
+      padding: rem(60) 0 rem(48) 0;
+    }
+  }
+
+  .next-feature {
+    .next-bg {
+      background-size: 220% auto;
+    }    
+  }
+
 }

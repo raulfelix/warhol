@@ -4,9 +4,7 @@
    * If there is a feature image it will display it else 
    * renders an imageless view.
    */
-
-  $next_post = get_adjacent_post(true, '', true);
-  $next_css = 'next';
+  $next_post = get_previous_post();
 ?>
 
 <?php
