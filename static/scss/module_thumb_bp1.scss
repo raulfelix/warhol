@@ -25,6 +25,11 @@
 
 .thumb-inline {
 
+  .thumb {
+    margin-bottom: rem(0);
+    height: rem(270);
+  }
+
   .thumb-title {
     font-size: rem(15);
   }
@@ -50,10 +55,7 @@
 }
 
 .section-thumb-news {
-  .thumb {
-    margin-bottom: rem(0);
-    height: rem(230);
-  }
+  
 }
 
 .thumb-category {

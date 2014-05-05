@@ -65,8 +65,10 @@
 }
 
 .thumb-inline {
-  // height: rem(430);
-  // margin-bottom: 0;
+  .thumb {
+    height: rem(470);
+    margin-bottom: 0;
+  }
 }
 
 .thumb-category {
@@ -77,6 +79,7 @@
   }
   
   .thumb-title {
+    @extend %gothic; 
     font-size: 56px;
     line-height: 68px;
     margin-bottom: rem(10);
