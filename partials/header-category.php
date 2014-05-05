@@ -22,6 +22,12 @@
         </div>
         <div class="f-1-2 bp1-1 category-branding">
           <div class="category-h2">in partnership with</div>
+          <?php 
+            $gallery = new Attachments( 'my_attachments', get_the_id() );
+            if( $gallery->exist() ) {
+              echo $gallery->image( 'original', 0 );
+            }
+          ?>
           <!-- <img src="../images/red_bull.png"> -->
         </div>
       </div>

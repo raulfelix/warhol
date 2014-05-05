@@ -345,7 +345,7 @@ function my_attachments( $attachments )
     'label'         => 'Gallery',
 
     // all post types to utilize (string|array)
-    'post_type'     => array( 'lwa_feature', 'lwa_news'),
+    'post_type'     => array( 'page' ,'lwa_feature', 'lwa_news'),
 
     // meta box position (string) (normal, side or advanced)
     'position'      => 'side',
