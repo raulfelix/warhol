@@ -59,7 +59,7 @@
       <div class="f-row button-row button-row-left">
         <div class="f-1">
           <div class="button dropdown" href="#">
-            <a href="#" class="dropdown-label">sort by latest <i class="icon-arrow-down"></i></a>
+            <a href="#" class="dropdown-label">sort by latest <i class="icon-dropdown"></i></a>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@
 
   <?php
     // get the rest of the articles
-    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    $paged = (get_query_var('page')) ? get_query_var('page') : 1;
     $args = Array(
       'posts_per_page' => 6,
       'paged' => $paged,
@@ -83,7 +83,7 @@
         $wp_query->the_post();
   ?>
 
-        <div class="f-1-3 bp2-1-2 thumb-inline">
+        <div class="f-1-3 bp2-1-2 thumb-inline thumb-no-category">
           <?php get_template_part('partials/article', 'thumb'); ?>
         </div>
   
@@ -91,15 +91,8 @@
       endwhile;
     endif;
   ?>
-    </div>
-      <div class="f-row button-row button-row-paginate">
-        <div class="f-1">
-          <?php 
-            get_pagination_link( 'prev' );
-            get_pagination_link( 'next' );
-          ?>
-        </div>
       </div>
+      <?php get_template_part('partials/module', 'paginate-links'); ?>
     </div>
   </div>
 

@@ -91,14 +91,7 @@
     endif;
   ?>
     </div>
-      <div class="f-row button-row button-row-paginate">
-        <div class="f-1">
-          <?php 
-            get_pagination_link( 'prev' );
-            get_pagination_link( 'next' );
-          ?>
-        </div>
-      </div>
+      <?php get_template_part('partials/module', 'paginate-links'); ?>
     </div>
   </div>
 

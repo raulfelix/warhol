@@ -105,7 +105,7 @@ function create_post_type() {
       'singular_name' => __( 'News' ),
     ),
     'description' => __( 'News articles are defined within this type' ),
-    'hierarchical' => true, 
+    'hierarchical' => true,
     'show_ui' => true,
     'public' => true,
     'has_archive' => true,
@@ -380,5 +380,6 @@ function my_attachments( $attachments )
   $attachments->register( 'my_attachments', $args ); // unique instance name
 }
 add_action( 'attachments_register', 'my_attachments' );
- 
- ?>
+
+
+?>
