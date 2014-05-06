@@ -153,7 +153,7 @@ add_filter('post_type_link', 'product_permastruct', 10, 2);
 // ------------------------------ 
 // util: custom time
 // ------------------------------ 
-function when() {
+function get_when() {
   $time_patterns = array(
     "/ mins/",
     "/ min/",
@@ -183,7 +183,11 @@ function when() {
     "y"
   );
   $time = human_time_diff( get_the_time('U'), current_time('timestamp') );
-  echo preg_replace($time_patterns, $time_replacements, $time);
+  return preg_replace($time_patterns, $time_replacements, $time);
+}
+
+function when() {
+  echo get_when();
 }
 
 // ------------------------------ 
@@ -228,9 +232,13 @@ function get_taxonomy_name($post_type) {
 // ------------------------------ 
 // Call to views plugin
 // ------------------------------
-function views() {
-  echo do_shortcode('[post_view]');
+function get_views() {
+  return do_shortcode('[post_view]');
 }
+function views() {
+  echo get_views();
+}
+
 
 function get_thumbnail() {
   if (has_post_thumbnail( get_the_id() )) {
@@ -244,13 +252,18 @@ function get_thumbnail() {
   }
 }
 
-function bdw_get_images($post_id) {
- 
-    // Get the post ID
-    // $iPostID = $post->ID;
+function get_the_thumbnail() {
+  if (has_post_thumbnail( get_the_id() )) {
+    return wp_get_attachment_image_src( get_post_thumbnail_id(), 'large')[0];
+  } else {
+    return the_attached_images( get_the_id() );
+  }
+}
+
+function the_attached_images($post_id, $tag = false) {
  
     // Get images for this post
-    $arrImages =& get_children('post_type=attachment&post_mime_type=image&post_parent=' . $post_id );
+    $arrImages = get_children('post_type=attachment&post_mime_type=image&post_parent=' . $post_id );
  
     // If images exist for this page
     if ($arrImages) {
@@ -261,57 +274,114 @@ function bdw_get_images($post_id) {
         // Get the first image attachment
         $iNum = $arrKeys[0];
  
-        // Get the thumbnail url for the attachment
-        // $sThumbUrl = wp_get_attachment_thumb_url($iNum);
- 
-        // UNCOMMENT THIS IF YOU WANT THE FULL SIZE IMAGE INSTEAD OF THE THUMBNAIL
-        $sImageUrl = wp_get_attachment_url($iNum);
- 
-        // Build the <img> string
-        $sImgString = '<img src="' . $sImageUrl . '" />';
- 
-        // Print the image
-        echo $sImgString;
+        $url = wp_get_attachment_url($iNum);
+        if ($tag === true) {
+          $sImgString = '<img src="' . $url . '" />';
+          return $sImgString;
+        } else {
+          return $url;
+        }
     }
 }
+
+function bdw_get_images($post_id) {
+  echo the_attached_images($post_id, true);
+}
+
 
 // ------------------------------ 
 // add app JS in footer of page
 // ------------------------------ 
 function add_scripts() {
-  wp_register_script( 'build', get_template_directory_uri() . '/scripts/build.js', null, '', true );
-  wp_enqueue_script( 'build' );
+  wp_register_script( 'global-build', get_template_directory_uri() . '/static/dist/global-build.js', null, '', true );
+  wp_register_script( 'home-build', get_template_directory_uri() . '/static/dist/home-build.js', null, '', true );
+  
+  wp_enqueue_script( 'global-build' );
 }
 add_action( 'wp_enqueue_scripts', 'add_scripts', 999 );
 
 
-// -------------------- 
-// change the excerpt
-// -------------------- 
-// function custom_excerpt_length( $length ) {
-//   return 30;
-// }
-// add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
-
-// function new_excerpt_more( $more ) {
-//   return '...';
-// }
-// add_filter('excerpt_more', 'new_excerpt_more');
-
 
 // ------------------------ 
-// feature image captions
+// ajax requests functions
 // ------------------------ 
-// function the_post_thumbnail_caption() {
-//   global $post;
+function fetch_posts($page, $post_per_page, $post_type) {
+  $args = Array(
+    'post_type' => $post_type,
+    'posts_per_page' => $post_per_page,
+    'paged' => $page
+  );
 
-//   $thumbnail_id    = get_post_thumbnail_id($post->ID);
-//   $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+  $wp_query = new WP_Query( $args );
 
-//   if ($thumbnail_image && isset($thumbnail_image[0])) {
-//     echo $thumbnail_image[0]->post_excerpt;
-//   }
-// }
+  $data = Array (
+    'posts' => Array(),
+    'nextPage' => false
+  );
+
+  // check if there is more data to fetch
+  if ( $wp_query->max_num_pages > 1 ) {
+    if ( $page < $wp_query->max_num_pages ) {
+      $data['nextPage'] = $page + 1;
+    }
+  }
+
+  if ( $wp_query->have_posts() ):
+    $idx = 0;
+    while ( $wp_query->have_posts() ): 
+      $wp_query->the_post();
+      
+      $data['posts'][$idx] = Array(
+        'title'     => get_the_title(),
+        'subtitle'  => get_the_subtitle(),
+        'permalink' => get_the_permalink(),
+        'thumbnail' => get_the_thumbnail(),
+        'views'     => get_views(),
+        'when'      => get_when(),
+        'category'  => category($post_type)
+      );
+      $idx++;
+    endwhile;
+  endif;
+
+  return $data;
+}
+
+function get_next_featured_posts($page = 2) {
+  return fetch_posts($page, 4, 'lwa_feature');
+}
+
+function get_next_news_posts($page = 2) {
+  return fetch_posts($page, 6, 'lwa_news');
+}
+
+add_action('wp_ajax_nopriv_do_ajax', 'ajax_handler');
+add_action('wp_ajax_do_ajax', 'ajax_handler');
+
+function ajax_handler() {
+ 
+  switch($_REQUEST['fn']){
+    case 'get_next_featured_posts':
+      $output = get_next_featured_posts($_REQUEST['page']);
+      break;
+    case 'get_next_news_posts':
+      $output = get_next_news_posts($_REQUEST['page']);
+      break;
+  }
+ 
+  wp_reset_query();
+
+  $output = json_encode($output);
+
+  if (is_array($output)){
+    print_r($output);  
+  }
+  else{
+    echo $output;
+  }
+  die;
+}
+
 
 
 // ---------------------- 

@@ -49,15 +49,18 @@
 
       wp_reset_query();
     ?>
+    <div id="tmpl_featured"></div>
     <div class="button-row">
-      <a class="button button-large" href="#">load more features</a>
+      <a id="ajax-load-features" class="button button-large" href="javascript:void(0)">
+        <span>load more features</span>
+      </a>
     </div>
   </div>
 
 
   <div class="section-thumb-bg">
     <div class="f-grid section-thumb section-thumb-news">
-      <div class="f-row">
+      <div id="tmpl_news" class="f-row">
         <?php
 
           // get all article in the 'news' category
@@ -85,8 +88,11 @@
           wp_reset_query();
         ?>
       </div>
+
       <div class="button-row">
-        <a class="button button-large" href="#">load more news</a>
+        <a id="ajax-load-news" class="button button-large" href="javascript:void(0)">
+          <span>load more news</span>
+        </a>
       </div>
     </div>
   </div>
@@ -98,4 +104,8 @@
     </div>  
   </div>
 
-<?php get_footer(); ?>
+<?php 
+  wp_enqueue_script( 'home-build' );
+  get_footer(); 
+
+?>
