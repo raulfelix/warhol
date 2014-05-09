@@ -14,6 +14,9 @@
 		else {
 			get_template_part('partials/footer', 'next');
 		}
+
+    get_template_part( 'partials/module', 'search' );
+		
 	?>
 	
 	<?php wp_footer(); ?>

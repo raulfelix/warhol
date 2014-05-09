@@ -3,15 +3,15 @@
     <div class="f-1">
       <a href="<?php echo get_home_url(); ?>" class="logo"></a>
       <div class="nav-item nav-menu">
-        <a id="nav" href="#"><i class="icon-menu"></i></a>
+        <a id="nav" href="javascript:void(0)"><i class="icon-menu"></i></a>
       </div>
       <div class="nav-item nav-search">
-        <a href="#"><i class="icon-search"></i></a>
+        <a href="javascript:void(0)"><i class="icon-search"></i></a>
       </div>
 
       <div class="nav-links">
         <ul class="nav-links-primary">
-          <li><a href="<?php echo get_page_link( 11 ); ?>">Tuesdays Without</a></li>
+          <li><a href="<?php echo get_page_link( 'tuesdays-without' ); ?>">Tuesdays Without</a></li>
           <li><a href="<?php echo get_page_link( 9 ); ?>">Parties &amp; Bullshit</a></li>
           <li><a href="<?php echo get_page_link( 7 ); ?>">Twenty Four</a></li>
           <li><a href="<?php echo get_page_link( 13 ); ?>">News</a></li>

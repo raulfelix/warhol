@@ -304,7 +304,55 @@ add_action( 'wp_enqueue_scripts', 'add_scripts', 999 );
 
 // ------------------------ 
 // ajax requests functions
-// ------------------------ 
+// ------------------------
+function search_posts($term, $page, $posts_per_page) {
+  $args = Array(
+    'post_type' => Array('lwa_feature', 'lwa_news'),
+    's' => $term,
+    'posts_per_page' => $posts_per_page,
+    'paged' => $page
+  );
+
+  $wp_query = new WP_Query( $args );
+
+  $data = Array (
+    'term' => $term,
+    'posts' => Array(),
+    'nextPage' => false,
+    'postsPerPage' => $posts_per_page
+  );
+
+  // check if there is more data to fetch
+  if ( $wp_query->max_num_pages > 1 ) {
+    if ( $page < $wp_query->max_num_pages ) {
+      $data['nextPage'] = $page + 1;
+    }
+  }
+
+  if ( $wp_query->have_posts() ):
+    $idx = 0;
+    
+    while ( $wp_query->have_posts() ): 
+      $wp_query->the_post();
+      
+      $data['posts'][$idx] = Array(
+        'title'     => get_the_title(),
+        'subtitle'  => get_the_subtitle(),
+        'permalink' => get_the_permalink(),
+        'thumbnail' => get_the_thumbnail(),
+        'views'     => get_views(),
+        'when'      => get_when(),
+        'category'  => category( get_post_type() )
+      );
+
+      $idx++;
+    endwhile;
+  endif;
+
+  return $data;
+}
+
+
 function fetch_posts($page, $post_per_page, $post_type) {
   $args = Array(
     'post_type' => $post_type,
@@ -366,6 +414,9 @@ function ajax_handler() {
       break;
     case 'get_next_news_posts':
       $output = get_next_news_posts($_REQUEST['page']);
+      break;
+    case 'search_posts':
+      $output = search_posts($_REQUEST['s'], $_REQUEST['page'], $_REQUEST['posts_per_page']);
       break;
   }
  

@@ -112,21 +112,10 @@
 }
 
 .search-row {
-  
-  & > div {
-    padding: 0 rem(270) 0 rem(150);
-  }
-
   .search-row-input {
-    top: rem(45);
-    @extend %absolute;
-  }
-
-  .search-row-results {
-    top: rem(180);
-    bottom: 0;
-    overflow: auto;
-    width: auto;
+    padding: 0 rem(260) 0 rem(145);
+    top: rem(37);
+    width: 100%;
     @extend %absolute;
   }
  
@@ -137,14 +126,44 @@
   }
 }
 
+.search-row-results {
+  top: rem(109);
+  bottom: 0;
+  overflow: auto;
+  width: 100%;
+  @extend %absolute;
+
+  .container {
+    max-width: rem(1140);
+    margin: 0 auto;
+    padding: rem(60) rem(260) 0 rem(150);
+  }
+}
+
 .input-search {
   border: none;
   border-bottom: 2px solid $pink;
   font-size: rem(24);
-  padding: 20px 0;
+  padding: rem(20) 0;
   width: 100%;
 
   &:active, &:focus {
     border-color: $highlight;
   }
+}
+
+::-webkit-input-placeholder {
+   color: #000;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #000; 
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #000; 
+}
+
+:-ms-input-placeholder {  
+   color: #000;
 }
