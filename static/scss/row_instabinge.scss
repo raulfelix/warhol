@@ -1,6 +1,8 @@
 .instabinge {
   height: rem(645);
   padding: rem(80) 0 0 0;
+  @extend %relative;
+ 
   .h-1 {
     font-size: rem(40);
     margin-bottom: rem(80);
@@ -11,26 +13,68 @@
     color: $pink;
     display: block; 
     font-size: rem(14);
-    margin-top: rem(5);
+    margin-top: rem(8);
   }
-}
 
-.belt {
-  height: rem(300);
-  box-shadow: none;
-  border-radius: 0;
-  border: none;
-  @extend %relative;
+  .instabinge-next,
+  .instabinge-prev,
+  .instabinge-next:active,
+  .instabinge-prev:active,
+  .instabinge-next:focus,
+  .instabinge-prev:focus {
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    color: $white;
+    top: 50%;
+    outline: none;
+    @extend %absolute;
+    @extend %block;
+  }
 
-  .belt-slides {
-    li {
-      margin-right: 2px;
+  button:hover {
+    cursor: pointer;
+  }
+
+  .instabinge-prev {
+    left: 20px;
+  }
+  .instabinge-next {
+    right: 20px;
+  }
+
+  .disabled {
+    opacity: 0.4;
+  }
+
+  .frame {
+    width: 100%;
+    height: rem(300);
+
+    .slidee {
+      height: 100%;
+      list-style: none;
+    
+      a {
+        display: block;
+      }
+      a:hover {
+        cursor: pointer;
+        img {
+          opacity: 0.8;
+        }
+      }
+
+      li {
+        margin-right: 2px;
+        float: left;
+        width: rem(262);
+      }
+
+      img {
+        width: 100%;
+      }
     }
   }
-
-  .flex-direction-nav .flex-next,
-  .flex-direction-nav .flex-prev {
-    color: $white;
-    text-shadow: none;
-  }
 }
+

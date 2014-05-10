@@ -99,9 +99,13 @@
 
   <div class="instabinge">
     <div class="h-1">@lifewithoutandy</div>
-    <div id="instabinge" class="belt flexslider">
-      <ul class="belt-slides slides"></ul>
-    </div>  
+    <div id="instabinge" class="frame">
+      <ul class="slidee"></ul>
+    </div> 
+    <div id="instabinge-buttons">
+      <button class="instabinge-prev"><i class="icon-arrow-left"></i></button>
+      <button class="instabinge-next"><i class="icon-arrow-right"></i></button> 
+    </div>
   </div>
 
 <?php 

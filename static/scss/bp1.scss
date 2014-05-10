@@ -15,22 +15,38 @@
   // buttons
   .button {
     font-size: rem(15);
+    padding: rem(12) rem(30);
   }
 
   .button-large {
     padding: rem(14) rem(30);
+  }
+
+  .button-share {
+    width: 100%;
   }
   
   // instabinge 
   .instabinge {
     height: rem(335);
     padding: rem(40) 0 0 0;
+
     .h-1 {
       font-size: rem(20);
       margin-bottom: rem(40);
     }
-    .belt {
-      height: rem(170);
+    
+    .frame {
+      height: rem(180);
+      .slidee {
+        li {
+          width: rem(151);
+        }
+      }
+    }
+
+    .instabinge-prev, .instabinge-next {
+      display: none;
     }
   }
 

@@ -152,6 +152,20 @@
   }
 }
 
+.gallery-expand-thumbs {
+  height: rem(848);
+}
+.gallery-control-nav {
+  bottom: rem(40);
+}
+.gallery-thumbnails {
+  bottom: -100px;
+  height: 100px;
+  background-color: #fff;
+  width: 100%;
+  @extend %absolute;
+}
+
 ::-webkit-input-placeholder {
    color: #000;
 }
