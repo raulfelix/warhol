@@ -64,6 +64,9 @@ module.exports = function(grunt) {
           'static/dist/single-build.js' : [
             'static/scripts/gallery.js'
           ],
+          'static/dist/category-build.js' : [
+            'static/scripts/dropdown.js'
+          ]
         }
       }
     },
@@ -81,7 +84,7 @@ module.exports = function(grunt) {
         files: {
           "static/scripts/precompiled/article-template.js": ["js_partial/article_thumb.hbs.html"],
           "static/scripts/precompiled/search-template.js": ["js_partial/search_thumb.hbs.html", "js_partial/search_next_link.hbs.html"],
-          "static/scripts/precompiled/instabinge-template.js": ["js_partial/instabinge_thumb.hbs.html"]
+          "static/scripts/precompiled/instabinge-template.js": ["js_partial/instabinge_thumb.hbs.html", "js_partial/instabinge_thumb_large.hbs.html"]
         }
       }
     }

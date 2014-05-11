@@ -245,10 +245,6 @@ function get_thumbnail() {
     echo the_post_thumbnail( 'large' );
   } else {
     bdw_get_images( get_the_id() );
-    // $gallery = new Attachments( 'my_attachments', get_the_id() );
-    // if( $gallery->exist() ) {
-    //   echo $gallery->image( 'large', 0 );
-    // }
   }
 }
 
@@ -295,6 +291,7 @@ function bdw_get_images($post_id) {
 function add_scripts() {
   wp_register_script( 'global-build', get_template_directory_uri() . '/static/dist/global-build.js', null, '', true );
   wp_register_script( 'home-build', get_template_directory_uri() . '/static/dist/home-build.js', null, '', true );
+  wp_register_script( 'category-build', get_template_directory_uri() . '/static/dist/category-build.js', null, '', true );
   
   wp_enqueue_script( 'global-build' );
 }

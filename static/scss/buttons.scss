@@ -131,4 +131,54 @@
     top: rem(15);
     @extend %absolute;
   }
+
+  .dropdown-items {
+    top: rem(51);
+    width: 100%;
+    background-color: $white;
+    display: none;
+    @include box-shadow(1px 1px 3px rgba(0,0,0,0.4));
+    @extend %absolute;
+    z-index: 100;
+
+    .dropdown-item {
+      border-top: 1px solid #ddd;
+      padding: rem(10) rem(14);
+      @extend %block;
+      @extend %relative;
+
+      &:first-child {
+        border-top: none;
+      }
+    }
+
+    .dropdown-item-active {
+      color: $pink;
+    }
+
+    .dropdown-item-active:before {
+      content: '\e605';
+      font-family: 'LWA-icons';
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      
+      @extend %absolute;
+      top: rem(12);
+      right: rem(12);
+    }
+  }
+}
+
+.dropdown-active {
+  background-color: $pink;
+  .dropdown-label {
+    color: $white;
+  }
+  .dropdown-items {
+    display: block;
+  }
 }

@@ -57,9 +57,13 @@
     <div class="f-grid section-thumb">
       <div class="f-row button-row button-row-left">
         <div class="f-1">
-          <div class="button dropdown" href="#">
-            <a href="#" class="dropdown-label">sort by latest <i class="icon-dropdown"></i></a>
-          </div>
+          <button id="dropdown-sort" class="button dropdown">
+            <a href="javascript:void(0)" class="dropdown-label"><span>sort by latest</span> <i class="icon-dropdown"></i></a>
+            <div class="dropdown-items">
+              <a class="dropdown-item dropdown-item-active" href="javascript:void(0)">sort by latest</a>
+              <a class="dropdown-item" href="javascript:void(0)">sort by oldest</a>
+            </div>
+          </button>
         </div>
       </div>
       <div class="f-row">
@@ -98,5 +102,6 @@
 <?php 
   wp_reset_query();
   
+  wp_enqueue_script( 'category-build' );
   get_footer(); 
 ?>
