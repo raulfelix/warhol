@@ -25,11 +25,29 @@
   .button-share {
     width: 100%;
   }
+
+  .button-prev {
+    padding-left: rem(50);
+    .icon-arrow-prev {
+      font-size: 18px;
+    }
+  }
+
+  .button-next {
+    padding-right: rem(50);
+    .icon-arrow-next {
+      font-size: 18px;
+    }
+  }
+
+  .dropdown {
+    padding: 0;
+  }
   
   // instabinge 
   .instabinge {
     height: rem(335);
-    padding: rem(40) 0 0 0;
+    padding: rem(80) 0 0 0;
 
     .h-1 {
       font-size: rem(20);
