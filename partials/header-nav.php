@@ -8,18 +8,17 @@
       <div class="nav-item nav-search">
         <a href="javascript:void(0)"><i class="icon-search"></i></a>
       </div>
-
       <div class="nav-links">
         <ul class="nav-links-primary">
-          <li><a href="<?php echo get_page_link( 'tuesdays-without' ); ?>">Tuesdays Without</a></li>
-          <li><a href="<?php echo get_page_link( 9 ); ?>">Parties &amp; Bullshit</a></li>
-          <li><a href="<?php echo get_page_link( 7 ); ?>">Twenty Four</a></li>
-          <li><a href="<?php echo get_page_link( 13 ); ?>">News</a></li>
+          <li><a href="<?php echo get_home_url(); ?>/featured/tuesdays-without">Tuesdays Without</a></li>
+          <li><a href="<?php echo get_home_url(); ?>/featured/parties-bullshit">Parties &amp; Bullshit</a></li>
+          <li><a href="<?php echo get_home_url(); ?>/featured/twentyfour">Twenty Four</a></li>
+          <li><a href="<?php echo get_home_url(); ?>/news">News</a></li>
         </ul>
         <ul class="nav-links-secondary">
-          <li><a href="#">Shop</a></li>
-          <li><a href="#">Shot by</a></li>
-          <li><a href="#">Info</a></li>
+          <li><a href="<?php echo get_home_url(); ?>/shop">Shop</a></li>
+          <li><a href="<?php echo get_home_url(); ?>/shot-by">Shot by</a></li>
+          <li><a href="<?php echo get_home_url(); ?>/info">Info</a></li>
         </ul>
       </div>
     </div>
