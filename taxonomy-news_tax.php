@@ -56,23 +56,22 @@
 
   <div class="section-thumb-bg">
     <div class="f-grid section-thumb">
-      <div class="f-row button-row button-row-left">
-        <div class="f-1">
-          <div class="button dropdown" href="#">
-            <a href="#" class="dropdown-label">sort by latest <i class="icon-dropdown"></i></a>
-          </div>
-        </div>
-      </div>
+      <?php get_template_part('partials/module', 'sort'); ?>
       <div class="f-row">
 
   <?php
+  
+    // get order and default to DESC
+    $order = (get_query_var('order')) ? get_query_var('order') : 'DESC';
+    
     // get the rest of the articles
     $paged = (get_query_var('page')) ? get_query_var('page') : 1;
     $args = Array(
       'posts_per_page' => 6,
       'paged' => $paged,
       'post__not_in' => array( $post_ID_no_repeat ),
-      'news_tax' => $category
+      'news_tax' => $category,
+      'order' => $order
     );
 
     // todo exclude featured post above
@@ -99,5 +98,6 @@
 <?php 
   wp_reset_query();
   
+  wp_enqueue_script( 'category-build' );
   get_footer(); 
 ?>

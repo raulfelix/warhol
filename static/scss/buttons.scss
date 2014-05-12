@@ -16,6 +16,10 @@
     border-color: $pink;
   }
 
+  &:focus, &:active {
+    outline: none;
+  }
+
   &:active {
     @include transition(none);
     color: #fff;
@@ -110,10 +114,30 @@
   }
 }
 
-.dropdown {
-  padding: 0;
+.button-gallery {
+  min-width: 0;
+  padding: rem(12) rem(24);
+  
+  .icon-thumbs, .icon-expand {
+    font-size: 24px;
+  }
 
   &:hover {
+    background-color: transparent;
+    color: $white;
+    border-color: $white;
+  }
+}
+
+.dropdown {
+  background-color: #F6F6F6;
+  padding: 0;
+  text-align: left;
+  min-width: rem(200);
+
+  &:hover, &:active {
+    background-color: $pink; 
+    border-color: $pink; 
     .dropdown-label {
       color: $white;
     }

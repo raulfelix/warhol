@@ -1,14 +1,14 @@
 <?php
 
-
 // ------------------------------ 
 // theme support
 // ------------------------------ 
 add_theme_support( 'post-thumbnails' ); 
-register_nav_menu( 'primary', 'Primary Menu' );
+
 
 // ------------------------------ 
-// add editor/admin css files
+// admin:
+// add admin stylesheet
 // ------------------------------ 
 function change_adminbar_css() {
     wp_register_style( 'add-admin-stylesheet', get_template_directory_uri() . '/admin-styles.css' );
@@ -16,16 +16,20 @@ function change_adminbar_css() {
 }
 add_action( 'admin_enqueue_scripts', 'change_adminbar_css' ); 
 
+
+// ------------------------------ 
+// admin:
+// add editor css for better content
+// management 
+// ------------------------------
 // function add_editor_styles() {
 //   add_editor_style( 'editor-styles.css' );
 // }
 // add_action( 'init', 'add_editor_styles' );
 
 
-
-
-
 // ------------------------------ 
+// admin: 
 // hide default posts menu option
 // ------------------------------ 
 function post_remove () {
@@ -33,8 +37,13 @@ function post_remove () {
 }
 add_action('admin_menu', 'post_remove'); 
 
+
 // --------------------------------- 
 // register custom taxonomies
+//
+// feature: featured_tax
+// news: news_tax
+// postpending to avoid name clashes
 // --------------------------------- 
 function register_custom_taxonomies() {
   $labels = array(
@@ -80,6 +89,9 @@ add_action( 'init', 'register_custom_taxonomies' );
 
 // ------------------------------ 
 // register custom post types
+//
+// featured: lwa_feature
+// news: lwa_news
 // ------------------------------ 
 function create_post_type() {
   
@@ -122,11 +134,44 @@ function create_post_type() {
 add_action( 'init', 'create_post_type' );
 
 
+// --------------------------------------------  
+// customisation: disable canonical url
+//
+// done for featured pages (pagination/sorting)
+// expected: ids should match featured pages
+// --------------------------------------------   
+function disable_redirect_canonical( $redirect_url ) {
+  if ( is_page( array( 'parties-bullshit', 'tuesdays-without', 'twentyfour' ) ))
+    $redirect_url = false;
+    return $redirect_url;
+}
+add_filter('redirect_canonical','disable_redirect_canonical');
 
 
-function product_permastruct($link, $post) {
+// --------------------------------------------  
+// customisation: url rewrite 
+//
+// featured page url re-write for consistency 
+// with news categories which are not content
+// managed pages
+// --------------------------------------------  
+function featured_rewrite_rules() {
+  // this will match single template pages
+  add_rewrite_rule( 'featured/([^/]+)/([^/]+)', 'index.php?lwa_feature=$matches[2]', 'top' );
 
-  // Only mess with product permalinks
+  // this will match any featured page
+  add_rewrite_rule( 'featured/([^/]+)', 'index.php?pagename=$matches[1]', 'top' );
+}
+add_action( 'init', 'featured_rewrite_rules' );
+
+
+// --------------------------------------------  
+// customisation: custom post type permalink 
+//
+// make sure post permalinks follow structure: 
+// post_type/%custom_taxonomy%/%postname%
+// -------------------------------------------- 
+function custom_post_type_permastruct($link, $post) {
   if ($post->post_type === 'lwa_feature') {
     if ($cats = get_the_terms($post->ID, 'featured_tax'))
       $link = str_replace('%featured_tax%', array_pop($cats)->slug, $link);
@@ -139,19 +184,16 @@ function product_permastruct($link, $post) {
   } else {
     return $link;
   }
- 
-  /* -----------------------------------------------------------------------------------
-    This is where we could really have fun. This just grabs the last
-    applied category and uses it. Depending on how you want permalinks
-    handled, you could change this behavior to include hierarchical
-    permalinks or anything else.  
-     ------------------------------------------------------------------------------------ */ 
 }
-add_filter('post_type_link', 'product_permastruct', 10, 2);
+add_filter('post_type_link', 'custom_post_type_permastruct', 10, 2);
+
+
+
 
 
 // ------------------------------ 
-// util: custom time
+// util: 
+// distance of time in words
 // ------------------------------ 
 function get_when() {
   $time_patterns = array(
@@ -190,29 +232,12 @@ function when() {
   echo get_when();
 }
 
-// ------------------------------ 
-// util: next/prev pagination links
-// ------------------------------
-function get_pagination_link($type) {
-  $button_class = "button-$type";
-  
-  if ($type === 'prev') {
-    $link = get_previous_posts_link( $type );
-  } else {
-    $link = get_next_posts_link( $type );
-  }
 
-  if ($link === null) {
-    echo '<a class="button button-disabled '. $button_class .'" href="javascript:void(0)"><i class="icon-arrow-'. $type .'"></i>'. $type .'</a>';
-  } else {
-    preg_match('/(http:\/\/.+?)([ \\n\\r])/', $link, $matches );
-    echo '<a class="button '. $button_class .'" href="'. $matches[0] .'><i class="icon-arrow-'. $type .'"></i>'. $type .'</a>';
-  }
-}
-
-// ------------------------------ 
-// get the category helper
-// ------------------------------
+// ----------------------------------- 
+// util:
+// get the category helper to return
+// custom taxonomy
+// -----------------------------------
 function category($post_type) {
   $terms = get_the_terms( get_the_id(), get_taxonomy_name($post_type) );
 
@@ -429,17 +454,6 @@ function ajax_handler() {
   }
   die;
 }
-
-
-
-// ---------------------- 
-// add styles to editor
-// ---------------------- 
-// function add_editor_styles() {
-//   add_editor_style( 'editor-styles.css' );
-// }
-// add_action( 'init', 'add_editor_styles' );
-
 
 
 // -------------------------- 

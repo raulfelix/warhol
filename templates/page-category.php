@@ -55,27 +55,21 @@
 
   <div class="section-thumb-bg">
     <div class="f-grid section-thumb">
-      <div class="f-row button-row button-row-left">
-        <div class="f-1">
-          <button id="dropdown-sort" class="button dropdown">
-            <a href="javascript:void(0)" class="dropdown-label"><span>sort by latest</span> <i class="icon-dropdown"></i></a>
-            <div class="dropdown-items">
-              <a class="dropdown-item dropdown-item-active" href="javascript:void(0)">sort by latest</a>
-              <a class="dropdown-item" href="javascript:void(0)">sort by oldest</a>
-            </div>
-          </button>
-        </div>
-      </div>
+      <?php get_template_part('partials/module', 'sort'); ?>
       <div class="f-row">
 
   <?php
+    // get order and default to DESC
+    $order = (get_query_var('order')) ? get_query_var('order') : 'DESC';
+
     // get the rest of the articles
-    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    $paged = (get_query_var('page')) ? get_query_var('page') : 1;
     $args = Array(
       'posts_per_page' => 6,
       'paged' => $paged,
       'post__not_in' => array( $post_ID_no_repeat ),
-      'featured_tax' => $post_slug
+      'featured_tax' => $post_slug,
+      'order' => $order
     );
 
     // todo exclude featured post above
