@@ -163,6 +163,16 @@
   }
 }
 
+.logo {
+  @extend %pull-left;
+  background: url('images/logo@2x.png') no-repeat left center;
+  background-size: 100% auto;
+  display: block;
+  width: rem(112);
+  height: rem(83);
+  margin-top: rem(35);
+}
+  
 .nav {
   @extend %absolute;
   background-color: $white;

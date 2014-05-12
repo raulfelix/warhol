@@ -102,14 +102,14 @@
     <div id="instabinge" class="frame">
       <ul class="slidee"></ul>
     </div> 
-    <div id="instabinge-buttons">
+    <div id="instabinge-buttons" class="instabinge-controls">
       <button class="instabinge-prev"><i class="icon-arrow-left"></i></button>
       <button class="instabinge-next"><i class="icon-arrow-right"></i></button> 
     </div>
   </div>
+  <?php get_template_part('partials/module', 'instabinge-single'); ?>
 
 <?php 
   wp_enqueue_script( 'home-build' );
   get_footer(); 
-
 ?>

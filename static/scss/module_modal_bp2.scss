@@ -35,3 +35,33 @@
   font-size: rem(12);
   margin-bottom: rem(30);
 }
+
+.modal-instabinge {
+  .modal-view-image {
+    width: 100%;
+  }  
+
+  .modal-view-details {
+    position: relative;
+    left: auto;
+  }
+}
+
+.modal-transparent {
+
+  .modal-wrap,
+  .modal-wrap-row {
+    display: block;
+  }
+  .modal-wrap {
+    padding-top: rem(50);
+  }
+  .modal-wrap-row {
+    overflow: auto;
+    height: 100%;
+  }
+
+  .modal-view {
+    background-color: $white;
+  }
+}

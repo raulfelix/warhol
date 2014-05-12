@@ -71,6 +71,69 @@ function program1(depth0,data) {
   if(stack1 || stack1 === 0) { return stack1; }
   else { return ''; }
   });
+
+this["Handlebars"]["instabinge_thumb_large"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n<li style=\"width:";
+  if (helper = helpers.width) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.width); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "px;\">\n  <div class=\"modal-view-image\">\n    <img src=\""
+    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.images)),stack1 == null || stack1 === false ? stack1 : stack1.standard_resolution)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n  </div>\n  <div class=\"modal-view-details\">\n    <div class=\"instabinge-profile\">\n      <div class=\"instabinge-profile-img\">\n        <img src=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.profile_picture)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n      </div>\n      <div class=\"instabinge-profile-details\">\n        <div class=\"instabinge-username\">@"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\n        <div class=\"instabinge-name\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.full_name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\n        <div class=\"instabinge-when\">";
+  if (helper = helpers.created_time) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.created_time); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n        <div class=\"instabinge-likes\"><i class=\"icon-likes\"></i> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.likes)),stack1 == null || stack1 === false ? stack1 : stack1.count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\n      </div>\n    </div>\n    <div class=\"instabinge-comment\">\n      "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.caption)),stack1 == null || stack1 === false ? stack1 : stack1.text)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\n      ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.tags), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </div>\n    <div class=\"instabinge-comments\">\n      <div class=\"instabinge-secondary\">Comments</div>\n      <ul class=\"instabinge-other-comments\">\n        ";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.comments)),stack1 == null || stack1 === false ? stack1 : stack1.data), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n      </ul>\n    </div>\n  </div>\n</li>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  
+  return " ";
+  }
+
+function program4(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n        <li>\n          <a href=\"http://www.instagram.com/"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.from)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" class=\"instabinge-username\" target=\"_blank\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.from)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a>\n          <div class=\"instabinge-comment\">";
+  if (helper = helpers.text) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.text); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n        </li>\n        ";
+  return buffer;
+  }
+
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.data), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  });
 /* global LWA, Handlebars */
 window.LWA = window.LWA || { Views: {}, Modules: {} };
 
@@ -233,11 +296,68 @@ window.LWA = window.LWA || { Views: {}, Modules: {} };
 
 LWA.Views.Instabinge = (function() {
 
+  var Time = {
+    MINUTE_IN_SECONDS : 60,
+    HOUR_IN_SECONDS   : 60 * 60,
+    DAY_IN_SECONDS    : 24 * 60 * 60,
+    WEEK_IN_SECONDS   : 7 * 24 * 60 * 60,
+    YEAR_IN_SECONDS   : 365 * 24 * 60 * 60,
+
+    convert: function(now, unixSeconds) {
+      var
+        since,
+        calc,
+        diff = (now/1000) - unixSeconds;
+      
+      if ( diff < Time.HOUR_IN_SECONDS ) {
+        calc = Math.round( diff / Time.MINUTE_IN_SECONDS );
+        if ( calc <= 1 ) {
+          calc = 1;
+        }
+        since = calc + 'mn';
+      } else if ( diff < Time.DAY_IN_SECONDS && diff >= Time.HOUR_IN_SECONDS ) {
+        calc = Math.round( diff / Time.HOUR_IN_SECONDS );
+        if ( calc <= 1 ) {
+          calc = 1;
+        }
+        since = calc + 'h';
+      } else if ( diff < Time.WEEK_IN_SECONDS && diff >= Time.DAY_IN_SECONDS ) {
+        calc = Math.round( diff / Time.DAY_IN_SECONDS );
+        if ( calc <= 1 ) {
+          calc = 1;
+        }
+        since = calc + 'd';
+      } else if ( diff < 30 * Time.DAY_IN_SECONDS && diff >= Time.WEEK_IN_SECONDS ) {
+        calc = Math.round( diff / Time.WEEK_IN_SECONDS );
+        if ( calc <= 1 ) {
+          calc = 1;
+        }
+        since = calc + 'w';
+      } else if ( diff < Time.YEAR_IN_SECONDS && diff >= 30 * Time.DAY_IN_SECONDS ) {
+        calc = Math.round( diff / ( 30 * Time.DAY_IN_SECONDS ) );
+        if ( calc <= 1 ) {
+          calc = 1;
+        }
+        since = calc + 'm';
+      } else if ( diff >= Time.YEAR_IN_SECONDS ) {
+        calc = Math.round( diff / Time.YEAR_IN_SECONDS );
+        if ( calc <= 1 ){
+          calc = 1;
+        }
+        since = calc + 'y';
+      }
+
+      return since;
+    }
+  };
+
   var Ajax = {
+    cache: [],
     feedUrl: 'https://api.instagram.com/v1/users/self/feed?access_token=433449303.fcca1bd.c0fea0b12a3f412fbc240be570e5dfc0&callback=?',
     get: function(callback) {
       $.getJSON(Ajax.feedUrl)
         .done(function(response) {
+          Ajax.cache.push(response.data);
           Ajax.feedUrl = response.pagination.next_url + '&callback=?';
           if (callback) {
             callback(response);
@@ -270,12 +390,12 @@ LWA.Views.Instabinge = (function() {
         horizontal: 1,
         itemNav: 'basic',
         smart: 1,
-        activateOn: 'click',
+        activateOn: null,
         mouseDragging: 1,
         touchDragging: 1,
         releaseSwing: 1,
         startAt: 0,
-        activatePageOn: 'click',
+        activatePageOn: null,
         speed: 300,
         elasticBounds: 1,
         easing: 'swing',
@@ -293,6 +413,18 @@ LWA.Views.Instabinge = (function() {
         }
       });
 
+      View.element.$frame.on('click', 'li', function(ev) {
+        LWA.Modules.Modal(undefined, '#modal-instabinge', {
+          open: function() {
+            console.log(View.state.sly.getIndex($(ev.currentTarget)));
+            Modal.initialize(View.state.sly.getIndex($(ev.currentTarget)));
+          },
+          close: Modal.destroy
+        }).show();
+      });
+
+      $(window).resize(View.resize);
+
       Ajax.get();
     },
 
@@ -305,6 +437,95 @@ LWA.Views.Instabinge = (function() {
     append: function(response) {
       console.log(response);
       View.state.sly.add(View.template(response));
+    },
+
+    resize: function() {
+      View.state.sly.reload();
+    }
+  };
+
+  var Modal = {
+
+    element: {
+      $frame: $('#modal-instabinge-frame .slidee')
+    },
+
+    state: {
+      sly: undefined
+    },
+
+    template: Handlebars.instabinge_thumb_large,
+
+    initialize: function(itemIndex) {
+      Modal.state.sly = new Sly('#modal-instabinge-frame', {
+        horizontal: 1,
+        itemNav: 'forceCentered',
+        smart: 1,
+        activateMiddle: 1,
+        mouseDragging: 1,
+        touchDragging: 1,
+        releaseSwing: 1,
+        startAt: itemIndex,
+        speed: 300,
+        elasticBounds: 1,
+        easing: 'swing',
+        dragHandle: 1,
+        dynamicHandle: 1,
+        clickBar: 1,
+
+        // Buttons
+        prev: $('#modal-instabinge-controls .instabinge-prev'),
+        next: $('#modal-instabinge-controls .instabinge-next')
+      });
+
+      Modal.state.sly.on('moveEnd', function() {
+        if (this.pos.dest === this.pos.end) {
+          console.log("reached end load next batch more");
+          Ajax.get(Modal.append);
+        }
+      });
+
+      $(window).resize(Modal.resize);
+
+      // get cached data and call render
+      Modal.render(Ajax.cache);
+    },
+
+    render: function(response) {
+      var fragment = $(document.createDocumentFragment());
+      for (var i = 0; i < response.length; i++) {
+        Modal.formatData(response[i]);
+        fragment.append(this.template({data: response[i]}));
+      }
+      Modal.element.$frame.html(fragment);
+      Modal.state.sly.init();
+    },
+
+    append: function(response) {
+      Modal.formatData(response.data);
+      Modal.state.sly.add(Modal.template(response));
+      View.state.sly.add(View.template(response));
+    },
+
+    formatData: function(data) {
+      var
+        width = $(window).width(),
+        now = Date.now();
+
+      for (var i = 0; i < data.length; i++) {
+        data[i].width = width;
+        data[i].created_time = Time.convert(now, data[i].created_time);
+      }
+    },
+    
+    destroy: function() {
+      Modal.state.sly.destroy();
+      Modal.element.$frame.html('');
+    },
+
+    resize: function() {
+      Modal.state.sly.reload();
+      Modal.element.$frame.children().css('width', $(window).width());
     }
   };
 
