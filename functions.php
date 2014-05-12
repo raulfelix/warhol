@@ -107,7 +107,7 @@ function create_post_type() {
     'has_archive' => true,
     'rewrite' => array('slug' => 'featured/%featured_tax%', 'with_front' => false),
     'menu_position' => 5,
-    'supports' => array('author', 'title', 'editor', 'thumbnail', 'revisions', 'excerpt' ),
+    'supports' => array('author', 'title', 'editor', 'thumbnail', 'revisions' ),
     'taxonomies' => array( 'featured_tax', 'subtitle', 'carousel' )
   );
 
@@ -123,7 +123,7 @@ function create_post_type() {
     'has_archive' => true,
     'rewrite' => array('slug' => 'news/%news_tax%', 'with_front' => false),
     'menu_position' => 5,
-    'supports' => array('author', 'title', 'editor', 'thumbnail', 'revisions', 'excerpt' ),
+    'supports' => array('author', 'title', 'editor', 'thumbnail', 'revisions' ),
     'taxonomies' => array( 'news_tax', 'subtitle', 'carousel' )
   );
 
@@ -188,6 +188,82 @@ function custom_post_type_permastruct($link, $post) {
 add_filter('post_type_link', 'custom_post_type_permastruct', 10, 2);
 
 
+// --------------------------------------------  
+// customisation: custom meta data 
+//
+// hexidecimal field value for category page 
+// overlay colour
+// -------------------------------------------- 
+function add_heximus_meta_box() {
+  add_meta_box(
+    'heximus_id',
+    'Define image overlay colour',
+    'heximus_meta_box_callback',
+    'page'
+  );
+}
+add_action( 'add_meta_boxes', 'add_heximus_meta_box' );
+
+function heximus_meta_box_callback( $post ) {
+
+  // Add an nonce field so we can check for it later.
+  wp_nonce_field( 'heximus_meta_box', 'heximus_meta_box_nonce' );
+
+  $value = get_post_meta( $post->ID, 'heximus_key', true );
+  $alpha = get_post_meta( $post->ID, 'heximus_alpha_key', true );
+
+  echo '<label class="label-heximus" for="heximus_new_field">';
+  _e( 'Hex value. Default: #000', 'heximus_textdomain' );
+  echo '</label> ';
+  echo '<input class="input-heximus" type="text" id="heximus_new_field" name="heximus_new_field" value="' . esc_attr( $value ) . '" size="7" />';
+  echo '<label class="label-heximus" for="heximus_alpha_new_field">';
+  _e( 'Alpha value. Default: 0.8', 'heximus_textdomain' );
+  echo '</label> ';
+  echo '<input type="text" id="heximus_alpha_new_field" name="heximus_alpha_new_field" value="' . esc_attr( $alpha ) . '" size="7" />';
+}
+
+function heximus_save_meta_box_data( $post_id ) {
+
+  // Check if our nonce is set.
+  if ( ! isset( $_POST['heximus_meta_box_nonce'] ) ) {
+    return;
+  }
+
+  // Verify that the nonce is valid.
+  if ( ! wp_verify_nonce( $_POST['heximus_meta_box_nonce'], 'heximus_meta_box' ) ) {
+    return;
+  }
+
+  // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+    return;
+  }
+
+  // Check the user's permissions
+  if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+    if ( ! current_user_can( 'edit_page', $post_id ) ) {
+      return;
+    }
+  } else {
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+      return;
+    }
+  }
+
+  // Make sure that data is set
+  if ( !isset( $_POST['heximus_new_field'] ) && !isset( $_POST['heximus_alpha_new_field'] ) ) {
+    return;
+  }
+
+  // Sanitize input
+  $heximus = sanitize_text_field( $_POST['heximus_new_field'] );
+  $alpha = sanitize_text_field( $_POST['heximus_alpha_new_field'] );
+
+  // Update the meta field in the database.
+  update_post_meta( $post_id, 'heximus_key', $heximus );
+  update_post_meta( $post_id, 'heximus_alpha_key', $alpha );
+}
+add_action( 'save_post', 'heximus_save_meta_box_data' );
 
 
 

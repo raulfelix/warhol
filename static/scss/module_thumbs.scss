@@ -79,10 +79,11 @@
   }
   
   .thumb-title {
-    @extend %gothic; 
     font-size: 56px;
     line-height: 68px;
     margin-bottom: rem(10);
+    @extend %gothic; 
+    @extend %block;
   }
 
   .thumb-caption {
@@ -107,9 +108,9 @@
 
 .thumb-search {
   margin-bottom: rem(40);
-
+  padding: 0 rem(5);
   .thumb-feature {
-    margin-bottom: 0;
+    margin: 0;
     width: rem(168);
     @extend %pull-left;
   }
@@ -130,6 +131,7 @@
 
   .h-2 {
     font-size: 24px;
+    margin-bottom: 0;
   }
 
   .h-5 {

@@ -130,6 +130,7 @@
 .category {
   height: rem(300);
   overflow: visible;
+
   .feature-bg {
     @extend %absolute;
     width: 100%;
@@ -139,13 +140,14 @@
 
   .category-branding {
     text-align: right;
-    padding-top: rem(32);
+    padding-top: rem(42);
 
     .category-h2 {
       margin-right: rem(5);
+      margin-top: rem(23);
     }
     .category-h2, img { 
-      display: inline-block; 
+       @extend %pull-right;
     }
   }
   .content {

@@ -1,3 +1,11 @@
 #carousel-adder {
   display: none;
 }
+
+.label-heximus {
+  display: block;
+  margin-bottom: 5px;
+}
+.input-heximus {
+  margin-bottom: 10px;
+}

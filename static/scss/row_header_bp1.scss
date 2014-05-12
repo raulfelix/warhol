@@ -52,7 +52,14 @@
     display: none;
   }
   .category-branding {
-    padding: 0;
+    padding-top: rem(35);
+    position: absolute;
+    right: rem(5);
+    width: 40%;
+    img {
+      margin-top: 0;
+      width: 100%;
+    }
   }
   .content {
     margin-top: rem(82);
