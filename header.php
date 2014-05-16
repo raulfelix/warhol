@@ -8,6 +8,7 @@
 
 <html <?php language_attributes(); ?>>
 <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <meta name="viewport" content="width=device-width">
   <title></title>
 
@@ -36,7 +37,7 @@
     if ( is_page('home') ) {
       get_template_part('partials/header', 'home');
     } 
-    else if (is_tax('news_tax')) {
+    else if ( is_tax('news_tax') ) {
       get_template_part('partials/header', 'category-news');
     }
     else if ( is_page() ) {

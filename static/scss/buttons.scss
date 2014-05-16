@@ -1,4 +1,5 @@
 .button {
+  background-color: transparent;
   border: 2px solid $pink;
   border-radius: 40px;
   display: inline-block;
@@ -11,6 +12,7 @@
   @extend %text-center;
   // @include transition(background-color 500ms ease);
   &:hover {
+    cursor: pointer;
     color: $white;
     background-color: $pink;
     border-color: $pink;
@@ -115,9 +117,11 @@
 }
 
 .button-gallery {
+  background-color: transparent;
   min-width: 0;
   padding: rem(12) rem(24);
-  
+  margin: 0 rem(10);
+
   .icon-thumbs, .icon-expand {
     font-size: 24px;
   }

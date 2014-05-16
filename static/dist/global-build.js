@@ -108,6 +108,9 @@ LWA.Modules.Modal = function(triggerSelector, modalSelector, options) {
   return {
     show: function() {
       onOpen();
+    },
+    el: function() {
+      return $modal;
     }
   };
 
@@ -127,7 +130,7 @@ LWA.Views.BackUp = (function() {
 
   return {
     init: function() {
-      $body = $('body');
+      $body = $('html,body');
       $('#back-up').click(scroll);
     }
   };

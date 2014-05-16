@@ -20,6 +20,7 @@
 .feature {
   height: rem(748);
   color: $white;
+  @include transition(height 300ms ease);
 
   .content {
     padding: rem(212) rem(80) 0 rem(80);
@@ -163,6 +164,99 @@
   .category-h2 {
     font-size: 14px;
   }
+}
+
+.header-gallery {
+  background-color: #94D7DE;
+
+  .header-gallery-overlay:before {
+    content: '';
+    background-color: #94D7DE;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .active.header-gallery-overlay:before {
+    display: none;
+  }
+
+  &.header-gallery-thumbs-active {
+    height: rem(898);
+  }
+  
+  .header-gallery-wrap {
+    height: rem(748);
+    @extend %relative;
+  }
+  
+  .header-gallery-content {
+    position: absolute;
+    top: 46%;
+    width: 100%;
+    text-align: center;
+    .h-1 {
+      max-width: rem(1140);
+      margin: 0 auto; 
+    }
+  }
+
+  .header-gallery-controls {
+    bottom: rem(40);
+    width: 100%;
+    @extend %text-center;
+    @extend %absolute;
+  }
+
+  .header-gallery-thumbs {
+    height: rem(150);
+    
+    li {
+      width: rem(150);
+      position: relative;
+      @extend %pull-left;
+      
+      &:hover {
+        opacity: 0.8;
+        cursor: pointer;
+      }
+      img {
+        display: block;
+      }
+    }
+
+    .active:before {
+      content: '';
+      background-color: $pink;
+      height: rem(20);
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  .header-gallery-frame {
+    li {
+      height: 100%;
+      position: relative;
+
+      img {
+        height: 100%;
+        width: auto;
+      }
+    }
+  }
+
+  .sly-controls {
+    top: 50%;
+  }
+}
+
+.f-full {
+  height: 100%;
 }
 
 .logo {

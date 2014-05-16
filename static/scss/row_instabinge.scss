@@ -55,31 +55,37 @@
   }
 }
 
-.instabinge-controls {
+.instabinge-controls, .sly-controls {
   .instabinge-next,
   .instabinge-prev,
   .instabinge-next:active,
   .instabinge-prev:active,
   .instabinge-next:focus,
-  .instabinge-prev:focus {
+  .instabinge-prev:focus,
+  .sly-next,
+  .sly-prev,
+  .sly-next:active,
+  .sly-prev:active,
+  .sly-next:focus,
+  .sly-prev:focus {
     background-color: transparent;
     border: none;
-    font-size: 30px;
     color: $white;
-    top: 50%;
+    display: block;
+    font-size: 30px;
     outline: none;
-    @extend %absolute;
-    @extend %block;
+    position: absolute;
+    top: 50%;
   }
 
   button:hover {
     cursor: pointer;
   }
 
-  .instabinge-prev {
+  .instabinge-prev, .sly-prev {
     left: 20px;
   }
-  .instabinge-next {
+  .instabinge-next, .sly-next {
     right: 20px;
   }
 

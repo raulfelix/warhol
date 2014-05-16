@@ -1,5 +1,5 @@
 <div id="modal-instabinge" class="modal modal-transparent modal-instabinge">
-  <a class="modal-close" href="javascript:void(0)"><i class="icon-close"></i></a>
+  <button class="modal-action modal-close"><i class="icon-close"></i></button>
   <div class="modal-wrap">
     <div class="modal-wrap-row">
       <div id="modal-instabinge-frame" class="modal-view frame">

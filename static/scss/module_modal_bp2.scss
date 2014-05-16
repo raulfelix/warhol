@@ -47,7 +47,7 @@
   }
 }
 
-.modal-transparent {
+.modal-instabinge {
 
   .modal-wrap,
   .modal-wrap-row {
@@ -63,5 +63,19 @@
 
   .modal-view {
     background-color: $white;
+  }
+}
+
+.modal-gallery {
+  
+  .modal-gallery-count {
+    font-size: rem(15);
+    top: rem(16);
+  }
+
+  .modal-gallery-thumbs {
+    font-size: 20px;
+    top: rem(16);
+    left: rem(16);
   }
 }

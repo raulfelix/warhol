@@ -49,6 +49,6 @@ a {
   }
 }
 
-input:focus {
+input:focus, button:focus, button:active {
   outline: none;
 }

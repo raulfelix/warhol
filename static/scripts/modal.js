@@ -41,6 +41,9 @@ LWA.Modules.Modal = function(triggerSelector, modalSelector, options) {
   return {
     show: function() {
       onOpen();
+    },
+    el: function() {
+      return $modal;
     }
   };
 

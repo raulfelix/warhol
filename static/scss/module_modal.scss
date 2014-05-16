@@ -12,18 +12,24 @@
   &.modal-active {
     display: block;
   }
-  .modal-close {
+
+  .modal-action {
+    background-color: transparent;
     color: $pink;
     display: block;
     font-size: rem(24);
-    right: rem(30);
-    top: rem(30);
-    z-index: 10;
     @extend %absolute;
-    
+    z-index: 10;
+
     &:hover {
+      cursor: pointer;
       color: $highlight;
     }
+  }
+
+  .modal-close {
+    right: rem(30);
+    top: rem(30);
   }
 
   .modal-view {
@@ -67,6 +73,10 @@
 .modal-transparent {
   background-color: rgba(0,0,0,0.6);
   
+  .modal-action {
+    color: $white;
+  }
+  
   .modal-wrap {
     display: table;
     width: 100%;
@@ -86,7 +96,7 @@
     height: auto;
     max-width: rem(1024);
     margin: 0 auto;
-    @extend %relative;
+    position: relative;
   }
 }
 
@@ -121,3 +131,68 @@
   }
 }
 
+
+.modal-gallery {
+  display: block;
+  visibility: hidden;
+  
+  &.modal-active {
+    visibility: visible;
+  }
+
+  .modal-gallery-count,
+  .modal-gallery-caption {
+    color: $white;
+    position: absolute;
+  }
+
+  .modal-gallery-thumbs,
+  .modal-gallery-count {
+    top: rem(30);
+  }
+
+  .modal-gallery-thumbs {
+    left: rem(30);
+  }
+
+  .modal-gallery-count {
+    width: 100%;
+    @extend %text-center;
+  }
+
+  .modal-gallery-caption {
+    margin-top: rem(10);
+    width: 100%;
+  }
+
+  .modal-view {
+    overflow: visible !important;
+    max-width: 100%;
+
+    // used for initial width calculation
+    img {
+      height: 100%;
+      width: auto;
+    }
+
+    // required to show and hide images
+    li {
+      height: 100%;
+      opacity: 0;
+      position: relative;
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    .modal-gallery-width {
+      width: 100%;
+      height: auto;
+    }
+
+    .modal-gallery-height {
+      height: 100%;
+      width: auto;
+    }
+  }
+}

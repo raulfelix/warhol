@@ -53,6 +53,7 @@ module.exports = function(grunt) {
           'static/dist/global-build.js' : [
             'static/vendor/jquery-2.0.3.min.js',
             'static/vendor/*.js',
+            '!static/vendor/imagesloaded.pkgd.min.js',
             '!static/vendor/sly.min.js',
             'static/scripts/global.js',
             'static/scripts/nav.js',
@@ -61,7 +62,9 @@ module.exports = function(grunt) {
             'static/scripts/precompiled/search-template.js',
             'static/scripts/search.js'
           ],
-          'static/dist/single-build.js' : [
+          'static/dist/gallery-build.js' : [
+            'static/vendor/imagesloaded.pkgd.min.js',
+            'static/vendor/sly.min.js',
             'static/scripts/gallery.js'
           ],
           'static/dist/category-build.js' : [

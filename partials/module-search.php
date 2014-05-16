@@ -1,5 +1,5 @@
 <div id="modal-search" class="modal">
-  <a class="modal-close" href="javascript:void(0)"><i class="icon-close"></i></a>
+  <a class="modal-action modal-close" href="javascript:void(0)"><i class="icon-close"></i></a>
   <div class="modal-view f-grid f-row search-row">
     <div class="f-1">
       <a href="<?php echo get_home_url(); ?>" class="logo"></a>

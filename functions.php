@@ -345,7 +345,7 @@ function get_thumbnail() {
   if (has_post_thumbnail( get_the_id() )) {
     echo the_post_thumbnail( 'large' );
   } else {
-    bdw_get_images( get_the_id() );
+    echo catch_that_image(true);
   }
 }
 
@@ -353,36 +353,27 @@ function get_the_thumbnail() {
   if (has_post_thumbnail( get_the_id() )) {
     return wp_get_attachment_image_src( get_post_thumbnail_id(), 'large')[0];
   } else {
-    return the_attached_images( get_the_id() );
+    return catch_that_image();
   }
 }
 
-function the_attached_images($post_id, $tag = false) {
- 
-    // Get images for this post
-    $arrImages = get_children('post_type=attachment&post_mime_type=image&post_parent=' . $post_id );
- 
-    // If images exist for this page
-    if ($arrImages) {
- 
-        // Get array keys representing attached image numbers
-        $arrKeys = array_keys($arrImages);
- 
-        // Get the first image attachment
-        $iNum = $arrKeys[0];
- 
-        $url = wp_get_attachment_url($iNum);
-        if ($tag === true) {
-          $sImgString = '<img src="' . $url . '" />';
-          return $sImgString;
-        } else {
-          return $url;
-        }
-    }
-}
+function catch_that_image($tag = false) {
+  global $post, $posts;
+  $first_img = '';
+  ob_start();
+  ob_end_clean();
+  $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+  $first_img = $matches[1][0];
 
-function bdw_get_images($post_id) {
-  echo the_attached_images($post_id, true);
+  if (empty($first_img)) {
+    $first_img = "/path/to/default.png";
+  }
+
+  if ($tag === true) {
+    return '<img src="' . $first_img . '" />';
+  } else {
+    return $first_img;
+  }
 }
 
 
@@ -393,6 +384,7 @@ function add_scripts() {
   wp_register_script( 'global-build', get_template_directory_uri() . '/static/dist/global-build.js', null, '', true );
   wp_register_script( 'home-build', get_template_directory_uri() . '/static/dist/home-build.js', null, '', true );
   wp_register_script( 'category-build', get_template_directory_uri() . '/static/dist/category-build.js', null, '', true );
+  wp_register_script( 'gallery-build', get_template_directory_uri() . '/static/dist/gallery-build.js', null, '', true );
   
   wp_enqueue_script( 'global-build' );
 }
@@ -539,12 +531,12 @@ add_filter( 'attachments_default_instance', '__return_false' ); // disable the d
 function my_attachments( $attachments )
 {
   $fields = array( 
-    // array(
-    //   'name'      => 'caption',                       // unique field name
-    //   'type'      => 'text',                          // registered field type
-    //   'label'     => __( 'Caption', 'attachments' ),  // label to display
-    //   'default'   => 'caption',                       // default value upon selection
-    // )
+    array(
+      'name'      => 'caption',                       // unique field name
+      'type'      => 'text',                          // registered field type
+      'label'     => __( 'Caption', 'attachments' ),  // label to display
+      'default'   => 'caption',                       // default value upon selection
+    )
   );
 
   $args = array(
@@ -579,6 +571,8 @@ function my_attachments( $attachments )
 
     // which tab should be the default in the modal (string) (browse|upload)
     'router'        => 'browse',
+
+    'post_parent'   => true,
 
     // fields array
     'fields'        => $fields,
