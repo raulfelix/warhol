@@ -28,6 +28,10 @@ LWA.Modules.Modal = function(triggerSelector, modalSelector, options) {
   function init() {
     $html = $('html');
     $modal = $(modalSelector);
+
+    if (options === undefined) {
+      options = {};
+    }
     
     if (triggerSelector !== undefined) {
       $(triggerSelector).on('click', onOpen);

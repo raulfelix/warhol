@@ -66,6 +66,7 @@
       <button id="modal-gallery-button" class="button button-gallery"><i class="icon-expand"></i></button>
     </div>
   </div>
+  
   <div id="header-gallery-thumbs" class="header-gallery-thumbs frame">
     <ul class="slidee">
       <?php 
@@ -75,6 +76,10 @@
         <li><?php echo $attachments->image( 'thumbnail' ); ?></li>
       <?php endwhile; ?>
     </ul>
+    <div class="sly-controls">
+      <button class="sly-prev"><i class="icon-arrow-left"></i></button>
+      <button class="sly-next"><i class="icon-arrow-right"></i></button>
+    </div>
   </div>
 </header>
 

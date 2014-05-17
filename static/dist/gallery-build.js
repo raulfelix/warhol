@@ -155,6 +155,7 @@ LWA.Views.Gallery = (function() {
     init: function() {
       $('#gallery-thumbs').click(Thumbs.toggle);
 
+      var $wrap = $('#header-gallery-thumbs');
       Thumbs.state.sly = new Sly('#header-gallery-thumbs', {
         horizontal: 1,
         itemNav: 'basic',
@@ -166,7 +167,9 @@ LWA.Views.Gallery = (function() {
         startAt: 0,
         speed: 300,
         elasticBounds: 1,
-        easing: 'swing'
+        easing: 'swing',
+        prevPage: $wrap.find('.sly-prev'),
+        nextPage: $wrap.find('.sly-next')
       });
 
       Thumbs.state.sly.init();
