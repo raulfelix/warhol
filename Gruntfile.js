@@ -67,6 +67,9 @@ module.exports = function(grunt) {
             'static/vendor/sly.min.js',
             'static/scripts/gallery.js'
           ],
+          'static/dist/single-build.js' : [
+            'static/scripts/share.js'
+          ],
           'static/dist/category-build.js' : [
             'static/scripts/dropdown.js'
           ]

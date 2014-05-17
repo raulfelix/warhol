@@ -69,6 +69,11 @@
   overflow: hidden;
   color: #000;
 
+  &:hover {
+    background-color: transparent;
+    color: #000;
+  }
+
   .button-url-copy {
     right: 0;
     top: 0;
@@ -80,8 +85,12 @@
     @extend %absolute;
 
     &:hover {
+      background-color: $pink;
+      color: $white;
+    }
+    &:active {
+      background-color: $highlight;
       border-left-color: $highlight;
-      color: $highlight;
     }
   }
 }

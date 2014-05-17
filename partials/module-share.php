@@ -4,15 +4,16 @@
     <div class="modal-share-secondary">Share this</div>
     <div class="modal-share-primary"><?php the_title(); ?></div>
     <div class="modal-share-actions">
-      <a class="button" href="#">Facebook</a>
-      <a class="button" href="#">Twitter</a>
-      <div class="button g-plus" data-action="share" data-url="http://www.raulfelixcarrizo.com" data-annotation="none">Google+</div>
+      <button class="button button-social" data-href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(the_permalink()) ?>&title=<?php echo urlencode(the_title()) ?>">Facebook</button>
+      <button class="button button-social" data-href="https://twitter.com/share?url=<?php echo urlencode(the_permalink()) ?>">Twitter</button>
+      <button class="button button-social" data-href="https://plus.google.com/share?url=<?php echo urlencode(the_permalink()) ?>">Google+</button>
     </div>
     <div class="modal-share-actions">
       <div class="button button-url">
         <?php the_permalink(); ?>
-        <a class="button-url-copy" href="#">Copy URL</a>
+        <div class="button-url-copy">Copy URL</div>
       </div>
     </div>
   </div>
 </div>
+<?php wp_enqueue_script( 'single-build' );?>

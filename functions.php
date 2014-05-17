@@ -385,6 +385,7 @@ function add_scripts() {
   wp_register_script( 'home-build', get_template_directory_uri() . '/static/dist/home-build.js', null, '', true );
   wp_register_script( 'category-build', get_template_directory_uri() . '/static/dist/category-build.js', null, '', true );
   wp_register_script( 'gallery-build', get_template_directory_uri() . '/static/dist/gallery-build.js', null, '', true );
+  wp_register_script( 'single-build', get_template_directory_uri() . '/static/dist/single-build.js', null, '', true );
   
   wp_enqueue_script( 'global-build' );
 }
