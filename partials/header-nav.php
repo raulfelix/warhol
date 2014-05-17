@@ -16,7 +16,7 @@
           <li><a href="<?php echo get_home_url(); ?>/news">News</a></li>
         </ul>
         <ul class="nav-links-secondary">
-          <li><a href="<?php echo get_home_url(); ?>/shop">Shop</a></li>
+          <li><a href="http://www.lifewithoutandy.myshopify.com">Shop</a></li>
           <li><a href="<?php echo get_home_url(); ?>/shot-by">Shot by</a></li>
           <li><a href="<?php echo get_home_url(); ?>/info">Info</a></li>
         </ul>

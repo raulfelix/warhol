@@ -10,20 +10,27 @@
   .modal-share-view {
     height: rem(348);
     margin-top: rem(-174);
+    text-align: center;
   }
 }
 
 .modal-share-actions {
+  display: inline-block;
   padding: 0;
-  
+  text-align: center;
+  width: 100%;
+
   .button {
     margin: 0 0 rem(10) 0;
-    width: auto;
   }
 
   .button-url {
     width: 100%;
   }
+}
+
+.modal-share-buttons {
+  width: rem(200);
 }
 
 .modal-share-primary {

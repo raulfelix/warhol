@@ -84,6 +84,7 @@
   }
 
   .button-share {
+    margin-top: rem(-16);
     @extend %pull-right;
   }
 }
