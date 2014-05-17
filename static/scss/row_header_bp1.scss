@@ -67,6 +67,15 @@
   }
 }
 
+.header-gallery {
+  .header-gallery-wrap {
+    height: rem(400);
+  }
+  &.header-gallery-thumbs-active {
+    height: rem(550);
+  }
+}
+
 .nav {
 
   .logo {

@@ -155,6 +155,38 @@
   }
 }
 
+.sly-controls {
+  .sly-next,
+  .sly-prev,
+  .sly-next:active,
+  .sly-prev:active,
+  .sly-next:focus,
+  .sly-prev:focus {
+    background-color: transparent;
+    border: none;
+    color: $white;
+    display: block;
+    font-size: 30px;
+    outline: none;
+    position: absolute;
+    top: 50%;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  .sly-prev {
+    left: 20px;
+  }
+  .sly-next {
+    right: 20px;
+  }
+
+  .disabled {
+    opacity: 0.4;
+  }
+}
 
 ::-webkit-input-placeholder {
    color: #000;

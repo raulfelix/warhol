@@ -110,8 +110,8 @@ LWA.Views.Instabinge = (function() {
         dynamicHandle: 1,
         clickBar: 1,
 
-        prevPage: instabingeButtons.find('.instabinge-prev'),
-        nextPage: instabingeButtons.find('.instabinge-next')
+        prevPage: instabingeButtons.find('.sly-prev'),
+        nextPage: instabingeButtons.find('.sly-next')
       });
 
       View.state.sly.on('moveEnd', function(eventName) {
@@ -123,14 +123,11 @@ LWA.Views.Instabinge = (function() {
       View.element.$frame.on('click', 'li', function(ev) {
         LWA.Modules.Modal(undefined, '#modal-instabinge', {
           open: function() {
-            console.log(View.state.sly.getIndex($(ev.currentTarget)));
             Modal.initialize(View.state.sly.getIndex($(ev.currentTarget)));
           },
           close: Modal.destroy
         }).show();
       });
-
-      $(window).resize(View.resize);
 
       Ajax.get();
     },
@@ -146,7 +143,7 @@ LWA.Views.Instabinge = (function() {
       View.state.sly.add(View.template(response));
     },
 
-    resize: function() {
+    reload: function() {
       View.state.sly.reload();
     }
   };
@@ -164,6 +161,7 @@ LWA.Views.Instabinge = (function() {
     template: Handlebars.instabinge_thumb_large,
 
     initialize: function(itemIndex) {
+      var $wrap = $('#modal-instabinge-controls');
       Modal.state.sly = new Sly('#modal-instabinge-frame', {
         horizontal: 1,
         itemNav: 'forceCentered',
@@ -180,9 +178,8 @@ LWA.Views.Instabinge = (function() {
         dynamicHandle: 1,
         clickBar: 1,
 
-        // Buttons
-        prev: $('#modal-instabinge-controls .instabinge-prev'),
-        next: $('#modal-instabinge-controls .instabinge-next')
+        prev: $wrap.find('.sly-prev'),
+        next: $wrap.find('.sly-next')
       });
 
       Modal.state.sly.on('moveEnd', function() {
@@ -191,8 +188,6 @@ LWA.Views.Instabinge = (function() {
           Ajax.get(Modal.append);
         }
       });
-
-      $(window).resize(Modal.resize);
 
       // get cached data and call render
       Modal.render(Ajax.cache);
@@ -230,14 +225,38 @@ LWA.Views.Instabinge = (function() {
       Modal.element.$frame.html('');
     },
 
-    resize: function() {
-      Modal.state.sly.reload();
-      Modal.element.$frame.children().css('width', $(window).width());
+    reload: function() {
+      if (Modal.state.sly !== undefined) {
+        Modal.element.$frame.css('width', '100%');
+        var w = $(window).width();
+        Modal.element.$frame.children().css('width', w);
+        Modal.state.sly.reload();
+      }
     }
   };
 
+  // hold off on resize event
+  var delay = (function() {
+    var timer = 0;
+    return function(callback, ms){
+      clearTimeout(timer);
+      timer = setTimeout(callback, ms);
+    };
+  })();
+
+  function updateSly() {
+    delay(function() {
+      console.log("reload...");
+      View.reload();
+      Modal.reload();
+    }, 200);
+  }
+
   return {
-    init: View.initialize
+    init: function() {
+      View.initialize();
+      $(window).resize(updateSly);
+    }
   };
 
 })();

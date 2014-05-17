@@ -69,6 +69,7 @@ LWA.Views.Gallery = (function() {
         itemNav: 'forceCentered',
         smart: 1,
         activateMiddle: 1,
+        mouseDragging: 1,
         touchDragging: 1,
         releaseSwing: 1,
         startAt: 0,
@@ -128,9 +129,7 @@ LWA.Views.Gallery = (function() {
     },
 
     reload: function() {
-      // $('#modal-gallery-frame ul').attr('style', null);
       $('#modal-gallery-frame ul').css('width', '100%');
-      // only run if sly exists
       Modal.clearDimensions();
       Modal.setModalRowHeight();
       Modal.setImageDimensions();
@@ -203,6 +202,7 @@ LWA.Views.Gallery = (function() {
         itemNav: 'forceCentered',
         smart: 1,
         activateOn: null,
+        mouseDragging: 1,
         touchDragging: 1,
         releaseSwing: 1,
         startAt: 0,

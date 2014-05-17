@@ -55,45 +55,6 @@
   }
 }
 
-.instabinge-controls, .sly-controls {
-  .instabinge-next,
-  .instabinge-prev,
-  .instabinge-next:active,
-  .instabinge-prev:active,
-  .instabinge-next:focus,
-  .instabinge-prev:focus,
-  .sly-next,
-  .sly-prev,
-  .sly-next:active,
-  .sly-prev:active,
-  .sly-next:focus,
-  .sly-prev:focus {
-    background-color: transparent;
-    border: none;
-    color: $white;
-    display: block;
-    font-size: 30px;
-    outline: none;
-    position: absolute;
-    top: 50%;
-  }
-
-  button:hover {
-    cursor: pointer;
-  }
-
-  .instabinge-prev, .sly-prev {
-    left: 20px;
-  }
-  .instabinge-next, .sly-next {
-    right: 20px;
-  }
-
-  .disabled {
-    opacity: 0.4;
-  }
-}
-
 .instabinge-profile {
   @extend %clearfix;
 

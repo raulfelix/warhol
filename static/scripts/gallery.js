@@ -60,6 +60,7 @@ LWA.Views.Gallery = (function() {
         itemNav: 'forceCentered',
         smart: 1,
         activateMiddle: 1,
+        mouseDragging: 1,
         touchDragging: 1,
         releaseSwing: 1,
         startAt: 0,
@@ -119,9 +120,7 @@ LWA.Views.Gallery = (function() {
     },
 
     reload: function() {
-      // $('#modal-gallery-frame ul').attr('style', null);
       $('#modal-gallery-frame ul').css('width', '100%');
-      // only run if sly exists
       Modal.clearDimensions();
       Modal.setModalRowHeight();
       Modal.setImageDimensions();
@@ -146,6 +145,7 @@ LWA.Views.Gallery = (function() {
     init: function() {
       $('#gallery-thumbs').click(Thumbs.toggle);
 
+      var $wrap = $('#header-gallery-thumbs');
       Thumbs.state.sly = new Sly('#header-gallery-thumbs', {
         horizontal: 1,
         itemNav: 'basic',
@@ -157,7 +157,9 @@ LWA.Views.Gallery = (function() {
         startAt: 0,
         speed: 300,
         elasticBounds: 1,
-        easing: 'swing'
+        easing: 'swing',
+        prevPage: $wrap.find('.sly-prev'),
+        nextPage: $wrap.find('.sly-next')
       });
 
       Thumbs.state.sly.init();
@@ -191,6 +193,7 @@ LWA.Views.Gallery = (function() {
         itemNav: 'forceCentered',
         smart: 1,
         activateOn: null,
+        mouseDragging: 1,
         touchDragging: 1,
         releaseSwing: 1,
         startAt: 0,
