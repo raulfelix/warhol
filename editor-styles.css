@@ -1,0 +1,33 @@
+@import 'style.css';
+
+p, ol, ul, h1, h2, h3, h4, h5, h6 {
+  padding: 0 100px;
+}
+
+p, li {
+  font-family:"Apercu Pro Light", 'Trebuchet MS', Arial, sans-serif; 
+}
+
+ul, ol {
+  margin-bottom: 30px;
+}
+
+ol {
+  list-style-type: decimal;
+}
+ul {
+  list-style: disc;
+}
+li {
+  font-size: 16px;
+  margin-left: 18px;
+  line-height: 1.7;
+}
+
+a {
+  padding-bottom: 1px;
+  color: #F197D5;
+}
+a:hover {
+  border-bottom: 1px solid #F197D5;
+}

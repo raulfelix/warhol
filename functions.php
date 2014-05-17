@@ -22,10 +22,10 @@ add_action( 'admin_enqueue_scripts', 'change_adminbar_css' );
 // add editor css for better content
 // management 
 // ------------------------------
-// function add_editor_styles() {
-//   add_editor_style( 'editor-styles.css' );
-// }
-// add_action( 'init', 'add_editor_styles' );
+function add_editor_styles() {
+  add_editor_style( 'editor-styles.css' );
+}
+add_action( 'init', 'add_editor_styles' );
 
 
 // ------------------------------ 
