@@ -141,7 +141,7 @@ add_action( 'init', 'create_post_type' );
 // expected: ids should match featured pages
 // --------------------------------------------   
 function disable_redirect_canonical( $redirect_url ) {
-  if ( is_page( array( 'parties-bullshit', 'tuesdays-without', 'twentyfour' ) ))
+  if ( is_page( array( 'parties-bullshit', 'tuesdays-without', 'twentyfour', 'news' ) ))
     $redirect_url = false;
     return $redirect_url;
 }
