@@ -60,7 +60,8 @@ module.exports = function(grunt) {
             'static/scripts/modal.js',
             'static/scripts/back-up.js',
             'static/scripts/precompiled/search-template.js',
-            'static/scripts/search.js'
+            'static/scripts/search.js',
+            'static/scripts/spinner.js'
           ],
           'static/dist/gallery-build.js' : [
             'static/vendor/imagesloaded.pkgd.min.js',
