@@ -172,9 +172,7 @@ LWA.Views.PostThumbs = (function() {
   function get(callback, params) {
     $.getJSON('http://localhost/wordpress/wp-admin/admin-ajax.php', params)
       .done(function(response) {
-        setTimeout(function() {
-          callback(response);
-        }, 3000);
+        callback(response);
       })
       .fail(function(response) {
         console.log(response);
