@@ -427,8 +427,8 @@ function search_posts($term, $page, $posts_per_page) {
       $wp_query->the_post();
       
       $data['posts'][$idx] = Array(
-        'title'     => get_the_title(),
-        'subtitle'  => get_the_subtitle(),
+        'title'     => html_entity_decode(get_the_title()),
+        'subtitle'  => html_entity_decode(get_the_subtitle()),
         'permalink' => get_the_permalink(),
         'thumbnail' => get_the_thumbnail(),
         'views'     => get_views(),
@@ -471,8 +471,8 @@ function fetch_posts($page, $post_per_page, $post_type) {
       $wp_query->the_post();
       
       $data['posts'][$idx] = Array(
-        'title'     => get_the_title(),
-        'subtitle'  => get_the_subtitle(),
+        'title'     => html_entity_decode(get_the_title()),
+        'subtitle'  => html_entity_decode(get_the_subtitle()),
         'permalink' => get_the_permalink(),
         'thumbnail' => get_the_thumbnail(),
         'views'     => get_views(),
