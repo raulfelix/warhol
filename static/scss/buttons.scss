@@ -4,6 +4,7 @@
   border-radius: 40px;
   display: inline-block;
   font-size: rem(18);
+  height: rem(54);
   padding: rem(14) rem(30);
   margin: 0 auto;
   min-width: rem(170);
@@ -31,7 +32,7 @@
 }
 
 .button-large {
-  padding: rem(14) rem(80);
+  width: rem(296);
 }
 
 .button-disabled, 
@@ -40,6 +41,22 @@
   border-color: #D3D3D3;
   background-color: transparent;
   cursor: default;
+}
+
+// button hides text and shows spinner
+.button-loading,
+.button-loading:hover,
+.button-loading:active {
+  background-color: transparent;
+  color: $pink;
+}
+
+.button-loading .loader {
+  display: block;
+}
+
+.button-loading span {
+  visibility: hidden;
 }
 
 .button-share {
