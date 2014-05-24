@@ -1,9 +1,5 @@
 .thumb {
   margin-bottom: rem(30);
-
-  .thumb-feature {
-    margin: rem(10) 0;
-  }
   
   .thumb-title {
     font-size: rem(20);
@@ -54,8 +50,7 @@
 }
 
 .thumb-category {
-  padding: 0 rem(5) rem(20) rem(5);
-
+  padding-top: 0;
   p {
     margin: rem(10) 0;
     font-size: 12px;
@@ -64,6 +59,11 @@
   .thumb-title {
     font-size: rem(28);
     line-height: rem(34);
+  }
+
+  .thumb-caption {
+    font-size: 14px;
+    margin-bottom: rem(20);
   }
 }
 

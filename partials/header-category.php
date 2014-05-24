@@ -9,26 +9,26 @@
   $alpha = get_post_meta( get_the_id(), 'heximus_alpha_key', true );
 ?>
 
-<header class="header feature category">
+<header class="header feature header-category category">
   <div class="feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
   <?php if ($is_feature === true): ?>
     <div class="blanket-overlay" style="background-color:<?php echo ($heximus) ? $heximus : '#000000' ?>;opacity: <?php echo ($alpha) ? $alpha : '0.8' ?>;"></div>
   <?php endif; ?>
   <?php get_template_part('partials/header', 'nav'); ?>
 
-  <div class="f-grid f-row">
+  <div class="f-grid f-row f-full">
     <div class="f-1">
-      <div class="content">
+      <div class="header-category-content">
         <div class="f-1-2 bp1-1">
-          <div class="category-h1"><?php the_title(); ?></div>
-          <div class="category-h2"><?php the_subtitle(); ?></div>
+          <div class="header-category-h1"><?php the_title(); ?></div>
+          <div class="header-category-h2"><?php the_subtitle(); ?></div>
         </div>
-        <div class="f-1-2 bp1-1 category-branding">
+        <div class="f-1-2 header-category-branded">
           <?php 
             $gallery = new Attachments( 'my_attachments', get_the_id() );
             if ( $gallery->exist() ):
               echo $gallery->image( 'original', 0 );
-              echo '<div class="category-h2">in partnership with</div>';
+              echo '<div class="header-category-h2">in partnership with</div>';
             endif;
           ?>
         </div>

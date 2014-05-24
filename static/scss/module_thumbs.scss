@@ -72,7 +72,7 @@
 }
 
 .thumb-category {
-  padding: rem(80) 0;
+  padding: rem(80) rem(10);
 
   & > div {
     float: right;
@@ -88,10 +88,10 @@
 
   .thumb-caption {
     font-size: 18px;
-    
   }
 
   .thumb, .thumb-feature {
+    margin-top: 0;
     margin-bottom: 0;
   }
 }

@@ -1,5 +1,13 @@
-@media all and (max-width: rem(599)) { 
+@media all and (max-width: 37.436em) { 
   
+  // grid
+  .f-row {
+    padding: 0 rem(10);
+    & > div {
+      padding: 0 rem(10);
+    }
+  }
+
   .bp2-1 {
     width: 100%;
   }
@@ -31,38 +39,46 @@
     }
   }
 
-  .category {
-    .content {
-      padding: 0;
-    }
+  .thumb {
+    margin-bottom: rem(30);
 
-    .category-h2, .category-branding .category-h2 {
-      display: none;
+    .thumb-feature {
+      margin: rem(10) 0;
     }
-
-    .category-h1 {
-      margin-bottom: 0;
-      margin-top: rem(36);
-    }
-    .category-branding img {
-      margin-top: rem(10);
+  }
+  
+  .thumb-search {
+    .thumb-feature {
+      margin: 0;
     }
   }
 
-  
+  .thumb-category {
+    padding-top: rem(10);
 
-  .article-row {
-    p, ul, ol, h1, h2, h3, h4, h5, h6 {
-      padding: 0;
+    p {
+      margin: rem(20) 0;
     }
-    .details-row {
-      padding: rem(20) 0;
+  
+    .thumb-title {
+      font-size: rem(40);
+      line-height: rem(50);
+    }
+
+    .thumb-caption {
+      font-size: 16px;
+      margin-bottom: rem(30);
     }
   }
 
 
   .dropdown .icon-arrow-down {
     top: rem(17);
+  }
+
+  .button-row {
+    padding-top: 0;
+    padding-bottom: rem(40);
   }
 
   .button-row-paginate {
@@ -78,7 +94,32 @@
 
   @import 'module_modal_bp2';
   @import 'row_instabinge_bp2';
+  @import 'row_header_bp2';
+  @import 'assembly_bp2';
 
   
+  .next {
+    min-height: rem(420);
+    
+    .h-3, 
+    .h-4 {
+      font-size: rem(18);
+      margin: 0; 
+    }
+
+    .h-1 {
+      font-size: rem(50);
+    }
+    
+    .content {
+      padding: rem(80) 0 rem(48) 0;
+    }
+  }
+
+  .next-feature {
+    .next-bg {
+      background-size: 150% auto;
+    }    
+  }
   
 }

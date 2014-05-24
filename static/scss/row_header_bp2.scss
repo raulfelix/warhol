@@ -1,0 +1,44 @@
+.header-category {
+  height: rem(220);
+
+  .header-category-h1 {
+    font-size: 26px;
+  }
+
+  .header-category-h2 {
+    display: none;
+  }
+
+  .header-category-branded {
+    padding-right: rem(20);
+  }
+}
+
+.nav {
+  
+  .logo {
+    margin-top: rem(20);
+    width: rem(90);
+    height: rem(61);
+  }
+ 
+  .nav-menu, .nav-item {
+    margin-top: rem(20);
+  }
+
+  // .nav-links {
+  //   margin-left: rem(-160);
+  //   margin-top: rem(-117);
+  //   width: rem(320);
+    
+  //   .nav-links-primary li {
+  //     font-size: rem(20);
+  //     margin: 0 0 rem(30) 0; 
+  //   }
+
+  //   .nav-links-secondary li {
+  //     font-size: rem(14);
+  //     margin: 0 rem(20); 
+  //   }
+  // }
+}

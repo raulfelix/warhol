@@ -42,32 +42,24 @@
   }
 }
 
-.category {
+.header-category {
   height: rem(150);
-
-  .category-h1 {
+  
+  .header-category-h1 {
     font-size: 22px;
   }
-  .category-h2 {
-    display: none;
-  }
-  .category-branding {
-    padding-top: rem(35);
-    position: absolute;
-    right: rem(5);
-    width: 40%;
+
+  .header-category-branded {
+    padding-right: rem(10);
+
     img {
-      margin-top: 0;
       width: 100%;
     }
-  }
-  .content {
-    margin-top: rem(82);
-    padding: 0;
   }
 }
 
 .header-gallery {
+  width: 40%;
   .header-gallery-wrap {
     height: rem(400);
   }

@@ -1,0 +1,63 @@
+.up {
+  height: rem(120);
+  a {
+    line-height: rem(120);
+  }
+}
+
+.search-row {
+  
+  .logo {
+    margin-top: rem(20);
+    width: rem(90);
+    height: rem(61);
+  }
+
+  .search-row-input {
+    top: rem(100);
+    right: rem(20);
+    left: rem(20);
+    width: auto;
+    padding: 0;
+  }
+
+  .button-search {
+    right: rem(10);
+  }
+
+  .input-search {
+    width: 66%;
+  }
+}
+
+.search-row-results {
+  top: rem(170);
+
+  .container {
+    padding: rem(20) rem(10);
+  }
+}
+
+.article-row {
+  .article-row-content {
+    padding-top: 0;
+  }
+
+  p, ul, ol, h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+  }
+
+  .details-row {
+    margin-top: 0;
+    padding: rem(20) 0;
+  }
+}
+
+.details-row .button-share {
+  float: none;
+  margin-top: rem(20);
+}
+
+.sly-controls { 
+  display: none;
+}
