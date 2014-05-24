@@ -4,7 +4,8 @@
       <?php $category = category($post->post_type); ?>
     <a href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
       <span><?php when(); ?></span>
-      <span class="data-views"><i class="icon-views"></i><?php views(); ?></span>Facebook
+      <span class="data-views"><i class="icon-views"></i><?php views(); ?></span>
+      <span class="fb-like" data-href="<?php echo the_permalink(); ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></span>
       <a class="button button-share" href="javascript:void(0)"><i class="icon-share"></i>share this</a>
     </div>
     <div class="article-row-content">
