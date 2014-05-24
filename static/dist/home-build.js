@@ -306,7 +306,7 @@ LWA.Views.PostThumbs = (function() {
   };
 
   function get(callback, params) {
-    $.getJSON('http://localhost/wordpress/wp-admin/admin-ajax.php', params)
+    $.getJSON('wp-admin/admin-ajax.php', params)
       .done(function(response) {
         callback(response);
       })
@@ -408,17 +408,12 @@ LWA.Views.Instabinge = (function() {
 
   var Ajax = {
     cache: [],
-    feedUrl: 'https://api.instagram.com/v1/media/popular?access_token=433449303.fcca1bd.c0fea0b12a3f412fbc240be570e5dfc0&callback=?',
+    feedUrl: 'https://api.instagram.com/v1/users/self/feed?access_token=433449303.fcca1bd.c0fea0b12a3f412fbc240be570e5dfc0&callback=?',
     get: function(callback) {
       $.getJSON(Ajax.feedUrl)
         .done(function(response) {
-          console.log(response);
           Ajax.cache.push(response.data);
-          
-          if (response.pagination && response.pagination.next_url) {
-            Ajax.feedUrl = response.pagination.next_url + '&callback=?';
-          }
-          
+          Ajax.feedUrl = response.pagination.next_url + '&callback=?';
           if (callback) {
             callback(response);
           } else {
@@ -520,11 +515,10 @@ LWA.Views.Instabinge = (function() {
         itemNav: 'forceCentered',
         smart: 1,
         activateMiddle: 1,
-        mouseDragging: 1,
         touchDragging: 1,
         releaseSwing: 1,
         startAt: itemIndex,
-        speed: 300,
+        speed: 0,
         elasticBounds: 1,
         easing: 'swing',
         dragHandle: 1,
@@ -614,4 +608,4 @@ LWA.Views.Instabinge = (function() {
 
 })();
 
-// LWA.Views.Instabinge.init();
+LWA.Views.Instabinge.init();

@@ -22,20 +22,6 @@ LWA.Views.Gallery = (function() {
       $total: undefined
     },
 
-    onShow: function(itemIndex) {
-      console.log(Modal.state.sly);
-      if (Modal.state.sly.initialized === 0) {
-        Modal.setImageDimensions();
-        Modal.state.sly.init();
-      }
-    },
-
-    onClose: function() {
-      // Modal.state.sly.destroy();
-      // Modal.clearDimensions();
-      // $('#modal-gallery-frame ul').attr('style', null);
-    },
-
     onActivate: function(eventName, position) {
       Modal.elements.$total.html((position + 1) + ' / ' + Modal.state.count);
     },
@@ -43,10 +29,7 @@ LWA.Views.Gallery = (function() {
     init: function() {
       // init modal
       Modal.state.modal =
-        LWA.Modules.Modal('#modal-gallery-button', '#modal-gallery', {
-          open: Modal.onShow,
-          close: Modal.onClose
-        });
+        LWA.Modules.Modal('#modal-gallery-button', '#modal-gallery');
 
       // cache elements
       this.elements.$imgs = Modal.state.modal.el().find('#modal-gallery-frame img');
@@ -54,6 +37,7 @@ LWA.Views.Gallery = (function() {
       Modal.state.count = this.elements.$imgs.length;
 
       this.setModalRowHeight();
+      this.setImageDimensions();
 
       Modal.state.sly = new Sly('#modal-gallery-frame', {
         horizontal: 1,
@@ -71,6 +55,7 @@ LWA.Views.Gallery = (function() {
         next: Modal.state.modal.el().find('.sly-next')
       });
       Modal.state.sly.on('active', Modal.onActivate);
+      Modal.state.sly.init();
     },
 
     setModalRowHeight: function() {
@@ -242,11 +227,15 @@ LWA.Views.Gallery = (function() {
   return {
     init: function() {
       Thumbs.init();
-      Modal.init();
 
       var imgLoad = new imagesLoaded('#inline-gallery-frame');
       imgLoad.on('done', function(instance) {
         Inline.init();
+      });
+
+      var modalImageLoad = new imagesLoaded('#modal-gallery-frame');
+      modalImageLoad.on('done', function(instance) {
+        Modal.init();
       });
 
       $(window).resize(updateSly);

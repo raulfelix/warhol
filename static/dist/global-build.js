@@ -303,7 +303,7 @@ LWA.Modules.Search = (function() {
         nextSelector: '.data-next',
         pathParse: function(path, page) {
           return [
-            "http://localhost/wordpress/wp-admin/admin-ajax.php?action=do_ajax&fn=search_posts&page=",
+            "wp-admin/admin-ajax.php?action=do_ajax&fn=search_posts&page=",
             "&posts_per_page=" + Ajax.params.posts_per_page + "&s=" + term
           ];
         },
@@ -314,7 +314,7 @@ LWA.Modules.Search = (function() {
 
   var Ajax = {
     
-    url: 'http://localhost/wordpress/wp-admin/admin-ajax.php',
+    url: 'wp-admin/admin-ajax.php',
     params: {
       'action': 'do_ajax',
       'fn': 'search_posts',
