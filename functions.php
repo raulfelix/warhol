@@ -341,27 +341,23 @@ function views() {
 }
 
 
-function get_thumbnail() {
-  if (has_post_thumbnail( get_the_id() )) {
-    echo the_post_thumbnail( 'large' );
+function get_thumbnail($src = false) {
+ if ('' != get_the_post_thumbnail()) {
+    if ($src == false) {
+      echo the_post_thumbnail( 'large' );
+    } else {
+      return wp_get_attachment_image_src( get_post_thumbnail_id(), 'large')[0];
+    }
   } else {
-    echo catch_that_image(true);
+    echo catch_that_image($src);
   }
 }
 
-function get_the_thumbnail() {
-  if (has_post_thumbnail( get_the_id() )) {
-    return wp_get_attachment_image_src( get_post_thumbnail_id(), 'large')[0];
-  } else {
-    return catch_that_image();
-  }
-}
-
-function catch_that_image($tag = false) {
+function catch_that_image($src) {
   global $post, $posts;
   $first_img = '';
-  ob_start();
-  ob_end_clean();
+  // ob_start();
+  // ob_end_clean();
   $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
   $first_img = $matches[1][0];
 
@@ -369,7 +365,7 @@ function catch_that_image($tag = false) {
     $first_img = "/path/to/default.png";
   }
 
-  if ($tag === true) {
+  if ($src === false) {
     return '<img src="' . $first_img . '" />';
   } else {
     return $first_img;
@@ -430,7 +426,7 @@ function search_posts($term, $page, $posts_per_page) {
         'title'     => html_entity_decode(get_the_title()),
         'subtitle'  => html_entity_decode(get_the_subtitle()),
         'permalink' => get_the_permalink(),
-        'thumbnail' => get_the_thumbnail(),
+        'thumbnail' => get_thumbnail(true),
         'views'     => get_views(),
         'when'      => get_when(),
         'category'  => category( get_post_type() )
@@ -474,7 +470,7 @@ function fetch_posts($page, $post_per_page, $post_type) {
         'title'     => html_entity_decode(get_the_title()),
         'subtitle'  => html_entity_decode(get_the_subtitle()),
         'permalink' => get_the_permalink(),
-        'thumbnail' => get_the_thumbnail(),
+        'thumbnail' => get_thumbnail(true),
         'views'     => get_views(),
         'when'      => get_when(),
         'category'  => category($post_type)
