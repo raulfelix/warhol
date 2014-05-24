@@ -346,10 +346,17 @@ function get_thumbnail($src = false) {
     if ($src == false) {
       echo the_post_thumbnail( 'large' );
     } else {
-      return wp_get_attachment_image_src( get_post_thumbnail_id(), 'large')[0];
+      $attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large');
+      if ( $attrs ) {
+        return $attrs[0];
+      }
     }
   } else {
-    echo catch_that_image($src);
+    if ($src == false) {
+      echo catch_that_image($src);
+    } else {
+      return catch_that_image($src);
+    }
   }
 }
 
