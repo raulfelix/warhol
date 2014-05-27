@@ -1,3 +1,27 @@
+// instabinge 
+.instabinge {
+  height: rem(440);
+  padding: rem(30) 0 0 0;
+
+  .h-1 {
+    font-size: rem(34);
+    margin-bottom: rem(50);
+  }
+  
+  .frame {
+    height: rem(240);
+    .slidee {
+      li {
+        width: rem(200);
+      }
+    }
+  }
+
+  .instabinge-prev, .instabinge-next {
+    display: none;
+  }
+}
+
 .instabinge-profile {
   padding: rem(10);
   

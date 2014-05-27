@@ -1,4 +1,4 @@
-@media all and (max-width: 37.436em) { 
+@media all and (max-width: 37.437em) { 
   
   // grid
   .f-row {
@@ -13,30 +13,6 @@
   }
   .bp2-1-2 {
     width: 50%;
-  }
-
-  .header {
-    .content {
-      padding: rem(180) 0;
-    }
-    .link { 
-      font-size: rem(24);
-    }
-    .h-1 {
-      font-size: rem(56);
-    }
-  }
-
-  .feature {
-    .content {
-      padding: rem(235) 0 0 0;
-    }
-
-    .feature-carousel {
-      .flex-direction-nav {
-        display: none;
-      }
-    }
   }
 
   .thumb {

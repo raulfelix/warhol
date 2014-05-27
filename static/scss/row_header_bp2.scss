@@ -1,3 +1,28 @@
+.header {
+  .h-1 {
+    font-size: rem(50);
+  }
+}
+
+.header-feature {
+  height: rem(600);
+
+  .content {
+    padding: rem(150) 0 0 0;
+  }
+
+  .header-feature-bg {
+    background-size: 200% auto;
+  }
+
+  .feature-carousel {
+    .flex-direction-nav {
+      display: none;
+    }
+  }
+}
+
+
 .header-category {
   height: rem(220);
 
@@ -15,7 +40,6 @@
 }
 
 .nav {
-  
   .logo {
     margin-top: rem(20);
     width: rem(90);
@@ -25,20 +49,12 @@
   .nav-menu, .nav-item {
     margin-top: rem(20);
   }
+}
 
-  // .nav-links {
-  //   margin-left: rem(-160);
-  //   margin-top: rem(-117);
-  //   width: rem(320);
-    
-  //   .nav-links-primary li {
-  //     font-size: rem(20);
-  //     margin: 0 0 rem(30) 0; 
-  //   }
-
-  //   .nav-links-secondary li {
-  //     font-size: rem(14);
-  //     margin: 0 rem(20); 
-  //   }
-  // }
+.nav-active {
+  .nav-menu { 
+    a:before {
+      top: rem(20);
+    }
+  }
 }

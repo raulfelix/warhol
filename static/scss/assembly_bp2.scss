@@ -1,8 +1,13 @@
 .up {
-  height: rem(120);
+  height: rem(100);
   a {
-    line-height: rem(120);
+    line-height: rem(100);
+    font-size: 18px;
   }
+}
+
+.section-thumb {
+  padding-top: rem(30);
 }
 
 .search-row {

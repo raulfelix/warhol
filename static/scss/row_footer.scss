@@ -5,9 +5,11 @@
   @extend %relative;
 
   .footer-navigate {
+    display: block;
+    position: absolute;
     width: 100%;
-    @extend %block;
-    @extend %relative;
+    bottom: 55px;
+    top: 0;
   }
 
   &:hover {

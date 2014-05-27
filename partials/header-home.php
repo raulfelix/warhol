@@ -1,4 +1,4 @@
-<header class="header feature">
+<header class="header header-feature">
   <div class="feature-carousel">
     <ul class="slides">
 
@@ -19,8 +19,8 @@
           <?php 
             $attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original');
          ?>
-          <div class="feature-bg" style="background-image: url(<?php echo $attrs[0]; ?>);"></div>
-         
+          <div class="header-feature-bg" style="background-image: url(<?php echo $attrs[0]; ?>);"></div>
+
           <div class="f-grid f-row">
             <div class="f-1">
               <div class="content">

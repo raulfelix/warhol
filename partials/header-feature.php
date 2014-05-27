@@ -32,7 +32,7 @@
   </div>
 </div>
 
-<header class="header feature header-gallery">
+<header class="header header-feature header-gallery">
   <div class="header-gallery-wrap">
     <div id="inline-gallery-frame" class="feature-bg header-gallery-frame frame" >
       <ul class="slidee">
@@ -91,9 +91,9 @@
     }  
 ?>
 
-  <header class="header <?php echo ($is_feature === true) ? 'feature': '' ?>">
+  <header class="header <?php echo ($is_feature === true) ? 'header-feature': '' ?>">
     <?php if ($is_feature === true): ?>
-      <div class="feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
+      <div class="header-feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
     <?php endif; ?>
 
     <?php get_template_part('partials/header', 'nav'); ?>

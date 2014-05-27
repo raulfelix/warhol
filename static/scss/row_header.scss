@@ -10,16 +10,16 @@
   }
 
   .link {
-    @extend %block;
+    display: block;
     &:hover {
       color: $white;
     }
   }
 }
 
-.feature {
-  height: rem(748);
+.header-feature {
   color: $white;
+  height: rem(748);
   @include transition(height 300ms ease);
 
   .content {
@@ -27,15 +27,10 @@
   }
 
   .link {
-    font-family:"Apercu Pro Medium", 'Trebuchet MS', Arial, sans-serif; 
-
     color: $white;
     &:hover {
       color: $pink;
     }
-  }
-  .h-4 {
-    font-family:"Apercu Pro Medium", 'Trebuchet MS', Arial, sans-serif;
   }
 
   .link.h-1 {
@@ -45,7 +40,7 @@
     }
   }
 
-  .feature-bg {
+  .header-feature-bg {
     background-position: center center;
     background-repeat: no-repeat;
     position: absolute;
@@ -61,10 +56,6 @@
     height: 100%;
     width: 100%;
     z-index: 0;
-
-    .feature-bg {
-      // background-size: 100% auto;
-    }
 
     ul, li {
       height: 100%;
