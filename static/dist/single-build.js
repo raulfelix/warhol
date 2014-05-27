@@ -3,6 +3,8 @@ window.LWA = window.LWA || { Views: {}, Modules: {} };
 
 LWA.Modules.Share = (function() {
 
+  var modal, buttonUrl;
+
   function share() {
     window.open(
       $(this).data('href'),
@@ -13,7 +15,14 @@ LWA.Modules.Share = (function() {
 
   return {
     init: function() {
-      $('#modal-share .button-social').click(share);
+      buttonUrl = $('#modal-share .button-url');
+      modal = LWA.Modules.Modal('.button-share', '#modal-share', {
+        open: function() {
+          buttonUrl.focus().select();
+        }
+      });
+
+      modal.el().find('.button-social').click(share);
     }
   };
 

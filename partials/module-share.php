@@ -9,10 +9,7 @@
       <button class="button button-social" data-href="https://plus.google.com/share?url=<?php echo urlencode(the_permalink()) ?>">Google+</button>
     </div>
     <div class="modal-share-actions">
-      <div class="button button-url">
-        <?php the_permalink(); ?>
-        <div class="button-url-copy">Copy URL</div>
-      </div>
+      <input class="button button-url" value="<?php echo the_permalink(); ?>">
     </div>
   </div>
 </div>

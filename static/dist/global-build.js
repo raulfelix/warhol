@@ -41,7 +41,6 @@ THE SOFTWARE.
 /* global LWA */
 $(document).ready(function() {
   LWA.Modules.Modal('.nav-search a', '#modal-search');
-  LWA.Modules.Modal('.button-share', '#modal-share');
 });
 /* global LWA */
 window.LWA = window.LWA || { Views: {}, Modules: {} };
