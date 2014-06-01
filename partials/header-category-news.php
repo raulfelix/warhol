@@ -1,5 +1,5 @@
-<header class="header feature header-category category">
-  <div class="feature-bg"></div>
+<header class="header header-feature header-category">
+  <div class="header-feature-bg"></div>
 
   <?php get_template_part('partials/header', 'nav'); ?>
 

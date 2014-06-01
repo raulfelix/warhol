@@ -47,6 +47,11 @@
     }
   }
 
+  .thumb-inline {
+    .thumb {
+      height: rem(400);
+    }
+  }
 
   .dropdown .icon-arrow-down {
     top: rem(17);

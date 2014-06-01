@@ -18,7 +18,6 @@
 
       $feature_query = new WP_Query( $feature_args );
       $count = 0;
-
       if ( $feature_query->have_posts() ):
         while ( $feature_query->have_posts() ): 
           $feature_query->the_post();
@@ -50,6 +49,7 @@
       wp_reset_query();
     ?>
     <div id="tmpl_featured"></div>
+
     <div class="button-row">
       <a id="ajax-load-features" class="button button-large" href="javascript:void(0)">
         <span>load more features</span>

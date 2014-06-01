@@ -9,8 +9,8 @@
   $alpha = get_post_meta( get_the_id(), 'heximus_alpha_key', true );
 ?>
 
-<header class="header header-feature header-category category">
-  <div class="feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
+<header class="header header-feature header-category">
+  <div class="header-feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
   <?php if ($is_feature === true): ?>
     <div class="blanket-overlay" style="background-color:<?php echo ($heximus) ? $heximus : '#000000' ?>;opacity: <?php echo ($alpha) ? $alpha : '0.8' ?>;"></div>
   <?php endif; ?>
