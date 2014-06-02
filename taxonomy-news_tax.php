@@ -60,19 +60,29 @@
       <div class="f-row">
 
   <?php
-  
     // get order and default to DESC
-    $order = (get_query_var('order')) ? get_query_var('order') : 'DESC';
+    $order = ($_GET['orderby']) ? $_GET['orderby'] : 'desc';
     
     // get the rest of the articles
     $paged = (get_query_var('page')) ? get_query_var('page') : 1;
-    $args = Array(
-      'posts_per_page' => 6,
-      'paged' => $paged,
-      'post__not_in' => array( $post_ID_no_repeat ),
-      'news_tax' => $category,
-      'order' => $order
-    );
+
+    if ($order === 'desc') {
+      $args = Array(
+        'posts_per_page' => 6,
+        'paged' => $paged,
+        'post__not_in' => array( $post_ID_no_repeat ),
+        'news_tax' => $category
+      );
+    } else {
+      $args = Array(
+        'posts_per_page' => 6,
+        'paged' => $paged,
+        'post__not_in' => array( $post_ID_no_repeat ),
+        'news_tax' => $category,
+        'meta_key' => '_count-views_all',
+        'orderby' => 'meta_value_num'
+      );
+    }
 
     // todo exclude featured post above
     $wp_query = new WP_Query( $args );

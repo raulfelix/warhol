@@ -55,19 +55,29 @@
       <div class="f-row">
 
   <?php
-  
     // get order and default to DESC
-    $order = (get_query_var('order')) ? get_query_var('order') : 'DESC';
+    $order = ($_GET['orderby']) ? $_GET['orderby'] : 'desc';
     
     // get the rest of the articles
     $paged = (get_query_var('page')) ? get_query_var('page') : 1;
-    $news_args = Array(
-      'post_type' => 'lwa_news',
-      'posts_per_page' => 6,
-      'paged' => $paged,
-      'post__not_in' => array( $post_ID_no_repeat ),
-      'order' => $order
-    );
+
+    if ($order === 'desc') {
+      $news_args = Array(
+        'post_type' => 'lwa_news',
+        'posts_per_page' => 6,
+        'paged' => $paged,
+        'post__not_in' => array( $post_ID_no_repeat )
+      );
+    } else {
+      $news_args = Array(
+        'post_type' => 'lwa_news',
+        'posts_per_page' => 6,
+        'paged' => $paged,
+        'post__not_in' => array( $post_ID_no_repeat ),
+        'meta_key' => '_count-views_all',
+        'orderby' => 'meta_value_num'
+      );
+    }
 
     $wp_query = new WP_Query( $news_args );
 

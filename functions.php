@@ -266,6 +266,16 @@ function heximus_save_meta_box_data( $post_id ) {
 add_action( 'save_post', 'heximus_save_meta_box_data' );
 
 
+// ---------------------------------- 
+// customisation: BAW post view count
+//
+// only keep the total view count
+// ----------------------------------
+function remove_timing_for_bawpvc( $timings ) {
+    return array( 'all' => '' );
+}
+add_filter( 'baw_count_views_timings', 'remove_timing_for_bawpvc' );
+
 
 // ------------------------------ 
 // util: 
@@ -330,9 +340,11 @@ function get_taxonomy_name($post_type) {
   return $post_type === 'lwa_feature' ? 'featured_tax' : 'news_tax';
 }
 
-// ------------------------------ 
-// Call to views plugin
-// ------------------------------
+
+// ----------------------------------- 
+// util:
+// get the view count 
+// -----------------------------------
 function get_views() {
   return do_shortcode('[post_view]');
 }

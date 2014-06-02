@@ -1,5 +1,5 @@
 <?php 
-  $order_query_var = get_query_var('order');
+  $order_query_var = ($_GET['orderby']) ? $_GET['orderby'] : 'desc';
   $page_param = (get_query_var('page')) ? '?page=' . get_query_var('page') : '?page=1';
 ?>
 
@@ -7,16 +7,16 @@
   <div class="f-1">
     <button id="dropdown-sort" class="button dropdown">
       <a href="javascript:void(0)" class="dropdown-label">
-        <?php if ($order_query_var == "DESC"): ?>
+        <?php if ($order_query_var == 'desc'): ?>
           <span>sort by latest</span> 
         <?php else: ?>
-          <span>sort by oldest</span>
+          <span>sort by most popular</span>
         <?php endif; ?>
         <i class="icon-dropdown"></i>
       </a>
       <div class="dropdown-items">
-        <a class="dropdown-item <?php echo ($order_query_var == "DESC") ? 'dropdown-item-active':''?>" href="<?php echo $page_param; ?>&order=DESC" data-sort="latest">sort by latest</a>
-        <a class="dropdown-item <?php echo ($order_query_var == "ASC") ? 'dropdown-item-active':''?>" href="<?php echo $page_param; ?>&order=ASC" data-sort="oldest">sort by oldest</a>
+        <a class="dropdown-item <?php echo ($order_query_var == "desc") ? 'dropdown-item-active':''?>" href="<?php echo $page_param; ?>&orderby=desc">sort by latest</a>
+        <a class="dropdown-item <?php echo ($order_query_var == "popular") ? 'dropdown-item-active':''?>" href="<?php echo $page_param; ?>&orderby=popular">sort by most popular</a>
       </div>
     </button>
   </div>

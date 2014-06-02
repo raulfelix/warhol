@@ -11,7 +11,13 @@ LWA.Modules.Dropdown = function(selector, options) {
       $items: undefined
     },
     
+    close: function() {
+      Dropdown.element.$wrap.removeClass('dropdown-active');
+    },
+
     onClick: function(ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
       Dropdown.element.$wrap.toggleClass('dropdown-active');
     },
 
@@ -38,7 +44,14 @@ LWA.Modules.Dropdown = function(selector, options) {
     }
   };
 
+  var Events = {
+    init: function() {
+      $('html').click(Dropdown.close);
+    }
+  };
+
   Dropdown.init(selector, options);
+  Events.init();
 };
 
 LWA.Modules.Dropdown('#dropdown-sort');

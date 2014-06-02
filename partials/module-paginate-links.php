@@ -17,17 +17,17 @@
     }
 
     // append order query variable
-    $order = (get_query_var('order')) ? get_query_var('order') : '';
+    $order = ($_GET['orderby']) ? $_GET['orderby'] : '';
     if ($prev_num == null) {
-      $order_prev = '?order=' . $order;
+      $order_prev = '?orderby=' . $order;
     } else {
-      $order_prev = '&order=' . $order;
+      $order_prev = '&orderby=' . $order;
     }
 
     if ($next_num == null) {
-      $order_next = '?order=' . $order;
+      $order_next = '?orderby=' . $order;
     } else {
-      $order_next = '&order=' . $order;
+      $order_next = '&orderby=' . $order;
     }
 
   ?>
