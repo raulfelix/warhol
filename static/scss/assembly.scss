@@ -22,27 +22,12 @@
 //------------------
 // Rows
 //------------------
-.up {
-  background-color: #94D7DE;
+.row-up {
+  background-color: $blue;
   height: rem(160);
+  padding-top: rem(56);
   @extend %text-center;
   @extend %relative;
-
-  a {
-    
-    .icon-arrow-up {
-      display: inline-block;
-      margin-right: rem(8);
-    }
-
-    font-size: rem(22);
-    line-height: rem(160);
-    @extend %block;
-    
-    &:hover {
-      color: #000;
-    }
-  }
 }
 
 .button-row {

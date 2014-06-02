@@ -11,7 +11,7 @@
   @extend %relative;
   @extend %pink;
   @extend %text-center;
-  // @include transition(background-color 500ms ease);
+  @include transition(background-color 500ms ease);
   &:hover {
     cursor: pointer;
     color: $white;
@@ -41,6 +41,26 @@
   border-color: #D3D3D3;
   background-color: transparent;
   cursor: default;
+}
+
+.button-black {
+  color: $black;
+  border-color: $black;
+  &:hover {
+    color: $blue;
+    background-color: $black;
+    border-color: $black;
+  }
+}
+
+.button-up {
+  padding-left: 54px;
+  i {
+    font-size: 24px;
+    position: absolute;
+    left: rem(26);
+    top: rem(12);
+  }
 }
 
 // button hides text and shows spinner
@@ -142,7 +162,7 @@
   background-color: #F6F6F6;
   padding: 0;
   text-align: left;
-  min-width: rem(200);
+  min-width: rem(210);
 
   &:hover, &:active {
     background-color: $pink; 
@@ -163,6 +183,7 @@
     right: rem(18);
     top: rem(15);
     @extend %absolute;
+    @include transition(all 200ms ease);
   }
 
   .dropdown-items {
@@ -188,21 +209,6 @@
     .dropdown-item-active {
       color: $pink;
     }
-
-    .dropdown-item-active:before {
-      content: '\e605';
-      font-family: 'LWA-icons';
-      speak: none;
-      font-style: normal;
-      font-weight: normal;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1;
-      
-      @extend %absolute;
-      top: rem(12);
-      right: rem(12);
-    }
   }
 }
 
@@ -213,5 +219,12 @@
   }
   .dropdown-items {
     display: block;
+  }
+
+  .icon-dropdown {
+    @include transform(rotate(180deg));
+  }
+  .icon-dropdown:before {
+    // content: "\e606";
   }
 }

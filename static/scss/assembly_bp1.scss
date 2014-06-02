@@ -1,15 +1,6 @@
-.up {
+.row-up {
   height: rem(80);
-
-  a {
-    .icon-arrow-up {
-      display: inline-block;
-      margin-right: rem(8);
-    }
-
-    font-size: rem(15);
-    line-height: rem(80);
-  }
+  padding-top: rem(16);
 }
 
 .details-row {
