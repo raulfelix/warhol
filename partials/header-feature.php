@@ -54,8 +54,8 @@
 
     <?php get_template_part('partials/header', 'nav'); ?>
     
-    <div class="f-grid f-row f-full">
-      <div id="inline-gallery-controls" class="sly-controls">
+    <div id="inline-gallery-controls" class="f-grid f-row sly-controls">
+      <div class="f-1">
         <button class="sly-prev"><i class="icon-arrow-left"></i></button>
         <button class="sly-next"><i class="icon-arrow-right"></i></button>
       </div>
@@ -91,16 +91,17 @@
     }  
 ?>
 
-  <header class="header <?php echo ($is_feature === true) ? 'header-feature': '' ?>">
+  <header class="header <?php echo ($is_feature === true) ? 'header-feature': 'header-not-feature' ?>">
     <?php if ($is_feature === true): ?>
       <div class="header-feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
       <div class="blanket-light"></div>
     <?php endif; ?>
+    
     <?php get_template_part('partials/header', 'nav'); ?>
 
     <div class="f-grid f-row">
       <div class="f-1">
-        <div class="content">
+        <div class="header-content <?php echo ($is_feature === true) ? 'header-feature-content': '' ?>">
           <?php $category = category($post->post_type); ?>
           <a class="link h-5" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
           <div class="h-1"><?php the_title(); ?></div>

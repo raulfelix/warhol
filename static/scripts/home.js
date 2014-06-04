@@ -5,7 +5,9 @@ LWA.Views.Home = (function() {
 
   return {
     init: function() {
-      $('.feature-carousel').flexslider();
+      $('.feature-carousel').flexslider({
+        controlsContainer: '#feature-carousel-control',
+      });
     }
   };
 

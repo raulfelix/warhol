@@ -1,8 +1,8 @@
 .header {
   height: rem(320);
 
-  .content {
-    padding: rem(80) 0 0 0;
+  .header-content {
+    padding-top: rem(80);
   }
   
   .link { 
@@ -25,8 +25,8 @@
     background-size: rem(800) auto;
   }
 
-  .content {
-    padding: rem(100) 0 0 0;
+  .header-feature-content {
+    padding-top: rem(100);
   }
 
   .feature-carousel {
@@ -80,8 +80,8 @@
   }
 
   .nav-links {
+    top: rem(90);
     margin-left: rem(-160);
-    margin-top: rem(-117);
     width: rem(320);
     
     .nav-links-primary li {

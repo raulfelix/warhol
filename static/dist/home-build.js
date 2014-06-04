@@ -338,7 +338,9 @@ LWA.Views.Home = (function() {
 
   return {
     init: function() {
-      $('.feature-carousel').flexslider();
+      $('.feature-carousel').flexslider({
+        controlsContainer: '#feature-carousel-control',
+      });
     }
   };
 
@@ -510,6 +512,8 @@ LWA.Views.Instabinge = (function() {
 
     initialize: function(itemIndex) {
       var $wrap = $('#modal-instabinge-controls');
+      this.state.spinner = LWA.Modules.Spinner($('#modal-instabinge-frame'));
+
       Modal.state.sly = new Sly('#modal-instabinge-frame', {
         horizontal: 1,
         itemNav: 'forceCentered',

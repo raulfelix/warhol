@@ -79,7 +79,7 @@
   @import 'assembly_bp2';
 
   
-  .next {
+  .footer-next {
     min-height: rem(420);
     
     .h-3, 
@@ -92,15 +92,14 @@
       font-size: rem(50);
     }
     
-    .content {
-      padding: rem(80) 0 rem(48) 0;
+    .footer-next-content {
+      padding-top: rem(80);
+      width: 100%;
     }
   }
 
-  .next-feature {
-    .next-bg {
-      background-size: 150% auto;
-    }    
+  .footer-next-feature .footer-next-bg {
+    background-size: 150% auto;
   }
   
 }

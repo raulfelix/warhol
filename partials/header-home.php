@@ -24,7 +24,7 @@
 
           <div class="f-grid f-row">
             <div class="f-1">
-              <div class="content">
+              <div class="header-content header-feature-content">
                 <?php 
                   $category = category($post->post_type); 
                 ?>
@@ -42,6 +42,9 @@
       ?>
 
     </ul>
+    <div class="f-grid f-row">
+      <div id="feature-carousel-control" class="f-1"></div>
+    </div>
   </div>
   <?php get_template_part('partials/header', 'nav'); ?>
 </header>

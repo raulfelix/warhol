@@ -89,7 +89,7 @@
     }
   }
 
-  .next {
+  .footer-next {
     min-height: rem(320);
     .h-3, .h-4 {
       font-size: rem(14);
@@ -99,15 +99,13 @@
       font-size: rem(28);
       margin: rem(20);
     }
-    .content {
-      padding: rem(60) 0 rem(48) 0;
+    .footer-next-content {
+      padding-top: rem(60);
     }
   }
 
-  .next-feature {
-    .next-bg {
-      background-size: 220% auto;
-    }    
+  .footer-next-feature .footer-next-bg {
+    background-size: 220% auto;
   }
 
 }

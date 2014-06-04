@@ -4,9 +4,11 @@
   background-color: $pink;
   @extend %relative;
 
-  .content {
+  .header-content {
     text-align: center;
-    padding: rem(111) rem(80) 0 rem(80);
+    padding-top: rem(111);
+    width: 66.66666666666666%;
+    margin: 0 auto;
   }
 
   .link {
@@ -22,8 +24,8 @@
   height: rem(748);
   @include transition(height 300ms ease);
 
-  .content {
-    padding: rem(212) rem(80) 0 rem(80);
+  .header-feature-content {
+    padding-top: rem(212);
   }
 
   .link {
@@ -75,6 +77,14 @@
       width: 100%;
     }
 
+    .flex-direction-nav {
+      position: absolute;
+      top: rem(-374);
+      left: 0;
+      right: 0;
+      height: auto;
+    }
+
     .flex-direction-nav .flex-prev,
     .flex-direction-nav .flex-next {
       color: #fff;
@@ -88,18 +98,21 @@
     }
 
     .flex-direction-nav .flex-prev {
-      left: rem(60);
+      left: rem(10);
     }
     .flex-direction-nav .flex-next {
-      right: rem(60);
+      right: rem(10);
       &:before { 
         content: "\e60a";
       }
     }
 
     .flex-control-nav {
-      bottom: rem(40);
+      left: 0;
+      right: 0;
+      top: rem(-50);
       z-index: 100;
+      height: auto;
     }
 
     .flex-control-nav li {
@@ -322,8 +335,7 @@
     display: none;
     @extend %absolute;
     left: 50%;
-    top: 50%;
-    margin-top: rem(-160);
+    top: rem(140);
     margin-left: rem(-160);
     width: rem(320);
     text-align: center;

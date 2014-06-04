@@ -1,4 +1,9 @@
 .header {
+
+  .header-content {
+    width: 100%;
+  }
+  
   .h-1 {
     font-size: rem(50);
   }
@@ -7,8 +12,8 @@
 .header-feature {
   height: rem(600);
 
-  .content {
-    padding: rem(150) 0 0 0;
+  .header-feature-content {
+    padding-top: rem(150);
   }
 
   .header-feature-bg {

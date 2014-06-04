@@ -16,7 +16,7 @@
   <?php endif; ?>
   <?php get_template_part('partials/header', 'nav'); ?>
 
-  <div class="f-grid f-row f-full">
+  <div class="f-grid f-row">
     <div class="f-1">
       <div class="header-category-content">
         <div class="f-1-2 bp1-1">

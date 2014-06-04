@@ -8,11 +8,13 @@
 }
 
 .f-row {
+  height: 100%;
   & > div {
+    @extend %relative;
     padding: 0 rem(10);
+    height: 100%;
   }
 
-  @extend %relative;
   @extend %clearfix;
   padding: 0 rem(10);
 }

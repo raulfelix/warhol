@@ -46,13 +46,15 @@
   @extend %absolute;
 }
 
-.next {
+.footer-next {
   color: $body-copy;
   min-height: rem(520);
   text-align: center;
 
-  .content {
-    padding: rem(70) 0 rem(34) 0;
+  .footer-next-content {
+    padding-top: rem(70);
+    width: 66.66666666666666%;
+    margin: 0 auto;
   }
 
   a {
@@ -60,10 +62,10 @@
   }
 }
 
-.next-feature {
+.footer-next-feature {
   color: $white;
 
-  .next-bg {
+  .footer-next-bg {
     background-position: center center;
     background-repeat: no-repeat;
     width: 100%;
