@@ -89,9 +89,10 @@
     .flex-direction-nav .flex-next {
       color: #fff;
       opacity: 1;
+      text-shadow: none;
       &:before {
         font-family: "LWA-icons";
-        font-size: 40px;
+        font-size: 38px;
         display: inline-block;
         content: '\e60b';
       }
