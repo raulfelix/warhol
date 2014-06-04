@@ -34,7 +34,7 @@
 
 <header class="header header-feature header-gallery">
   <div class="header-gallery-wrap">
-    <div id="inline-gallery-frame" class="feature-bg header-gallery-frame frame" >
+    <div id="inline-gallery-frame" class="header-feature-bg header-gallery-frame frame" >
       <ul class="slidee">
         <?php 
           $is_first = true;
@@ -95,7 +95,7 @@
     <?php if ($is_feature === true): ?>
       <div class="header-feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
     <?php endif; ?>
-
+    <div class="blanket-light"></div>
     <?php get_template_part('partials/header', 'nav'); ?>
 
     <div class="f-grid f-row">
