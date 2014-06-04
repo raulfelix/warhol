@@ -94,8 +94,8 @@
   <header class="header <?php echo ($is_feature === true) ? 'header-feature': '' ?>">
     <?php if ($is_feature === true): ?>
       <div class="header-feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
+      <div class="blanket-light"></div>
     <?php endif; ?>
-    <div class="blanket-light"></div>
     <?php get_template_part('partials/header', 'nav'); ?>
 
     <div class="f-grid f-row">
