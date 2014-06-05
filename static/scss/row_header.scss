@@ -6,7 +6,6 @@
 
   .header-content {
     text-align: center;
-    padding-top: rem(111);
     width: 66.66666666666666%;
     margin: 0 auto;
   }
@@ -23,10 +22,6 @@
   color: $white;
   height: rem(748);
   @include transition(height 300ms ease);
-
-  .header-feature-content {
-    padding-top: rem(212);
-  }
 
   .link {
     color: $white;

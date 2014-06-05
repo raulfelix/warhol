@@ -1,0 +1,31 @@
+.footer {
+  min-height: rem(30);
+  font-size: 9px;
+
+  .footer-legals, 
+  .footer-links {
+    line-height: rem(30);
+  }
+}
+
+.footer-next {
+  min-height: rem(320);
+  
+  .h-3, 
+  .h-4 {
+    font-size: rem(14);
+    margin: 0; 
+  }
+  .h-1 {
+    font-size: rem(28);
+    margin: rem(20);
+  }
+  
+  .footer-next-content {
+    width: 100%;
+  }
+}
+
+.footer-next-feature .footer-next-bg {
+  background-size: 145% auto;
+}

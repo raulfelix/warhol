@@ -3,6 +3,17 @@
   height: 100%;
 }
 
+// centered content
+.content-wrap {
+  display: table;
+}
+
+.content-row {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+
 .blanket {
   background: -moz-linear-gradient(top,  rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.4)), color-stop(100%,rgba(0,0,0,0.6))); /* Chrome,Safari4+ */

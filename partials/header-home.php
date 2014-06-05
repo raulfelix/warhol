@@ -23,14 +23,16 @@
           <div class="blanket-light"></div>
 
           <div class="f-grid f-row">
-            <div class="f-1">
-              <div class="header-content header-feature-content">
-                <?php 
-                  $category = category($post->post_type); 
-                ?>
-                <a class="link h-5" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
-                <a href="<?php echo the_permalink(); ?>" class="link h-1"><?php the_title(); ?></a>
-                <div class="h-4"><?php the_subtitle(); ?></div>
+            <div class="f-1 content-wrap">
+              <div class="content-row">
+                <div class="header-content">
+                  <?php 
+                    $category = category($post->post_type); 
+                  ?>
+                  <a class="link h-5" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
+                  <a href="<?php echo the_permalink(); ?>" class="link h-1"><?php the_title(); ?></a>
+                  <div class="h-4"><?php the_subtitle(); ?></div>
+                </div>
               </div>
             </div>
           </div>

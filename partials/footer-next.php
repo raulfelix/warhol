@@ -32,11 +32,13 @@
   <?php if ( !empty($next_post) ): ?>
     <a class="footer-navigate" href="<?php echo get_permalink( $next_post->ID ); ?>">
       <div class="f-grid f-row">
-        <div class="f-1">
-          <div class="footer-next-content">
-            <h3 class="h-3">Next up...</h3>
-            <h1 class="h-1"><?php echo $next_post->post_title; ?></h1>
-            <h4 class="h-4"><?php echo get_the_subtitle( $next_post->ID ); ?></h4>
+        <div class="f-1 content-wrap">
+          <div class="content-row">
+            <div class="footer-next-content">
+              <h3 class="h-3">Next up...</h3>
+              <h1 class="h-1"><?php echo $next_post->post_title; ?></h1>
+              <h4 class="h-4"><?php echo get_the_subtitle( $next_post->ID ); ?></h4>
+            </div>
           </div>
         </div>
       </div>

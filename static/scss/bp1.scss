@@ -1,4 +1,4 @@
-@media all and (max-width: 25em) {
+@media all and (max-width: 599px) {
 
   // grid
   .f-row {
@@ -6,6 +6,13 @@
     & > div {
       padding: 0 rem(5);
     }
+  }
+
+  .bp2-1 {
+    width: 100%;
+  }
+  .bp2-1-2 {
+    width: 50%;
   }
 
   .bp1-1 {
@@ -78,34 +85,5 @@
   @import 'assembly_bp1';
   @import 'module_thumb_bp1';
   @import 'row_header_bp1';
-
-  //footer
-  .footer {
-    min-height: rem(30);
-    font-size: 9px;
-
-    .footer-legals, .footer-links {
-      line-height: rem(30);
-    }
-  }
-
-  .footer-next {
-    min-height: rem(320);
-    .h-3, .h-4 {
-      font-size: rem(14);
-      margin: 0; 
-    }
-    .h-1 {
-      font-size: rem(28);
-      margin: rem(20);
-    }
-    .footer-next-content {
-      padding-top: rem(60);
-    }
-  }
-
-  .footer-next-feature .footer-next-bg {
-    background-size: 220% auto;
-  }
-
+  @import 'row_footer_bp1';
 }
