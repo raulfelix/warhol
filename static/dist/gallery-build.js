@@ -190,7 +190,7 @@ LWA.Views.Gallery = (function() {
         horizontal: 1,
         itemNav: 'centered',
         smart: 1,
-        activateOn: null,
+        activateOn: 'click',
         mouseDragging: 1,
         touchDragging: 1,
         releaseSwing: 1,
@@ -210,6 +210,9 @@ LWA.Views.Gallery = (function() {
       Thumbs.setActive(position);
       if (!Inline.element.title.hasClass('fade')) {
         Inline.element.title.addClass('fade');
+        setTimeout(function() {
+          Inline.element.title.css('display', 'none');
+        }, 400);
       }
     },
 

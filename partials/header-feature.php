@@ -57,9 +57,9 @@
     
     <?php get_template_part('partials/header', 'nav'); ?>
     
-    <div class="f-grid f-row">
-      <div class="f-1 content-wrap">
-        <div class="content-row">
+    <div class="header-gallery-content">
+      <div class="f-grid f-row">
+        <div class="f-1">
           <div class="header-content">
             <div id="header-gallery-title" class="h-1"><?php echo $title; ?></div>
           </div>
@@ -72,6 +72,7 @@
         </div>
       </div>
     </div>
+    
 
     <div class="header-gallery-controls">
       <button id="gallery-thumbs" class="button button-gallery"><i class="icon-thumbs"></i></button>
