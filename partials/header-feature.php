@@ -42,22 +42,34 @@
           while( $attachments->get() ) : ?>
           <li class="header-gallery-overlay">
             <?php echo $attachments->image( 'original' ); ?>
-            <?php if ($is_first): ?>
-              <div class="header-gallery-content">
-                <div class="h-1"><?php the_title(); ?></div>
-              </div>
-            <?php $is_first = false; endif; ?>
+            
+            <?php 
+              if ($is_first) {
+                $title = get_the_title();
+              } 
+              $is_first = false;
+            ?>
+
           </li>
         <?php endwhile; ?>
       </ul>
     </div>
-
+    
     <?php get_template_part('partials/header', 'nav'); ?>
     
-    <div id="inline-gallery-controls" class="f-grid f-row sly-controls">
-      <div class="f-1">
-        <button class="sly-prev"><i class="icon-arrow-left"></i></button>
-        <button class="sly-next"><i class="icon-arrow-right"></i></button>
+    <div class="f-grid f-row">
+      <div class="f-1 content-wrap">
+        <div class="content-row">
+          <div class="header-content">
+            <div id="header-gallery-title" class="h-1"><?php echo $title; ?></div>
+          </div>
+          <div id="inline-gallery-controls" class="sly-controls">
+            <div class="f-1">
+              <button class="sly-prev"><i class="icon-arrow-left"></i></button>
+              <button class="sly-next"><i class="icon-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

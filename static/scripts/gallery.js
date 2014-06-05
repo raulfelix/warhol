@@ -11,7 +11,7 @@ LWA.Views.Gallery = (function() {
       count: undefined,
       responsive: {
         width: 200,
-        height: 160,
+        height: 120,
         widthTouch: 40,
         heightTouch: 100
       }
@@ -166,6 +166,10 @@ LWA.Views.Gallery = (function() {
 
   var Inline = {
 
+    element: {
+      title: $('#header-gallery-title')
+    },
+
     state: {
       sly: undefined
     },
@@ -175,7 +179,7 @@ LWA.Views.Gallery = (function() {
 
       Inline.state.sly = new Sly('#inline-gallery-frame', {
         horizontal: 1,
-        itemNav: 'forceCentered',
+        itemNav: 'centered',
         smart: 1,
         activateOn: null,
         mouseDragging: 1,
@@ -195,6 +199,9 @@ LWA.Views.Gallery = (function() {
 
     onActivate: function(eventName, position) {
       Thumbs.setActive(position);
+      if (!Inline.element.title.hasClass('fade')) {
+        Inline.element.title.addClass('fade');
+      }
     },
 
     setActive: function(position) {
@@ -226,10 +233,10 @@ LWA.Views.Gallery = (function() {
 
   return {
     init: function() {
-      Thumbs.init();
 
       var imgLoad = new imagesLoaded('#inline-gallery-frame');
       imgLoad.on('done', function(instance) {
+        Thumbs.init();
         Inline.init();
       });
 
