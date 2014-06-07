@@ -27,6 +27,28 @@ function add_editor_styles() {
 }
 add_action( 'init', 'add_editor_styles' );
 
+// ------------------------------ 
+// admin:
+// modify editor headings dropdown
+// ------------------------------
+function mce_mod( $init ) {
+  $init['block_formats'] = 'Intro=h1;Header=h3;Subhead=h4;Paragraph=p;Quote=blockquote';
+
+  // this is to add style formats to the options
+  // $style_formats = array (
+  //   array( 'title' => 'Bold text', 'inline' => 'b' ),
+  //   array( 'title' => 'Red text', 'inline' => 'span', 'styles' => array( 'color' => '#ff0000' ) ),
+  //   array( 'title' => 'Red header', 'block' => 'h1', 'styles' => array( 'color' => '#ff0000' ) ),
+  //   array( 'title' => 'Example 1', 'inline' => 'span', 'classes' => 'example1' ),
+  //   array( 'title' => 'Example 2', 'inline' => 'span', 'classes' => 'example2' )
+  // );
+
+  // $init['style_formats'] = json_encode( $style_formats );
+  // $init['style_formats_merge'] = false;
+  return $init;
+}
+add_filter('tiny_mce_before_init', 'mce_mod');
+
 
 // ------------------------------ 
 // admin: 
