@@ -320,7 +320,7 @@ function credits_meta_box_callback( $post ) {
   _e( 'Words by', 'textdomain' );
   echo '</label> ';
   echo '<input class="c-credits widefat" type="text" id="credits_author_new_field" name="credits_author_new_field" value="' . esc_attr( $value ) . '"/></div>';
-  echo '<div><label class="label-credits-photos" for="credits_photos_new_field">';
+  echo '<div class="c-field-wrap"><label class="label-credits-photos" for="credits_photos_new_field">';
   _e( 'Photos by', 'textdomain' );
   echo '</label> ';
   echo '<input class="c-credits widefat" type="text" id="credits_photos_new_field" name="credits_photos_new_field" value="' . esc_attr( $alpha ) . '"/></div>';
