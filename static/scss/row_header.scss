@@ -18,6 +18,12 @@
   }
 }
 
+.header-small {
+  background-color: #212121;
+  height: rem(150);
+  overflow: visible;
+}
+
 .header-feature {
   color: $white;
   height: rem(748);
@@ -283,10 +289,6 @@
       cursor: default;
     }
   }
-}
-
-.f-full {
-  height: 100%;
 }
 
 .logo {

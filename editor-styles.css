@@ -1,7 +1,7 @@
 @import 'style.css';
 
 p, ol, ul, h1, h2, h3, h4, h5, h6 {
-  padding: 0 100px;
+  padding: 0 80px;
 }
 
 p, li {
@@ -30,4 +30,13 @@ a {
 }
 a:hover {
   border-bottom: 1px solid #F197D5;
+}
+
+img {
+  width: 100%;
+}
+
+.article-region-row > div {
+  border: 1px dashed #ddd;
+  padding: 0 3px;
 }
