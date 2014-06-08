@@ -33,11 +33,12 @@
 </head>
 
 <body>
+
   <?php 
     if ( is_page('home') ) {
       get_template_part('partials/header', 'home');
     } 
-    else if ( is_page('info') ) {
+    else if ( is_page('info') || is_author()) {
       get_template_part('partials/header', 'info');
     }
     else if ( is_tax('news_tax') ) {
