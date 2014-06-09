@@ -7,7 +7,7 @@
         <input class="input-search" type="text" placeholder="Search for something">
         <button id="js-search" class="button button-search button-loader" type="text">
           <span class="text"><i class="icon-search"></i>Search</span>
-          <img class="button-loader-icon" src="<?php bloginfo('template_directory'); ?>/static/images/loader.gif" />
+          <img class="button-loader-icon" src="<?php bloginfo('template_directory'); ?>/static/images/loader.GIF " />
         </button>
       </div>
     </div>

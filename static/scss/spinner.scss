@@ -65,16 +65,10 @@
   }
 }
 
-.spinner {
-  height: 32px;
-  width: 32px;
-  background: url('static/images/sprites.gif') no-repeat center center;
-}
 
 .loader-container {
   height: rem(50);
   width: 100%;
-  // text-align: center;
   position: relative;
   
   & > div {
