@@ -470,7 +470,7 @@ function category($post_type) {
 
   foreach ( $terms as $term ) {
     return array(
-      'name' => $term->name,
+      'name' => html_entity_decode( $term->name ),
       'permalink' => get_bloginfo('wpurl') . "/" . ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $term->slug,
       'slug' => $term->slug
       );
