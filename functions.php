@@ -470,7 +470,7 @@ function category($post_type) {
 
   foreach ( $terms as $term ) {
     return array(
-      'name' => html_entity_decode( $term->name ),
+      'name' => enc( $term->name ),
       'permalink' => get_bloginfo('wpurl') . "/" . ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $term->slug,
       'slug' => $term->slug
       );
@@ -533,6 +533,15 @@ function catch_that_image($src) {
 }
 
 
+// ----------------------------------- 
+// util:
+// decode output via json 
+// -----------------------------------
+function enc($text) {
+  return html_entity_decode($text, ENT_COMPAT, 'UTF-8');
+}
+
+
 // ------------------------------ 
 // add app JS in footer of page
 // ------------------------------ 
@@ -583,8 +592,8 @@ function search_posts($term, $page, $posts_per_page) {
       $wp_query->the_post();
       
       $data['posts'][$idx] = Array(
-        'title'     => html_entity_decode(get_the_title()),
-        'subtitle'  => html_entity_decode(get_the_subtitle()),
+        'title'     => enc(get_the_title()),
+        'subtitle'  => enc(get_the_subtitle()),
         'permalink' => get_the_permalink(),
         'thumbnail' => get_thumbnail(true),
         'views'     => get_views(),
@@ -627,8 +636,8 @@ function fetch_posts($page, $post_per_page, $post_type) {
       $wp_query->the_post();
       
       $data['posts'][$idx] = Array(
-        'title'     => html_entity_decode(get_the_title()),
-        'subtitle'  => html_entity_decode(get_the_subtitle()),
+        'title'     => enc(get_the_title()),
+        'subtitle'  => enc(get_the_subtitle()),
         'permalink' => get_the_permalink(),
         'thumbnail' => get_thumbnail(true),
         'views'     => get_views(),
