@@ -144,13 +144,11 @@ LWA.Views.PostThumbs = (function() {
   var AjaxFeature = {
 
     element: {
-      container: $('#tmpl_featured'),
-      button: undefined,
-      label: undefined
+      container: $('#tmpl_featured')
     },
 
     state: {
-      spinner: undefined,
+      loader: undefined,
       loading: false
     },
 
@@ -199,7 +197,7 @@ LWA.Views.PostThumbs = (function() {
 
     renderButton: function() {
       if (this.params.page === false) {
-        this.element.button.addClass('button-disabled');
+        AjaxFeature.state.loader.el.addClass('button-disabled');
       }
     },
 
@@ -216,31 +214,29 @@ LWA.Views.PostThumbs = (function() {
 
     show: function() {
       AjaxFeature.state.loading = true;
-      AjaxFeature.element.button.addClass('button-loading');
+      AjaxFeature.state.loader.start();
     },
 
     hide: function() {
       AjaxFeature.state.loading = false;
-      AjaxFeature.element.button.removeClass('button-loading');
+      AjaxFeature.state.loader.stop();
     },
 
     init: function() {
-      AjaxFeature.element.button = $('#ajax-load-features').click(AjaxFeature.onClick);
-      AjaxFeature.element.label = AjaxFeature.element.button.find('span');
-      AjaxFeature.state.spinner = LWA.Modules.Spinner(AjaxFeature.element.button);
+      AjaxFeature.state.loader = LWA.Modules.ButtonLoader('#ajax-load-features');
+      AjaxFeature.state.loader.el.click(AjaxFeature.onClick);
     }
   };
 
   var AjaxNews = {
 
     element: {
-      container: $('#tmpl_news'),
-      button: undefined,
-      label: undefined
+      container: $('#tmpl_news')
     },
 
     state: {
-      loading: false
+      loading: false,
+      loader: undefined
     },
 
     template: Handlebars.article_thumb,
@@ -273,7 +269,7 @@ LWA.Views.PostThumbs = (function() {
 
     renderButton: function() {
       if (this.params.page === false) {
-        this.element.button.addClass('button-disabled');
+        this.state.loader.el.addClass('button-disabled');
       }
     },
 
@@ -290,23 +286,22 @@ LWA.Views.PostThumbs = (function() {
 
     show: function() {
       this.state.loading = true;
-      this.element.button.addClass('button-loading');
+      this.state.loader.start();
     },
 
     hide: function() {
       this.state.loading = false;
-      this.element.button.removeClass('button-loading');
+      this.state.loader.stop();
     },
 
     init: function() {
-      this.element.button = $('#ajax-load-news').click(this.onClick);
-      this.element.label = this.element.button.find('span');
-      LWA.Modules.Spinner(this.element.button);
+      this.state.loader = LWA.Modules.ButtonLoader('#ajax-load-news');
+      this.state.loader.el.click(this.onClick);
     }
   };
 
   function get(callback, params) {
-    $.getJSON('wp-admin/admin-ajax.php', params)
+    $.getJSON(LWA.Data.url + '/wp-admin/admin-ajax.php', params)
       .done(function(response) {
         callback(response);
       })

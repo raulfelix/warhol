@@ -51,8 +51,9 @@
     <div id="tmpl_featured"></div>
 
     <div class="button-row">
-      <a id="ajax-load-features" class="button button-large" href="javascript:void(0)">
-        <span>load more features</span>
+      <a id="ajax-load-features" class="button button-large button-loader" href="javascript:void(0)">
+        <span class="text">load more features</span>
+        <img class="button-loader-icon" src="<?php bloginfo('template_directory'); ?>/static/images/loader.GIF " />
       </a>
     </div>
   </div>
@@ -90,8 +91,9 @@
       </div>
 
       <div class="button-row">
-        <a id="ajax-load-news" class="button button-large" href="javascript:void(0)">
-          <span>load more news</span>
+        <a id="ajax-load-news" class="button button-large button-loader" href="javascript:void(0)">
+          <span class="text">load more news</span>
+          <img class="button-loader-icon" src="<?php bloginfo('template_directory'); ?>/static/images/loader.GIF " />
         </a>
       </div>
     </div>
