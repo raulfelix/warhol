@@ -129,10 +129,8 @@ LWA.Modules.Search = (function() {
     },
 
     done: function(response) {
-      setTimeout(function() {
-        View.loader.stop();
-        View.render(response);
-      }, 2000);
+      View.loader.stop();
+      View.render(response);
     },
 
     setNextPage: function(number) {
