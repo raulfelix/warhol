@@ -64,3 +64,30 @@
     transform: rotate(360deg);
   }
 }
+
+.spinner {
+  height: 32px;
+  width: 32px;
+  background: url('static/images/sprites.gif') no-repeat center center;
+}
+
+.loader-container {
+  height: rem(50);
+  width: 100%;
+  // text-align: center;
+  position: relative;
+  
+  & > div {
+    width: 100%;
+  }
+
+  img {
+    display: inline-block;
+    width: rem(32);
+    height: rem(32);
+
+    position: absolute;
+    left: 50%;
+    margin-left: rem(-16);
+  }
+}

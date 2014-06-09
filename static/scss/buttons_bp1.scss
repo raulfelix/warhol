@@ -1,0 +1,44 @@
+// buttons
+.button {
+  font-size: rem(15);
+  height: rem(51);
+}
+
+.button-large {
+  padding: rem(14) rem(30);
+}
+
+.button-share {
+  width: 100%;
+}
+
+.button-next .icon-arrow-next,
+.button-prev .icon-arrow-prev {
+  top: rem(14);
+  font-size: 18px;
+}
+
+.button-prev {
+  padding-left: rem(20);
+}
+
+.button-next {
+  padding-right: rem(20);
+}
+
+.button-up {
+  padding-left: rem(44);
+}
+.button-up i {
+  font-size: 20px;
+}
+
+.button-loader {
+  img {
+    margin-top: rem(-6);
+  }
+}
+
+.dropdown {
+  padding: 0;
+}

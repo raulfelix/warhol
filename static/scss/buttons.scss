@@ -63,6 +63,33 @@
   }
 }
 
+.button-loader {
+  @include transition(opacity 200ms ease-out);
+  
+  .button-loader-icon {
+    display: none;
+  }
+}
+
+.button-loader-active,
+.button-loader-active:active,
+.button-loader-active:hover {
+  background-color: transparent;
+  border-color: $pink;
+  opacity: 0.4;
+
+  .text {
+    display: none;
+  }
+
+  .button-loader-icon {
+    width: rem(32);
+    display: inline-block;
+    margin-top: rem(-4);
+  }
+}
+
+
 // button hides text and shows spinner
 .button-loading,
 .button-loading:hover,
@@ -91,11 +118,11 @@
 }
 
 .button-search {
+  padding-left: rem(38);
   .icon-search {
-    font-size: rem(22);
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: rem(6);
+    font-size: rem(20);
+    position: absolute;
+    left: rem(30);
   }
 }
 

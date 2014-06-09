@@ -21,7 +21,6 @@ LWA.Modules.Search = (function() {
       if (opts.local_pixelsFromNavToBottom === undefined) {
         opts.local_pixelsFromNavToBottom = infsrc_local_hiddenHeight(opts.binder) + $(opts.binder).offset().top - $(opts.navSelector).offset().top;
       }
-      instance._debug('local math 2:', infsrc_local_hiddenHeight(opts.binder), $(opts.binder).scrollTop(),  $(opts.binder).height(), $(opts.binder).prop("scrollHeight") );
       return ($(opts.binder).prop("scrollHeight") - $(opts.binder).height() - $(opts.binder).scrollTop() < opts.bufferPx);
     }
   });
@@ -31,9 +30,10 @@ LWA.Modules.Search = (function() {
     element: {
       input: $('.input-search'),
       overflow: $('.search-row-results'),
-      container: $('.search-row-results').find('.container'),
-      button: $('#js-search')
+      container: $('.search-row-results').find('.container')
     },
+
+    loader: undefined,
     
     template: Handlebars.search_thumb,
     templateLink: Handlebars.search_next_link,
@@ -59,6 +59,7 @@ LWA.Modules.Search = (function() {
     onClick: function() {
       var term = View.element.input.val();
       if (term.length !== 0) {
+        View.loader.start();
         
         Ajax.setNextPage(1);
         Ajax.setTerm(term);
@@ -80,6 +81,11 @@ LWA.Modules.Search = (function() {
 
     initInfiniteScroll: function(term) {
       View.reset = View.element.overflow.infinitescroll({
+        loading: {
+          selector: '.loader-container',
+          msg: $('<img src="' + LWA.Data.url + '/wp-content/themes/warhol/static/images/loader.GIF" />'),
+          finishedMessage: undefined,
+        },
         behavior: 'local',
         binder: View.element.overflow,
         bufferPx: 100,
@@ -88,8 +94,8 @@ LWA.Modules.Search = (function() {
         nextSelector: '.data-next',
         pathParse: function(path, page) {
           return [
-            "wp-admin/admin-ajax.php?action=do_ajax&fn=search_posts&page=",
-            "&posts_per_page=" + Ajax.params.posts_per_page + "&s=" + term
+            Ajax.getUrl() + '?action=do_ajax&fn=search_posts&page=',
+            '&posts_per_page=' + Ajax.params.posts_per_page + '&s=' + term
           ];
         },
         appendCallback: false
@@ -99,7 +105,7 @@ LWA.Modules.Search = (function() {
 
   var Ajax = {
     
-    url: 'wp-admin/admin-ajax.php',
+    url: LWA.Data.url,
     params: {
       'action': 'do_ajax',
       'fn': 'search_posts',
@@ -109,7 +115,7 @@ LWA.Modules.Search = (function() {
     },
 
     get: function(params, callback) {
-      $.getJSON(Ajax.url, params)
+      $.getJSON(Ajax.getUrl(), params)
         .done(function(response) {
           if (callback) {
             callback(response);
@@ -123,7 +129,10 @@ LWA.Modules.Search = (function() {
     },
 
     done: function(response) {
-      View.render(response);
+      setTimeout(function() {
+        View.loader.stop();
+        View.render(response);
+      }, 2000);
     },
 
     setNextPage: function(number) {
@@ -132,13 +141,19 @@ LWA.Modules.Search = (function() {
 
     setTerm: function(term) {
       Ajax.params.s = term;
+    },
+
+    getUrl: function() {
+      return Ajax.url + '/wp-admin/admin-ajax.php';
     }
   };
 
   return {
     init: function() {
+      View.loader = LWA.Modules.ButtonLoader('#js-search');
+
       // init events
-      View.element.button.click(View.onClick);
+      View.loader.el.click(View.onClick);
       View.element.input.keyup(View.onKeyUp);
 
       Handlebars.registerPartial('search_next_link', Handlebars.search_next_link);
