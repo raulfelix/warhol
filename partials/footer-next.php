@@ -25,8 +25,10 @@
 <footer class="footer <?php echo $next_css; ?>">
 
   <?php if ( strlen( $post_thumbnail_id) > 0 ): ?>
-    <div class="footer-next-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
-    <div class="blanket"></div>
+    <div class="m-wrap m-transparent">
+      <div class="m-bg footer-next-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
+      <div class="m-overlay blanket"></div>
+    </div>
   <?php endif; ?>
 
   <?php if ( !empty($next_post) ): ?>

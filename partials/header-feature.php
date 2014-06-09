@@ -106,8 +106,10 @@
 
   <header class="header <?php echo ($is_feature === true) ? 'header-feature': 'header-not-feature' ?>">
     <?php if ($is_feature === true): ?>
-      <div class="header-feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
-      <div class="blanket-light"></div>
+      <div class="m-wrap m-transparent">
+        <div class="m-bg header-feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
+        <div class="m-overlay blanket-light"></div>
+      </div>
     <?php endif; ?>
     
     <?php get_template_part('partials/header', 'nav'); ?>

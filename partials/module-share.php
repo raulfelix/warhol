@@ -13,4 +13,3 @@
     </div>
   </div>
 </div>
-<?php wp_enqueue_script( 'single-build' );?>

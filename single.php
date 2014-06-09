@@ -32,4 +32,7 @@
     endwhile; endif;
   ?>
   
-<?php get_footer(); ?>
+<?php
+  wp_enqueue_script( 'single-build' );
+  get_footer(); 
+?>

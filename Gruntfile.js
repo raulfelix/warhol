@@ -69,7 +69,9 @@ module.exports = function(grunt) {
             'static/scripts/gallery.js'
           ],
           'static/dist/single-build.js' : [
-            'static/scripts/share.js'
+            'static/vendor/imagesloaded.pkgd.min.js',
+            'static/scripts/share.js',
+            'static/scripts/load.js'
           ],
           'static/dist/category-build.js' : [
             'static/scripts/dropdown.js'
