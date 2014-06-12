@@ -18,10 +18,11 @@
         <li>
           <?php 
             $attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original');
-         ?>
-          <div class="header-feature-bg" style="background-image: url(<?php echo $attrs[0]; ?>);"></div>
-          <div class="blanket-light"></div>
-
+          ?>
+          <?php if ($attrs): ?>
+            <div class="header-feature-bg" style="background-image: url(<?php echo $attrs[0]; ?>);"></div>
+            <div class="blanket-light"></div>
+          <?php endif; ?>
           <div class="f-grid f-row">
             <div class="f-1 content-wrap">
               <div class="content-row">
