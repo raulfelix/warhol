@@ -148,3 +148,43 @@
     margin-top: rem(-4);
   }
 }
+
+.thumb-blanket {
+  border-radius: 260px;
+  opacity: 0;
+  @include transition(opacity 200ms ease);
+  span {
+    display: block;
+    margin-top: 48%;
+  }
+}
+
+.thumb-author {
+  margin-bottom: rem(100);
+  text-align: center;
+
+  .thumb-author-image {
+    display: inline-block;
+    margin-bottom: rem(10);
+    max-height: rem(260);
+    max-width: rem(260);
+    border-radius: 260px;
+    overflow: hidden;
+    position: relative;
+  }
+  .thumb-author-image:hover {
+    .thumb-blanket {
+      opacity: 1;
+    }
+  }
+
+  .thumb-author-details {
+    display: block;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  
+}

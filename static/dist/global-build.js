@@ -69,11 +69,30 @@ window.LWA = window.LWA || { Views: {}, Modules: {} };
 
 /*
  * Overlay a modal view setting html element to 
- * overflow hidden to prevent scrolling
+ * overflow hidden to prevent scrolling.
+ * Include a loading view for slow content.
  */
 LWA.Modules.Modal = function(triggerSelector, modalSelector, options) {
 
   var $html, $modal;
+
+  var Loader = {
+
+    start: function() {
+      $modal.addClass('modal-loader-active');
+      if (options.start) {
+        options.start();
+      }
+    },
+
+    stop: function() {
+      $modal.removeClass('modal-loader-active');
+      if (options.stop) {
+        options.stop();
+      }
+    }
+
+  };
 
   function onOpen() {
     $modal.toggleClass('modal-active');
@@ -109,8 +128,13 @@ LWA.Modules.Modal = function(triggerSelector, modalSelector, options) {
   init();
 
   return {
+    loader: {
+      start: Loader.start,
+      stop: Loader.stop
+    },
     show: function() {
       onOpen();
+      return this;
     },
     el: function() {
       return $modal;

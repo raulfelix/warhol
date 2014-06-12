@@ -3,7 +3,7 @@ window.LWA = window.LWA || { Views: {}, Modules: {} };
 
 LWA.Views.PostThumbs = (function() {
 
-  var $body = $('body');
+  var $body = $('html,body');
 
   var AjaxFeature = {
 

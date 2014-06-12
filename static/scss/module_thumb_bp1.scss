@@ -16,6 +16,10 @@
       font-size: 20px;
     }
   }
+
+  .thumb-feature {
+    margin: rem(10) 0;
+  }
 }
 
 .thumb-inline {
@@ -42,7 +46,10 @@
     }
   }
 
-  .thumb-caption, 
+  .thumb-caption {
+    display: none;
+  }
+   
   .thumb-views, 
   .thumb-time {
     font-size: rem(12);

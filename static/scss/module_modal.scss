@@ -71,10 +71,13 @@
 }
 
 .modal-transparent {
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.9);
   
   .modal-action {
     color: $white;
+    &:hover {
+      color: $pink;
+    }
   }
   
   .modal-wrap {
@@ -90,6 +93,8 @@
 
   .modal-close {
     color: $white;
+    top: rem(20);
+    right: rem(20);
   }
 
   .modal-view {
@@ -100,34 +105,49 @@
   }
 }
 
+.modal-loader-icon {
+  display: none;
+}
+
+.modal-loader-active {
+  .modal-wrap-row {
+    visibility: hidden;
+  }
+
+  .modal-loader-icon {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: rem(32);
+    margin-left: rem(-16);
+    margin-top: rem(-16);
+  }
+}
+
 .modal-instabinge {
 
   .modal-view {
     margin: 0 auto;
+    background-color: $white;
   }
 
   .modal-view-image {
     width: 60%;
+    img {
+      width: 100%;
+    }
   }
+  .modal-instabinge-frame {}
 
   .modal-view-details {
     left: 60%;
     top: 0;
     bottom: 0;
     right: 0;
-    overflow: auto;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
     @extend %absolute;
-  }
-
-  .frame .slidee {
-    height: auto;
-  }
-
-  li {
-    width: 100%;
-    max-width: rem(1024);
-    background-color: $white;
-    @extend %relative;
   }
 }
 
@@ -148,11 +168,11 @@
 
   .modal-gallery-thumbs,
   .modal-gallery-count {
-    top: rem(30);
+    top: rem(20);
   }
 
   .modal-gallery-thumbs {
-    left: rem(30);
+    left: rem(20);
   }
 
   .modal-gallery-count {

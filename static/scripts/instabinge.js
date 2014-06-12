@@ -1,4 +1,4 @@
-/* global LWA, Sly, Handlebars */
+/* global LWA, Sly, Handlebars, imagesLoaded, Hammer */
 window.LWA = window.LWA || { Views: {}, Modules: {} };
 
 LWA.Views.Instabinge = (function() {
@@ -21,7 +21,7 @@ LWA.Views.Instabinge = (function() {
         if ( calc <= 1 ) {
           calc = 1;
         }
-        since = calc + 'mn';
+        since = calc + 'min';
       } else if ( diff < Time.DAY_IN_SECONDS && diff >= Time.HOUR_IN_SECONDS ) {
         calc = Math.round( diff / Time.HOUR_IN_SECONDS );
         if ( calc <= 1 ) {
@@ -64,7 +64,7 @@ LWA.Views.Instabinge = (function() {
     get: function(callback) {
       $.getJSON(Ajax.feedUrl)
         .done(function(response) {
-          Ajax.cache.push(response.data);
+          Ajax.cache = Ajax.cache.concat(response.data);
           Ajax.feedUrl = response.pagination.next_url + '&callback=?';
           if (callback) {
             callback(response);
@@ -85,7 +85,8 @@ LWA.Views.Instabinge = (function() {
     },
 
     state: {
-      sly: undefined
+      sly: undefined,
+      modal: undefined
     },
 
     template: Handlebars.instabinge_thumb,
@@ -121,25 +122,19 @@ LWA.Views.Instabinge = (function() {
       });
 
       View.element.$frame.on('click', 'li', function(ev) {
-        LWA.Modules.Modal(undefined, '#modal-instabinge', {
-          open: function() {
-            Modal.initialize(View.state.sly.getIndex($(ev.currentTarget)));
-          },
-          close: Modal.destroy
-        }).show();
+        View.state.modal.show();
+        Modal.initialize(View.state.sly.getIndex($(ev.currentTarget)));
       });
 
       Ajax.get();
     },
 
     render: function(response) {
-      console.log(response);
       View.element.$frame.find('ul').append(this.template(response));
       View.state.sly.init();
     },
 
     append: function(response) {
-      console.log(response);
       View.state.sly.add(View.template(response));
     },
 
@@ -151,86 +146,120 @@ LWA.Views.Instabinge = (function() {
   var Modal = {
 
     element: {
-      $frame: $('#modal-instabinge-frame .slidee')
+      $frame: $('#modal-instabinge-frame'),
+      $prev: undefined,
+      $next: undefined
     },
 
     state: {
-      sly: undefined
+      modal: undefined,
+      itemIndex: undefined
     },
 
-    template: Handlebars.instabinge_thumb_large,
+    template: Handlebars.instabinge_thumb_modal,
 
-    initialize: function(itemIndex) {
-      var $wrap = $('#modal-instabinge-controls');
-      Modal.state.sly = new Sly('#modal-instabinge-frame', {
-        horizontal: 1,
-        itemNav: 'forceCentered',
-        smart: 1,
-        activateMiddle: 1,
-        touchDragging: 1,
-        releaseSwing: 1,
-        startAt: itemIndex,
-        speed: 0,
-        elasticBounds: 1,
-        easing: 'swing',
-        dragHandle: 1,
-        dynamicHandle: 1,
-        clickBar: 1,
+    initialize: function(index) {
+      View.state.modal.loader.start();
 
-        prev: $wrap.find('.sly-prev'),
-        next: $wrap.find('.sly-next')
+      // get cached data and render
+      Modal.setPos(index);
+      Modal.render(Ajax.cache[Modal.getPos()]);
+
+      var e = document.getElementById('modal-instabinge-frame');
+      // todo only do this on mobile
+      new Hammer(e).on('swipeleft', function(event) {
+        Modal.getNext();
+      });
+      new Hammer(e).on('swiperight', function(event) {
+        Modal.getPrev();
       });
 
-      Modal.state.sly.on('moveEnd', function() {
-        if (this.pos.dest === this.pos.end) {
-          console.log("reached end load next batch more");
-          Ajax.get(Modal.append);
-        }
-      });
+      // Modal.element.$frame.touchwipe({
+      //   wipeLeft: Modal.getNext,
+      //   wipeRight: Modal.getPrev
+      // });
+    },
 
-      // get cached data and call render
-      Modal.render(Ajax.cache);
+    getPrev: function() {
+      Modal.element.$next.removeClass('disabled');
+      
+      var index = Modal.getPos() - 1;
+      if (index < 0) {
+        return;
+      }
+
+      if (index === 0) {
+        Modal.element.$prev.addClass('disabled');
+      }
+      
+      Modal.render(Ajax.cache[index]);
+      Modal.setPos(index);
+    },
+
+    getNext: function() {
+      Modal.element.$prev.removeClass('disabled');
+      var index = Modal.getPos() + 1;
+      if (index > Ajax.cache.length - 1) {
+        return;
+      }
+      console.log(index);
+
+      if (Modal.isLast(index)) {
+        console.log("last");
+        Modal.element.$next.addClass('disabled');
+
+        // load more
+        Ajax.get(Modal.onLoad);
+      }
+
+      Modal.render(Ajax.cache[index]);
+      Modal.setPos(index);
+    },
+
+    isLast: function(index) {
+      return (index === Ajax.cache.length - 1);
+    },
+
+    getPos: function() {
+      return Modal.state.itemIndex;
+    },
+
+    setPos: function(index) {
+      Modal.state.itemIndex = index;
+    },
+
+    onLoad: function(response) {
+      // keep horizontal view in sync
+      View.state.sly.add(View.template(response));
+      View.state.sly.reload();
+
+      View.state.modal.loader.stop();
+      Modal.element.$next.removeClass('disabled');
     },
 
     render: function(response) {
-      var fragment = $(document.createDocumentFragment());
-      for (var i = 0; i < response.length; i++) {
-        Modal.formatData(response[i]);
-        fragment.append(this.template({data: response[i]}));
-      }
-      Modal.element.$frame.html(fragment);
-      Modal.state.sly.init();
-    },
+      Modal.formatData(response);
+      Modal.element.$frame.html(this.template(response));
 
-    append: function(response) {
-      Modal.formatData(response.data);
-      Modal.state.sly.add(Modal.template(response));
-      View.state.sly.add(View.template(response));
+      imagesLoaded(Modal.element.$frame.find('img'), function(instance) {
+        View.state.modal.loader.stop();
+        Modal.element.$frame.find('.m-wrap').removeClass('m-transparent');
+      });
     },
 
     formatData: function(data) {
-      var
-        width = $(window).width(),
-        now = Date.now();
+      var now = Date.now();
 
       for (var i = 0; i < data.length; i++) {
-        data[i].width = width;
         data[i].created_time = Time.convert(now, data[i].created_time);
       }
     },
-    
-    destroy: function() {
-      Modal.state.sly.destroy();
-      Modal.element.$frame.html('');
-    },
 
-    reload: function() {
-      if (Modal.state.sly !== undefined) {
-        Modal.element.$frame.css('width', '100%');
-        var w = $(window).width();
-        Modal.element.$frame.children().css('width', w);
-        Modal.state.sly.reload();
-      }
+    init: function() {
+      var $wrap = $('#modal-instabinge-controls');
+      Modal.element.$prev = $wrap.find('.sly-prev').click(Modal.getPrev).addClass('disabled');
+      Modal.element.$next = $wrap.find('.sly-next').click(Modal.getNext);
+      View.state.modal = LWA.Modules.Modal(undefined, '#modal-instabinge');
     }
   };
 
@@ -247,13 +276,14 @@ LWA.Views.Instabinge = (function() {
     delay(function() {
       console.log("reload...");
       View.reload();
-      Modal.reload();
     }, 200);
   }
 
   return {
     init: function() {
       View.initialize();
+      Modal.init();
+
       $(window).resize(updateSly);
     }
   };
