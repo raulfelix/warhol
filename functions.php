@@ -508,38 +508,34 @@ function views() {
 }
 
 
-function get_thumbnail($src = false, $is_news = false) {
-
-  // if news post always get the thumbnail size regardless
-  if ($is_news) {
-    if ($src == false) {
-      echo catch_that_image($src);
-    } else {
-      return catch_that_image($src);
-    }
-  } 
-
-  // if not a news post do the usual logic
-  else {
-    if ('' != get_the_post_thumbnail()) {
-      if ($src == false) {
-        echo the_post_thumbnail( 'large' );
-      } else {
-        $attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large');
-        if ( $attrs ) {
-          return $attrs[0];
-        }
-      }
-    }
-  }
-  
+// ----------------------------------- 
+// post images:
+// helper to render post images 
+// -----------------------------------
+function has_a_feature_image() {
+  return ( '' != get_the_post_thumbnail() );
 }
 
-function catch_that_image($src) {
+function has_gallery_image() {
+  $attachments = new Attachments( 'my_attachments', get_the_id() );
+  return $attachments->exist();
+}
+
+function get_feature_image($as_src, $size) {
+  if ( $as_src == false ) {
+    echo the_post_thumbnail( $size );
+  } else {
+
+    $attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), $size );
+    if ( $attrs ) {
+      return $attrs[0];
+    }
+  }
+}
+
+function get_content_image($as_src) {
   global $post, $posts;
   $first_img = '';
-  // ob_start();
-  // ob_end_clean();
 
   $output = preg_match_all('/<img.+class=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
   $first_img = $matches[1][0];
@@ -548,11 +544,77 @@ function catch_that_image($src) {
     $extracted = explode("-", $matches[1][0]);
     $id = $extracted[count($extracted) - 1];
     
-    $img_path = wp_get_attachment_image_src( $id, 'news-thumbnail' )[0];
-    if ($src === false) {
-      return '<img src="' . $img_path . '" />';
+    $img_path = wp_get_attachment_image_src( $id, 'news-thumbnail' );
+    if ($img_path) {
+      if ($as_src === false) {
+        echo '<img src="' . $img_path[0] . '" />';
+      } else {
+        return $img_path[0];
+      }  
+    } 
+  }
+  return null;
+}
+
+function get_gallery_image($as_src) {
+  $attachments = new Attachments( 'my_attachments', get_the_id() );
+  if ( $attachments->exist() ) {
+    if ( $as_src == false ) {
+      echo $attachments->image( 'news-thumbnail', 0 );
     } else {
-      return $img_path;
+      return $attachments->src( 'news-thumbnail', 0 ); 
+    }
+  } 
+  else {
+    return null;
+  }
+}
+
+/*
+ * A news post always returns a custom thumbnail size
+ *
+ * For a news post:
+ * - if:      there is a feature image 
+ * - elseif:  there is a gallery image 
+ * - else:    get an image from the content 
+ */
+function get_thumbnail($src = false, $is_news = false) {
+  if ( $is_news && has_a_feature_image() ) {
+    return get_feature_image($src, 'news-thumbnail');
+  }
+  else if ( $is_news && has_gallery_image() ) {
+    return get_gallery_image($src);
+  }
+  else if ( $is_news ) {
+    return get_content_image($src);
+  }
+  else {
+    if ( has_a_feature_image() ) {
+      return get_feature_image($src, 'large');
+    }
+  }
+}
+
+function catch_that_image($src) {
+  global $post, $posts;
+  $first_img = '';
+
+  $output = preg_match_all('/<img.+class=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+  $first_img = $matches[1][0];
+
+  if (!empty($first_img)) {
+    $extracted = explode("-", $matches[1][0]);
+    $id = $extracted[count($extracted) - 1];
+    
+    $img_path = wp_get_attachment_image_src( $id, 'news-thumbnail' );
+    if ($img_path) {
+      if ($src === false) {
+        return '<img src="' . $img_path[0] . '" />';
+      } else {
+        return $img_path[0];
+      }  
+    } else {
+      return "";
     }
   }
 }
@@ -664,7 +726,7 @@ function fetch_posts($page, $post_per_page, $post_type) {
         'title'     => enc(get_the_title()),
         'subtitle'  => enc(get_the_subtitle()),
         'permalink' => get_the_permalink(),
-        'thumbnail' => get_thumbnail(true),
+        'thumbnail' => get_thumbnail(true, $post_type === 'lwa_news' ? true : false),
         'views'     => get_views(),
         'when'      => get_when(),
         'category'  => category($post_type)
