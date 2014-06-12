@@ -5,6 +5,20 @@
 // ------------------------------ 
 add_theme_support( 'post-thumbnails' ); 
 
+// ------------------------------ 
+// theme support
+// add a custom image size
+// w: 600, h: 388
+// ------------------------------ 
+add_image_size( 'news-thumbnail', 600, 388, true );
+
+add_filter( 'image_size_names_choose', 'my_custom_sizes' );
+
+function my_custom_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+        'news-thumbnail' => __('News thumbnail'),
+    ) );
+}
 
 // ------------------------------ 
 // admin:
@@ -32,7 +46,7 @@ add_action( 'init', 'add_editor_styles' );
 // modify editor headings dropdown
 // ------------------------------
 function mce_mod( $init ) {
-  $init['block_formats'] = 'Intro=h1;Header=h3;Subhead=h4;Paragraph=p;Quote=blockquote';
+  $init['block_formats'] = 'Intro=h1;Header=h2;Subhead=h4;Paragraph=p;Quote=blockquote';
 
   // this is to add style formats to the options
   // $style_formats = array (
@@ -438,8 +452,8 @@ function get_when() {
     "/ year/"
   );
   $time_replacements = array(
-    "mn",
-    "mn",
+    "min",
+    "min",
     "h",
     "h",
     "d",
@@ -494,23 +508,31 @@ function views() {
 }
 
 
-function get_thumbnail($src = false) {
- if ('' != get_the_post_thumbnail()) {
-    if ($src == false) {
-      echo the_post_thumbnail( 'large' );
-    } else {
-      $attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large');
-      if ( $attrs ) {
-        return $attrs[0];
-      }
-    }
-  } else {
+function get_thumbnail($src = false, $is_news = false) {
+
+  // if news post always get the thumbnail size regardless
+  if ($is_news) {
     if ($src == false) {
       echo catch_that_image($src);
     } else {
       return catch_that_image($src);
     }
+  } 
+
+  // if not a news post do the usual logic
+  else {
+    if ('' != get_the_post_thumbnail()) {
+      if ($src == false) {
+        echo the_post_thumbnail( 'large' );
+      } else {
+        $attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large');
+        if ( $attrs ) {
+          return $attrs[0];
+        }
+      }
+    }
   }
+  
 }
 
 function catch_that_image($src) {
@@ -518,17 +540,20 @@ function catch_that_image($src) {
   $first_img = '';
   // ob_start();
   // ob_end_clean();
-  $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+
+  $output = preg_match_all('/<img.+class=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
   $first_img = $matches[1][0];
 
-  if (empty($first_img)) {
-    $first_img = "/path/to/default.png";
-  }
-
-  if ($src === false) {
-    return '<img src="' . $first_img . '" />';
-  } else {
-    return $first_img;
+  if (!empty($first_img)) {
+    $extracted = explode("-", $matches[1][0]);
+    $id = $extracted[count($extracted) - 1];
+    
+    $img_path = wp_get_attachment_image_src( $id, 'news-thumbnail' )[0];
+    if ($src === false) {
+      return '<img src="' . $img_path . '" />';
+    } else {
+      return $img_path;
+    }
   }
 }
 
