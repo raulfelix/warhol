@@ -188,18 +188,24 @@
 }
 
 .header-gallery {
-  background-color: #94D7DE;
+  background-color: #000;
 
   .header-gallery-overlay:before {
     content: '';
-    background-color: #94D7DE;
+    background-color: #000;
     opacity: 0.6;
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
   }
+  .header-gallery-overlay:hover:before {
+    opacity: 0.4;
+  }
 
+  .active.header-gallery-overlay:hover:before {
+    background-color: transparent;
+  }
   .active.header-gallery-overlay:before {
     display: none;
   }
