@@ -2,7 +2,7 @@
   
   // check if there is a gallery associated with the post
   $attachments = new Attachments( 'my_attachments', get_the_id() );
-  if ( $attachments->exist() ):
+  if ( $attachments->exist() && get_post_type( get_the_ID() ) != 'lwa_news' ):
     wp_enqueue_script( 'gallery-build' );
   ?>
  
