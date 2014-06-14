@@ -10,7 +10,8 @@
         <div class="header-category-h2">
           <?php 
             global $post;
-            echo( category($post->post_type)['name'] );
+            $a = category(get_post_type($post));
+            echo $a["name"];
           ?>
         </div>
       </div>
