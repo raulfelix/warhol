@@ -9,8 +9,8 @@
  
 <div id="modal-gallery" class="modal modal-transparent modal-gallery">
   <button class="modal-action modal-close"><i class="icon-close"></i></button>
-  <button class="modal-action modal-gallery-thumbs"><i class="icon-thumbs"></i></button>
   <div class="modal-gallery-count"></div>
+  
   
   <div class="modal-wrap">
     <div class="modal-wrap-row">

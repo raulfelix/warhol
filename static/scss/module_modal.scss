@@ -138,7 +138,6 @@
       width: 100%;
     }
   }
-  .modal-instabinge-frame {}
 
   .modal-view-details {
     left: 60%;
@@ -166,18 +165,9 @@
     position: absolute;
   }
 
-  .modal-gallery-thumbs,
   .modal-gallery-count {
-    top: rem(20);
-  }
-
-  .modal-gallery-thumbs {
     left: rem(20);
-  }
-
-  .modal-gallery-count {
-    width: 100%;
-    @extend %text-center;
+    top: rem(20);
   }
 
   .modal-gallery-caption {
