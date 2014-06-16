@@ -1,7 +1,7 @@
-@media all and (min-width: 71.25em) {
-  .header-feature {
-    .header-feature-bg {
-      background-size: 100% auto;
-    }
+// 1680px
+@media all and (min-width: 105em) {
+  .header-feature .header-feature-bg,
+  .footer-next-feature .footer-next-bg {
+    background-size: 100% auto;
   }
 }
