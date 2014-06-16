@@ -370,7 +370,7 @@ LWA.Views.Instabinge = (function() {
         if ( calc <= 1 ) {
           calc = 1;
         }
-        since = calc + 'mn';
+        since = calc + 'min';
       } else if ( diff < Time.DAY_IN_SECONDS && diff >= Time.HOUR_IN_SECONDS ) {
         calc = Math.round( diff / Time.HOUR_IN_SECONDS );
         if ( calc <= 1 ) {
@@ -514,14 +514,14 @@ LWA.Views.Instabinge = (function() {
       Modal.setPos(index);
       Modal.render(Ajax.cache[Modal.getPos()]);
 
-      var e = document.getElementById('modal-instabinge-frame');
-      // todo only do this on mobile
-      new Hammer(e).on('swipeleft', function(event) {
-        Modal.getNext();
-      });
-      new Hammer(e).on('swiperight', function(event) {
-        Modal.getPrev();
-      });
+      // var e = document.getElementById('modal-instabinge-frame');
+      // // todo only do this on mobile
+      // new Hammer(e).on('swipeleft', function(event) {
+      //   Modal.getNext();
+      // });
+      // new Hammer(e).on('swiperight', function(event) {
+      //   Modal.getPrev();
+      // });
 
       // Modal.element.$frame.touchwipe({
       //   wipeLeft: Modal.getNext,
@@ -529,7 +529,9 @@ LWA.Views.Instabinge = (function() {
       // });
     },
 
-    getPrev: function() {
+    getPrev: function(ev) {
+      ev.preventDefault();
+      
       Modal.element.$next.removeClass('disabled');
       
       var index = Modal.getPos() - 1;
@@ -545,7 +547,9 @@ LWA.Views.Instabinge = (function() {
       Modal.setPos(index);
     },
 
-    getNext: function() {
+    getNext: function(ev) {
+      ev.preventDefault();
+
       Modal.element.$prev.removeClass('disabled');
       var index = Modal.getPos() + 1;
       if (index > Ajax.cache.length - 1) {

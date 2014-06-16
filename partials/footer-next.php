@@ -26,7 +26,7 @@
 
   <?php if ( strlen( $post_thumbnail_id) > 0 ): ?>
     <div class="m-wrap m-transparent">
-      <div class="m-bg footer-next-bg" style="background-image: url(<?php echo $img_url[0] ?>);"></div>
+      <div class="media-target-footer footer-next-bg" style="background-image: url(<?php echo $img_url[0] ?>);" data-type="background"></div>
       <div class="m-overlay blanket"></div>
     </div>
   <?php endif; ?>
