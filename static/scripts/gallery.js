@@ -1,4 +1,4 @@
-/* global LWA, Sly, imagesLoaded */
+/* global LWA, Sly, imagesLoaded, Handlebars */
 window.LWA = window.LWA || { Views: {}, Modules: {} };
 
 LWA.Views.Gallery = (function() {
@@ -128,9 +128,16 @@ LWA.Views.Gallery = (function() {
     },
 
     init: function() {
-      $('#gallery-thumbs').click(Thumbs.toggle);
-
       var $wrap = $('#header-gallery-thumbs');
+
+      imagesLoaded($wrap, function() {
+        Thumbs.initialiseSly($wrap);
+      });
+     
+      $('#gallery-thumbs').click(Thumbs.toggle);
+    },
+
+    initialiseSly: function($wrap) {
       Thumbs.state.sly = new Sly('#header-gallery-thumbs', {
         horizontal: 1,
         itemNav: 'basic',
@@ -174,15 +181,39 @@ LWA.Views.Gallery = (function() {
       sly: undefined
     },
 
-    init: function() {
-      var $controls = $('#inline-gallery-controls');
+    template: Handlebars.gallery_inline,
 
+    init: function() {
+
+      if (window.matchMedia && window.matchMedia("(min-width: 750px)").matches) {
+        this.renderGallery();
+        
+        LWA.Modules.Loader(
+          '#inline-gallery-frame .slidee',
+          '#header-gallery .m-wrap',
+          '#header-loader',
+          Inline.initialiseSly
+        );
+
+      } else {
+        $('#gallery-thumbs').hide();
+        this.renderFeature();
+
+        LWA.Modules.Loader(
+          '#tmpl-gallery-images',
+          '#header-gallery .m-wrap',
+          '#header-loader'
+        );
+      }
+    },
+
+    initialiseSly: function() {
+      var $controls = $('#inline-gallery-controls');
       Inline.state.sly = new Sly('#inline-gallery-frame', {
         horizontal: 1,
         itemNav: 'centered',
         smart: 1,
         activateOn: 'click',
-        mouseDragging: 1,
         touchDragging: 1,
         releaseSwing: 1,
         startAt: 0,
@@ -195,6 +226,16 @@ LWA.Views.Gallery = (function() {
 
       Inline.state.sly.init();
       Inline.state.sly.on('active', Inline.onActivate);
+    },
+
+    renderGallery: function() {
+      $('#tmpl-gallery-images').html(this.template(LWA.GalleryData));
+    },
+
+    renderFeature: function() {
+      $('#tmpl-gallery-images')
+        .css('background-image', 'url(' + LWA.GalleryData.feature + ')')
+        .addClass('header-feature-bg');
     },
 
     onActivate: function(eventName, position) {
@@ -236,15 +277,12 @@ LWA.Views.Gallery = (function() {
 
   return {
     init: function() {
+      
+      Inline.init();
+      Thumbs.init();
 
-      var imgLoad = new imagesLoaded('#inline-gallery-frame');
-      imgLoad.on('done', function(instance) {
-        Thumbs.init();
-        Inline.init();
-      });
-
-      var modalImageLoad = new imagesLoaded('#modal-gallery-frame');
-      modalImageLoad.on('done', function(instance) {
+      var modalLoad = new imagesLoaded('#modal-gallery-frame');
+      modalLoad.on('done', function(instance) {
         Modal.init();
       });
 

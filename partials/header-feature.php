@@ -5,12 +5,12 @@
   $post_type = get_post_type( get_the_ID() );
   if ( $attachments->exist() && $post_type != 'lwa_news' ):
     wp_enqueue_script( 'gallery-build' );
+    get_template_part('partials/module', 'js-gallery');
   ?>
  
 <div id="modal-gallery" class="modal modal-transparent modal-gallery">
   <button class="modal-action modal-close"><i class="icon-close"></i></button>
   <div class="modal-gallery-count"></div>
-  
   
   <div class="modal-wrap">
     <div class="modal-wrap-row">
@@ -33,37 +33,17 @@
   </div>
 </div>
 
-<header class="header header-feature header-gallery">
+<header id="header-gallery" class="header header-feature header-gallery">
   <div class="header-gallery-wrap">
     <?php get_template_part('partials/header', 'nav'); ?>
 
     <div class="m-wrap m-transparent">
-      <div id="inline-gallery-frame" class="header-feature-bg header-gallery-frame frame" >
-        <ul class="media-target slidee" data-type="inline">
-          <?php 
-            $is_first = true;
-            $attachments->rewind();
-            while( $attachments->get() ) : ?>
-            <li class="header-gallery-overlay">
-              <?php echo $attachments->image( 'original' ); ?>
-              
-              <?php 
-                if ($is_first) {
-                  $title = get_the_title();
-                } 
-                $is_first = false;
-              ?>
-
-            </li>
-          <?php endwhile; ?>
-        </ul>
-      </div>
-    
+      <div id="tmpl-gallery-images" data-type="background"></div>
       <div class="header-gallery-content">
         <div class="f-grid f-row">
           <div class="f-1">
             <div class="header-content">
-              <div id="header-gallery-title" class="h-1"><?php echo $title; ?></div>
+              <div id="header-gallery-title" class="h-1"><?php echo get_the_title(); ?></div>
             </div>
             <div id="inline-gallery-controls" class="sly-controls">
               <div class="f-1">

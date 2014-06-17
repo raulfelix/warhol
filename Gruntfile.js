@@ -9,7 +9,6 @@ module.exports = function(grunt) {
           style: 'compressed'
         },
         files: {
-          'static/style.css': 'static/scss/master.scss',
           'style.css': 'static/scss/master.scss'
         }
       }
@@ -68,14 +67,15 @@ module.exports = function(grunt) {
             'static/scripts/spinner.js'
           ],
           'static/dist/gallery-build.js' : [
-            'static/vendor/imagesloaded.pkgd.min.js',
             'static/vendor/sly.min.js',
+            'static/scripts/precompiled/gallery-template.js',
             'static/scripts/gallery.js'
           ],
           'static/dist/single-build.js' : [
             'static/vendor/imagesloaded.pkgd.min.js',
             'static/scripts/share.js',
-            'static/scripts/load.js'
+            'static/scripts/load.js',
+            'static/scripts/single.js'
           ],
           'static/dist/category-build.js' : [
             'static/scripts/dropdown.js'
@@ -97,7 +97,8 @@ module.exports = function(grunt) {
         files: {
           "static/scripts/precompiled/article-template.js": ["js_partial/article_thumb.hbs.html"],
           "static/scripts/precompiled/search-template.js": ["js_partial/search_thumb.hbs.html", "js_partial/search_next_link.hbs.html"],
-          "static/scripts/precompiled/instabinge-template.js": ["js_partial/instabinge_thumb.hbs.html", "js_partial/instabinge_thumb_modal.hbs.html"]
+          "static/scripts/precompiled/instabinge-template.js": ["js_partial/instabinge_thumb.hbs.html", "js_partial/instabinge_thumb_modal.hbs.html"],
+          "static/scripts/precompiled/gallery-template.js": ["js_partial/gallery_inline.hbs.html"]
         }
       }
     }

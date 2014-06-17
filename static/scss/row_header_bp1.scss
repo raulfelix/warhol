@@ -71,6 +71,11 @@
   &.header-gallery-thumbs-active {
     height: rem(550);
   }
+
+  .header-content {
+    width: 100%;
+    margin-top: rem(-18);
+  }
 }
 
 .nav {

@@ -6,7 +6,7 @@ window.LWA = window.LWA || { Views: {}, Modules: {} };
  * - jquery
  * - imagesLoaded
  */
-LWA.Modules.Loader = function(mediaWrap, container, spinner) {
+LWA.Modules.Loader = function(mediaWrap, container, spinner, callback) {
 
   var state = {
     loader: undefined,
@@ -47,6 +47,9 @@ LWA.Modules.Loader = function(mediaWrap, container, spinner) {
       $container = $(container);
 
       imagesLoaded(images, function(instance) {
+        if (callback) {
+          callback();
+        }
         state.loader.hide();
         $container.removeClass('m-transparent');
       });
@@ -65,6 +68,3 @@ LWA.Modules.Loader = function(mediaWrap, container, spinner) {
   init(mediaWrap, container, spinner);
 
 };
-
-LWA.Modules.Loader('.media-target', '.header-feature .m-wrap', '#header-loader');
-LWA.Modules.Loader('.media-target-footer', '.footer-next-feature .m-wrap', '');
