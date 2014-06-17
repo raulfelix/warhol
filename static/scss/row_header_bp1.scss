@@ -50,9 +50,13 @@
   .header-category-h1 {
     font-size: 22px;
   }
+  .header-category-h2 {
+    margin-bottom: rem(10);
+  }
 
   .header-category-branded {
     padding-right: rem(10);
+    bottom: rem(10);
 
     img {
       width: 100%;

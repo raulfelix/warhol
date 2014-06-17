@@ -169,14 +169,14 @@
 
   .header-category-h2 {
     font-size: 14px;
-    margin-bottom: rem(10);
+    margin-bottom: rem(20);
   }
 
   .header-category-branded {
     padding-right: rem(10);
     position: absolute;
     right: rem(20);
-    bottom: rem(10);
+    bottom: rem(20);
 
     .header-category-h2, img { 
       @extend %pull-right;
