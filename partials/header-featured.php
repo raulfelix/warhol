@@ -2,7 +2,7 @@
   $img_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original');
 ?>
 
-<header class="header header-feature">
+<header id="header-feature" class="header header-feature">
   <div class="m-wrap m-transparent">
     <div class="media-target header-feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);" data-type="background"></div>
     <div class="m-overlay blanket-light"></div>
@@ -22,5 +22,5 @@
       </div>
     </div>
   </div>
-  <img id="header-loader" class="loader-icon loader-show" src="<?php bloginfo('template_directory'); ?>/static/images/loader.GIF " />
+  <img id="header-loader" class="loader-icon loader-show" src="<?php bloginfo('template_directory'); ?>/static/images/loader-white.GIF " />
 </header>
