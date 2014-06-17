@@ -486,7 +486,8 @@ function category($post_type) {
     return array(
       'name' => enc( $term->name ),
       'permalink' => get_bloginfo('wpurl') . "/" . ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $term->slug,
-      'slug' => $term->slug
+      'slug' => $term->slug,
+      'description' => $term->description
       );
   }
 }

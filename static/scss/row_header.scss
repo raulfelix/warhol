@@ -145,7 +145,7 @@
 }
 
 .header-category {
-  background-color: $pink;
+  background-color: $black;
   height: rem(300);
   overflow: visible;
 
@@ -189,7 +189,6 @@
 }
 
 .header-gallery {
-  background-color: #000;
 
   .header-gallery-overlay:before {
     content: '';
