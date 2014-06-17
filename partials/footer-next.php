@@ -5,6 +5,7 @@
    * renders an imageless view.
    */
   $next_post = get_previous_post(true, '', get_taxonomy_name($post->post_type));
+  $post_thumbnail_id = null;
 ?>
 
 <?php
@@ -24,14 +25,14 @@
 
 <footer class="footer <?php echo $next_css; ?>">
 
-  <?php if ( strlen( $post_thumbnail_id) > 0 ): ?>
+  <?php if ( $post_thumbnail_id && strlen( $post_thumbnail_id) > 0 ): ?>
     <div class="m-wrap m-transparent">
       <div class="media-target-footer footer-next-bg" style="background-image: url(<?php echo $img_url[0] ?>);" data-type="background"></div>
       <div class="m-overlay blanket"></div>
     </div>
   <?php endif; ?>
 
-  <?php if ( !empty($next_post) ): ?>
+  <?php if ( $post_thumbnail_id && !empty($next_post) ): ?>
     <a class="footer-navigate" href="<?php echo get_permalink( $next_post->ID ); ?>">
       <div class="f-grid f-row">
         <div class="f-1 content-wrap">
