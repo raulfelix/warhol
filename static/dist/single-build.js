@@ -20,15 +20,16 @@ LWA.Modules.Share = (function() {
     );
   }
 
+  function highlight() {
+    buttonUrl.select();
+    return false;
+  }
+
   return {
     init: function() {
-      buttonUrl = $('#modal-share .button-url');
-      modal = LWA.Modules.Modal('.button-share', '#modal-share', {
-        open: function() {
-          buttonUrl.focus().select();
-        }
-      });
+      buttonUrl = $('#modal-share .button-url').click(highlight);
 
+      modal = LWA.Modules.Modal('.button-share', '#modal-share');
       modal.el().find('.button-social').click(share);
     }
   };
