@@ -1,5 +1,5 @@
 <?php 
-  $order_query_var = ($_GET['orderby']) ? $_GET['orderby'] : 'desc';
+  $order_query_var = isset($_GET['orderby']) ? $_GET['orderby'] : 'desc';
   $page_param = (get_query_var('page')) ? '?page=' . get_query_var('page') : '?page=1';
 ?>
 

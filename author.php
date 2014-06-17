@@ -14,7 +14,7 @@
 
   <?php
     // get order and default to date otherwise by popularity
-    $order = ($_GET['orderby']) ? $_GET['orderby'] : 'desc';
+    $order = isset($_GET['orderby']) ? $_GET['orderby'] : 'desc';
 
     // get the rest of the articles
     $paged = (get_query_var('page')) ? get_query_var('page') : 1;

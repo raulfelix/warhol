@@ -1,5 +1,9 @@
 <?php 
   $attachments = new Attachments( 'my_attachments', get_the_id() );
+  $feature = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original');
+  if ($feature) {
+    $feature_src = $feature[0];
+  }
 ?>
 
 <script type="text/javascript">
@@ -11,6 +15,6 @@
       { src: "<?php echo $attachments->src( 'original' ); ?>" },
     <?php endwhile; ?>
     ],
-    feature: "<?php echo wp_get_attachment_image_src( get_post_thumbnail_id(), 'original')[0]; ?>"
+    feature: "<?php echo $feature_src; ?>"
   };
 </script>

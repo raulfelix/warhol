@@ -17,7 +17,7 @@
     }
 
     // append order query variable
-    $order = ($_GET['orderby']) ? $_GET['orderby'] : '';
+    $order = isset($_GET['orderby']) ? $_GET['orderby'] : '';
     if ($prev_num == null) {
       $order_prev = '?orderby=' . $order;
     } else {
