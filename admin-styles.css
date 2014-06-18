@@ -16,3 +16,12 @@
 .c-credits {
   margin-top: 5px;
 }
+
+.c-category-postbox {
+  float: left;
+  margin-right: 20px;
+} 
+
+.c-remove {
+  display: block;
+}

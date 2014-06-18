@@ -1,9 +1,16 @@
 <?php
 
+require_once('includes/custom-category-functions.php');
+require_once('includes/custom-profile-functions.php');
+require_once('includes/ui-util-functions.php');
+require_once('includes/ajax-functions.php');
+
+
 // ------------------------------ 
 // theme support
 // ------------------------------ 
 add_theme_support( 'post-thumbnails' ); 
+
 
 // ------------------------------ 
 // theme support
@@ -40,6 +47,34 @@ function add_editor_styles() {
   add_editor_style( 'editor-styles.css' );
 }
 add_action( 'init', 'add_editor_styles' );
+
+
+// ------------------------------ 
+// admin JS files
+// ------------------------------ 
+add_action('admin_enqueue_scripts', 'enqueue_custom_admin_scripts');
+ 
+function enqueue_custom_admin_scripts() {
+  wp_enqueue_media();
+  wp_register_script('edit-category', get_template_directory_uri() . '/admin/edit-category.js', array('jquery'));
+  wp_enqueue_script('edit-category');
+}
+
+
+// ------------------------------ 
+// add app JS in footer of page
+// ------------------------------ 
+function add_scripts() {
+  wp_register_script( 'global-build', get_template_directory_uri() . '/static/dist/global-build.js', null, '', true );
+  wp_register_script( 'home-build', get_template_directory_uri() . '/static/dist/home-build.js', null, '', true );
+  wp_register_script( 'category-build', get_template_directory_uri() . '/static/dist/category-build.js', null, '', true );
+  wp_register_script( 'gallery-build', get_template_directory_uri() . '/static/dist/gallery-build.js', array('single-build'), '', true );
+  wp_register_script( 'single-build', get_template_directory_uri() . '/static/dist/single-build.js', null, '', true );
+  
+  wp_enqueue_script( 'global-build' );
+}
+add_action( 'wp_enqueue_scripts', 'add_scripts', 999 );
+
 
 // ------------------------------ 
 // admin:
@@ -93,7 +128,7 @@ add_filter('the_content', 'filter_ptags_on_images');
 // --------------------------------- 
 function register_custom_taxonomies() {
   $labels = array(
-    'name'              => _x( 'Feature categories', 'taxonomy general name' ),
+    'name'              => _x( 'Custom categories', 'taxonomy general name' ),
     'singular_name'     => _x( 'Category', 'taxonomy singular name' ),
     'search_items'      => __( 'Search Categories' ),
     'all_items'         => __( 'All Categories' ),
@@ -384,398 +419,14 @@ function credits_save_meta_box_data( $post_id ) {
 add_action( 'save_post', 'credits_save_meta_box_data' );
 
 
-
-
-// --------------------------------------------  
-// customisation: custom user profile field 
-//
-// add a location field for to user profiles
-// -------------------------------------------- 
-add_action( 'show_user_profile', 'extra_profile_fields' );
-add_action( 'edit_user_profile', 'extra_profile_fields' );
-
-function extra_profile_fields( $user ) { ?>
-
-  <h3>Additional information</h3>
-  <table class="form-table">
-    <tr>
-      <th><label for="twitter">Location</label></th>
-      <td>
-        <input type="text" name="location" id="location" value="<?php echo esc_attr( get_the_author_meta( 'location', $user->ID ) ); ?>" class="regular-text" /><br />
-        <span class="description">Please enter your location</span>
-      </td>
-    </tr>
-  </table>
-
-<?php 
-}
-
-
-function save_extra_profile_fields( $user_id ) {
-  if ( !current_user_can( 'edit_user', $user_id ) )
-    return false;
-
-  update_usermeta( $user_id, 'location', $_POST['location'] );
-}
-add_action( 'personal_options_update', 'save_extra_profile_fields' );
-add_action( 'edit_user_profile_update', 'save_extra_profile_fields' );
-
-
-// ---------------------------------- 
-// customisation: BAW post view count
-//
+// ----------------------------------
+// BAW post view count config
 // only keep the total view count
 // ----------------------------------
 function remove_timing_for_bawpvc( $timings ) {
     return array( 'all' => '' );
 }
 add_filter( 'baw_count_views_timings', 'remove_timing_for_bawpvc' );
-
-
-// ------------------------------ 
-// util: 
-// distance of time in words
-// ------------------------------ 
-function get_when() {
-  $time_patterns = array(
-    "/ mins/",
-    "/ min/",
-    "/ hours/",
-    "/ hour/",
-    "/ days/",
-    "/ day/",
-    "/ weeks/",
-    "/ week/",
-    "/ months/",
-    "/ month/",
-    "/ years/",
-    "/ year/"
-  );
-  $time_replacements = array(
-    "min",
-    "min",
-    "h",
-    "h",
-    "d",
-    "d",
-    "w",
-    "w",
-    "m",
-    "m",
-    "y",
-    "y"
-  );
-  $time = human_time_diff( get_the_time('U'), current_time('timestamp') );
-  return preg_replace($time_patterns, $time_replacements, $time);
-}
-
-function when() {
-  echo get_when();
-}
-
-
-// ----------------------------------- 
-// util:
-// get the category helper to return
-// custom taxonomy
-// -----------------------------------
-function category($post_type) {
-  $terms = get_the_terms( get_the_id(), get_taxonomy_name($post_type) );
-
-  foreach ( $terms as $term ) {
-    return array(
-      'name' => enc( $term->name ),
-      'permalink' => get_bloginfo('wpurl') . "/" . ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $term->slug,
-      'slug' => $term->slug,
-      'description' => $term->description
-      );
-  }
-}
-
-function get_taxonomy_name($post_type) {
-  return $post_type === 'lwa_feature' ? 'featured_tax' : 'news_tax';
-}
-
-
-// ----------------------------------- 
-// util:
-// get the view count 
-// -----------------------------------
-function get_views() {
-  return do_shortcode('[post_view]');
-}
-function views() {
-  echo get_views();
-}
-
-
-// ----------------------------------- 
-// post images:
-// helper to render post images 
-// -----------------------------------
-function has_a_feature_image() {
-  return ( '' != get_the_post_thumbnail() );
-}
-
-function has_gallery_image() {
-  $attachments = new Attachments( 'my_attachments', get_the_id() );
-  return $attachments->exist();
-}
-
-function get_feature_image($as_src, $size) {
-  if ( $as_src == false ) {
-    echo the_post_thumbnail( $size );
-  } else {
-
-    $attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), $size );
-    if ( $attrs ) {
-      return $attrs[0];
-    }
-  }
-}
-
-function get_content_image($as_src) {
-  global $post, $posts;
-  $first_img = '';
-
-  $output = preg_match_all('/<img.+class=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-  $first_img = $matches[1][0];
-
-  if (!empty($first_img)) {
-    $extracted = explode("-", $matches[1][0]);
-    $id = $extracted[count($extracted) - 1];
-    
-    $img_path = wp_get_attachment_image_src( $id, 'news-thumbnail' );
-    if ($img_path) {
-      if ($as_src === false) {
-        echo '<img src="' . $img_path[0] . '" />';
-      } else {
-        return $img_path[0];
-      }  
-    } 
-  }
-  return null;
-}
-
-function get_gallery_image($as_src) {
-  $attachments = new Attachments( 'my_attachments', get_the_id() );
-  if ( $attachments->exist() ) {
-    if ( $as_src == false ) {
-      echo $attachments->image( 'news-thumbnail', 0 );
-    } else {
-      return $attachments->src( 'news-thumbnail', 0 ); 
-    }
-  } 
-  else {
-    return null;
-  }
-}
-
-/*
- * A news post always returns a custom thumbnail size
- *
- * For a news post:
- * - if:      there is a feature image 
- * - elseif:  there is a gallery image 
- * - else:    get an image from the content 
- */
-function get_thumbnail($src = false, $is_news = false) {
-  if ( $is_news && has_a_feature_image() ) {
-    return get_feature_image($src, 'news-thumbnail');
-  }
-  else if ( $is_news && has_gallery_image() ) {
-    return get_gallery_image($src);
-  }
-  else if ( $is_news ) {
-    return get_content_image($src);
-  }
-  else {
-    if ( has_a_feature_image() ) {
-      return get_feature_image($src, 'large');
-    }
-  }
-}
-
-function catch_that_image($src) {
-  global $post, $posts;
-  $first_img = '';
-
-  $output = preg_match_all('/<img.+class=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-  $first_img = $matches[1][0];
-
-  if (!empty($first_img)) {
-    $extracted = explode("-", $matches[1][0]);
-    $id = $extracted[count($extracted) - 1];
-    
-    $img_path = wp_get_attachment_image_src( $id, 'news-thumbnail' );
-    if ($img_path) {
-      if ($src === false) {
-        return '<img src="' . $img_path[0] . '" />';
-      } else {
-        return $img_path[0];
-      }  
-    } else {
-      return "";
-    }
-  }
-}
-
-
-// ----------------------------------- 
-// util:
-// decode output via json 
-// -----------------------------------
-function enc($text) {
-  return html_entity_decode($text, ENT_COMPAT, 'UTF-8');
-}
-
-
-// ------------------------------ 
-// add app JS in footer of page
-// ------------------------------ 
-function add_scripts() {
-  wp_register_script( 'global-build', get_template_directory_uri() . '/static/dist/global-build.js', null, '', true );
-  wp_register_script( 'home-build', get_template_directory_uri() . '/static/dist/home-build.js', null, '', true );
-  wp_register_script( 'category-build', get_template_directory_uri() . '/static/dist/category-build.js', null, '', true );
-  wp_register_script( 'gallery-build', get_template_directory_uri() . '/static/dist/gallery-build.js', array('single-build'), '', true );
-  wp_register_script( 'single-build', get_template_directory_uri() . '/static/dist/single-build.js', null, '', true );
-  
-  wp_enqueue_script( 'global-build' );
-}
-add_action( 'wp_enqueue_scripts', 'add_scripts', 999 );
-
-
-
-// ------------------------ 
-// ajax requests functions
-// ------------------------
-function search_posts($term, $page, $posts_per_page) {
-  $args = Array(
-    'post_type' => Array('lwa_feature', 'lwa_news'),
-    's' => $term,
-    'posts_per_page' => $posts_per_page,
-    'paged' => $page
-  );
-
-  $wp_query = new WP_Query( $args );
-
-  $data = Array (
-    'term' => $term,
-    'posts' => Array(),
-    'nextPage' => false,
-    'postsPerPage' => $posts_per_page
-  );
-
-  // check if there is more data to fetch
-  if ( $wp_query->max_num_pages > 1 ) {
-    if ( $page < $wp_query->max_num_pages ) {
-      $data['nextPage'] = $page + 1;
-    }
-  }
-
-  if ( $wp_query->have_posts() ):
-    $idx = 0;
-    
-    while ( $wp_query->have_posts() ): 
-      $wp_query->the_post();
-      
-      $data['posts'][$idx] = Array(
-        'title'     => enc(get_the_title()),
-        'subtitle'  => enc(get_the_subtitle()),
-        'permalink' => get_the_permalink(),
-        'thumbnail' => get_thumbnail(true),
-        'views'     => get_views(),
-        'when'      => get_when(),
-        'category'  => category( get_post_type() )
-      );
-
-      $idx++;
-    endwhile;
-  endif;
-
-  return $data;
-}
-
-
-function fetch_posts($page, $post_per_page, $post_type) {
-  $args = Array(
-    'post_type' => $post_type,
-    'posts_per_page' => $post_per_page,
-    'paged' => $page
-  );
-
-  $wp_query = new WP_Query( $args );
-
-  $data = Array (
-    'posts' => Array(),
-    'nextPage' => false
-  );
-
-  // check if there is more data to fetch
-  if ( $wp_query->max_num_pages > 1 ) {
-    if ( $page < $wp_query->max_num_pages ) {
-      $data['nextPage'] = $page + 1;
-    }
-  }
-
-  if ( $wp_query->have_posts() ):
-    $idx = 0;
-    while ( $wp_query->have_posts() ): 
-      $wp_query->the_post();
-      
-      $data['posts'][$idx] = Array(
-        'title'     => enc(get_the_title()),
-        'subtitle'  => enc(get_the_subtitle()),
-        'permalink' => get_the_permalink(),
-        'thumbnail' => get_thumbnail(true, $post_type === 'lwa_news' ? true : false),
-        'views'     => get_views(),
-        'when'      => get_when(),
-        'category'  => category($post_type)
-      );
-      $idx++;
-    endwhile;
-  endif;
-
-  return $data;
-}
-
-function get_next_featured_posts($page = 2) {
-  return fetch_posts($page, 4, 'lwa_feature');
-}
-
-function get_next_news_posts($page = 2) {
-  return fetch_posts($page, 6, 'lwa_news');
-}
-
-add_action('wp_ajax_nopriv_do_ajax', 'ajax_handler');
-add_action('wp_ajax_do_ajax', 'ajax_handler');
-
-function ajax_handler() {
- 
-  switch($_REQUEST['fn']){
-    case 'get_next_featured_posts':
-      $output = get_next_featured_posts($_REQUEST['page']);
-      break;
-    case 'get_next_news_posts':
-      $output = get_next_news_posts($_REQUEST['page']);
-      break;
-    case 'search_posts':
-      $output = search_posts($_REQUEST['s'], $_REQUEST['page'], $_REQUEST['posts_per_page']);
-      break;
-  }
- 
-  wp_reset_query();
-
-  $output = json_encode($output);
-
-  if (is_array($output)){
-    print_r($output);  
-  }
-  else{
-    echo $output;
-  }
-  die;
-}
 
 
 // -------------------------- 

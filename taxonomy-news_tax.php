@@ -9,15 +9,13 @@
   <?php
 
     // get the most recent article in current category
-    global $post;
-    //$post_slug = $post->post_name;
-    $category_data = category(get_post_type($post));
-    $category = $category_data["slug"];
+    $category_data = category('lwa_news');
+    $category = $category_data['slug'];
 
     $feature_args = Array(
       'post_type' => 'lwa_news',
       'posts_per_page' => 1,
-      'news_tax' => $category
+      'news_tax' => $news_tax
     );
 
     $feature_query = new WP_Query( $feature_args );
