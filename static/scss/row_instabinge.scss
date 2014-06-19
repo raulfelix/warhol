@@ -4,9 +4,10 @@
   @extend %relative;
  
   .h-1 {
+    display: block;
     font-size: rem(40);
     margin-bottom: rem(80);
-    @extend %text-center;
+    text-align: center;
   }
 
   .instabinge-link {
