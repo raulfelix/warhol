@@ -9,13 +9,10 @@
   <?php
 
     // get the most recent feature article in current category
-    global $post;
-    $post_slug = $post->post_name;
-
     $feature_args = Array(
       'post_type' => 'lwa_feature',
       'posts_per_page' => 1,
-      'featured_tax' => $post_slug
+      'featured_tax' => $featured_tax
     );
 
     $feature_query = new WP_Query( $feature_args );
@@ -70,14 +67,14 @@
         'posts_per_page' => 6,
         'paged' => $paged,
         'post__not_in' => array( $post_ID_no_repeat ),
-        'featured_tax' => $post_slug
+        'featured_tax' => $featured_tax
       );
     } else {
       $args = Array(
         'posts_per_page' => 6,
         'paged' => $paged,
         'post__not_in' => array( $post_ID_no_repeat ),
-        'featured_tax' => $post_slug,
+        'featured_tax' => $featured_tax,
         'meta_key' => '_count-views_all',
         'orderby' => 'meta_value_num'
       );

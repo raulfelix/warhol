@@ -238,10 +238,10 @@ add_filter('redirect_canonical','disable_redirect_canonical');
 // --------------------------------------------  
 function featured_rewrite_rules() {
   // this will match single template pages
-  add_rewrite_rule( 'featured/([^/]+)/([^/]+)', 'index.php?lwa_feature=$matches[2]', 'top' );
+  // add_rewrite_rule( 'featured/([^/]+)/([^/]+)', 'index.php?lwa_feature=$matches[2]', 'top' );
 
   // this will match any featured page
-  add_rewrite_rule( 'featured/([^/]+)', 'index.php?pagename=$matches[1]', 'top' );
+  // add_rewrite_rule( 'featured/([^/]+)', 'index.php?pagename=$matches[1]', 'top' );
 }
 add_action( 'init', 'featured_rewrite_rules' );
 

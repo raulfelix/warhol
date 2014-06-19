@@ -1,11 +1,11 @@
 <?php
   /*
-   * Header for news category
+   * Header for featured category
    */
 ?>
 
 <?php
-  $tax = get_term_by('slug', $news_tax, 'news_tax');
+  $tax = get_term_by('slug', $featured_tax, 'featured_tax');
 
   $feature_url = get_term_meta( $tax->term_id, 'c-feature-url', true );
   $logo_url    = get_term_meta( $tax->term_id, 'c-sponsor-url', true ); 

@@ -8,16 +8,20 @@
 
   <?php
 
+    if ($news_tax == 'news') {
+      $feature_args = Array(
+        'post_type' => 'lwa_news',
+        'posts_per_page' => 1
+      );
+    } else {
+      $feature_args = Array(
+        'post_type' => 'lwa_news',
+        'posts_per_page' => 1,
+        'news_tax' => $news_tax
+      );
+    }
+
     // get the most recent article in current category
-    $category_data = category('lwa_news');
-    $category = $category_data['slug'];
-
-    $feature_args = Array(
-      'post_type' => 'lwa_news',
-      'posts_per_page' => 1,
-      'news_tax' => $news_tax
-    );
-
     $feature_query = new WP_Query( $feature_args );
 
     if ( $feature_query->have_posts() ):
@@ -67,20 +71,24 @@
 
     if ($order === 'desc') {
       $args = Array(
+        'post_type' => 'lwa_news',
         'posts_per_page' => 6,
         'paged' => $paged,
         'post__not_in' => array( $post_ID_no_repeat ),
-        'news_tax' => $category
       );
     } else {
       $args = Array(
+        'post_type' => 'lwa_news',
         'posts_per_page' => 6,
         'paged' => $paged,
         'post__not_in' => array( $post_ID_no_repeat ),
-        'news_tax' => $category,
         'meta_key' => '_count-views_all',
         'orderby' => 'meta_value_num'
       );
+    }
+
+    if ($news_tax != 'news') {
+      $args['news_tax'] = $news_tax;
     }
 
     // todo exclude featured post above
@@ -91,9 +99,9 @@
         $wp_query->the_post();
   ?>
 
-        <div class="f-1-3 bp1-1-2 thumb-inline thumb-no-category">
-          <?php get_template_part('partials/article', 'thumb'); ?>
-        </div>
+      <div class="f-1-3 bp1-1-2 thumb-inline <?php echo ($news_tax == 'news' ? '':'thumb-no-category') ?>">
+        <?php get_template_part('partials/article', 'thumb'); ?>
+      </div>
   
   <?php  
       endwhile;
