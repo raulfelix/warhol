@@ -146,12 +146,26 @@ function get_thumbnail($src = false, $is_news = false) {
   else if ( $is_news ) {
     return get_content_image($src);
   }
-  else {
-    if ( has_a_feature_image() ) {
-      return get_feature_image($src, 'large');
-    }
+  else if ( has_a_feature_image() ) {
+    return get_feature_image($src, 'large');
   }
 }
+
+/*
+ * Used by search
+ */
+function get_search_thumbnail() {
+  if ( has_a_feature_image() ) {
+    return get_feature_image(true, 'news-thumbnail');
+  }
+  else if ( has_gallery_image() ) {
+    return get_gallery_image(true);
+  }
+  else {
+    return get_content_image(true);
+  }
+}
+
 
 function catch_that_image($src) {
   global $post, $posts;

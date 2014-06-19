@@ -37,7 +37,7 @@ function search_posts($term, $page, $posts_per_page) {
         'title'     => enc(get_the_title()),
         'subtitle'  => enc(get_the_subtitle()),
         'permalink' => get_the_permalink(),
-        'thumbnail' => get_thumbnail(true),
+        'thumbnail' => get_search_thumbnail(),
         'views'     => get_views(),
         'when'      => get_when(),
         'category'  => category( get_post_type() )
