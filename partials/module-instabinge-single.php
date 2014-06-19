@@ -3,6 +3,7 @@
   <div class="modal-wrap">
     <div class="modal-wrap-row">
       <div class="modal-view frame">
+        <img class="loader-icon" src="<?php bloginfo('template_directory'); ?>/static/images/loader.GIF " />
         <div id="modal-instabinge-frame" class="modal-instabinge-frame"></div>
       </div>
       <div id="modal-instabinge-controls" class="sly-controls">

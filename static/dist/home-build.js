@@ -409,7 +409,7 @@ LWA.Views.Instabinge = (function() {
 
   var Ajax = {
     cache: [],
-    feedUrl: 'https://api.instagram.com/v1/users/self/feed?access_token=433449303.fcca1bd.c0fea0b12a3f412fbc240be570e5dfc0&callback=?',
+    feedUrl: 'https://api.instagram.com/v1/users/self/feed?access_token=9513217.1f648b0.783f3c9408a64877b9783ccc25bb983f&callback=?',
     get: function(callback) {
       $.getJSON(Ajax.feedUrl)
         .done(function(response) {
@@ -502,13 +502,15 @@ LWA.Views.Instabinge = (function() {
 
     state: {
       modal: undefined,
-      itemIndex: undefined
+      itemIndex: undefined,
+      singleLoader: undefined
     },
 
     template: Handlebars.instabinge_thumb_modal,
 
     initialize: function(index) {
       View.state.modal.loader.start();
+      Modal.state.singleLoader = LWA.Modules.Spinner('#modal-instabinge .loader-icon');
 
       // get cached data and render
       Modal.setPos(index);
@@ -555,10 +557,8 @@ LWA.Views.Instabinge = (function() {
       if (index > Ajax.cache.length - 1) {
         return;
       }
-      console.log(index);
 
       if (Modal.isLast(index)) {
-        console.log("last");
         Modal.element.$next.addClass('disabled');
 
         // load more
@@ -591,21 +591,19 @@ LWA.Views.Instabinge = (function() {
     },
 
     render: function(response) {
+      Modal.state.singleLoader.show();
       Modal.formatData(response);
       Modal.element.$frame.html(this.template(response));
 
       imagesLoaded(Modal.element.$frame.find('img'), function(instance) {
         View.state.modal.loader.stop();
+        Modal.state.singleLoader.hide();
         Modal.element.$frame.find('.m-wrap').removeClass('m-transparent');
       });
     },
 
     formatData: function(data) {
-      var now = Date.now();
-
-      for (var i = 0; i < data.length; i++) {
-        data[i].created_time = Time.convert(now, data[i].created_time);
-      }
+      data.created_time = Time.convert(Date.now(), data.created_time);
     },
 
     init: function() {
