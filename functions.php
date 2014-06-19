@@ -4,6 +4,7 @@ require_once('includes/custom-category-functions.php');
 require_once('includes/custom-profile-functions.php');
 require_once('includes/ui-util-functions.php');
 require_once('includes/ajax-functions.php');
+require_once('includes/custom-metabox-functions.php');
 
 
 // ------------------------------ 
@@ -19,20 +20,20 @@ add_theme_support( 'post-thumbnails' );
 // ------------------------------ 
 add_image_size( 'news-thumbnail', 600, 388, true );
 
-add_filter( 'image_size_names_choose', 'my_custom_sizes' );
-
 function my_custom_sizes( $sizes ) {
     return array_merge( $sizes, array(
         'news-thumbnail' => __('News thumbnail'),
     ) );
 }
+add_filter( 'image_size_names_choose', 'my_custom_sizes' );
+
 
 // ------------------------------ 
 // admin:
 // add admin stylesheet
 // ------------------------------ 
 function change_adminbar_css() {
-    wp_register_style( 'add-admin-stylesheet', get_template_directory_uri() . '/admin-styles.css' );
+    wp_register_style( 'add-admin-stylesheet', get_template_directory_uri() . '/admin/css/admin-styles.css' );
     wp_enqueue_style( 'add-admin-stylesheet' );
 }
 add_action( 'admin_enqueue_scripts', 'change_adminbar_css' ); 
@@ -40,28 +41,29 @@ add_action( 'admin_enqueue_scripts', 'change_adminbar_css' );
 
 // ------------------------------ 
 // admin:
-// add editor css for better content
-// management 
+// add editor css for better 
+// content management 
 // ------------------------------
 function add_editor_styles() {
-  add_editor_style( 'editor-styles.css' );
+  add_editor_style( '/admin/css/editor-styles.css' );
 }
 add_action( 'init', 'add_editor_styles' );
 
 
+// ------------------------------
+// admin: 
+// JS files
 // ------------------------------ 
-// admin JS files
-// ------------------------------ 
-add_action('admin_enqueue_scripts', 'enqueue_custom_admin_scripts');
- 
 function enqueue_custom_admin_scripts() {
   wp_enqueue_media();
   wp_register_script('edit-category', get_template_directory_uri() . '/admin/edit-category.js', array('jquery'));
   wp_enqueue_script('edit-category');
 }
+add_action('admin_enqueue_scripts', 'enqueue_custom_admin_scripts');
 
 
 // ------------------------------ 
+// customise: 
 // add app JS in footer of page
 // ------------------------------ 
 function add_scripts() {
@@ -82,18 +84,6 @@ add_action( 'wp_enqueue_scripts', 'add_scripts', 999 );
 // ------------------------------
 function mce_mod( $init ) {
   $init['block_formats'] = 'Intro=h1;Header=h2;Subhead=h4;Paragraph=p;Quote=blockquote';
-
-  // this is to add style formats to the options
-  // $style_formats = array (
-  //   array( 'title' => 'Bold text', 'inline' => 'b' ),
-  //   array( 'title' => 'Red text', 'inline' => 'span', 'styles' => array( 'color' => '#ff0000' ) ),
-  //   array( 'title' => 'Red header', 'block' => 'h1', 'styles' => array( 'color' => '#ff0000' ) ),
-  //   array( 'title' => 'Example 1', 'inline' => 'span', 'classes' => 'example1' ),
-  //   array( 'title' => 'Example 2', 'inline' => 'span', 'classes' => 'example2' )
-  // );
-
-  // $init['style_formats'] = json_encode( $style_formats );
-  // $init['style_formats_merge'] = false;
   return $init;
 }
 add_filter('tiny_mce_before_init', 'mce_mod');
@@ -128,7 +118,7 @@ add_filter('the_content', 'filter_ptags_on_images');
 // --------------------------------- 
 function register_custom_taxonomies() {
   $labels = array(
-    'name'              => _x( 'Custom categories', 'taxonomy general name' ),
+    'name'              => _x( 'Categories', 'taxonomy general name' ),
     'singular_name'     => _x( 'Category', 'taxonomy singular name' ),
     'search_items'      => __( 'Search Categories' ),
     'all_items'         => __( 'All Categories' ),
@@ -221,12 +211,12 @@ add_action( 'init', 'create_post_type' );
 // done for featured pages (pagination/sorting)
 // expected: ids should match featured pages
 // --------------------------------------------   
-function disable_redirect_canonical( $redirect_url ) {
-  if ( is_page( array( 'parties-bullshit', 'tuesdays-without', 'twentyfour', 'news' ) ))
-    $redirect_url = false;
-    return $redirect_url;
-}
-add_filter('redirect_canonical','disable_redirect_canonical');
+// function disable_redirect_canonical( $redirect_url ) {
+//   if ( is_page( array( 'parties-bullshit', 'tuesdays-without', 'twentyfour', 'news' ) ))
+//     $redirect_url = false;
+//     return $redirect_url;
+// }
+// add_filter('redirect_canonical','disable_redirect_canonical');
 
 
 // --------------------------------------------  
@@ -236,14 +226,14 @@ add_filter('redirect_canonical','disable_redirect_canonical');
 // with news categories which are not content
 // managed pages
 // --------------------------------------------  
-function featured_rewrite_rules() {
+// function featured_rewrite_rules() {
   // this will match single template pages
   // add_rewrite_rule( 'featured/([^/]+)/([^/]+)', 'index.php?lwa_feature=$matches[2]', 'top' );
 
   // this will match any featured page
   // add_rewrite_rule( 'featured/([^/]+)', 'index.php?pagename=$matches[1]', 'top' );
-}
-add_action( 'init', 'featured_rewrite_rules' );
+// }
+// add_action( 'init', 'featured_rewrite_rules' );
 
 
 // --------------------------------------------  
@@ -269,158 +259,8 @@ function custom_post_type_permastruct($link, $post) {
 add_filter('post_type_link', 'custom_post_type_permastruct', 10, 2);
 
 
-// --------------------------------------------  
-// customisation: custom meta data 
-//
-// hexidecimal field value for category page 
-// overlay colour
-// -------------------------------------------- 
-function add_heximus_meta_box() {
-  add_meta_box(
-    'heximus_id',
-    'Define image overlay colour',
-    'heximus_meta_box_callback',
-    'page'
-  );
-
-  $screens = array( 'lwa_feature', 'lwa_news' );
-  foreach ( $screens as $screen ) {
-    add_meta_box(
-      'credits_id',
-      'Author and photography',
-      'credits_meta_box_callback',
-      $screen
-    );
-  }
-}
-add_action( 'add_meta_boxes', 'add_heximus_meta_box' );
-
-function heximus_meta_box_callback( $post ) {
-
-  // Add an nonce field so we can check for it later.
-  wp_nonce_field( 'heximus_meta_box', 'heximus_meta_box_nonce' );
-
-  $value = get_post_meta( $post->ID, 'heximus_key', true );
-  $alpha = get_post_meta( $post->ID, 'heximus_alpha_key', true );
-
-  echo '<label class="label-heximus" for="heximus_new_field">';
-  _e( 'Hex value. Default: #000', 'heximus_textdomain' );
-  echo '</label> ';
-  echo '<input class="input-heximus" type="text" id="heximus_new_field" name="heximus_new_field" value="' . esc_attr( $value ) . '" size="7" />';
-  echo '<label class="label-heximus" for="heximus_alpha_new_field">';
-  _e( 'Alpha value. Default: 0.8', 'heximus_textdomain' );
-  echo '</label> ';
-  echo '<input type="text" id="heximus_alpha_new_field" name="heximus_alpha_new_field" value="' . esc_attr( $alpha ) . '" size="7" />';
-}
-
-function heximus_save_meta_box_data( $post_id ) {
-
-  // Check if our nonce is set.
-  if ( ! isset( $_POST['heximus_meta_box_nonce'] ) ) {
-    return;
-  }
-
-  // Verify that the nonce is valid.
-  if ( ! wp_verify_nonce( $_POST['heximus_meta_box_nonce'], 'heximus_meta_box' ) ) {
-    return;
-  }
-
-  // If this is an autosave, our form has not been submitted, so we don't want to do anything.
-  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-    return;
-  }
-
-  // Check the user's permissions
-  if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
-    if ( ! current_user_can( 'edit_page', $post_id ) ) {
-      return;
-    }
-  } else {
-    if ( ! current_user_can( 'edit_post', $post_id ) ) {
-      return;
-    }
-  }
-
-  // Make sure that data is set
-  if ( !isset( $_POST['heximus_new_field'] ) && !isset( $_POST['heximus_alpha_new_field'] ) ) {
-    return;
-  }
-
-  // Sanitize input
-  $heximus = sanitize_text_field( $_POST['heximus_new_field'] );
-  $alpha = sanitize_text_field( $_POST['heximus_alpha_new_field'] );
-
-  // Update the meta field in the database.
-  update_post_meta( $post_id, 'heximus_key', $heximus );
-  update_post_meta( $post_id, 'heximus_alpha_key', $alpha );
-}
-add_action( 'save_post', 'heximus_save_meta_box_data' );
-
-
-function credits_meta_box_callback( $post ) {
-
-  // Add an nonce field so we can check for it later.
-  wp_nonce_field( 'credits_meta_box', 'credits_meta_box_nonce' );
-
-  $value = get_post_meta( $post->ID, 'credits_author_key', true );
-  $alpha = get_post_meta( $post->ID, 'credits_photos_key', true );
-
-  echo '<div><label class="label-credits" for="credits_author_new_field">';
-  _e( 'Words by', 'textdomain' );
-  echo '</label> ';
-  echo '<input class="c-credits widefat" type="text" id="credits_author_new_field" name="credits_author_new_field" value="' . esc_attr( $value ) . '"/></div>';
-  echo '<div class="c-field-wrap"><label class="label-credits-photos" for="credits_photos_new_field">';
-  _e( 'Photos by', 'textdomain' );
-  echo '</label> ';
-  echo '<input class="c-credits widefat" type="text" id="credits_photos_new_field" name="credits_photos_new_field" value="' . esc_attr( $alpha ) . '"/></div>';
-}
-
-function credits_save_meta_box_data( $post_id ) {
-
-  // Check if our nonce is set.
-  if ( ! isset( $_POST['credits_meta_box_nonce'] ) ) {
-    return;
-  }
-
-  // Verify that the nonce is valid.
-  if ( ! wp_verify_nonce( $_POST['credits_meta_box_nonce'], 'credits_meta_box' ) ) {
-    return;
-  }
-
-  // If this is an autosave, our form has not been submitted, so we don't want to do anything.
-  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-    return;
-  }
-
-  // Check the user's permissions
-  if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
-    if ( ! current_user_can( 'edit_page', $post_id ) ) {
-      return;
-    }
-  } else {
-    if ( ! current_user_can( 'edit_post', $post_id ) ) {
-      return;
-    }
-  }
-
-  // Make sure that data is set
-  if ( !isset( $_POST['credits_author_new_field'] ) && !isset( $_POST['credits_photos_new_field'] ) ) {
-    return;
-  }
-
-  // Sanitize input
-  $author = sanitize_text_field( $_POST['credits_author_new_field'] );
-  $photos = sanitize_text_field( $_POST['credits_photos_new_field'] );
-
-  // Update the meta field in the database.
-  update_post_meta( $post_id, 'credits_author_key', $author );
-  update_post_meta( $post_id, 'credits_photos_key', $photos );
-}
-add_action( 'save_post', 'credits_save_meta_box_data' );
-
-
 // ----------------------------------
-// BAW post view count config
+// plugin: BAW post view count
 // only keep the total view count
 // ----------------------------------
 function remove_timing_for_bawpvc( $timings ) {
@@ -430,11 +270,10 @@ add_filter( 'baw_count_views_timings', 'remove_timing_for_bawpvc' );
 
 
 // -------------------------- 
-// attachment plugin config
+// plugin: attachments
 // --------------------------
 add_filter( 'attachments_default_instance', '__return_false' ); // disable the default instance
-function my_attachments( $attachments )
-{
+function my_attachments( $attachments ) {
   $fields = array( 
     array(
       'name'      => 'caption',                       // unique field name
@@ -447,13 +286,13 @@ function my_attachments( $attachments )
   $args = array(
 
     // title of the meta box (string)
-    'label'         => 'Gallery',
+    'label'         => 'Gallery Images',
 
     // all post types to utilize (string|array)
-    'post_type'     => array( 'page' ,'lwa_feature', 'lwa_news'),
+    'post_type'     => array( 'lwa_feature', 'lwa_news'),
 
     // meta box position (string) (normal, side or advanced)
-    'position'      => 'side',
+    'position'      => 'advanced',
 
     // meta box priority (string) (high, default, low, core)
     'priority'      => 'high',
@@ -464,8 +303,7 @@ function my_attachments( $attachments )
     // include a note within the meta box (string)
     'note'          => '',
 
-    // by default new Attachments will be appended to the list
-    // but you can have then prepend if you set this to false
+    // append to the list
     'append'        => true,
 
     // text for 'Attach' button in meta box (string)
