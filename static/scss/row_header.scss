@@ -190,7 +190,7 @@
 
 .header-gallery {
   background-color: $black;
-  
+
   .header-gallery-overlay:before {
     content: '';
     background-color: #000;
@@ -201,7 +201,7 @@
     height: 100%;
   }
   .header-gallery-overlay:hover:before {
-    opacity: 0.4;
+    opacity: 0.5;
   }
 
   .active.header-gallery-overlay:hover:before {
