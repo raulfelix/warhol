@@ -3,7 +3,7 @@
   <div class="modal-view modal-share-view">
     <div class="modal-share-secondary">Share this</div>
     <div class="modal-share-primary"><?php the_title(); ?></div>
-    <div class="modal-share-actions">
+    <div class="modal-share-actions modal-share-buttons">
       <?php echo generate_share_link('Facebook') ?>
       <?php echo generate_share_link('Twitter') ?>
       <?php echo generate_share_link('Google+') ?>
