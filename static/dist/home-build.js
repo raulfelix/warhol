@@ -581,6 +581,12 @@ LWA.Views.Instabinge = (function() {
       Modal.state.itemIndex = index;
     },
 
+    setHeight: function() {
+      if (window.matchMedia && window.matchMedia("(min-width: 600px)").matches) {
+        Modal.element.$frame.height(Modal.element.$frame.find('img').height());
+      }
+    },
+
     onLoad: function(response) {
       // keep horizontal view in sync
       View.state.sly.add(View.template(response));
@@ -590,14 +596,22 @@ LWA.Views.Instabinge = (function() {
       Modal.element.$next.removeClass('disabled');
     },
 
+    onResize: function() {
+      var img = Modal.element.$frame.find('img');
+      if (img.length > 0) {
+        Modal.setHeight();
+      }
+    },
+
     render: function(response) {
       Modal.state.singleLoader.show();
       Modal.formatData(response);
       Modal.element.$frame.html(this.template(response));
-
+      
       imagesLoaded(Modal.element.$frame.find('img'), function(instance) {
         View.state.modal.loader.stop();
         Modal.state.singleLoader.hide();
+        Modal.setHeight();
         Modal.element.$frame.find('.m-wrap').removeClass('m-transparent');
       });
     },
@@ -611,6 +625,8 @@ LWA.Views.Instabinge = (function() {
       Modal.element.$prev = $wrap.find('.sly-prev').click(Modal.getPrev).addClass('disabled');
       Modal.element.$next = $wrap.find('.sly-next').click(Modal.getNext);
       View.state.modal = LWA.Modules.Modal(undefined, '#modal-instabinge');
+
+      $(window).resize(Modal.onResize);
     }
   };
 
