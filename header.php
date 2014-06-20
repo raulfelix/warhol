@@ -29,6 +29,15 @@
       s.parentNode.insertBefore(wf, s);
     })();
   </script>
+  
+  <?php if ( is_single() ): ?>
+    <meta property="og:title" content="<?php echo the_title() ?>" />
+    <meta property="og:site_name" content="Life Without Andy"/>
+    <meta property="og:url" content="<?php echo get_the_permalink() ?>" />
+    <meta property="fb:app_id" content="161339120705340" />
+    <meta property="og:image" content="<?php echo get_search_thumbnail() ?>" />
+  <?php endif; ?>
+
   <?php wp_head(); ?>
 </head>
 
