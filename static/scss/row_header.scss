@@ -317,7 +317,7 @@
 
   .logo {
     @extend %pull-left;
-    background: url('images/logo@2x.png') no-repeat left center;
+    background: url('static/images/logo@2x.png') no-repeat left center;
     background-size: 100% auto;
     display: block;
     width: rem(112);
