@@ -4,7 +4,7 @@
 
 <header id="header-feature" class="header header-feature">
   <div class="m-wrap m-transparent">
-    <div class="media-target header-feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);" data-type="background"></div>
+    <div class="header-feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);" data-type="background"></div>
     <div class="m-overlay blanket-light"></div>
   </div>
   
@@ -22,5 +22,5 @@
       </div>
     </div>
   </div>
-  <img id="header-loader" class="loader-icon loader-show" src="<?php bloginfo('template_directory'); ?>/static/images/loader-white.GIF " />
+  <?php get_template_part('partials/module', 'util-loader'); ?>
 </header>

@@ -19,12 +19,13 @@
 }
 
 .header-small {
-  background-color: #212121;
+  background-color: $black;
   height: rem(150);
   overflow: visible;
 }
 
 .header-feature {
+  background-color: $black;
   color: $white;
   height: rem(748);
   @include transition(height 300ms ease);
@@ -300,7 +301,7 @@
 
 .logo {
   @extend %pull-left;
-  background: url('images/logo@2x.png') no-repeat left center;
+  background: url('static/images/logo@2x.png') no-repeat left center;
   background-size: 100% auto;
   display: block;
   width: rem(112);
@@ -314,16 +315,6 @@
   height: 0;
   width: 100%;
   z-index: 5;
-
-  .logo {
-    @extend %pull-left;
-    background: url('static/images/logo@2x.png') no-repeat left center;
-    background-size: 100% auto;
-    display: block;
-    width: rem(112);
-    height: rem(83);
-    margin-top: rem(35);
-  }
 
   .nav-item {
     @extend %pull-right;

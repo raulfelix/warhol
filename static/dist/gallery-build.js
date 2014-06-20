@@ -210,26 +210,26 @@ LWA.Views.Gallery = (function() {
     template: Handlebars.gallery_inline,
 
     init: function() {
-
+      var loader = LWA.Modules.Spinner('#header-gallery .loader-icon', {show: true});
       if (window.matchMedia && window.matchMedia("(min-width: 750px)").matches) {
         this.renderGallery();
         
-        LWA.Modules.Loader(
-          '#inline-gallery-frame .slidee',
-          '#header-gallery .m-wrap',
-          '#header-loader',
-          Inline.initialiseSly
-        );
+        LWA.Modules.Loader({
+          imageContent: '#inline-gallery-frame .slidee',
+          hiddenContent: '#header-gallery .m-wrap',
+          loader: loader,
+          callback: Inline.initialiseSly
+        });
 
       } else {
         $('#gallery-thumbs').hide();
         this.renderFeature();
 
-        LWA.Modules.Loader(
-          '#tmpl-gallery-images',
-          '#header-gallery .m-wrap',
-          '#header-loader'
-        );
+        LWA.Modules.Loader({
+          imageContent: '#tmpl-gallery-images',
+          hiddenContent: '#header-gallery .m-wrap',
+          loader: loader
+        });
       }
     },
 

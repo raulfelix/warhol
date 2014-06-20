@@ -6,7 +6,7 @@ window.LWA = window.LWA || { Views: {}, Modules: {} };
  * - jquery
  * - imagesLoaded
  */
-LWA.Modules.Loader = function(mediaWrap, container, spinner, callback) {
+LWA.Modules.Loader = function(options) {
 
   var state = {
     loader: undefined,
@@ -47,24 +47,23 @@ LWA.Modules.Loader = function(mediaWrap, container, spinner, callback) {
       $container = $(container);
 
       imagesLoaded(images, function(instance) {
-        if (callback) {
-          callback();
+        if (options.callback) {
+          options.callback();
         }
-        state.loader.hide();
+        if (state.loader) {
+          state.loader.hide();
+        }
         $container.removeClass('m-transparent');
       });
     }
   };
 
-  function init(mediaWrap, container, spinner) {
-    state.loader = LWA.Modules.Spinner(spinner);
-    
-    var wrap = $(mediaWrap);
+  function init() {
+    var wrap = $(options.imageContent);
     state.type = wrap.data('type');
-
-    Images.init(wrap, container);
+    state.loader = options.loader;
+    Images.init(wrap, options.hiddenContent);
   }
 
-  init(mediaWrap, container, spinner);
-
+  init();
 };

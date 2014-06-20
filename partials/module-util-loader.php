@@ -1,0 +1,1 @@
+<img class="loader-icon" src="<?php bloginfo('template_directory'); ?>/static/images/loader-pink.GIF " />

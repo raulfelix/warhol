@@ -78,14 +78,12 @@
   border-color: $pink;
   opacity: 0.4;
 
-  .text {
+  .button-text {
     display: none;
   }
 
-  .button-loader-icon {
-    width: rem(32);
-    display: inline-block;
-    margin-top: rem(-4);
+  .loader-icon {
+    display: block;
   }
 }
 

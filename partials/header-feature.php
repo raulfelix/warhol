@@ -62,7 +62,7 @@
     </div>
   </div>
   
-  <img id="header-loader" class="loader-icon loader-show" src="<?php bloginfo('template_directory'); ?>/static/images/loader.GIF " />
+  <?php get_template_part('partials/module', 'util-loader'); ?>
   
   <div id="header-gallery-thumbs" class="header-gallery-thumbs frame">
     <ul class="slidee">

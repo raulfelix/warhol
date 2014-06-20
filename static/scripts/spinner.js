@@ -17,6 +17,9 @@ LWA.Modules.Spinner = function(loaderSelector, opts) {
 
   function init() {
     $el = $(loaderSelector);
+    if (opts && opts.show) {
+      show();
+    }
   }
 
   init();
