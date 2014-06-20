@@ -203,4 +203,30 @@ function views() {
   echo get_views();
 }
 
+// ----------------------------------- 
+// Social media sharing buttons  
+// -----------------------------------
+function generate_share_link($key) {
+  switch ($key) {
+    case 'Facebook':
+      $args = "https://www.facebook.com/sharer/sharer.php?u=" . urlencode(get_the_permalink()) . 
+        "&title=" . urlencode(get_the_title()) . "&og:image=" . urlencode(get_search_thumbnail());
+      break;
+    case 'Google+':
+      $args = "https://plus.google.com/share?url=" . urlencode(get_the_permalink());
+      break;
+
+    case 'Twitter':
+      $args = "https://twitter.com/share?url=" . urlencode(get_the_permalink());
+      break;
+
+    case 'Pinterest':
+      $args = "http://www.pinterest.com/pin/create/button/?url=". urlencode(get_the_permalink()) .
+        "&media=" . urlencode(get_search_thumbnail()) . "&description=" . urlencode(get_the_title());
+      break;
+  }
+
+  return "<button class='button button-social' data-href={$args}>{$key}</button>";
+}
+
 ?>
