@@ -96,7 +96,9 @@ function get_content_image($as_src) {
   $first_img = '';
 
   $output = preg_match_all('/<img.+class=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-  $first_img = $matches[1][0];
+  if ($matches[1]) {
+    $first_img = $matches[1][0];
+  }
 
   if (!empty($first_img)) {
     $extracted = explode("-", $matches[1][0]);
