@@ -47,6 +47,7 @@ module.exports = function(grunt) {
             'static/scripts/precompiled/article-template.js',
             'static/scripts/precompiled/instabinge-template.js',
             'static/vendor/imagesloaded.pkgd.min.js',
+            'static/scripts/load.js',
             'static/scripts/post-loader.js',
             'static/scripts/home.js',
             'static/scripts/instabinge.js'
@@ -74,7 +75,6 @@ module.exports = function(grunt) {
           'static/dist/single-build.js' : [
             'static/vendor/imagesloaded.pkgd.min.js',
             'static/scripts/share.js',
-            'static/scripts/load.js',
             'static/scripts/single.js'
           ],
           'static/dist/category-build.js' : [

@@ -1,5 +1,5 @@
 <header class="header header-feature">
-  <div class="feature-carousel">
+  <div class="m-wrap m-transparent feature-carousel">
     <ul class="slides">
 
       <?php
@@ -50,6 +50,7 @@
     </div>
   </div>
   <?php get_template_part('partials/header', 'nav'); ?>
+  <?php get_template_part('partials/module', 'util-loader'); ?>
 </header>
 
 <?php
