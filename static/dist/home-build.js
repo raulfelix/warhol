@@ -660,8 +660,8 @@ LWA.Views.Instabinge = (function() {
 
   return {
     init: function() {
-      // View.initialize();
-      // Modal.init();
+      View.initialize();
+      Modal.init();
 
       $(window).resize(updateSly);
     }
