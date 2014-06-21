@@ -39,9 +39,6 @@
 
   .link.h-1 {
     @extend %gothic;
-    &:hover {
-      color: $white;
-    }
   }
 
   .header-feature-bg {
