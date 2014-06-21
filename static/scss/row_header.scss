@@ -55,6 +55,13 @@
     z-index: 0;
   }
 
+  .header-feature-text {
+    background-color: $pink;
+    .link:hover {
+      color: $black;
+    }
+  }
+
   .feature-carousel {
     @extend %absolute;
     height: 100%;

@@ -15,10 +15,11 @@
             $query->the_post();
       ?>
 
-        <li>
-          <?php 
-            $attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original');
-          ?>
+      <?php 
+        $attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original');
+      ?>
+        
+        <li class="<?php echo $attrs ? '' : 'header-feature-text' ?>">
           <?php if ($attrs): ?>
             <div class="header-feature-bg" style="background-image: url(<?php echo $attrs[0]; ?>);"></div>
             <div class="blanket-light"></div>
