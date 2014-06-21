@@ -496,9 +496,11 @@ LWA.Modules.Loader = function(options) {
           options.callback();
         }
         if (state.loader) {
-          state.loader.hide();
+          setTimeout(function() { state.loader.hide(); }, options.delayLoader ? options.delayLoader : 0);
         }
-        $container.removeClass('m-transparent');
+        setTimeout(function() {
+          $container.removeClass('m-transparent');
+        }, options.delayReveal ? options.delayReveal : 0);
       });
     }
   };
