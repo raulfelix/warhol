@@ -18,13 +18,13 @@
         <ul class="slidee">
           <?php 
             while( $attachments->get() ) : ?>
-            <li>
+            <li data-title="<?php echo $attachments->field( 'caption' ); ?>">
               <img src="<?php echo $attachments->src( 'large' ); ?>">
-              <div class="modal-gallery-caption"><?php echo $attachments->field( 'caption' ); ?></div>
             </li>
           <?php endwhile; ?>
         </ul>
       </div>
+      <div class="modal-gallery-caption">This is where the caption will sit and js will change the contents.</div>
       <div class="sly-controls">
         <button class="sly-prev"><i class="icon-arrow-left"></i></button>
         <button class="sly-next"><i class="icon-arrow-right"></i></button>
@@ -63,7 +63,7 @@
   </div>
   
   <?php get_template_part('partials/module', 'util-loader'); ?>
-  
+
   <div id="header-gallery-thumbs" class="header-gallery-thumbs frame">
     <ul class="slidee">
       <?php 

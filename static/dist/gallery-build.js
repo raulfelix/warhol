@@ -39,17 +39,20 @@ LWA.Views.Gallery = (function() {
         width: 200,
         height: 120,
         widthTouch: 40,
-        heightTouch: 100
+        heightTouch: 160
       }
     },
 
     elements: {
       $imgs: undefined,
-      $total: undefined
+      $total: undefined,
+      $caption: undefined
     },
 
     onActivate: function(eventName, position) {
+      var e = $(this.items[position].el);
       Modal.elements.$total.html((position + 1) + ' / ' + Modal.state.count);
+      Modal.elements.$caption.html(e.data('title'));
     },
 
     init: function() {
@@ -60,28 +63,31 @@ LWA.Views.Gallery = (function() {
       // cache elements
       this.elements.$imgs = Modal.state.modal.el().find('#modal-gallery-frame img');
       this.elements.$total = Modal.state.modal.el().find('.modal-gallery-count');
+      this.elements.$caption = Modal.state.modal.el().find('.modal-gallery-caption');
       Modal.state.count = this.elements.$imgs.length;
 
       this.setModalRowHeight();
       this.setImageDimensions();
 
-      Modal.state.sly = new Sly('#modal-gallery-frame', {
-        horizontal: 1,
-        itemNav: 'forceCentered',
-        smart: 1,
-        activateMiddle: 1,
-        mouseDragging: 1,
-        touchDragging: 1,
-        releaseSwing: 1,
-        startAt: 0,
-        speed: 0,
-        elasticBounds: 1,
-        easing: 'swing',
-        prev: Modal.state.modal.el().find('.sly-prev'),
-        next: Modal.state.modal.el().find('.sly-next')
-      });
-      Modal.state.sly.on('active', Modal.onActivate);
-      Modal.state.sly.init();
+      setTimeout(function() {
+        Modal.state.sly = new Sly('#modal-gallery-frame', {
+          horizontal: 1,
+          itemNav: 'forceCentered',
+          smart: 1,
+          activateMiddle: 1,
+          mouseDragging: 1,
+          touchDragging: 1,
+          releaseSwing: 1,
+          startAt: 0,
+          speed: 0,
+          elasticBounds: 1,
+          easing: 'swing',
+          prev: Modal.state.modal.el().find('.sly-prev'),
+          next: Modal.state.modal.el().find('.sly-next')
+        });
+        Modal.state.sly.on('active', Modal.onActivate);
+        Modal.state.sly.init();
+      }, 2000);
     },
 
     setModalRowHeight: function() {
@@ -103,21 +109,32 @@ LWA.Views.Gallery = (function() {
         - set image to have auto width, height: 100% 
     */
     setImageDimensions: function() {
-      var w, viewport, className = 'modal-gallery-height';
+      var w, viewport, viewportHeight, className = 'modal-gallery-height';
 
-      if (window.matchMedia && window.matchMedia("(max-width: 599px)").matches) {
+      if (window.matchMedia && window.matchMedia('(max-width: 599px)').matches) {
         viewport = $(window).width() - Modal.state.responsive.widthTouch;
       } else {
         viewport = $(window).width() - Modal.state.responsive.width;
       }
+      viewportHeight = Modal.state.modal.el().find('#modal-gallery-frame').height();
 
       Modal.elements.$imgs.each(function() {
         w = this.width;
         if (viewport < w) {
-          w = viewport;
-          className = 'modal-gallery-width';
+          this.className = 'modal-gallery-width';
+          
+          var img = this;
+          setTimeout(function() {
+            if (viewportHeight < img.height) {
+              $(img).addClass('modal-gallery-height');
+            }
+          }, 100);
+          
+        } else {
+          $(this).addClass('modal-gallery-height');
         }
-        $(this).addClass(className).closest('li').css('width', w);
+        $(this).closest('li').css('width', this.width);
+
       });
     },
 

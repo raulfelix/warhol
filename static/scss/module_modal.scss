@@ -176,28 +176,43 @@
   }
 
   .modal-gallery-caption {
-    margin-top: rem(10);
     width: 100%;
+    margin: 0 auto;
+    display: inline-block;
+    text-align: center;
+    bottom: rem(20);
+    padding: 0 20%;
   }
 
   .modal-view {
     overflow: visible !important;
+    width: 100%;
     max-width: 100%;
 
     // used for initial width calculation
     img {
-      height: 100%;
-      width: auto;
+      display: inline-block;
+      vertical-align: middle;
     }
 
     // required to show and hide images
     li {
       height: 100%;
+      text-align: center;
       opacity: 0;
       position: relative;
       &.active {
         opacity: 1;
       }
+    }
+    li:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      text-align: left;
+      margin-left: -5px;
+      width: 0px;
     }
 
     .modal-gallery-width {
