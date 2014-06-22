@@ -101,7 +101,7 @@ LWA.Views.Instabinge = (function() {
         activateOn: null,
         mouseDragging: 1,
         touchDragging: 1,
-        releaseSwing: 1,
+        releaseSwing: 0,
         startAt: 0,
         activatePageOn: null,
         speed: 300,
