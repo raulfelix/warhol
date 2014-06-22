@@ -73,6 +73,9 @@
   li {
     margin-bottom: rem(10);
   }
+  li:last-child {
+    margin-bottom: 0;
+  }
   .instabinge-username {
     font-size: 12px;
     float: none;
