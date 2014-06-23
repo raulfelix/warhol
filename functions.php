@@ -67,13 +67,12 @@ add_action('admin_enqueue_scripts', 'enqueue_custom_admin_scripts');
 // add app JS in footer of page
 // ------------------------------ 
 function add_scripts() {
-  wp_register_script( 'global-build', get_template_directory_uri() . '/static/dist/global-build.js', null, '', true );
-  wp_register_script( 'home-build', get_template_directory_uri() . '/static/dist/home-build.js', null, '', true );
-  wp_register_script( 'category-build', get_template_directory_uri() . '/static/dist/category-build.js', null, '', true );
-  wp_register_script( 'gallery-build', get_template_directory_uri() . '/static/dist/gallery-build.js', array('single-build'), '', true );
-  wp_register_script( 'single-build', get_template_directory_uri() . '/static/dist/single-build.js', null, '', true );
+  wp_register_script( 'global', get_template_directory_uri() . '/static/dist/prod/global.min.js', null, '', true );
+  wp_register_script( 'home', get_template_directory_uri() . '/static/dist/prod/home.min.js', null, '', true );
+  wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/prod/gallery.min.js', array('single'), '', true );
+  wp_register_script( 'single', get_template_directory_uri() . '/static/dist/prod/single.min.js', null, '', true );
   
-  wp_enqueue_script( 'global-build' );
+  wp_enqueue_script( 'global' );
 }
 add_action( 'wp_enqueue_scripts', 'add_scripts', 999 );
 

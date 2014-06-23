@@ -63,6 +63,5 @@
 <?php 
   wp_reset_query();
   
-  wp_enqueue_script( 'category-build' );
   get_footer(); 
 ?>

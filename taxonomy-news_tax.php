@@ -115,6 +115,6 @@
 <?php 
   wp_reset_query();
   
-  wp_enqueue_script( 'category-build' );
+  wp_enqueue_script( 'category' );
   get_footer(); 
 ?>

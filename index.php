@@ -112,6 +112,6 @@
   <?php get_template_part('partials/module', 'instabinge-single'); ?>
 
 <?php 
-  wp_enqueue_script( 'home-build' );
+  wp_enqueue_script( 'home' );
   get_footer(); 
 ?>

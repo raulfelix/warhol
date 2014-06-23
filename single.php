@@ -33,6 +33,6 @@
   ?>
   
 <?php
-  wp_enqueue_script( 'single-build' );
+  wp_enqueue_script( 'single' );
   get_footer(); 
 ?>

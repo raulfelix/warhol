@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: 'static/scripts/*.js',
-        tasks: ['jshint', 'concat'],
+        tasks: ['jshint', 'concat', 'uglify'],
       },
       src: {
         files: ['static/scss/*.scss'],
@@ -47,7 +47,6 @@ module.exports = function(grunt) {
             'static/scripts/precompiled/article-template.js',
             'static/scripts/precompiled/instabinge-template.js',
             'static/vendor/imagesloaded.pkgd.min.js',
-            'static/scripts/load.js',
             'static/scripts/post-loader.js',
             'static/scripts/home.js',
             'static/scripts/instabinge.js'
@@ -57,7 +56,7 @@ module.exports = function(grunt) {
             'static/vendor/*.js',
             '!static/vendor/imagesloaded.pkgd.min.js',
             '!static/vendor/sly.min.js',
-            '!static/vendor/swipe.min.js',
+            '!static/vendor/hammer.min.js',
             'static/scripts/global.js',
             'static/scripts/nav.js',
             'static/scripts/modal.js',
@@ -65,10 +64,13 @@ module.exports = function(grunt) {
             'static/scripts/precompiled/search-template.js',
             'static/scripts/button-loader.js',
             'static/scripts/search.js',
-            'static/scripts/spinner.js'
+            'static/scripts/load.js',
+            'static/scripts/spinner.js',
+            'static/scripts/dropdown.js'
           ],
           'static/dist/gallery-build.js' : [
             'static/vendor/sly.min.js',
+            'static/vendor/hammer.min.js',
             'static/scripts/precompiled/gallery-template.js',
             'static/scripts/gallery.js'
           ],
@@ -80,6 +82,27 @@ module.exports = function(grunt) {
           'static/dist/category-build.js' : [
             'static/scripts/dropdown.js'
           ]
+        }
+      }
+    },
+
+    uglify: {
+      options: {
+        sourceMap: true,
+        compress: {
+          drop_console: true
+        },
+        mangle: {
+          except: ['jQuery', 'Handlebars', 'flexslider']
+        }
+      },
+      my_target: {
+        files: {
+          'static/dist/prod/global.min.js': ['static/dist/global-build.js'],
+          'static/dist/prod/home.min.js': ['static/dist/home-build.js'],
+          'static/dist/prod/single.min.js': ['static/dist/single-build.js'],
+          'static/dist/prod/gallery.min.js': ['static/dist/gallery-build.js'],
+          'static/dist/prod/category.min.js': ['static/dist/category-build.js']
         }
       }
     },
@@ -110,6 +133,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-handlebars');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask('default', ['sass', 'concat']);
 };
