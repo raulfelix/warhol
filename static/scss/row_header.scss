@@ -65,7 +65,7 @@
     .h-5, .icon-close, img {
       display: inline-block;
       margin-bottom: 0;
-      vertical-align: middle;
+      vertical-align: bottom;
     }
     
     .icon-close {
@@ -78,6 +78,7 @@
       left: auto;
       margin-left: 0;
       display: inline-block;
+      vertical-align: middle;
     }
   }
 
