@@ -12,10 +12,10 @@
     <div class="f-row">
       <div class="f-1-3 bp1-1">
         <div class="thumb-author">
-          <a class="thumb-author-image" href="<?php echo $user->user_url; ?>">
+          <a target="_blank" class="thumb-author-image" href="<?php echo $user->user_url; ?>">
             <?php echo get_avatar( $user->ID, 512 ); ?>
           </a>
-          <a href="<?php echo $user->user_url; ?>" class="h-2 thumb-author-details">
+          <a target="_blank" href="<?php echo $user->user_url; ?>" class="h-2 thumb-author-details">
             <?php echo $user->display_name; ?>
           </a>
           <div class="h-5 thumb-author-location">
@@ -25,7 +25,7 @@
       </div>
       <div class="f-2-3 bp1-1">
         <?php echo wpautop( $user->description, true ); ?>
-        <a class="link link-pink" href="<?php echo $user->user_url; ?>"><?php echo $user->user_url; ?></a>
+        <a target="_blank" class="link link-pink" href="<?php echo $user->user_url; ?>"><?php echo $user->user_url; ?></a>
       </div>
     </div>
   </div>
