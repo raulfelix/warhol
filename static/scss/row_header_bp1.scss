@@ -62,17 +62,18 @@
   
   .header-category-h1 {
     font-size: 22px;
+    margin-bottom: rem(10);
   }
   .header-category-h2 {
-    margin-bottom: rem(10);
+    display: none;
   }
 
   .header-category-branded {
-    padding-right: rem(10);
     bottom: rem(10);
-
+    padding: 0;
+    right: rem(5);
     img {
-      width: 100%;
+      width: rem(140);
     }
   }
 }
