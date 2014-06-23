@@ -33,6 +33,13 @@
   font-family:'Apercu Pro Medium', 'Trebuchet MS', Arial, sans-serif; 
 }
 
+.link-pink {
+  color: $highlight;
+  &:hover {
+    color: $pink;
+  }
+}
+
 //---------------------------------------
 // reserved for content editing articles
 //---------------------------------------

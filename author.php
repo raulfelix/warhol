@@ -5,7 +5,30 @@
  */
 
   get_header();
+
+  $user = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
 ?>
+  <div class="section-bio f-grid">
+    <div class="f-row">
+      <div class="f-1-3 bp1-1">
+        <div class="thumb-author">
+          <a class="thumb-author-image" href="<?php echo $user->user_url; ?>">
+            <?php echo get_avatar( $user->ID, 512 ); ?>
+          </a>
+          <a href="<?php echo $user->user_url; ?>" class="h-2 thumb-author-details">
+            <?php echo $user->display_name; ?>
+          </a>
+          <div class="h-5 thumb-author-location">
+            <?php echo ($user->location) ? $user->location : 'unknown location'; ?>
+          </div>
+        </div>
+      </div>
+      <div class="f-2-3 bp1-1">
+        <?php echo wpautop( $user->description, true ); ?>
+        <a class="link link-pink" href="<?php echo $user->user_url; ?>"><?php echo $user->user_url; ?></a>
+      </div>
+    </div>
+  </div>
 
   <div class="section-thumb-bg">
     <div class="f-grid section-thumb">
@@ -23,17 +46,15 @@
       $args = Array(
         'posts_per_page' => 6,
         'paged' => $paged,
-        'author_name' => get_query_var('author_name'),
+        'author_name' => $author_name,
         'post_type' => array('lwa_feature', 'lwa_news'),
-        //'post__not_in' => array( $post_ID_no_repeat ),
       );
     } else {
       $args = Array(
         'posts_per_page' => 6,
         'paged' => $paged,
-        'author_name' => get_query_var('author_name'),
+        'author_name' => $author_name,
          'post_type' => array('lwa_feature', 'lwa_news'),
-        //'post__not_in' => array( $post_ID_no_repeat ),
         'meta_key' => '_count-views_all',
         'orderby' => 'meta_value_num'
       );
@@ -47,7 +68,7 @@
         $wp_query->the_post();
   ?>
 
-        <div class="f-1-3 bp2-1-2 thumb-inline">
+        <div class="f-1-3 bp1-1-2 thumb-inline">
           <?php get_template_part('partials/article', 'thumb'); ?>
         </div>
   

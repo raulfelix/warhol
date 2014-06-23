@@ -201,6 +201,14 @@
   }
 }
 
+.section-bio {
+  padding: rem(100) 0;
+  
+  .thumb-author, .h-5 {
+    margin-bottom: 0;
+  }
+}
+
 .sly-controls {
   .sly-next,
   .sly-prev,
