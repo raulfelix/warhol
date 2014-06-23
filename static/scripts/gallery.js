@@ -53,7 +53,7 @@ LWA.Views.Gallery = (function() {
           touchDragging: 1,
           releaseSwing: 0,
           startAt: 0,
-          speed: 300,
+          speed: 240,
           elasticBounds: 1,
           easing: 'swing',
           prev: Modal.state.modal.el().find('.sly-prev'),
@@ -83,12 +83,12 @@ LWA.Views.Gallery = (function() {
         - set image to have auto width, height: 100% 
     */
     setImageDimensions: function() {
-      var w, viewport, viewportHeight, className = 'modal-gallery-height';
+      var w, originalViewport = $(window).width(), viewport, viewportHeight, className = 'modal-gallery-height';
 
       if (window.matchMedia && window.matchMedia('(max-width: 599px)').matches) {
-        viewport = $(window).width() - Modal.state.responsive.widthTouch;
+        viewport = originalViewport - Modal.state.responsive.widthTouch;
       } else {
-        viewport = $(window).width() - Modal.state.responsive.width;
+        viewport = originalViewport - Modal.state.responsive.width;
       }
       viewportHeight = Modal.state.modal.el().find('#modal-gallery-frame').height();
 
@@ -107,8 +107,8 @@ LWA.Views.Gallery = (function() {
         } else {
           $(this).addClass('modal-gallery-height');
         }
-        $(this).closest('li').css('width', this.width);
 
+        $(this).closest('li').css('width', originalViewport);
       });
     },
 
