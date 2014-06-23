@@ -195,15 +195,10 @@
       vertical-align: middle;
     }
 
-    // required to show and hide images
     li {
       height: 100%;
       text-align: center;
-      opacity: 0;
       position: relative;
-      &.active {
-        opacity: 1;
-      }
     }
     li:before {
       content: '';
