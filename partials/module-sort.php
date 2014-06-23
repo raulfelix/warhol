@@ -5,7 +5,7 @@
 
 <div class="f-row button-row button-row-left">
   <div class="f-1">
-    <button id="dropdown-sort" class="button dropdown">
+    <div id="dropdown-sort" class="button dropdown">
       <a href="javascript:void(0)" class="dropdown-label">
         <?php if ($order_query_var == 'desc'): ?>
           <span>sort by latest</span> 
@@ -18,6 +18,6 @@
         <a class="dropdown-item <?php echo ($order_query_var == "desc") ? 'dropdown-item-active':''?>" href="<?php echo $page_param; ?>&orderby=desc">sort by latest</a>
         <a class="dropdown-item <?php echo ($order_query_var == "popular") ? 'dropdown-item-active':''?>" href="<?php echo $page_param; ?>&orderby=popular">sort by most popular</a>
       </div>
-    </button>
+    </div>
   </div>
 </div>
