@@ -1,3 +1,5 @@
 @media all and (max-width: 61.063em) { 
-
+  .no-scroll, .no-scroll body {
+    position: fixed;
+  }
 }
