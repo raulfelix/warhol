@@ -29,6 +29,19 @@
     background-size: rem(800) auto;
   }
 
+  .header-feature-category {
+    margin-bottom: rem(40);
+    
+    .icon-close {
+      font-size: 14px;
+      margin: 0 rem(10);
+    }
+    
+    .category-logo {
+      width: rem(100);
+    }
+  }
+
   .feature-carousel {
     .flex-control-nav {
       bottom: rem(20);

@@ -59,6 +59,28 @@
     }
   }
 
+  .header-feature-category {
+    margin-bottom: rem(60);
+
+    .h-5, .icon-close, img {
+      display: inline-block;
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+    
+    .icon-close {
+      margin: 0 rem(20);
+    }
+    
+    .category-logo {
+      width: rem(120);
+      position: relative;
+      left: auto;
+      margin-left: 0;
+      display: inline-block;
+    }
+  }
+
   .feature-carousel {
     @extend %absolute;
     height: 100%;
@@ -187,6 +209,10 @@
       @extend %pull-right;
     }
 
+    img {
+      width: rem(240);
+    }
+    
     .header-category-h2 {
       margin: rem(22) rem(10) 0 0;
     }
