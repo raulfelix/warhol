@@ -28,8 +28,8 @@
       </div>
       <div class="f-1-2 header-category-branded">
         <?php if ( $logo_url ): ?>
-          <img src="<?php echo $logo_url; ?>">
           <div class="header-category-h2">in partnership with</div>
+          <img src="<?php echo $logo_url; ?>">
         <?php endif; ?>
       </div>
     </div>

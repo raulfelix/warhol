@@ -73,7 +73,7 @@
     }
     
     .category-logo {
-      width: rem(120);
+      width: rem(90);
       position: relative;
       left: auto;
       margin-left: 0;
@@ -200,21 +200,21 @@
   }
 
   .header-category-branded {
-    padding-right: rem(10);
     position: absolute;
-    right: rem(20);
+    right: rem(10);
     bottom: rem(20);
+    text-align: right;
 
-    .header-category-h2, img { 
-      @extend %pull-right;
+    .header-category-h2 { 
+      display: inline-block;
+      vertical-align: bottom; 
+      margin: 0 rem(10) 0 0;    
     }
 
     img {
-      width: rem(240);
-    }
-    
-    .header-category-h2 {
-      margin: rem(22) rem(10) 0 0;
+      display: inline-block;
+      vertical-align: middle;
+      width: rem(190);
     }
   }
 }

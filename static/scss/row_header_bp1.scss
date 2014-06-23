@@ -64,16 +64,16 @@
     font-size: 22px;
     margin-bottom: rem(10);
   }
-  .header-category-h2 {
+  .header-category-h2,
+  .header-category-branded .header-category-h2 {
     display: none;
   }
 
   .header-category-branded {
-    bottom: rem(10);
-    padding: 0;
+    bottom: rem(12);
     right: rem(5);
     img {
-      width: rem(140);
+      width: rem(90);
     }
   }
 }
