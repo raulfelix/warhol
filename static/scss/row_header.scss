@@ -414,16 +414,16 @@
   .nav-menu { 
     a:before {
       content: 'close';
-      color: $highlight;
+      color: $pink;
       font-size: 18px;
       right: rem(44);
       top: rem(60);
-      @extend %absolute;
+      position: absolute;
     }
 
     .icon-menu {
       @extend %icon-close;
-      color: $highlight;
+      color: $pink;
       display: inline-block;
     }
   }
