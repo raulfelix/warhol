@@ -46,6 +46,11 @@
   }
 }
 
+.modal-scrollable {
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
+}
+
 .modal-share-actions, 
 .modal-share-primary, 
 .modal-share-secondary {
@@ -54,10 +59,20 @@
 
 .modal-share-actions {
   padding: rem(40) 0;
+  margin-bottom: rem(20);
+  
   .button {
     margin: 0 rem(5);
     font-family: "Apercu Pro Medium", 'Trebuchet MS', Arial, sans-serif;
   }
+
+  .button-url {
+    margin: 0;
+  }
+}
+
+.modal-share-buttons {
+  margin-bottom: 0;
 }
 
 .modal-share-primary {

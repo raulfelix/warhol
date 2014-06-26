@@ -20,8 +20,11 @@
 }
 
 .modal-share-buttons {
+  max-width: rem(300);
+  margin: 0 auto;
+
   .button {
-    margin: 0 auto rem(10) auto;
+    margin-bottom: rem(10);
   }
 
   .button-url {
@@ -36,7 +39,7 @@
 
 .modal-share-secondary {
   font-size: rem(12);
-  margin-bottom: rem(30);
+  margin-bottom: rem(13);
 }
 
 .modal-instabinge {
