@@ -1,14 +1,13 @@
 @font-face {
   font-family: 'LWA-icons';
-  src:url('./fonts/LWA-icons.eot?nb0yxy');
-  src:url('./fonts/LWA-icons.eot?#iefixnb0yxy') format('embedded-opentype'),
-    url('./fonts/LWA-icons.woff?nb0yxy') format('woff'),
-    url('./fonts/LWA-icons.ttf?nb0yxy') format('truetype'),
-    url('./fonts/LWA-icons.svg?nb0yxy#LWA-icons') format('svg');
+  src:url('./static/fonts/LWA-icons.eot?2t3do0');
+  src:url('./static/fonts/LWA-icons.eot?#iefix2t3do0') format('embedded-opentype'),
+    url('./static/fonts/LWA-icons.woff?2t3do0') format('woff'),
+    url('./static/fonts/LWA-icons.ttf?2t3do0') format('truetype'),
+    url('./static/fonts/LWA-icons.svg?2t3do0#LWA-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
-
 [class^="icon-"], [class*=" icon-"] {
   font-family: 'LWA-icons';
   speak: none;
@@ -61,4 +60,7 @@
 }
 .icon-expand:before {
   content: "\e60c";
+}
+.icon-reload:before {
+  content: "\e60d";
 }
