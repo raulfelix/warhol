@@ -33,6 +33,14 @@
   }
 }
 
+.loader-icon-black .icon-reload {
+  color: $black;
+}
+
+.loader-icon-pink .icon-reload {
+  color: $pink;
+}
+
 .button-loader .loader-icon {
   width: rem(24);
   height: rem(24);
@@ -59,23 +67,8 @@
 }
 
 .loader-container {
-  height: rem(50);
-  width: 100%;
+  height: rem(60);
   position: relative;
-  
-  & > div {
-    width: 100%;
-  }
-
-  img {
-    display: inline-block;
-    width: rem(32);
-    height: rem(32);
-
-    position: absolute;
-    left: 50%;
-    margin-left: rem(-16);
-  }
 }
 
 .loader-show {

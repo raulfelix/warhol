@@ -5,8 +5,8 @@
       <a href="<?php echo get_home_url(); ?>" class="logo"></a>
       <div class="search-row-input">
         <input class="input-search" type="text" placeholder="Search for something">
-        <button id="js-search" class="button button-search button-loader" type="text">
-          <span class="text"><i class="icon-search"></i>Search</span>
+        <button id="js-search" class="button button-search button-loader button-icon" type="text">
+          <span class="button-text text"><i class="icon icon-search"></i>Search</span>
           <?php get_template_part('partials/module', 'util-loader'); ?>
         </button>
       </div>

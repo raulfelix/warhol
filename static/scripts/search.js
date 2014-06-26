@@ -83,7 +83,7 @@ LWA.Modules.Search = (function() {
       View.reset = View.element.overflow.infinitescroll({
         loading: {
           selector: '.loader-container',
-          msg: $('<img src="' + LWA.Data.url + '/wp-content/themes/warhol/static/images/loader-pink.GIF" />'),
+          msg: $('<div class="loader-icon loader-icon-pink"><i class="icon-reload"></i></div>'),
           finishedMessage: undefined,
         },
         behavior: 'local',
