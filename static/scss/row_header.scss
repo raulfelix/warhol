@@ -412,15 +412,6 @@
   height: rem(585);
 
   .nav-menu { 
-    a:before {
-      content: 'close';
-      color: $pink;
-      font-size: 18px;
-      right: rem(44);
-      top: rem(60);
-      position: absolute;
-    }
-
     .icon-menu {
       @extend %icon-close;
       color: $pink;
