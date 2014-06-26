@@ -130,9 +130,11 @@
       color: #fff;
       opacity: 1;
       text-shadow: none;
+      height: rem(30);
+      width: rem(30);
       &:before {
         font-family: "LWA-icons";
-        font-size: 38px;
+        font-size: 30px;
         display: inline-block;
         content: '\e60b';
       }
@@ -364,23 +366,12 @@
     a {
       color: $white;
       display: block;
-    }
-  }
-
-  .nav-menu {
-    .icon-menu {
-      font-size: rem(28);
-      display: block;
-      line-height: 0.9;
+      font-size: 24px;
     }
   }
 
   .nav-search {
     margin-right: rem(60);
-    .icon-search {
-      font-size: rem(26);
-      display: block;
-    }
   }
 
   .nav-links {
@@ -424,8 +415,8 @@
     a:before {
       content: 'close';
       color: $highlight;
-      font-size: rem(18);
-      right: rem(54);
+      font-size: 18px;
+      right: rem(44);
       top: rem(60);
       @extend %absolute;
     }
