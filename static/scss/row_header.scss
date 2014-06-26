@@ -59,6 +59,17 @@
     }
   }
 
+  .header-feature-details {
+    position: absolute;
+    bottom: rem(30);
+    text-align: center;
+    width: 100%;
+
+    span {
+      margin: 0 rem(20);
+    }
+  }
+
   .header-feature-category {
     margin-bottom: rem(60);
 
