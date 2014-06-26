@@ -34,10 +34,6 @@
     .button {
       margin-top: rem(20);
     }
-
-    span {
-      margin: 0 rem(10);
-    }
   }
 
   .button-row {
@@ -59,12 +55,17 @@
 }
 
 .details-row {
-
-  .fb-like {
+  a {
+    float: left;
+  }
+  
+  .fb-like, 
+  .fb-like span {
+    margin: 0;
+    display: block;
+  }
+  .details-row-right {
     float: right;
-    span {
-      margin: 0;
-    }
   }
 }
 
