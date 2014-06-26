@@ -401,21 +401,15 @@
       margin: 0 rem(30); 
     }
   }
-
-  .f-row {
-    height: 100%;
-  }
 }
 
 .nav-active {
   height: rem(585);
 
-  .nav-menu { 
-    .icon-menu {
-      @extend %icon-close;
-      color: $pink;
-      display: inline-block;
-    }
+  .nav-menu .icon-menu {
+    @extend %icon-close;
+    color: $pink;
+    display: inline-block;
   }
 
   .nav-links {
