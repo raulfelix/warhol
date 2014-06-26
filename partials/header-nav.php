@@ -13,7 +13,7 @@
         <ul class="nav-links-primary">
           <li><a href="<?php echo get_home_url(); ?>/featured/tuesdays-without">Tuesdays Without</a></li>
           <li><a href="<?php echo get_home_url(); ?>/featured/parties-bullshit">Parties &amp; Bullshit</a></li>
-          <li><a href="<?php echo get_home_url(); ?>/featured/twentyfour">Twenty Four</a></li>
+          <li><a href="<?php echo get_home_url(); ?>/featured/twentyfour">Twentyfour</a></li>
           <li><a href="<?php echo get_home_url(); ?>/news/news">News</a></li>
         </ul>
         <ul class="nav-links-secondary">
