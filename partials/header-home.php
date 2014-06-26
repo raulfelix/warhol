@@ -36,10 +36,10 @@
                   ?>
                   <div class="header-feature-category">
                     <a class="link h-5" href="<?php echo $category['permalink']; ?>">
-                      <?php echo $category['name']; ?>
+                      <span class="header-feature-category-item"><?php echo $category['name']; ?></span>
+                      <i class="header-feature-category-item icon-close"></i>
+                      <img class="category-logo" src="<?php echo $logo_url; ?>">
                     </a>
-                    <i class="icon-close"></i>
-                    <img class="category-logo" src="<?php echo $logo_url; ?>">
                   </div>
                 <?php else: ?>
                   <a class="link h-5" href="<?php echo $category['permalink']; ?>">

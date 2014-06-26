@@ -30,14 +30,12 @@
   height: rem(748);
   @include transition(height 300ms ease);
 
-  .link {
+  .link, 
+  .link:hover {
     color: $white;
-    &:hover {
-      color: $pink;
-    }
   }
 
-  .link.h-1 {
+  .h-1 {
     @extend %gothic;
   }
 
@@ -54,9 +52,6 @@
 
   .header-feature-text {
     background-color: $pink;
-    .link:hover {
-      color: $black;
-    }
   }
 
   .header-feature-details {
@@ -71,7 +66,12 @@
   }
 
   .header-feature-category {
-    margin-bottom: rem(60);
+    margin-bottom: rem(36);
+
+    .header-feature-category-item {
+      display: inline-block;
+      vertical-align: bottom;
+    }
 
     .h-5, .icon-close, img {
       display: inline-block;
