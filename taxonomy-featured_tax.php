@@ -64,14 +64,14 @@
 
     if ($order === 'desc') {
       $args = Array(
-        'posts_per_page' => 6,
+        'posts_per_page' => 12,
         'paged' => $paged,
         'post__not_in' => array( $post_ID_no_repeat ),
         'featured_tax' => $featured_tax
       );
     } else {
       $args = Array(
-        'posts_per_page' => 6,
+        'posts_per_page' => 12,
         'paged' => $paged,
         'post__not_in' => array( $post_ID_no_repeat ),
         'featured_tax' => $featured_tax,

@@ -72,14 +72,14 @@
     if ($order === 'desc') {
       $args = Array(
         'post_type' => 'lwa_news',
-        'posts_per_page' => 6,
+        'posts_per_page' => 12,
         'paged' => $paged,
         'post__not_in' => array( $post_ID_no_repeat ),
       );
     } else {
       $args = Array(
         'post_type' => 'lwa_news',
-        'posts_per_page' => 6,
+        'posts_per_page' => 12,
         'paged' => $paged,
         'post__not_in' => array( $post_ID_no_repeat ),
         'meta_key' => '_count-views_all',
