@@ -64,8 +64,6 @@
 }
 
 .button-loader {
-  @include transition(opacity 200ms ease-out);
-  
   .button-loader-icon {
     display: none;
   }
@@ -74,9 +72,9 @@
 .button-loader-active,
 .button-loader-active:active,
 .button-loader-active:hover {
-  background-color: transparent;
-  border-color: $pink;
-  opacity: 0.4;
+  background-color: $highlight;
+  border-color: $highlight;
+  color: $white;
 
   .button-text {
     display: none;
@@ -115,12 +113,14 @@
   }
 }
 
-.button-search {
-  padding-left: rem(38);
-  .icon-search {
+.button-icon {
+  .text {
+    padding-left: rem(20);
+  }
+  .icon {
     font-size: rem(20);
     position: absolute;
-    left: rem(30);
+    left: rem(40);
   }
 }
 

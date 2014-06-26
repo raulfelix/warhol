@@ -1,1 +1,3 @@
-<img class="loader-icon" src="<?php bloginfo('template_directory'); ?>/static/images/loader-pink.GIF " />
+<div class="loader-icon">
+  <i class="icon-reload"></i>
+</div>
