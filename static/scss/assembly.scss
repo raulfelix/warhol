@@ -199,6 +199,7 @@
 }
 
 .input-search {
+  background-color: transparent;
   border: none;
   border-bottom: 2px solid $pink;
   font-size: rem(24);
@@ -252,20 +253,4 @@
     opacity: 0.4;
     color: $white;
   }
-}
-
-::-webkit-input-placeholder {
-   color: #000;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-   color: #000; 
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   color: #000; 
-}
-
-:-ms-input-placeholder {  
-   color: #000;
 }
