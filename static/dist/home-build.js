@@ -24,7 +24,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.thumbnail) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.thumbnail); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n      <span class=\"thumb-time\">";
+    + "\">\n      <div class=\"m-overlay blanket-light\"></div>\n      <span class=\"thumb-time\">";
   if (helper = helpers.when) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.when); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -86,41 +86,45 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n      <li>\n        <a href=\"http://www.instagram.com/"
+  buffer += "\n          <li>\n            <a href=\"http://www.instagram.com/"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.from)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" class=\"instabinge-username\" target=\"_blank\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.from)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a>\n        <div class=\"instabinge-comment\">";
+    + "</a>\n            <div class=\"instabinge-comment\">";
   if (helper = helpers.text) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.text); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</div>\n      </li>\n      ";
+    + "</div>\n          </li>\n          ";
   return buffer;
   }
 
-  buffer += "<div class=\"modal-view-image m-wrap m-transparent\">\n  <img class=\"m-bg\" src=\""
+  buffer += "<li style=\"width:";
+  if (helper = helpers.window_width) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.window_width); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "px;\">\n  <div class=\"instabinge-pod-wrap\">\n    <div class=\"modal-view-image m-wrap m-transparent\">\n      <img class=\"m-bg\" src=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.images)),stack1 == null || stack1 === false ? stack1 : stack1.standard_resolution)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n</div>\n<div class=\"modal-view-details\">\n  <div class=\"instabinge-profile\">\n    <div class=\"instabinge-profile-img\">\n      <img src=\""
+    + "\">\n    </div>\n    <div class=\"modal-view-details\">\n      <div class=\"instabinge-profile\">\n        <div class=\"instabinge-profile-img\">\n          <img src=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.profile_picture)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n    </div>\n    <div class=\"instabinge-profile-details\">\n      <div class=\"instabinge-username\">@"
+    + "\">\n        </div>\n        <div class=\"instabinge-profile-details\">\n          <div class=\"instabinge-profile-details-primary\">\n            <div class=\"instabinge-username\">@"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n      <div class=\"instabinge-name\">"
+    + "</div>\n            <div class=\"instabinge-name\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.full_name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n      <div class=\"instabinge-when\">";
+    + "</div>\n          </div>\n          <div class=\"instabinge-profile-details-secondary\">\n            <div class=\"instabinge-when\">";
   if (helper = helpers.created_time) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_time); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</div>\n      <div class=\"instabinge-likes\"><i class=\"icon-likes\"></i> "
+    + "</div>\n            <div class=\"instabinge-likes\"><i class=\"icon-likes\"></i> "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.likes)),stack1 == null || stack1 === false ? stack1 : stack1.count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n    </div>\n  </div>\n  <div class=\"instabinge-comment\">\n    "
+    + "</div>\n          </div>\n        </div>\n      </div>\n      <div class=\"instabinge-comment\">\n        <span class=\"instabinge-caption\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.caption)),stack1 == null || stack1 === false ? stack1 : stack1.text)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\n    ";
+    + "</span>\n        <span class=\"instabinge-tags\">";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.tags), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n  </div>\n  <div class=\"instabinge-comments\">\n    <div class=\"instabinge-secondary\">Comments</div>\n    <ul class=\"instabinge-other-comments\">\n      ";
+  buffer += "</span>\n      </div>\n      <div class=\"instabinge-comments\">\n        <div class=\"instabinge-secondary\">Comments</div>\n        <ul class=\"instabinge-other-comments\">\n          ";
   stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.comments)),stack1 == null || stack1 === false ? stack1 : stack1.data), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </ul>\n  </div>\n</div>";
+  buffer += "\n        </ul>\n      </div>\n    </div>\n  </div>\n</li>";
   return buffer;
   });
 /*!
@@ -499,15 +503,16 @@ LWA.Views.Instabinge = (function() {
   var Modal = {
 
     element: {
-      $frame: $('#modal-instabinge-frame'),
-      $prev: undefined,
-      $next: undefined
+      $frame: $('#modal-instabinge-frame')
     },
 
     state: {
       modal: undefined,
-      itemIndex: undefined,
-      singleLoader: undefined
+      sly: undefined,
+      singleLoader: undefined,
+      isLoad: true,
+      activeItem: 0,
+      nextIndex: 0
     },
 
     template: Handlebars.instabinge_thumb_modal,
@@ -515,122 +520,152 @@ LWA.Views.Instabinge = (function() {
     initialize: function(index) {
       View.state.modal.loader.start();
       Modal.state.singleLoader = LWA.Modules.Spinner('#modal-instabinge .loader-icon');
+      Modal.element.$frame.width(Modal.getWindowWidth());
+
+      console.log('initialize modal');
+      console.log(index);
+      if (index === 0) {
+        Modal.state.isLoad = false;
+      }
 
       // get cached data and render
-      Modal.setPos(index);
-      Modal.render(Ajax.cache[Modal.getPos()]);
-
-      // var e = document.getElementById('modal-instabinge-frame');
-      // // todo only do this on mobile
-      // new Hammer(e).on('swipeleft', function(event) {
-      //   Modal.getNext();
-      // });
-      // new Hammer(e).on('swiperight', function(event) {
-      //   Modal.getPrev();
-      // });
-
-      // Modal.element.$frame.touchwipe({
-      //   wipeLeft: Modal.getNext,
-      //   wipeRight: Modal.getPrev
-      // });
+      Modal.state.activeItem = Modal.render(index);
+      Modal.initializeSly(Modal.state.activeItem);
+      Modal.state.nextIndex = index + 1;
     },
 
-    getPrev: function(ev) {
-      ev.preventDefault();
-      
-      Modal.element.$next.removeClass('disabled');
-      
-      var index = Modal.getPos() - 1;
-      if (index < 0) {
+    initializeSly: function(index) {
+      var $wrap = $('#modal-instabinge-controls');
+      Modal.state.sly = new Sly('#modal-instabinge-frame', {
+        horizontal: 1,
+        itemNav: 'basic',
+        smart: 1,
+        activateMiddle: 1,
+        releaseSwing: 0,
+        touchDragging: 1,
+        startAt: index,
+        speed: 240,
+        elasticBounds: 1,
+        easing: 'swing',
+        prev: $wrap.find('.sly-prev'),
+        next: $wrap.find('.sly-next')
+      });
+
+      Modal.state.sly.init();
+      Modal.state.sly.on('moveEnd', Modal.onActivate);
+    },
+
+    onActivate: function(eventName) {
+      if (Modal.state.isLoad) {
+        Modal.state.isLoad = false;
         return;
       }
 
-      if (index === 0) {
-        Modal.element.$prev.addClass('disabled');
+      // if left load next
+      if (Modal.state.activeItem < this.rel.activeItem) {
+        // if one before end
+        if (this.rel.activeItem === this.items.length - 1) {
+          Modal.renderNext();
+        }
       }
       
-      Modal.render(Ajax.cache[index]);
-      Modal.setPos(index);
+      Modal.state.activeItem = this.rel.activeItem;
     },
 
-    getNext: function(ev) {
-      ev.preventDefault();
-
-      Modal.element.$prev.removeClass('disabled');
-      var index = Modal.getPos() + 1;
-      if (index > Ajax.cache.length - 1) {
-        return;
-      }
-
-      if (Modal.isLast(index)) {
-        Modal.element.$next.addClass('disabled');
-
-        // load more
+    renderNext: function() {
+      if (Modal.isLast(Modal.state.nextIndex)) {
+        console.log('last item');
         Ajax.get(Modal.onLoad);
+        return;
       }
 
-      Modal.render(Ajax.cache[index]);
-      Modal.setPos(index);
+      Modal.state.nextIndex++;
+
+      var frame = Modal.renderFrame(Modal.state.nextIndex);
+      Modal.handleImageLoad(frame, frame.find('img'));
+      Modal.state.sly.add(frame);
+    },
+
+    handleImageLoad: function(wrapper, images) {
+      imagesLoaded(images, function(instance) {
+        Modal.state.singleLoader.hide();
+        wrapper.find('.m-wrap').removeClass('m-transparent');
+      });
     },
 
     isLast: function(index) {
       return (index === Ajax.cache.length - 1);
     },
 
-    getPos: function() {
-      return Modal.state.itemIndex;
-    },
-
-    setPos: function(index) {
-      Modal.state.itemIndex = index;
-    },
-
-    setHeight: function() {
-      if (window.matchMedia && window.matchMedia("(min-width: 600px)").matches) {
-        Modal.element.$frame.height(Modal.element.$frame.find('img').height());
+    getWindowWidth: function() {
+      if (window.matchMedia && window.matchMedia("(max-width: 599px)").matches) {
+        return $(window).width() - 20;
+      } else {
+        return $(window).width();
       }
+    },
+
+    isMobile: function() {
+      // todo cache this and update on browser resize
+      return (window.matchMedia && window.matchMedia("(max-width: 599px)").matches);
     },
 
     onLoad: function(response) {
       // keep horizontal view in sync
       View.state.sly.add(View.template(response));
       View.state.sly.reload();
-
-      View.state.modal.loader.stop();
-      Modal.element.$next.removeClass('disabled');
+      Modal.renderNext();
     },
 
-    onResize: function() {
-      var img = Modal.element.$frame.find('img');
-      if (img.length > 0) {
-        Modal.setHeight();
-      }
+    reload: function() {
+      // todo
+      var width = Modal.getWindowWidth();
+      Modal.element.$frame.width(Modal.getWindowWidth()).find('li').css('width', width);
+      Modal.state.sly.reload();
     },
 
-    render: function(response) {
+    render: function(index) {
       Modal.state.singleLoader.show();
-      Modal.formatData(response);
-      Modal.element.$frame.html(this.template(response));
-      
+      var slidee = Modal.element.$frame.find('.slidee');
+
+      if (index > 0) {
+        // render all tiles prior to this one
+        var fragment = $(document.createDocumentFragment());
+        for (var i = 0; i < index; i++) {
+          fragment.append(Modal.renderFrame(i));
+        }
+        slidee.append(fragment);
+      }
+
+      slidee.append(Modal.renderFrame(index));
+      slidee.append(Modal.renderFrame(index + 1));
+
       imagesLoaded(Modal.element.$frame.find('img'), function(instance) {
         View.state.modal.loader.stop();
         Modal.state.singleLoader.hide();
-        Modal.setHeight();
         Modal.element.$frame.find('.m-wrap').removeClass('m-transparent');
       });
+
+      return index;
+    },
+
+    renderFrame: function(index) {
+      var item = Modal.formatData(Ajax.cache[index]);
+      return $(this.template(item));
     },
 
     formatData: function(data) {
+      if (Modal.isMobile() && data.caption.text.length >= 100) {
+        console.log(data.caption.text);
+        data.caption.text = data.caption.text.substring(0, 100);
+      }
       data.created_time = Time.convert(Date.now(), data.created_time);
+      data.window_width = Modal.getWindowWidth();
+      return data;
     },
 
     init: function() {
-      var $wrap = $('#modal-instabinge-controls');
-      Modal.element.$prev = $wrap.find('.sly-prev').click(Modal.getPrev).addClass('disabled');
-      Modal.element.$next = $wrap.find('.sly-next').click(Modal.getNext);
       View.state.modal = LWA.Modules.Modal(undefined, '#modal-instabinge');
-
-      $(window).resize(Modal.onResize);
     }
   };
 
@@ -647,6 +682,7 @@ LWA.Views.Instabinge = (function() {
     delay(function() {
       console.log("reload...");
       View.reload();
+      Modal.reload();
     }, 200);
   }
 
