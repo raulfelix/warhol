@@ -4,7 +4,9 @@
     <div class="modal-wrap-row">
       <div class="modal-view frame">
         <?php get_template_part('partials/module', 'util-loader'); ?>
-        <div id="modal-instabinge-frame" class="modal-instabinge-frame"></div>
+        <div id="modal-instabinge-frame" class="modal-instabinge-frame">
+          <ul class="slidee"></ul>
+        </div>
       </div>
       <div id="modal-instabinge-controls" class="sly-controls">
         <button class="sly-prev" type="text"><i class="icon-arrow-left"></i></button>

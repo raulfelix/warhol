@@ -60,11 +60,19 @@
   @extend %clearfix;
 
   .instabinge-profile-img {
-    width: rem(150);
+    width: 38%;
     float: left;
+    img {
+      width: 100%;
+    }
   }
   .instabinge-profile-details {
-    margin-left: rem(170);
+    margin-left: 38%;
+  }
+
+  .instabinge-profile-details-primary,
+  .instabinge-profile-details-secondary {
+    padding: 0 rem(20);
   } 
 }
 
@@ -81,6 +89,7 @@
 .instabinge-username {
   font-size: 24px;
   padding: rem(20) 0 rem(3) 0;
+  @extend %gothic; 
 }
 .instabinge-name {
   font-size: 18px;

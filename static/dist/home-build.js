@@ -506,24 +506,17 @@ LWA.Views.Instabinge = (function() {
       $frame: $('#modal-instabinge-frame')
     },
 
-    state: {
-      modal: undefined,
-      sly: undefined,
-      singleLoader: undefined,
-      isLoad: true,
-      activeItem: 0,
-      nextIndex: 0
-    },
-
     template: Handlebars.instabinge_thumb_modal,
 
     initialize: function(index) {
       View.state.modal.loader.start();
+      console.log('initialize modal');
+      
+      Modal.state = Modal.setDefaults();
       Modal.state.singleLoader = LWA.Modules.Spinner('#modal-instabinge .loader-icon');
       Modal.element.$frame.width(Modal.getWindowWidth());
 
-      console.log('initialize modal');
-      console.log(index);
+      console.log('start at', index);
       if (index === 0) {
         Modal.state.isLoad = false;
       }
@@ -553,6 +546,17 @@ LWA.Views.Instabinge = (function() {
 
       Modal.state.sly.init();
       Modal.state.sly.on('moveEnd', Modal.onActivate);
+    },
+
+    setDefaults: function() {
+      return {
+        sly: undefined,
+        modal: undefined,
+        singleLoader: undefined,
+        isLoad: true,
+        activeItem: 0,
+        nextIndex: 0
+      };
     },
 
     onActivate: function(eventName) {
@@ -624,12 +628,18 @@ LWA.Views.Instabinge = (function() {
       Modal.state.sly.reload();
     },
 
+    destroy: function() {
+      Modal.state.sly.destroy();
+      Modal.element.$frame.attr('style', null)
+        .find('.slidee').attr('style', null)
+        .find('li').remove();
+    },
+
     render: function(index) {
       Modal.state.singleLoader.show();
       var slidee = Modal.element.$frame.find('.slidee');
 
       if (index > 0) {
-        // render all tiles prior to this one
         var fragment = $(document.createDocumentFragment());
         for (var i = 0; i < index; i++) {
           fragment.append(Modal.renderFrame(i));
@@ -656,7 +666,6 @@ LWA.Views.Instabinge = (function() {
 
     formatData: function(data) {
       if (Modal.isMobile() && data.caption.text.length >= 100) {
-        console.log(data.caption.text);
         data.caption.text = data.caption.text.substring(0, 100);
       }
       data.created_time = Time.convert(Date.now(), data.created_time);
@@ -665,7 +674,9 @@ LWA.Views.Instabinge = (function() {
     },
 
     init: function() {
-      View.state.modal = LWA.Modules.Modal(undefined, '#modal-instabinge');
+      View.state.modal = LWA.Modules.Modal(undefined, '#modal-instabinge', {
+        close: Modal.destroy
+      });
     }
   };
 

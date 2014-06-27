@@ -37,40 +37,44 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n      <li>\n        <a href=\"http://www.instagram.com/"
+  buffer += "\n          <li>\n            <a href=\"http://www.instagram.com/"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.from)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" class=\"instabinge-username\" target=\"_blank\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.from)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a>\n        <div class=\"instabinge-comment\">";
+    + "</a>\n            <div class=\"instabinge-comment\">";
   if (helper = helpers.text) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.text); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</div>\n      </li>\n      ";
+    + "</div>\n          </li>\n          ";
   return buffer;
   }
 
-  buffer += "<div class=\"modal-view-image m-wrap m-transparent\">\n  <img class=\"m-bg\" src=\""
+  buffer += "<li style=\"width:";
+  if (helper = helpers.window_width) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.window_width); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "px;\">\n  <div class=\"instabinge-pod-wrap\">\n    <div class=\"modal-view-image m-wrap m-transparent\">\n      <img class=\"m-bg\" src=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.images)),stack1 == null || stack1 === false ? stack1 : stack1.standard_resolution)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n</div>\n<div class=\"modal-view-details\">\n  <div class=\"instabinge-profile\">\n    <div class=\"instabinge-profile-img\">\n      <img src=\""
+    + "\">\n    </div>\n    <div class=\"modal-view-details\">\n      <div class=\"instabinge-profile\">\n        <div class=\"instabinge-profile-img\">\n          <img src=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.profile_picture)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n    </div>\n    <div class=\"instabinge-profile-details\">\n      <div class=\"instabinge-username\">@"
+    + "\">\n        </div>\n        <div class=\"instabinge-profile-details\">\n          <div class=\"instabinge-profile-details-primary\">\n            <div class=\"instabinge-username\">@"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n      <div class=\"instabinge-name\">"
+    + "</div>\n            <div class=\"instabinge-name\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.full_name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n      <div class=\"instabinge-when\">";
+    + "</div>\n          </div>\n          <div class=\"instabinge-profile-details-secondary\">\n            <div class=\"instabinge-when\">";
   if (helper = helpers.created_time) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_time); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</div>\n      <div class=\"instabinge-likes\"><i class=\"icon-likes\"></i> "
+    + "</div>\n            <div class=\"instabinge-likes\"><i class=\"icon-likes\"></i> "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.likes)),stack1 == null || stack1 === false ? stack1 : stack1.count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n    </div>\n  </div>\n  <div class=\"instabinge-comment\">\n    "
+    + "</div>\n          </div>\n        </div>\n      </div>\n      <div class=\"instabinge-comment\">\n        <span class=\"instabinge-caption\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.caption)),stack1 == null || stack1 === false ? stack1 : stack1.text)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\n    ";
+    + "</span>\n        <span class=\"instabinge-tags\">";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.tags), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n  </div>\n  <div class=\"instabinge-comments\">\n    <div class=\"instabinge-secondary\">Comments</div>\n    <ul class=\"instabinge-other-comments\">\n      ";
+  buffer += "</span>\n      </div>\n      <div class=\"instabinge-comments\">\n        <div class=\"instabinge-secondary\">Comments</div>\n        <ul class=\"instabinge-other-comments\">\n          ";
   stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.comments)),stack1 == null || stack1 === false ? stack1 : stack1.data), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </ul>\n  </div>\n</div>";
+  buffer += "\n        </ul>\n      </div>\n    </div>\n  </div>\n</li>";
   return buffer;
   });
