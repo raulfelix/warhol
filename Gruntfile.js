@@ -16,8 +16,8 @@ module.exports = function(grunt) {
 
     watch: {
       js: {
-        files: 'static/scripts/*.js',
-        tasks: ['jshint', 'concat', 'uglify'],
+        files: ['static/scripts/*.js', 'js_partial/*.hbs.html'],
+        tasks: ['jshint', 'handlebars', 'concat', 'uglify'],
       },
       src: {
         files: ['static/scss/*.scss'],
@@ -43,7 +43,6 @@ module.exports = function(grunt) {
         files: {
           'static/dist/home-build.js' : [
             'static/vendor/sly.min.js',
-            'static/vendor/swipe.min.js',
             'static/scripts/precompiled/article-template.js',
             'static/scripts/precompiled/instabinge-template.js',
             'static/vendor/imagesloaded.pkgd.min.js',
@@ -56,7 +55,6 @@ module.exports = function(grunt) {
             'static/vendor/*.js',
             '!static/vendor/imagesloaded.pkgd.min.js',
             '!static/vendor/sly.min.js',
-            '!static/vendor/hammer.min.js',
             'static/scripts/global.js',
             'static/scripts/nav.js',
             'static/scripts/modal.js',
@@ -70,7 +68,6 @@ module.exports = function(grunt) {
           ],
           'static/dist/gallery-build.js' : [
             'static/vendor/sly.min.js',
-            'static/vendor/hammer.min.js',
             'static/scripts/precompiled/gallery-template.js',
             'static/scripts/gallery.js'
           ],
@@ -90,7 +87,7 @@ module.exports = function(grunt) {
       options: {
         sourceMap: true,
         compress: {
-          drop_console: true
+          drop_console: false
         },
         mangle: {
           except: ['jQuery', 'Handlebars', 'flexslider']

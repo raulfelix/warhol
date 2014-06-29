@@ -3,7 +3,6 @@
   <div class="modal-wrap">
     <div class="modal-wrap-row">
       <div class="modal-view frame">
-        <?php get_template_part('partials/module', 'util-loader'); ?>
         <div id="modal-instabinge-frame" class="modal-instabinge-frame">
           <ul class="slidee"></ul>
         </div>
@@ -14,5 +13,5 @@
       </div>
     </div>
   </div>
-  <div class="modal-loader-icon"><?php get_template_part('partials/module', 'util-loader'); ?></div>
+  <?php get_template_part('partials/module', 'util-loader'); ?>
 </div>

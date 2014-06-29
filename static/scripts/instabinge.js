@@ -64,7 +64,7 @@ LWA.Views.Instabinge = (function() {
     get: function(callback) {
       $.getJSON(Ajax.feedUrl)
         .done(function(response) {
-          Ajax.cache = Ajax.cache.concat(response.data);
+          Ajax.cache.push(response.data);
           Ajax.feedUrl = response.pagination.next_url + '&callback=?';
           if (callback) {
             callback(response);
@@ -146,138 +146,132 @@ LWA.Views.Instabinge = (function() {
   var Modal = {
 
     element: {
-      $frame: $('#modal-instabinge-frame'),
-      $prev: undefined,
-      $next: undefined
-    },
-
-    state: {
-      modal: undefined,
-      itemIndex: undefined,
-      singleLoader: undefined
+      $frame: $('#modal-instabinge-frame')
     },
 
     template: Handlebars.instabinge_thumb_modal,
 
+    setDefaults: function() {
+      return {
+        sly: undefined,
+        modal: undefined,
+        windowWidth: Modal.getWindowWidth(),
+        isLoad: true
+      };
+    },
+
     initialize: function(index) {
       View.state.modal.loader.start();
-      Modal.state.singleLoader = LWA.Modules.Spinner('#modal-instabinge .loader-icon');
+      
+      Modal.state = Modal.setDefaults();
+      Modal.element.$frame.width(Modal.state.windowWidth);
 
       // get cached data and render
-      Modal.setPos(index);
-      Modal.render(Ajax.cache[Modal.getPos()]);
-
-      // var e = document.getElementById('modal-instabinge-frame');
-      // // todo only do this on mobile
-      // new Hammer(e).on('swipeleft', function(event) {
-      //   Modal.getNext();
-      // });
-      // new Hammer(e).on('swiperight', function(event) {
-      //   Modal.getPrev();
-      // });
-
-      // Modal.element.$frame.touchwipe({
-      //   wipeLeft: Modal.getNext,
-      //   wipeRight: Modal.getPrev
-      // });
+      Modal.render(index);
+      Modal.initializeSly(index);
     },
 
-    getPrev: function(ev) {
-      ev.preventDefault();
-      
-      Modal.element.$next.removeClass('disabled');
-      
-      var index = Modal.getPos() - 1;
-      if (index < 0) {
-        return;
-      }
+    initializeSly: function(index) {
+      var $wrap = $('#modal-instabinge-controls');
+      Modal.state.sly = new Sly('#modal-instabinge-frame', {
+        horizontal: 1,
+        itemNav: 'basic',
+        smart: 1,
+        activateMiddle: 1,
+        releaseSwing: 0,
+        touchDragging: 1,
+        startAt: index,
+        speed: 150,
+        elasticBounds: 1,
+        easing: 'swing',
+        prev: $wrap.find('.sly-prev'),
+        next: $wrap.find('.sly-next')
+      });
 
-      if (index === 0) {
-        Modal.element.$prev.addClass('disabled');
-      }
-      
-      Modal.render(Ajax.cache[index]);
-      Modal.setPos(index);
+      Modal.state.sly.init();
+      Modal.state.sly.on('moveEnd', function() {
+        console.log("moveEnd");
+        if (Modal.state.isLoad === true && index !== 0) {
+          View.state.modal.loader.stop();
+          Modal.state.isLoad = false;
+        }
+
+        if (this.pos.dest === this.pos.end) {
+          Ajax.get(Modal.onLoad);
+        }
+      });
     },
 
-    getNext: function(ev) {
-      ev.preventDefault();
-
-      Modal.element.$prev.removeClass('disabled');
-      var index = Modal.getPos() + 1;
-      if (index > Ajax.cache.length - 1) {
-        return;
-      }
-
-      if (Modal.isLast(index)) {
-        Modal.element.$next.addClass('disabled');
-
-        // load more
-        Ajax.get(Modal.onLoad);
-      }
-
-      Modal.render(Ajax.cache[index]);
-      Modal.setPos(index);
+    handleImageLoad: function(wrapper, images, callback) {
+      imagesLoaded(images, function(instance) {
+        wrapper.find('.m-wrap').removeClass('m-transparent');
+        if (callback) {
+          callback();
+        }
+      });
     },
 
     isLast: function(index) {
       return (index === Ajax.cache.length - 1);
     },
 
-    getPos: function() {
-      return Modal.state.itemIndex;
-    },
-
-    setPos: function(index) {
-      Modal.state.itemIndex = index;
-    },
-
-    setHeight: function() {
-      if (window.matchMedia && window.matchMedia("(min-width: 600px)").matches) {
-        Modal.element.$frame.height(Modal.element.$frame.find('img').height());
-      }
+    getWindowWidth: function() {
+      return $(window).width();
     },
 
     onLoad: function(response) {
+      var element = $(Modal.template(response));
+      Modal.handleImageLoad(element, element.find('.m-bg'));
+      Modal.state.sly.add(element);
       // keep horizontal view in sync
       View.state.sly.add(View.template(response));
       View.state.sly.reload();
-
-      View.state.modal.loader.stop();
-      Modal.element.$next.removeClass('disabled');
     },
 
-    onResize: function() {
-      var img = Modal.element.$frame.find('img');
-      if (img.length > 0) {
-        Modal.setHeight();
+    reload: function() {
+      Modal.state.windowWidth = Modal.getWindowWidth();
+      Modal.element.$frame
+        .width(Modal.state.windowWidth)
+        .find('.sly-slide').css('width', Modal.state.windowWidth);
+      Modal.state.sly.reload();
+    },
+
+    destroy: function() {
+      Modal.state.sly.destroy();
+      Modal.element.$frame
+        .find('.slidee').attr('style', null)
+        .find('.sly-slide').remove();
+    },
+
+    render: function(index) {
+      var slidee = Modal.element.$frame.find('.slidee');
+
+      var fragment = $(document.createDocumentFragment());
+      for (var i = 0; i < Ajax.cache.length; i++) {
+        fragment.append(Modal.template({data: Ajax.cache[i]}));
       }
-    },
+      slidee.append(fragment);
 
-    render: function(response) {
-      Modal.state.singleLoader.show();
-      Modal.formatData(response);
-      Modal.element.$frame.html(this.template(response));
-      
-      imagesLoaded(Modal.element.$frame.find('img'), function(instance) {
-        View.state.modal.loader.stop();
-        Modal.state.singleLoader.hide();
-        Modal.setHeight();
-        Modal.element.$frame.find('.m-wrap').removeClass('m-transparent');
+      Modal.handleImageLoad(slidee, slidee.find('.m-bg'), function() {
+        console.log("all images loaded");
+        if (index === 0) {
+          View.state.modal.loader.stop();
+        }
       });
     },
 
-    formatData: function(data) {
-      data.created_time = Time.convert(Date.now(), data.created_time);
-    },
-
     init: function() {
-      var $wrap = $('#modal-instabinge-controls');
-      Modal.element.$prev = $wrap.find('.sly-prev').click(Modal.getPrev).addClass('disabled');
-      Modal.element.$next = $wrap.find('.sly-next').click(Modal.getNext);
-      View.state.modal = LWA.Modules.Modal(undefined, '#modal-instabinge');
+      View.state.modal = LWA.Modules.Modal(undefined, '#modal-instabinge', {
+        close: Modal.destroy
+      });
 
-      $(window).resize(Modal.onResize);
+      Handlebars.registerHelper('formatTime', function() {
+        return Time.convert(Date.now(), this.created_time);
+      });
+
+      Handlebars.registerHelper('formatWidth', function() {
+        return 'width:' + Modal.state.windowWidth + 'px;';
+      });
     }
   };
 
@@ -294,6 +288,7 @@ LWA.Views.Instabinge = (function() {
     delay(function() {
       console.log("reload...");
       View.reload();
+      Modal.reload();
     }, 200);
   }
 
@@ -301,7 +296,6 @@ LWA.Views.Instabinge = (function() {
     init: function() {
       View.initialize();
       Modal.init();
-
       $(window).resize(updateSly);
     }
   };

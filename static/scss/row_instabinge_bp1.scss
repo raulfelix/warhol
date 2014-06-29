@@ -51,7 +51,7 @@
   display: inline-block;
 }
 
-.instabinge-username {
+.instabinge-user {
   font-size: 16px;
   padding: 0;
 }
@@ -63,11 +63,17 @@
   margin: 0;
 } 
 
-.instabinge-comment {
+.instabinge-wrap {
   padding: rem(10);
   padding-top: 0;
 }
 
 .instabinge-comments {
   display: none;
+}
+
+.instabinge-captions {
+  height: rem(60);
+  overflow: hidden;
+  padding-bottom: 0;
 }

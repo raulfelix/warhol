@@ -1,4 +1,5 @@
-<li style="width:{{ window_width }}px;">
+{{#each data}}
+<li class="sly-slide" style="{{#formatWidth}}{{/formatWidth}}">
   <div class="instabinge-pod-wrap">
     <div class="modal-view-image m-wrap m-transparent">
       <img class="m-bg" src="{{ images.standard_resolution.url }}">
@@ -10,26 +11,26 @@
         </div>
         <div class="instabinge-profile-details">
           <div class="instabinge-profile-details-primary">
-            <div class="instabinge-username">@{{ user.username }}</div>
+            <div class="instabinge-user">@{{ user.username }}</div>
             <div class="instabinge-name">{{ user.full_name }}</div>
           </div>
           <div class="instabinge-profile-details-secondary">
-            <div class="instabinge-when">{{ created_time }}</div>
+            <div class="instabinge-when">{{#formatTime}}{{/formatTime}}</div>
             <div class="instabinge-likes"><i class="icon-likes"></i> {{ likes.count }}</div>
           </div>
         </div>
       </div>
-      <div class="instabinge-comment">
+      <div class="instabinge-wrap instabinge-captions">
         <span class="instabinge-caption">{{ caption.text }}</span>
         <span class="instabinge-tags">{{#each tags}} {{/each}}</span>
       </div>
-      <div class="instabinge-comments">
+      <div class="instabinge-wrap instabinge-comments">
         <div class="instabinge-secondary">Comments</div>
-        <ul class="instabinge-other-comments">
+        <ul>
           {{#each comments.data}}
-          <li>
+          <li class="instabinge-comment">
             <a href="http://www.instagram.com/{{ from.username }}" class="instabinge-username" target="_blank">{{ from.username }}</a>
-            <div class="instabinge-comment">{{ text }}</div>
+            <div>{{ text }}</div>
           </li>
           {{/each}}
         </ul>
@@ -37,3 +38,4 @@
     </div>
   </div>
 </li>
+{{/each}}

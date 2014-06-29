@@ -1,8 +1,8 @@
 {{#each data}}
-<li>
-  <a href="javascript:void(0)" data-id="{{ user.id }}">
+<li class="sly-slide">
+  <div data-id="{{ user.id }}">
     <img src="{{ images.low_resolution.url }}">
-    <div class="instabinge-link">@{{ user.username }}</div>
-  </a>
+    <a href="http://www.instagram.com/{{ user.username }}" target="_blank" class="instabinge-link">@{{ user.username }}</a>
+  </div>
 </li>
 {{/each}}

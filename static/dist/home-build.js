@@ -57,13 +57,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n<li>\n  <a href=\"javascript:void(0)\" data-id=\""
+  buffer += "\n<li class=\"sly-slide\">\n  <div data-id=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">\n    <img src=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.images)),stack1 == null || stack1 === false ? stack1 : stack1.low_resolution)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n    <div class=\"instabinge-link\">@"
+    + "\">\n    <a href=\"http://www.instagram.com/"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n  </a>\n</li>\n";
+    + "\" target=\"_blank\" class=\"instabinge-link\">@"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a>\n  </div>\n</li>\n";
   return buffer;
   }
 
@@ -75,22 +77,64 @@ function program1(depth0,data) {
 this["Handlebars"]["instabinge_thumb_modal"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n<li class=\"sly-slide\" style=\"";
+  options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
+  if (helper = helpers.formatWidth) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.formatWidth); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.formatWidth) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\">\n  <div class=\"instabinge-pod-wrap\">\n    <div class=\"modal-view-image m-wrap m-transparent\">\n      <img class=\"m-bg\" src=\""
+    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.images)),stack1 == null || stack1 === false ? stack1 : stack1.standard_resolution)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n    </div>\n    <div class=\"modal-view-details\">\n      <div class=\"instabinge-profile\">\n        <div class=\"instabinge-profile-img\">\n          <img src=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.profile_picture)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n        </div>\n        <div class=\"instabinge-profile-details\">\n          <div class=\"instabinge-profile-details-primary\">\n            <div class=\"instabinge-user\">@"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\n            <div class=\"instabinge-name\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.full_name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\n          </div>\n          <div class=\"instabinge-profile-details-secondary\">\n            <div class=\"instabinge-when\">";
+  options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
+  if (helper = helpers.formatTime) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.formatTime); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.formatTime) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</div>\n            <div class=\"instabinge-likes\"><i class=\"icon-likes\"></i> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.likes)),stack1 == null || stack1 === false ? stack1 : stack1.count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\n          </div>\n        </div>\n      </div>\n      <div class=\"instabinge-wrap instabinge-captions\">\n        <span class=\"instabinge-caption\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.caption)),stack1 == null || stack1 === false ? stack1 : stack1.text)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</span>\n        <span class=\"instabinge-tags\">";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.tags), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\n      </div>\n      <div class=\"instabinge-wrap instabinge-comments\">\n        <div class=\"instabinge-secondary\">Comments</div>\n        <ul>\n          ";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.comments)),stack1 == null || stack1 === false ? stack1 : stack1.data), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </ul>\n      </div>\n    </div>\n  </div>\n</li>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "";
+  return buffer;
+  }
+
+function program4(depth0,data) {
   
   
   return " ";
   }
 
-function program3(depth0,data) {
+function program6(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n          <li>\n            <a href=\"http://www.instagram.com/"
+  buffer += "\n          <li class=\"instabinge-comment\">\n            <a href=\"http://www.instagram.com/"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.from)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" class=\"instabinge-username\" target=\"_blank\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.from)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a>\n            <div class=\"instabinge-comment\">";
+    + "</a>\n            <div>";
   if (helper = helpers.text) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.text); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -98,34 +142,9 @@ function program3(depth0,data) {
   return buffer;
   }
 
-  buffer += "<li style=\"width:";
-  if (helper = helpers.window_width) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.window_width); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "px;\">\n  <div class=\"instabinge-pod-wrap\">\n    <div class=\"modal-view-image m-wrap m-transparent\">\n      <img class=\"m-bg\" src=\""
-    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.images)),stack1 == null || stack1 === false ? stack1 : stack1.standard_resolution)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n    </div>\n    <div class=\"modal-view-details\">\n      <div class=\"instabinge-profile\">\n        <div class=\"instabinge-profile-img\">\n          <img src=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.profile_picture)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n        </div>\n        <div class=\"instabinge-profile-details\">\n          <div class=\"instabinge-profile-details-primary\">\n            <div class=\"instabinge-username\">@"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.username)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n            <div class=\"instabinge-name\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.full_name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n          </div>\n          <div class=\"instabinge-profile-details-secondary\">\n            <div class=\"instabinge-when\">";
-  if (helper = helpers.created_time) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.created_time); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</div>\n            <div class=\"instabinge-likes\"><i class=\"icon-likes\"></i> "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.likes)),stack1 == null || stack1 === false ? stack1 : stack1.count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n          </div>\n        </div>\n      </div>\n      <div class=\"instabinge-comment\">\n        <span class=\"instabinge-caption\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.caption)),stack1 == null || stack1 === false ? stack1 : stack1.text)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</span>\n        <span class=\"instabinge-tags\">";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.tags), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n      </div>\n      <div class=\"instabinge-comments\">\n        <div class=\"instabinge-secondary\">Comments</div>\n        <ul class=\"instabinge-other-comments\">\n          ";
-  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.comments)),stack1 == null || stack1 === false ? stack1 : stack1.data), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </ul>\n      </div>\n    </div>\n  </div>\n</li>";
-  return buffer;
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.data), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
   });
 /*!
  * imagesLoaded PACKAGED v3.1.6
@@ -421,7 +440,7 @@ LWA.Views.Instabinge = (function() {
     get: function(callback) {
       $.getJSON(Ajax.feedUrl)
         .done(function(response) {
-          Ajax.cache = Ajax.cache.concat(response.data);
+          Ajax.cache.push(response.data);
           Ajax.feedUrl = response.pagination.next_url + '&callback=?';
           if (callback) {
             callback(response);
@@ -508,23 +527,24 @@ LWA.Views.Instabinge = (function() {
 
     template: Handlebars.instabinge_thumb_modal,
 
+    setDefaults: function() {
+      return {
+        sly: undefined,
+        modal: undefined,
+        windowWidth: Modal.getWindowWidth(),
+        isLoad: true
+      };
+    },
+
     initialize: function(index) {
       View.state.modal.loader.start();
-      console.log('initialize modal');
       
       Modal.state = Modal.setDefaults();
-      Modal.state.singleLoader = LWA.Modules.Spinner('#modal-instabinge .loader-icon');
-      Modal.element.$frame.width(Modal.getWindowWidth());
-
-      console.log('start at', index);
-      if (index === 0) {
-        Modal.state.isLoad = false;
-      }
+      Modal.element.$frame.width(Modal.state.windowWidth);
 
       // get cached data and render
-      Modal.state.activeItem = Modal.render(index);
-      Modal.initializeSly(Modal.state.activeItem);
-      Modal.state.nextIndex = index + 1;
+      Modal.render(index);
+      Modal.initializeSly(index);
     },
 
     initializeSly: function(index) {
@@ -537,7 +557,7 @@ LWA.Views.Instabinge = (function() {
         releaseSwing: 0,
         touchDragging: 1,
         startAt: index,
-        speed: 240,
+        speed: 150,
         elasticBounds: 1,
         easing: 'swing',
         prev: $wrap.find('.sly-prev'),
@@ -545,55 +565,25 @@ LWA.Views.Instabinge = (function() {
       });
 
       Modal.state.sly.init();
-      Modal.state.sly.on('moveEnd', Modal.onActivate);
-    },
-
-    setDefaults: function() {
-      return {
-        sly: undefined,
-        modal: undefined,
-        singleLoader: undefined,
-        isLoad: true,
-        activeItem: 0,
-        nextIndex: 0
-      };
-    },
-
-    onActivate: function(eventName) {
-      if (Modal.state.isLoad) {
-        Modal.state.isLoad = false;
-        return;
-      }
-
-      // if left load next
-      if (Modal.state.activeItem < this.rel.activeItem) {
-        // if one before end
-        if (this.rel.activeItem === this.items.length - 1) {
-          Modal.renderNext();
+      Modal.state.sly.on('moveEnd', function() {
+        console.log("moveEnd");
+        if (Modal.state.isLoad === true && index !== 0) {
+          View.state.modal.loader.stop();
+          Modal.state.isLoad = false;
         }
-      }
-      
-      Modal.state.activeItem = this.rel.activeItem;
+
+        if (this.pos.dest === this.pos.end) {
+          Ajax.get(Modal.onLoad);
+        }
+      });
     },
 
-    renderNext: function() {
-      if (Modal.isLast(Modal.state.nextIndex)) {
-        console.log('last item');
-        Ajax.get(Modal.onLoad);
-        return;
-      }
-
-      Modal.state.nextIndex++;
-
-      var frame = Modal.renderFrame(Modal.state.nextIndex);
-      Modal.handleImageLoad(frame, frame.find('img'));
-      Modal.state.sly.add(frame);
-    },
-
-    handleImageLoad: function(wrapper, images) {
+    handleImageLoad: function(wrapper, images, callback) {
       imagesLoaded(images, function(instance) {
-        Modal.state.singleLoader.hide();
         wrapper.find('.m-wrap').removeClass('m-transparent');
+        if (callback) {
+          callback();
+        }
       });
     },
 
@@ -602,80 +592,61 @@ LWA.Views.Instabinge = (function() {
     },
 
     getWindowWidth: function() {
-      if (window.matchMedia && window.matchMedia("(max-width: 599px)").matches) {
-        return $(window).width() - 20;
-      } else {
-        return $(window).width();
-      }
-    },
-
-    isMobile: function() {
-      // todo cache this and update on browser resize
-      return (window.matchMedia && window.matchMedia("(max-width: 599px)").matches);
+      return $(window).width();
     },
 
     onLoad: function(response) {
+      var element = $(Modal.template(response));
+      Modal.handleImageLoad(element, element.find('.m-bg'));
+      Modal.state.sly.add(element);
       // keep horizontal view in sync
       View.state.sly.add(View.template(response));
       View.state.sly.reload();
-      Modal.renderNext();
     },
 
     reload: function() {
-      // todo
-      var width = Modal.getWindowWidth();
-      Modal.element.$frame.width(Modal.getWindowWidth()).find('li').css('width', width);
+      Modal.state.windowWidth = Modal.getWindowWidth();
+      Modal.element.$frame
+        .width(Modal.state.windowWidth)
+        .find('.sly-slide').css('width', Modal.state.windowWidth);
       Modal.state.sly.reload();
     },
 
     destroy: function() {
       Modal.state.sly.destroy();
-      Modal.element.$frame.attr('style', null)
+      Modal.element.$frame
         .find('.slidee').attr('style', null)
-        .find('li').remove();
+        .find('.sly-slide').remove();
     },
 
     render: function(index) {
-      Modal.state.singleLoader.show();
       var slidee = Modal.element.$frame.find('.slidee');
 
-      if (index > 0) {
-        var fragment = $(document.createDocumentFragment());
-        for (var i = 0; i < index; i++) {
-          fragment.append(Modal.renderFrame(i));
+      var fragment = $(document.createDocumentFragment());
+      for (var i = 0; i < Ajax.cache.length; i++) {
+        fragment.append(Modal.template({data: Ajax.cache[i]}));
+      }
+      slidee.append(fragment);
+
+      Modal.handleImageLoad(slidee, slidee.find('.m-bg'), function() {
+        console.log("all images loaded");
+        if (index === 0) {
+          View.state.modal.loader.stop();
         }
-        slidee.append(fragment);
-      }
-
-      slidee.append(Modal.renderFrame(index));
-      slidee.append(Modal.renderFrame(index + 1));
-
-      imagesLoaded(Modal.element.$frame.find('img'), function(instance) {
-        View.state.modal.loader.stop();
-        Modal.state.singleLoader.hide();
-        Modal.element.$frame.find('.m-wrap').removeClass('m-transparent');
       });
-
-      return index;
-    },
-
-    renderFrame: function(index) {
-      var item = Modal.formatData(Ajax.cache[index]);
-      return $(this.template(item));
-    },
-
-    formatData: function(data) {
-      if (Modal.isMobile() && data.caption.text.length >= 100) {
-        data.caption.text = data.caption.text.substring(0, 100);
-      }
-      data.created_time = Time.convert(Date.now(), data.created_time);
-      data.window_width = Modal.getWindowWidth();
-      return data;
     },
 
     init: function() {
       View.state.modal = LWA.Modules.Modal(undefined, '#modal-instabinge', {
         close: Modal.destroy
+      });
+
+      Handlebars.registerHelper('formatTime', function() {
+        return Time.convert(Date.now(), this.created_time);
+      });
+
+      Handlebars.registerHelper('formatWidth', function() {
+        return 'width:' + Modal.state.windowWidth + 'px;';
       });
     }
   };
@@ -701,7 +672,6 @@ LWA.Views.Instabinge = (function() {
     init: function() {
       View.initialize();
       Modal.init();
-
       $(window).resize(updateSly);
     }
   };

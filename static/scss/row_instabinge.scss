@@ -1,3 +1,20 @@
+.frame {
+  width: 100%;
+
+  .slidee {
+    height: 100%;
+    list-style: none;
+  }
+
+  .sly-slide {
+    float: left;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
 .instabinge {
   height: rem(645);
   padding: rem(80) 0 0 0;
@@ -39,23 +56,10 @@
   }
 }
 
-.frame {
-  width: 100%;
 
-  .slidee {
-    height: 100%;
-    list-style: none;
-  
-    li {
-      float: left;
-    }
-
-    img {
-      width: 100%;
-    }
-  }
-}
-
+// –------------------
+// modal view styles
+// –------------------
 .instabinge-profile {
   @extend %clearfix;
 
@@ -81,41 +85,37 @@
   margin: 0 0 rem(20) 0;
 }
 
-.instabinge-comment, 
-.instabinge-comments {
-  padding: rem(20) rem(20) 0 rem(20);
-}
-
-.instabinge-username {
-  font-size: 24px;
+.instabinge-user {
+  font-size: rem(24);
   padding: rem(20) 0 rem(3) 0;
   @extend %gothic; 
 }
+
 .instabinge-name {
-  font-size: 18px;
+  font-size: rem(18);
   margin-bottom: rem(20);
-}
-.instabinge-when {
-  color: #B8B8B8;
-  font-size: 14px;
-  margin-bottom: rem(20);
-} 
-.instabinge-likes {
-  font-size: 18px;
 }
 
-.instabinge-other-comments {
-  li {
-    margin-bottom: rem(20);
+.instabinge-when {
+  color: #B8B8B8;
+  font-size: rem(14);
+  margin-bottom: rem(20);
+} 
+
+.instabinge-likes {
+  font-size: rem(18);
+}
+
+.instabinge-wrap {
+  padding: rem(20) rem(20) 0 rem(20);
+
+  .instabinge-comment {
+    font-size: rem(14);
     list-style: none;
-  }
-  
-  .instabinge-comment,
-  .instabinge-username {
-    padding: 0;
-  }
-  .instabinge-username {
-    color: $pink;
-    font-size: 14px;
+    margin-bottom: rem(20);
+
+    .instabinge-username {
+      color: $pink;
+    }
   }
 }
