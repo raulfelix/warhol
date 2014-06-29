@@ -49,5 +49,12 @@
   @import 'module_thumb_bp1';
   @import 'module_modal_bp1';
   @import 'row_header_bp1';
+  .header {
+    .h-1 {
+      line-height: 1.2;
+    }
+  }
+
   @import 'row_footer_bp1';
+  @import 'row_instabinge_bp1';
 }

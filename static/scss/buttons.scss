@@ -35,12 +35,8 @@
   width: rem(296);
 }
 
-.button-disabled, 
-.button-disabled:hover {
-  color: #D3D3D3;
-  border-color: #D3D3D3;
-  background-color: transparent;
-  cursor: default;
+.button-disabled {
+  display: none;
 }
 
 .button-black {
@@ -168,12 +164,26 @@
 
 .button-gallery {
   background-color: transparent;
+  border-color: $white;
+  color: $white;
   min-width: 0;
   padding: rem(12) rem(24);
   margin: 0 rem(10);
 
-  .icon-thumbs, .icon-expand {
+  .icon-thumbs, 
+  .icon-expand {
     font-size: 24px;
+  }
+
+  .icon-expand {
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
+  span {
+    display: none;
+    vertical-align: middle;
+    margin-left: rem(10);
   }
 
   &:hover {

@@ -14,9 +14,18 @@
 
 .fade {
   opacity: 0;
-  @include transition(opacity 200ms ease-out);
+  @include transition(opacity 300ms ease-out);
 }
 
+.slip-in {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  @include transition(bottom 300ms ease-out);
+}
+.slip-off {
+  bottom: -380px;
+}
 
 .m-wrap {
   opacity: 1;

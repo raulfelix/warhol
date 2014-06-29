@@ -191,7 +191,8 @@ LWA.Views.Gallery = (function() {
   var Inline = {
 
     element: {
-      title: $('#header-gallery-title')
+      title: $('#header-gallery-title'),
+      details: $('#header-gallery-details')
     },
 
     state: {
@@ -257,11 +258,16 @@ LWA.Views.Gallery = (function() {
 
     onActivate: function(eventName, position) {
       Thumbs.setActive(position);
-      if (!Inline.element.title.hasClass('fade')) {
+      if (!Inline.element.title.hasClass('fade') && position === 1) {
         Inline.element.title.addClass('fade');
-        setTimeout(function() {
-          Inline.element.title.css('display', 'none');
-        }, 400);
+        Inline.element.details.addClass('slip-off');
+        // setTimeout(function() {
+        //   Inline.element.title.css('display', 'none');
+        // }, 400);
+      }
+      else if (Inline.element.title.hasClass('fade') && position === 0) {
+        Inline.element.title.removeClass('fade');
+        Inline.element.details.removeClass('slip-off');
       }
     },
 
