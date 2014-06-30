@@ -39,6 +39,15 @@
   }
 }
 
+.button-gallery {
+  .icon-thumbs, 
+  .icon-expand {
+    font-size: 24px;
+    position: absolute;
+    top: rem(10);
+    left: rem(25);
+  }
+}
 .button-gallery span {
   display: inline-block;
 }

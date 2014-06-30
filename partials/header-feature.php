@@ -18,7 +18,7 @@
         <ul class="slidee">
           <?php 
             while( $attachments->get() ) : ?>
-            <li data-title="<?php echo $attachments->field( 'caption' ); ?>">
+            <li class="sly-slide" data-title="<?php echo $attachments->field( 'caption' ); ?>">
               <img src="<?php echo $attachments->src( 'large' ); ?>">
             </li>
           <?php endwhile; ?>
