@@ -35,7 +35,8 @@
             <div class="f-2-3 bp1-1">
               <div class="thumb">
                 <a href="<?php echo the_permalink(); ?>" class="thumb-feature">
-                  <?php get_thumbnail(false, true); ?>  
+                  <?php get_thumbnail(false, true); ?>
+                  <div class="m-overlay blanket-light"></div>  
                   <span class="thumb-time"><?php when(); ?></span>
                   <span class="thumb-views data-views"><i class="icon-views"></i><?php views(); ?></span>
                 </a>
