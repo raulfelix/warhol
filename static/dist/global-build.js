@@ -110,12 +110,22 @@ LWA.Modules.Modal = function(triggerSelector, modalSelector, options) {
     }
   }
 
+  function canClose(ev) {
+    if (ev.target.nodeName !== 'IMG' && ev.target.nodeName !== 'I' && ev.target.className === 'modal-wrap-row' || ev.target.className === 'sly-slide active') {
+      onClose();
+    }
+  }
+
   function init() {
     $html = $('html');
     $modal = $(modalSelector);
 
     if (options === undefined) {
       options = {};
+    }
+
+    if (options.closeable) {
+      $modal.on('click', canClose);
     }
     
     if (triggerSelector !== undefined) {
@@ -365,7 +375,7 @@ LWA.Modules.Search = (function() {
       View.reset = View.element.overflow.infinitescroll({
         loading: {
           selector: '.loader-container',
-          msg: $('<img src="' + LWA.Data.url + '/wp-content/themes/warhol/static/images/loader-pink.GIF" />'),
+          msg: $('<div class="loader-icon loader-icon-pink"><i class="icon-reload"></i></div>'),
           finishedMessage: undefined,
         },
         behavior: 'local',

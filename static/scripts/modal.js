@@ -44,12 +44,22 @@ LWA.Modules.Modal = function(triggerSelector, modalSelector, options) {
     }
   }
 
+  function canClose(ev) {
+    if (ev.target.nodeName !== 'IMG' && ev.target.nodeName !== 'I' && ev.target.className === 'modal-wrap-row' || ev.target.className === 'sly-slide active') {
+      onClose();
+    }
+  }
+
   function init() {
     $html = $('html');
     $modal = $(modalSelector);
 
     if (options === undefined) {
       options = {};
+    }
+
+    if (options.closeable) {
+      $modal.on('click', canClose);
     }
     
     if (triggerSelector !== undefined) {

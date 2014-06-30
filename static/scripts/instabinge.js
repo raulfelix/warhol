@@ -262,7 +262,8 @@ LWA.Views.Instabinge = (function() {
 
     init: function() {
       View.state.modal = LWA.Modules.Modal(undefined, '#modal-instabinge', {
-        close: Modal.destroy
+        close: Modal.destroy,
+        closeable: true
       });
 
       Handlebars.registerHelper('formatTime', function() {

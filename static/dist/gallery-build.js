@@ -58,7 +58,7 @@ LWA.Views.Gallery = (function() {
     init: function() {
       // init modal
       Modal.state.modal =
-        LWA.Modules.Modal('#modal-gallery-button', '#modal-gallery');
+        LWA.Modules.Modal('#modal-gallery-button', '#modal-gallery', { closeable: true });
 
       // cache elements
       this.elements.$imgs = Modal.state.modal.el().find('#modal-gallery-frame img');

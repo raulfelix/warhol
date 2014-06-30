@@ -50,22 +50,13 @@
   .modal-view-details {
     position: relative;
     left: auto;
+    overflow: visible;
+    padding-bottom: rem(10);
   }
 
-  .modal-wrap,
   .modal-wrap-row {
-    display: block;
-  }
-  .modal-wrap {
-    padding-top: rem(50);
-  }
-  .modal-wrap-row {
-    overflow: auto;
-    height: 100%;
-  }
-
-  .modal-view {
-    background-color: $white;
+    overflow: visible;
+    padding: 0 rem(10);
   }
 }
 
