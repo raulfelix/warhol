@@ -52,6 +52,11 @@
   display: inline-block;
 }
 
+.button-icon .icon {
+  left: 50%;
+  margin-left: rem(-40);
+}
+
 .dropdown {
   padding: 0;
 }

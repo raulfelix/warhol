@@ -74,9 +74,17 @@
 
 .thumb-inline {
   .thumb {
-    height: rem(470);
+    height: auto;
     margin-bottom: 0;
   }
+  margin-bottom: rem(40);
+}
+
+.f-row .thumb-inline:nth-child(3n+3):after {
+  content: '.';
+  display: block;
+  visibility: hidden;
+  clear: both;
 }
 
 .thumb-category {

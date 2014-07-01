@@ -23,10 +23,10 @@
 }
   
 .thumb-inline {
-
+  margin-bottom: rem(16);
+  
   .thumb {
     margin-bottom: rem(0);
-    height: rem(270);
   }
 
   .thumb-title {
@@ -55,6 +55,14 @@
     font-size: rem(12);
   }
 }
+
+.f-row .thumb-inline:nth-child(2n+2):after {
+  content: '.';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
 
 .thumb-category {
   padding-top: 0;
