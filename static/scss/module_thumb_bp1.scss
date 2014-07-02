@@ -16,6 +16,14 @@
   }
 }
 
+.thumb-touch-inline-fix {
+  display: block;
+}
+
+.thumb-inline-fix {
+  display: none;
+}
+
 .thumb-views {
   i {
     font-size: 20px;
@@ -24,7 +32,7 @@
   
 .thumb-inline {
   margin-bottom: rem(16);
-  
+
   .thumb {
     margin-bottom: rem(0);
   }

@@ -229,4 +229,12 @@ function generate_share_link($key) {
   return "<button class='button button-social' data-href={$args}>{$key}</button>";
 }
 
+function generate_inline_thumb_fix($idx) {
+  if ($idx % 2 == 0) {
+    echo '<div class="thumb-touch-inline-fix"></div>';
+  }
+  if ($idx % 3 == 0) {
+    echo '<div class="thumb-inline-fix"></div>';
+  }
+}
 ?>

@@ -71,7 +71,7 @@
           );
 
           $news_query = new WP_Query( $news_args );
-          $count = 0;
+          $idx = 1;
 
           if ( $news_query->have_posts() ):
             while ( $news_query->have_posts() ): 
@@ -83,6 +83,7 @@
           </div>
 
         <?php
+            generate_inline_thumb_fix($idx++);
             endwhile;
           endif;
 

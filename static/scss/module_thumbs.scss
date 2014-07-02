@@ -80,11 +80,13 @@
   margin-bottom: rem(40);
 }
 
-.f-row .thumb-inline:nth-child(3n+3):after {
-  content: '.';
-  display: block;
-  visibility: hidden;
+.thumb-inline-fix,
+.thumb-touch-inline-fix {
   clear: both;
+}
+
+.thumb-touch-inline-fix {
+  display: none;
 }
 
 .thumb-category {

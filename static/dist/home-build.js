@@ -274,14 +274,25 @@ LWA.Views.PostThumbs = (function() {
     },
 
     render: function(posts) {
-      var e, html = '';
+      var
+        idx = 1,
+        html = '',
+        touch = '<div class="thumb-touch-inline-fix"></div>',
+        desktop = '<div class="thumb-inline-fix"></div>';
 
       $.each(posts, function(o) {
         posts[o].column_css = 'f-1-3 bp1-1-2 thumb-inline';
         html += AjaxNews.template(posts[o]);
+        if (idx % 2 === 0) {
+          html += touch;
+        }
+        if (idx % 3 === 0) {
+          html += desktop;
+        }
+        idx++;
       });
 
-      e = $(html);
+      var e = $(html);
       AjaxNews.element.container.append(e);
       scrollPage(e);
     },

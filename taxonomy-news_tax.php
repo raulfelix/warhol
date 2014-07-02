@@ -94,7 +94,7 @@
 
     // todo exclude featured post above
     $wp_query = new WP_Query( $args );
-
+    $idx = 1;
     if ( $wp_query->have_posts() ):
       while ( $wp_query->have_posts() ): 
         $wp_query->the_post();
@@ -105,6 +105,7 @@
       </div>
   
   <?php  
+      generate_inline_thumb_fix($idx++);
       endwhile;
     endif;
   ?>
