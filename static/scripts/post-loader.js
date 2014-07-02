@@ -122,7 +122,7 @@ LWA.Views.PostThumbs = (function() {
       var e, html = '';
 
       $.each(posts, function(o) {
-        posts[o].column_css = 'f-1-3 bp2-1-2 thumb-inline';
+        posts[o].column_css = 'f-1-3 bp1-1-2 thumb-inline';
         html += AjaxNews.template(posts[o]);
       });
 
