@@ -258,7 +258,7 @@ LWA.Views.Gallery = (function() {
 
     onActivate: function(eventName, position) {
       Thumbs.setActive(position);
-      if (!Inline.element.title.hasClass('fade') && position === 1) {
+      if (!Inline.element.title.hasClass('fade') && position >= 1) {
         Inline.element.title.addClass('fade');
         Inline.element.details.addClass('slip-off');
         // setTimeout(function() {
