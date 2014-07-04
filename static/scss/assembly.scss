@@ -210,7 +210,6 @@
 .input-search {
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid $pink;
   font-size: rem(24);
   padding: rem(20) 0;
   width: 100%;
@@ -218,6 +217,11 @@
   &:active, &:focus {
     border-color: $highlight;
   }
+}
+
+.input-search-underline {
+  height: 2px;
+  background-color: $pink;
 }
 
 .section-bio {
