@@ -8,6 +8,8 @@
 
   <?php
 
+    $paged = (get_query_var('page')) ? get_query_var('page') : 1;
+
     if ($news_tax == 'news') {
       $feature_args = Array(
         'post_type' => 'lwa_news',
@@ -28,6 +30,8 @@
       while ( $feature_query->have_posts() ): 
         $feature_query->the_post();
         $post_ID_no_repeat = get_the_ID();
+
+        if ( $paged == 1 ):
   ?>
 
         <div class="f-grid">
@@ -51,6 +55,7 @@
         </div>
 
   <?php  
+        endif;
       endwhile;
     endif;
 
@@ -66,9 +71,6 @@
   <?php
     // get order and default to DESC
     $order = isset($_GET['orderby']) ? $_GET['orderby'] : 'desc';
-    
-    // get the rest of the articles
-    $paged = (get_query_var('page')) ? get_query_var('page') : 1;
 
     if ($order === 'desc') {
       $args = Array(

@@ -8,6 +8,8 @@
 
   <?php
 
+    $paged = (get_query_var('page')) ? get_query_var('page') : 1;
+
     // get the most recent feature article in current category
     $feature_args = Array(
       'post_type' => 'lwa_feature',
@@ -21,6 +23,8 @@
       while ( $feature_query->have_posts() ): 
         $feature_query->the_post();
         $post_ID_no_repeat = get_the_ID();
+      
+        if ( $paged == 1 ):
   ?>
 
         <div class="f-grid">
@@ -44,6 +48,7 @@
         </div>
 
   <?php  
+        endif;
       endwhile;
     endif;
 
@@ -59,9 +64,6 @@
   <?php
     // get order and default to date otherwise by popularity
     $order = isset($_GET['orderby']) ? $_GET['orderby'] : 'desc';
-
-    // get the rest of the articles
-    $paged = (get_query_var('page')) ? get_query_var('page') : 1;
 
     if ($order === 'desc') {
       $args = Array(
@@ -81,7 +83,7 @@
       );
     }
 
-    // todo exclude featured post above
+    
     $wp_query = new WP_Query( $args );
     $idx = 1;
     if ( $wp_query->have_posts() ):
