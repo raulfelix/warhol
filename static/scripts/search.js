@@ -74,6 +74,8 @@ LWA.Modules.Search = (function() {
     },
 
     onClose: function() {
+      View.element.overflow.infinitescroll('destroy');
+      View.element.overflow.data('infinitescroll', null);
       View.element.container.html('');
       View.element.input.val('');
     },
