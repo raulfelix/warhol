@@ -25,3 +25,15 @@
 .c-remove {
   display: block;
 }
+
+.c-inline-field label {
+  display: inline-block;
+  margin-right: 4px;
+  vertical-align: middle;
+  width: 42px;
+}
+
+.c-inline-field input {
+  display: inline-block;
+  width: auto;
+}

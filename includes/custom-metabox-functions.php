@@ -14,6 +14,8 @@ function add_custom_meta_box() {
       $screen
     );
   }
+
+  add_meta_box('shop_url', 'Shop URL', 'shop_meta_box_callback', 'lwa_shop');
 }
 add_action( 'add_meta_boxes', 'add_custom_meta_box' );
 
@@ -77,5 +79,62 @@ function credits_save_meta_box_data( $post_id ) {
   update_post_meta( $post_id, 'credits_photos_key', $photos );
 }
 add_action( 'save_post', 'credits_save_meta_box_data' );
+
+
+/*
+ * Shop URL meta box
+ */
+function shop_meta_box_callback( $post ) {
+
+  // Add an nonce field so we can check for it later.
+  wp_nonce_field( 'shop_meta_box', 'shop_meta_box_nonce' );
+
+  $value = get_post_meta( $post->ID, 'shop_url_key', true );
+
+  echo '<div class="c-inline-field"><label for="shop_url_field">http://</label>';
+  echo '<input class="c-shop widefat" type="text" id="shop_url_field" name="shop_url_field" value="' . esc_attr( $value ) . '"/></div>';
+  echo '<p>Defaults to: lifewithoutandy.myshopify.com</p>';
+}
+
+function shop_save_meta_box_data( $post_id ) {
+
+  // Check if our nonce is set.
+  if ( ! isset( $_POST['shop_meta_box_nonce'] ) ) {
+    return;
+  }
+
+  // Verify that the nonce is valid.
+  if ( ! wp_verify_nonce( $_POST['shop_meta_box_nonce'], 'shop_meta_box' ) ) {
+    return;
+  }
+
+  // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+    return;
+  }
+
+  // Check the user's permissions
+  if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+    if ( ! current_user_can( 'edit_page', $post_id ) ) {
+      return;
+    }
+  } else {
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+      return;
+    }
+  }
+
+  // Make sure that data is set
+  if ( !isset( $_POST['shop_url_field'] ) ) {
+    return;
+  }
+
+  // Sanitize input
+  $shop_url = sanitize_text_field( $_POST['shop_url_field'] );
+
+  // Update the meta field in the database.
+  update_post_meta( $post_id, 'shop_url_key', $shop_url );
+}
+add_action( 'save_post', 'shop_save_meta_box_data' );
 
 ?>

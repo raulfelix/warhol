@@ -34,19 +34,32 @@
 
                     if ($logo_url): 
                   ?>
-                  <div class="header-feature-category">
+                
+                    <div class="header-feature-category">
+                      <a class="link h-5" href="<?php echo $category['permalink']; ?>">
+                        <span class="header-feature-category-item"><?php echo $category['name']; ?></span>
+                        <i class="header-feature-category-item icon-close"></i>
+                        <img class="category-logo" src="<?php echo $logo_url; ?>">
+                      </a>
+                    </div>
+                    <a href="<?php echo the_permalink(); ?>" class="link h-1"><?php the_title(); ?></a>
+                <?php 
+                  elseif ($category == null): 
+                    $shop_url = get_post_meta( get_the_id(), 'shop_url_key', true );
+                    $shop_url = $shop_url ? $shop_url : 'lifewithoutandy.myshopify.com';
+                ?>
+                    <a class="link h-5" href="http://<?php echo $shop_url; ?>" target="_blank">Shop</a>
+                    <a class="link h-1" href="http://<?php echo $shop_url; ?>" target="_blank"><?php the_title(); ?></a>
+                <?php 
+                  else: 
+                ?>
                     <a class="link h-5" href="<?php echo $category['permalink']; ?>">
-                      <span class="header-feature-category-item"><?php echo $category['name']; ?></span>
-                      <i class="header-feature-category-item icon-close"></i>
-                      <img class="category-logo" src="<?php echo $logo_url; ?>">
+                      <?php echo $category['name']; ?>
                     </a>
-                  </div>
-                <?php else: ?>
-                  <a class="link h-5" href="<?php echo $category['permalink']; ?>">
-                    <?php echo $category['name']; ?>
-                  </a>
-                <?php endif; ?>
-                  <a href="<?php echo the_permalink(); ?>" class="link h-1"><?php the_title(); ?></a>
+                    <a href="<?php echo the_permalink(); ?>" class="link h-1"><?php the_title(); ?></a>
+                <?php 
+                  endif; 
+                ?>
                   <div class="h-4"><?php the_subtitle(); ?></div>
                 </div>
               </div>

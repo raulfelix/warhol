@@ -197,8 +197,25 @@ function create_post_type() {
     'taxonomies' => array( 'news_tax', 'subtitle', 'carousel' )
   );
 
+  $lwa_shop_post_type = array(
+    'labels' => array(
+      'name' => __( 'Shop posts' ),
+      'singular_name' => __( 'Shop' ),
+    ),
+    'description' => __( 'Shop articles are defined within this type' ),
+    'hierarchical' => true,
+    'show_ui' => true,
+    'public' => true,
+    'has_archive' => true,
+    // 'rewrite' => array('slug' => 'news/%news_tax%', 'with_front' => false),
+    'menu_position' => 5,
+    'supports' => array('title', 'editor', 'thumbnail', 'revisions' ),
+    'taxonomies' => array( 'subtitle', 'carousel' )
+  );
+
   register_post_type( 'lwa_feature', $lwa_feature_post_type );
   register_post_type( 'lwa_news', $lwa_news_post_type );
+  register_post_type( 'lwa_shop', $lwa_shop_post_type );
 }
 
 add_action( 'init', 'create_post_type' );

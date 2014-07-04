@@ -59,6 +59,7 @@ function category($post_type) {
         );
     }
   }
+  return null;
 }
 
 function get_taxonomy_name($post_type) {
