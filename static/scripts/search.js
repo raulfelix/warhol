@@ -73,6 +73,11 @@ LWA.Modules.Search = (function() {
       }
     },
 
+    onClose: function() {
+      View.element.container.html('');
+      View.element.input.val('');
+    },
+
     onKeyUp: function(ev) {
       if (ev.keyCode === 13) {
         View.onClick();
@@ -155,7 +160,8 @@ LWA.Modules.Search = (function() {
       View.element.input.keyup(View.onKeyUp);
 
       Handlebars.registerPartial('search_next_link', Handlebars.search_next_link);
-    }
+    },
+    close: View.onClose
   };
 
 })();
