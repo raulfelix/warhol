@@ -1,6 +1,6 @@
 <div id="modal-share" class="modal modal-scrollable">
+  <a class="modal-action modal-close" href="javascript:void(0)"><i class="icon-close"></i></a>
   <div class="modal-scrollable-content">
-    <a class="modal-action modal-close" href="javascript:void(0)"><i class="icon-close"></i></a>
     <div class="modal-view modal-share-view">
       <div class="modal-share-secondary">Share this</div>
       <div class="modal-share-primary"><?php the_title(); ?></div>

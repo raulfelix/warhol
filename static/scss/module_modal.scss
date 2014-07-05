@@ -37,17 +37,17 @@
   }
   
   .modal-share-view {
-    margin-top: rem(-225);
-    height: rem(450);
-    width: 100%; 
-    top: 50%;
+    height: auto;
     padding: 0 em(20);
-    @extend %absolute;
   }
 }
 
 .modal-scrollable {
   .modal-scrollable-content {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
     overflow-y: scroll; /* has to be scroll, not auto */
     -webkit-overflow-scrolling: touch;
   }
