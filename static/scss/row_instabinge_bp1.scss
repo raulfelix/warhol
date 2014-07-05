@@ -58,11 +58,17 @@
 
 .instabinge-name,
 .instabinge-when,
-.instabinge-likes {
+.instabinge-likes,
+.instabinge-caption,
+.instabinge-tags {
   font-size: 12px;
   margin: 0;
 } 
 
+.instabinge-caption {
+  line-height: 1.45;
+  display: block;
+}
 .instabinge-wrap {
   padding: rem(10);
   padding-top: 0;
@@ -73,7 +79,7 @@
 }
 
 .instabinge-captions {
-  height: rem(60);
+  height: rem(48);
   overflow: hidden;
   padding-bottom: 0;
 }
