@@ -15,8 +15,12 @@
   padding-top: 0;
   
   .article-row-content {
-    padding-top: 0;
+    padding-top: rem(30);
     padding-bottom: 0;
+
+    img {
+      margin-bottom: rem(10);
+    }
   }
 
   p, ul, ol, h1, h2, h3, h4, h5, h6 {
@@ -29,7 +33,7 @@
   
   .details-row {
     margin-top: 0;
-    padding: rem(20) 0;
+    padding: rem(40) 0;
     
     .button {
       margin-top: rem(20);

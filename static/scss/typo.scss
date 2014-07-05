@@ -81,6 +81,18 @@ h6 {
   margin: 0 0 rem(30) 0;
 }
 
+img + h3,
+img + h4, 
+img + blockquote, 
+img + p {
+  margin-top: rem(40);
+}
+
+
+p + h4 {
+  margin-top: rem(46);
+}
+
 .article-row-content {
  
   p, li {
