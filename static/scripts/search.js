@@ -1,4 +1,4 @@
-/* global LWA, Handlebars */
+/* global LWA, Handlebars, LWA_endpoint */
 window.LWA = window.LWA || { Views: {}, Modules: {} };
 
 LWA.Modules.Search = (function() {
@@ -149,7 +149,7 @@ LWA.Modules.Search = (function() {
     },
 
     getUrl: function() {
-      return Ajax.url + '/wp-admin/admin-ajax.php';
+      return LWA.Modules.Util.getUrl();
     }
   };
 

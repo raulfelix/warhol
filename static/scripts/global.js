@@ -1,10 +1,16 @@
-/* global LWA */
+/* global LWA, ajaxEndpoint */
 window.LWA = window.LWA || { Views: {}, Modules: {} };
 
 LWA.Modules.Util = (function() {
   var
   $body,
   
+  Ajax = {
+    getUrl: function() {
+      return ajaxEndpoint.url;
+    }
+  },
+
   Metric = {
     windowWidth: undefined,
     windowHeight: undefined,
@@ -18,7 +24,6 @@ LWA.Modules.Util = (function() {
     },
 
     setWindowWidth: function() {
-      console.log('set window width');
       Metric.windowWidth = $(window).width();
     },
 
@@ -27,7 +32,6 @@ LWA.Modules.Util = (function() {
     },
 
     setWindowHeight: function() {
-      console.log('set window height');
       Metric.windowHeight = $(window).height();
     },
 
@@ -54,7 +58,8 @@ LWA.Modules.Util = (function() {
     getScrollPos: Metric.getScrollPos,
     setScroll: Metric.setScrollTop,
     windowWidth: Metric.getWindowWidth,
-    windowHeight: Metric.getWindowHeight
+    windowHeight: Metric.getWindowHeight,
+    getUrl: Ajax.getUrl
   };
 
 })();

@@ -71,6 +71,7 @@ function add_scripts() {
   wp_register_script( 'home', get_template_directory_uri() . '/static/dist/prod/home.min.js', null, '', true );
   wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/prod/gallery.min.js', array('single'), '', true );
   wp_register_script( 'single', get_template_directory_uri() . '/static/dist/prod/single.min.js', null, '', true );
+  wp_localize_script( 'global', 'ajaxEndpoint', array( 'url' => admin_url( 'admin-ajax.php' )));   
   
   wp_enqueue_script( 'global' );
 }

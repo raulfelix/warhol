@@ -1,4 +1,4 @@
-/* global LWA, Handlebars */
+/* global LWA, Handlebars, LWA_endpoint */
 window.LWA = window.LWA || { Views: {}, Modules: {} };
 
 LWA.Views.PostThumbs = (function() {
@@ -176,7 +176,7 @@ LWA.Views.PostThumbs = (function() {
   };
 
   function get(callback, params) {
-    $.getJSON(LWA.Data.url + '/wp-admin/admin-ajax.php', params)
+    $.getJSON(LWA.Modules.Util.getUrl(), params)
       .done(function(response) {
         callback(response);
       })
