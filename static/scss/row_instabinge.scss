@@ -15,21 +15,26 @@
   }
 }
 
+// –------------------
+// inline carousel
+// –------------------
 .instabinge {
   height: rem(645);
   padding: rem(80) 0 0 0;
   @extend %relative;
  
-  .h-1 {
-    display: block;
-    font-size: rem(40);
+  .instabinge-header {
     margin-bottom: rem(80);
     text-align: center;
   }
 
+  .h-1 {
+    font-size: rem(40);
+  }
+
   .instabinge-link {
     color: $pink;
-    display: block; 
+    display: inline-block; 
     font-size: rem(14);
     margin-top: rem(8);
   }
@@ -41,7 +46,8 @@
       a {
         display: block;
       }
-      a:hover {
+      
+      .sly-slide:hover {
         cursor: pointer;
         img {
           opacity: 0.8;

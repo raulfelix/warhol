@@ -101,7 +101,9 @@
   </div>
 
   <div class="instabinge">
-    <a href="http://instagram.com/lifewithoutandy" class="h-1" target="_blank">@lifewithoutandy</a>
+    <div class="instabinge-header">
+      <a href="http://instagram.com/lifewithoutandy" class="h-1" target="_blank">@lifewithoutandy</a>
+    </div>
     <div id="instabinge" class="frame">
       <ul class="slidee"></ul>
     </div> 
