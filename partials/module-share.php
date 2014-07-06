@@ -1,4 +1,5 @@
 <div id="modal-share" class="modal modal-scrollable">
+  <div class="blanket blanket-alpha"></div>
   <a class="modal-action modal-close" href="javascript:void(0)"><i class="icon-close"></i></a>
   <div class="modal-scrollable-content">
     <div class="modal-view modal-share-view">
