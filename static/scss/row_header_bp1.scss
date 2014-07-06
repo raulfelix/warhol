@@ -25,7 +25,6 @@
 }
 
 .header-feature {
-  height: rem(400);
 
   .header-feature-bg {
     background-size: rem(800) auto;
@@ -43,20 +42,23 @@
       width: rem(70);
     }
   }
+}
 
-  .feature-carousel {
-    .flex-control-nav {
-      bottom: rem(20);
-    }
-
-    img {
-      margin-left: rem(-400);
-      width: rem(800);
-    }
-    .flex-direction-nav {
-      display: none;
-    }
+.header-carousel {
+  .rsBullets {
+    bottom: rem(30);
   }
+
+  .header-carousel-controls {
+    display: none;
+  }
+}
+
+.header-feature,
+.header-carousel .header-carousel-slides,
+.header-gallery .header-gallery-wrap,
+.nav-active {
+  height: rem(400);
 }
 
 .header-category {
@@ -81,9 +83,6 @@
 }
 
 .header-gallery {
-  .header-gallery-wrap {
-    height: rem(400);
-  }
   &.header-gallery-thumbs-active {
     height: rem(550);
   }
@@ -125,8 +124,4 @@
       margin: 0 rem(20); 
     }
   }
-}
-
-.nav-active {
-  height: rem(400);
 }

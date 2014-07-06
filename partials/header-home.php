@@ -1,6 +1,6 @@
-<header class="header header-feature">
-  <div class="m-wrap m-transparent feature-carousel">
-    <ul class="slides">
+<header class="header header-feature header-carousel">
+  <div class="m-wrap m-transparent">
+    <div class="header-carousel-slides royalSlider rsDefault">
 
       <?php
         // get items tagged to be in carousel
@@ -19,7 +19,7 @@
         $attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original');
       ?>
         
-        <li class="<?php echo $attrs ? '' : 'header-feature-text' ?>">
+        <div class="header-slide <?php echo $attrs ? '' : 'header-feature-text' ?>">
           <?php if ($attrs): ?>
             <div class="header-feature-bg" style="background-image: url(<?php echo $attrs[0]; ?>);"></div>
             <div class="blanket-light"></div>
@@ -65,18 +65,21 @@
               </div>
             </div>
           </div>
-        </li>
-      
+        </div>
+        
       <?php
           endwhile;
         endif;
       ?>
-
-    </ul>
-    <div class="f-grid f-row">
-      <div id="feature-carousel-control" class="f-1"></div>
+    </div>
+    <div class="header-carousel-controls f-grid f-row">
+      <div class="f-1">
+        <a href="javascript:void(0)" class="header-carousel-control prev"><i class="icon-arrow-left"></i></a>
+        <a href="javascript:void(0)" class="header-carousel-control next"><i class="icon-arrow-right"></i></a> 
+      </div>
     </div>
   </div>
+  
   <?php get_template_part('partials/header', 'nav'); ?>
   <?php get_template_part('partials/module', 'util-loader'); ?>
 </header>

@@ -3,22 +3,49 @@ window.LWA = window.LWA || { Views: {}, Modules: {} };
 
 LWA.Views.Home = (function() {
 
-  return {
-    initialiseCarousel: function() {
-      $('.feature-carousel').flexslider({
-        controlsContainer: '#feature-carousel-control',
-        initDelay: 1000 // delay the start
-      });
+  var Carousel = {
+    
+    slider: undefined,
+
+    next: function() {
+      Carousel.slider.next();
+    },
+    
+    prev: function() {
+      Carousel.slider.prev();
     },
 
+    init: function() {
+      var container = $('.header-carousel-slides'),
+        controlsContainer = $('.header-carousel-controls');
+      
+      container.royalSlider({
+        arrowsNav: false,
+        autoPlay: {
+          delay: 3000,
+          enabled: true,
+          pauseOnHover: false
+        },
+        loopRewind: true,
+        transitionSpeed: 1000,
+        transitionType: 'fade'
+      });
+
+      Carousel.slider = container.data('royalSlider');
+      controlsContainer.find('.next').click(Carousel.next);
+      controlsContainer.find('.prev').click(Carousel.prev);
+    }
+  };
+
+  return {
     init: function() {
       LWA.Modules.Loader({
         imageContent: '.header-feature-bg',
         hiddenContent: '.header-feature .m-wrap',
         loader: LWA.Modules.Spinner('.header-feature .loader-icon', {show: true}),
         delayLoader: 1600,
-        delayReveal: 1700,
-        callback: this.initialiseCarousel
+        delayReveal: 1600,
+        callback: Carousel.init
       });
     }
   };
