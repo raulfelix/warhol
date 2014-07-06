@@ -92,7 +92,7 @@ module.exports = function(grunt) {
           drop_console: false
         },
         mangle: {
-          except: ['jQuery', 'Handlebars', 'flexslider']
+          except: ['jQuery', 'Handlebars']
         }
       },
       my_target: {
