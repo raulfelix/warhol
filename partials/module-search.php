@@ -1,4 +1,5 @@
 <div id="modal-search" class="modal">
+  <div class="blanket blanket-alpha"></div>
   <a class="modal-action modal-close" href="javascript:void(0)"><i class="icon-close"></i></a>
   <div class="modal-view f-grid f-row search-row">
     <div class="f-1">

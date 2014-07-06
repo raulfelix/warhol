@@ -1,5 +1,5 @@
 <nav class="nav">
-  <div class="blanket nav-blanket"></div>
+  <div class="blanket blanket-alpha"></div>
   <div class="f-grid f-row">
     <div class="f-1">
       <a href="<?php echo get_home_url(); ?>" class="logo"></a>
