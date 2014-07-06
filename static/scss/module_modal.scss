@@ -126,8 +126,10 @@
 }
 
 .modal-loader-active {
-  .modal-wrap-row {
-    visibility: hidden;
+  
+  .modal-wrap-row, 
+  .modal-slide {
+    visibility: hidden !important;
   }
 
   .loader-icon {
@@ -143,22 +145,22 @@
 
 .modal-instabinge {
 
-  .instabinge-pod-wrap {
-    background-color: $white;
-    max-width: rem(1024);
-    margin: 0 auto;
-    position: relative;
-  }
-
   .modal-view {
     max-width: 100%;
-    margin: 0 auto;
   }
 
   .modal-view-image {
     width: 60%;
+    position: relative;
     img {
       width: 100%;
+    }
+
+    .loader-icon {
+      display: block;
+    } 
+    .icon-reload {
+      color: $black;
     }
   }
 
@@ -172,10 +174,11 @@
     @extend %absolute;
   }
 
-  .modal-instabinge-frame {
+  .instabinge-pod-wrap {
+    background-color: $white;
+    max-width: rem(1024);
+    margin: 0 auto;
     position: relative;
-    width: 100%;
-    overflow: hidden;
   }
 }
 

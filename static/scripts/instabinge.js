@@ -104,7 +104,7 @@ LWA.Views.Instabinge = (function() {
         releaseSwing: 0,
         startAt: 0,
         activatePageOn: null,
-        speed: 300,
+        speed: 260,
         elasticBounds: 1,
         easing: 'swing',
         dragHandle: 1,
@@ -123,7 +123,7 @@ LWA.Views.Instabinge = (function() {
 
       View.element.$frame.on('click', 'li', function(ev) {
         View.state.modal.show();
-        Modal.initialize(View.state.sly.getIndex($(ev.currentTarget)));
+        Modal.initializeSlider(View.state.sly.getIndex($(ev.currentTarget)));
       });
 
       Ajax.get();
@@ -146,119 +146,16 @@ LWA.Views.Instabinge = (function() {
   var Modal = {
 
     element: {
-      $frame: $('#modal-instabinge-frame')
+      $frame: $('#modal-instabinge-slider')
+    },
+
+    state: {
+      slider: undefined,
+      modal: undefined
     },
 
     template: Handlebars.instabinge_thumb_modal,
-
-    setDefaults: function() {
-      return {
-        sly: undefined,
-        modal: undefined,
-        windowWidth: Modal.getWindowWidth(),
-        isLoad: true
-      };
-    },
-
-    initialize: function(index) {
-      View.state.modal.loader.start();
-      
-      Modal.state = Modal.setDefaults();
-      Modal.element.$frame.width(Modal.state.windowWidth);
-
-      // get cached data and render
-      Modal.render(index);
-      Modal.initializeSly(index);
-    },
-
-    initializeSly: function(index) {
-      var $wrap = $('#modal-instabinge-controls');
-      Modal.state.sly = new Sly('#modal-instabinge-frame', {
-        horizontal: 1,
-        itemNav: 'basic',
-        smart: 1,
-        activateMiddle: 1,
-        releaseSwing: 0,
-        touchDragging: 1,
-        startAt: index,
-        speed: 150,
-        elasticBounds: 1,
-        easing: 'swing',
-        prev: $wrap.find('.sly-prev'),
-        next: $wrap.find('.sly-next')
-      });
-
-      Modal.state.sly.init();
-      Modal.state.sly.on('moveEnd', function() {
-        console.log("moveEnd");
-        if (Modal.state.isLoad === true && index !== 0) {
-          View.state.modal.loader.stop();
-          Modal.state.isLoad = false;
-        }
-
-        if (this.pos.dest === this.pos.end) {
-          Ajax.get(Modal.onLoad);
-        }
-      });
-    },
-
-    handleImageLoad: function(wrapper, images, callback) {
-      imagesLoaded(images, function(instance) {
-        wrapper.find('.m-wrap').removeClass('m-transparent');
-        if (callback) {
-          callback();
-        }
-      });
-    },
-
-    isLast: function(index) {
-      return (index === Ajax.cache.length - 1);
-    },
-
-    getWindowWidth: function() {
-      return $(window).width();
-    },
-
-    onLoad: function(response) {
-      var element = $(Modal.template(response));
-      Modal.handleImageLoad(element, element.find('.m-bg'));
-      Modal.state.sly.add(element);
-      // keep horizontal view in sync
-      View.state.sly.add(View.template(response));
-      View.state.sly.reload();
-    },
-
-    reload: function() {
-      Modal.state.windowWidth = Modal.getWindowWidth();
-      Modal.element.$frame
-        .width(Modal.state.windowWidth)
-        .find('.sly-slide').css('width', Modal.state.windowWidth);
-      Modal.state.sly.reload();
-    },
-
-    destroy: function() {
-      Modal.state.sly.destroy();
-      Modal.element.$frame
-        .find('.slidee').attr('style', null)
-        .find('.sly-slide').remove();
-    },
-
-    render: function(index) {
-      var slidee = Modal.element.$frame.find('.slidee');
-
-      var fragment = $(document.createDocumentFragment());
-      for (var i = 0; i < Ajax.cache.length; i++) {
-        fragment.append(Modal.template({data: Ajax.cache[i]}));
-      }
-      slidee.append(fragment);
-
-      Modal.handleImageLoad(slidee, slidee.find('.m-bg'), function() {
-        console.log("all images loaded");
-        if (index === 0) {
-          View.state.modal.loader.stop();
-        }
-      });
-    },
+    templateSingle: Handlebars.instabinge_single_thumb_modal,
 
     init: function() {
       View.state.modal = LWA.Modules.Modal(undefined, '#modal-instabinge', {
@@ -270,9 +167,78 @@ LWA.Views.Instabinge = (function() {
         return Time.convert(Date.now(), this.created_time);
       });
 
-      Handlebars.registerHelper('formatWidth', function() {
-        return 'width:' + Modal.state.windowWidth + 'px;';
+      $('#modal-instabinge-controls .sly-prev').click(Modal.prev);
+      $('#modal-instabinge-controls .sly-next').click(Modal.next);
+    },
+
+    initializeSlider: function(index) {
+      View.state.modal.loader.start();
+
+      Modal.render(index);
+      Modal.element.$frame.royalSlider({
+        keyboardNavEnabled: true,
+        transitionSpeed: 260,
+        startSlideId: index,
+        controlNavigation: 'none'
       });
+      Modal.state.slider = Modal.element.$frame.data('royalSlider');
+
+      Modal.handleImageLoad(Modal.element.$frame, Modal.element.$frame.find('.m-bg'), function() {
+        View.state.modal.loader.stop();
+      });
+     
+      Modal.state.slider.ev.on('rsAfterSlideChange', function(event) {
+        if (Modal.state.slider.numSlides - 1 === Modal.state.slider.currSlideId) {
+          Ajax.get(Modal.onLoad);
+        }
+        Modal.handleImageLoad(
+          Modal.state.slider.currSlide.content,
+          Modal.state.slider.currSlide.content.find('img')
+        );
+      });
+    },
+
+    render: function(index) {
+      var fragment = $(document.createDocumentFragment());
+      for (var i = 0, length = Ajax.cache.length; i < length; i++) {
+        fragment.append(Modal.template({ data: Ajax.cache[i] }));
+      }
+      Modal.element.$frame.append(fragment);
+    },
+
+    next: function() {
+      Modal.state.slider.next();
+    },
+
+    prev: function() {
+      Modal.state.slider.prev();
+    },
+
+    handleImageLoad: function(wrapper, images, callback) {
+      imagesLoaded(images, function(instance) {
+        wrapper.find('.m-wrap').removeClass('m-transparent');
+        wrapper.find('.loader-icon').remove();
+        if (callback) {
+          callback();
+        }
+      });
+    },
+
+    onLoad: function(response) {
+      var dataArray = response.data;
+      for (var i = 0, length = dataArray.length; i < length; i++) {
+        Modal.state.slider.appendSlide( $(Modal.templateSingle(dataArray[i])) );
+      }
+    
+      // keep horizontal view in sync
+      View.state.sly.add(View.template(response));
+      View.state.sly.reload();
+    },
+
+    destroy: function() {
+      Modal.state.slider.destroy();
+      Modal.state.slider = undefined;
+      Modal.element.$frame.html('');
     }
   };
 
@@ -289,16 +255,17 @@ LWA.Views.Instabinge = (function() {
     delay(function() {
       console.log("reload...");
       View.reload();
-      Modal.reload();
     }, 200);
   }
 
+  function init() {
+    View.initialize();
+    Modal.init();
+    $(window).resize(updateSly);
+  }
+
   return {
-    init: function() {
-      View.initialize();
-      Modal.init();
-      $(window).resize(updateSly);
-    }
+    init: init
   };
 
 })();

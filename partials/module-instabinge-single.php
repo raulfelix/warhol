@@ -2,10 +2,8 @@
   <button class="modal-action modal-close"><i class="icon-close"></i></button>
   <div class="modal-wrap">
     <div class="modal-wrap-row">
-      <div class="modal-view frame">
-        <div id="modal-instabinge-frame" class="modal-instabinge-frame">
-          <ul class="slidee"></ul>
-        </div>
+      <div class="modal-view">
+        <div id="modal-instabinge-slider" class="royalSlider rsDefault"></div>
       </div>
       <div id="modal-instabinge-controls" class="sly-controls">
         <button class="sly-prev" type="text"><i class="icon-arrow-left"></i></button>
