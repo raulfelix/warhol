@@ -19,10 +19,9 @@ LWA.Modules.Share = (function() {
   }
 
   function positionContent() {
-    var windowHeight = $(window).height(),
-      contentHeight = modal.$el.find('.modal-view').height();
-    if (windowHeight > contentHeight) {
-      modal.$el.find('.modal-view').css('margin-top', (windowHeight - contentHeight) / 2 );
+    var contentHeight = modal.$el.find('.modal-view').height();
+    if (LWA.Modules.Util.windowHeight() > contentHeight) {
+      modal.$el.find('.modal-view').css('margin-top', (LWA.Modules.Util.windowHeight() - contentHeight) / 2 );
     } else {
       modal.$el.find('.modal-view').css('margin-top', '20px');
     }

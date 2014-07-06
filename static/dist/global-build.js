@@ -47,6 +47,7 @@ LWA.Modules.Util = (function() {
   
   Metric = {
     windowWidth: undefined,
+    windowHeight: undefined,
 
     setScrollTop: function(position) {
       $body.scrollTop(position);
@@ -63,14 +64,28 @@ LWA.Modules.Util = (function() {
 
     getWindowWidth: function() {
       return Metric.windowWidth;
+    },
+
+    setWindowHeight: function() {
+      console.log('set window height');
+      Metric.windowHeight = $(window).height();
+    },
+
+    getWindowHeight: function() {
+      return Metric.windowHeight;
+    },
+
+    update: function() {
+      Metric.setWindowWidth();
+      Metric.setWindowHeight();
     }
   };
 
   function init() {
     $body = $('body');
     Metric.setWindowWidth();
-    
-    $(window).resize(Metric.setWindowWidth);
+    Metric.setWindowHeight();
+    $(window).resize(Metric.update);
   }
 
   init();
@@ -78,7 +93,8 @@ LWA.Modules.Util = (function() {
   return {
     getScrollPos: Metric.getScrollPos,
     setScroll: Metric.setScrollTop,
-    windowWidth: Metric.getWindowWidth
+    windowWidth: Metric.getWindowWidth,
+    windowHeight: Metric.getWindowHeight
   };
 
 })();
