@@ -765,6 +765,7 @@ LWA.Views.Instabinge = (function() {
       Modal.element.$frame.royalSlider({
         keyboardNavEnabled: true,
         sliderDrag: false,
+        navigateByClick: false,
         transitionSpeed: 260,
         startSlideId: index,
         controlNavigation: 'none'
