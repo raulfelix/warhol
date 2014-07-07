@@ -178,7 +178,7 @@ function create_post_type() {
     'has_archive' => true,
     'rewrite' => array('slug' => 'featured/%featured_tax%', 'with_front' => false),
     'menu_position' => 5,
-    'supports' => array('title', 'editor', 'thumbnail', 'revisions' ),
+    'supports' => array('title', 'editor', 'thumbnail', 'author', 'revisions' ),
     'taxonomies' => array( 'featured_tax', 'subtitle', 'carousel' )
   );
 
