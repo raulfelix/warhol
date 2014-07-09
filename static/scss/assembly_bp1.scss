@@ -107,16 +107,12 @@
   }
 
   .input-search {
-    font-size: rem(15);
-    padding: rem(10) 0;
     width: 100%;
   }
 }
 
 .search-row-results {
-  top: rem(190);
-  padding: 0;
-
+  top: rem(212);
   .container {
     padding: 0 rem(10);
   }
@@ -127,8 +123,4 @@
   .thumb-author {
     margin-bottom: rem(60);
   }
-}
-
-.sly-controls { 
-  display: none;
 }

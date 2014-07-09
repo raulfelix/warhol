@@ -192,50 +192,55 @@
 
 
 .search-row {
+
   .search-row-input {
-    padding: 0 rem(260) 0 rem(145);
-    top: rem(37);
+    padding: 0 rem(140);
     width: 100%;
-    @extend %absolute;
+    padding-top: rem(35);
   }
  
   .button-search {
-    @extend %absolute;
-    top: 0;
-    right: rem(70);
+    float: right;
+    margin-top: rem(-54);
+    width: rem(170);
+  }
+
+  .input-search {
+    margin-right: rem(180);
+
+    input {
+      background-color: transparent;
+      border: none;
+      font-size: rem(24);
+      padding: rem(20) 0 rem(8) 0;
+      width: 100%;
+    }
+    .input-search-underline {
+      height: 2px;
+      background-color: $pink;
+    }
   }
 }
 
 .search-row-results {
-  top: rem(109);
+  left: 0;
+  right: 0;
   bottom: 0;
-  overflow: auto;
+  top: rem(95);
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   width: 100%;
-  @extend %absolute;
+  height: auto;
+  position: absolute;
 
   .container {
     max-width: rem(1140);
     margin: 0 auto;
-    padding: rem(60) rem(260) 0 rem(150);
+    padding: rem(60) rem(140) 0 rem(140);
   }
 }
 
-.input-search {
-  background-color: transparent;
-  border: none;
-  font-size: rem(24);
-  padding: rem(20) 0;
-  width: 100%;
 
-  &:active, &:focus {
-    border-color: $highlight;
-  }
-}
-
-.input-search-underline {
-  height: 2px;
-  background-color: $pink;
-}
 
 .section-bio {
   padding: rem(100) 0;

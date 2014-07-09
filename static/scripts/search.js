@@ -28,7 +28,7 @@ LWA.Modules.Search = (function() {
   var View = {
 
     element: {
-      input: $('.input-search'),
+      input: $('.input-search input'),
       overflow: $('.search-row-results'),
       container: $('.search-row-results').find('.container')
     },

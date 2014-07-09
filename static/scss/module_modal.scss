@@ -59,6 +59,16 @@
   @extend %text-center;
 }
 
+
+.modal-search {
+  .modal-view {
+    height: auto;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+
 .modal-share-actions {
   padding: rem(40) 0;
   margin-bottom: rem(20);
