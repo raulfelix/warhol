@@ -22,12 +22,15 @@ LWA.Views.Home = (function() {
       container.royalSlider({
         arrowsNav: false,
         autoPlay: {
-          delay: 3000,
+          delay: 5000,
           enabled: true,
           pauseOnHover: false
         },
         loopRewind: true,
-        transitionSpeed: 1000,
+        navigateByClick: false,
+        sliderDrag: false,
+        sliderTouch: true,
+        transitionSpeed: 500,
         transitionType: 'fade'
       });
 
