@@ -170,6 +170,14 @@
     text-align: center;
     padding: rem(40) rem(80);
   }
+
+  .arve-play-background, 
+  .arve-play-background:focus, 
+  .arve-play-background:hover {
+    background: url('static/images/play@2x.png') no-repeat center center;
+    background-size: rem(66);
+    opacity: 1;
+  }
 }
 
 .article-region-row {
