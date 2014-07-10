@@ -55,7 +55,8 @@ function fetch_posts($page, $post_per_page, $post_type) {
   $args = Array(
     'post_type' => $post_type,
     'posts_per_page' => $post_per_page,
-    'paged' => $page
+    'paged' => $page,
+    'post_status' => 'publish'
   );
 
   $wp_query = new WP_Query( $args );
