@@ -1,5 +1,50 @@
-@media all and (max-width: 61.063em) { 
+@media all and (max-width: 48em) { 
   .no-scroll, .no-scroll body {
     position: fixed;
   }
+  
+  //assembly
+  .sly-controls,
+  .header-carousel-controls { 
+    display: none;
+  }
+
+
+  //carousel
+  .header-carousel .rsBullets {
+    bottom: rem(20);
+  }
+
+  .header-carousel .rsBullets .rsBullet {
+    margin: 0 8px;
+    display: inline-block;
+  }
+
+  // modal
+  .modal-share-actions .button {
+    margin: 0 1px;
+  }
+
+
+  // button
+  .button-gallery {
+    min-width: rem(215);
+  }
+  .button-gallery span {
+    display: inline-block;
+  }
+
+  .button-icon .icon {
+    left: 50%;
+    margin-left: rem(-43);
+  }
+
+  .button-thumbs { 
+    display: none;
+  }
+
+  @import 'row_instabinge_bp3';
+
 }
+
+
