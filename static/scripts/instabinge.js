@@ -57,8 +57,8 @@ LWA.Views.Instabinge = (function() {
       return since;
     }
   };
-
   var Ajax = {
+
     cache: [],
     feedUrl: 'https://api.instagram.com/v1/users/self/feed?access_token=9513217.1f648b0.783f3c9408a64877b9783ccc25bb983f&callback=?',
     get: function(callback) {
@@ -146,7 +146,8 @@ LWA.Views.Instabinge = (function() {
   var Modal = {
 
     element: {
-      $frame: $('#modal-instabinge-slider')
+      $frame: $('#modal-instabinge-slider'),
+      $slider: undefined
     },
 
     state: {
@@ -174,8 +175,8 @@ LWA.Views.Instabinge = (function() {
     initializeSlider: function(index) {
       View.state.modal.loader.start();
 
-      Modal.render(index);
-      Modal.element.$frame.royalSlider({
+      this.render(index);
+      this.element.$frame.royalSlider({
         keyboardNavEnabled: true,
         sliderDrag: false,
         navigateByClick: false,
@@ -183,13 +184,16 @@ LWA.Views.Instabinge = (function() {
         startSlideId: index,
         controlNavigation: 'none'
       });
-      Modal.state.slider = Modal.element.$frame.data('royalSlider');
+      
+      this.state.slider = this.element.$frame.data('royalSlider');
+      this.element.$slider = this.element.$frame.find('.rsOverflow');
 
-      Modal.handleImageLoad(Modal.element.$frame, Modal.element.$frame.find('.m-bg'), function() {
+      this.handleImageLoad(this.element.$slider, this.element.$slider.find('.m-bg'), function() {
+        Modal.setSliderHeight();
         View.state.modal.loader.stop();
       });
      
-      Modal.state.slider.ev.on('rsAfterSlideChange', function(event) {
+      this.state.slider.ev.on('rsAfterSlideChange', function(event) {
         if (Modal.state.slider.numSlides - 1 === Modal.state.slider.currSlideId) {
           Ajax.get(Modal.onLoad);
         }
@@ -206,6 +210,10 @@ LWA.Views.Instabinge = (function() {
         fragment.append(Modal.template({ data: Ajax.cache[i] }));
       }
       Modal.element.$frame.append(fragment);
+    },
+
+    setSliderHeight: function() {
+      this.element.$slider.height(this.element.$slider.find('.modal-slide').height());
     },
 
     next: function() {
@@ -241,7 +249,19 @@ LWA.Views.Instabinge = (function() {
       Modal.state.slider.destroy();
       Modal.state.slider = undefined;
       Modal.element.$frame.html('');
+    },
+
+    reload: function() {
+      View.state.modal.loader.start();
+      Modal.element.$slider.height('auto').width(LWA.Modules.Util.windowWidth());
+
+      setTimeout(function() {
+        Modal.state.slider.updateSliderSize(true);
+        Modal.setSliderHeight();
+        View.state.modal.loader.stop();
+      }, 300);
     }
+
   };
 
   // hold off on resize event
@@ -257,7 +277,10 @@ LWA.Views.Instabinge = (function() {
     delay(function() {
       console.log("reload...");
       View.reload();
-    }, 200);
+      if (Modal.state.slider) {
+        Modal.reload();
+      }
+    }, 400);
   }
 
   function init() {
