@@ -16,7 +16,6 @@
 			get_template_part('partials/footer', 'next');
 		}
 
-	  get_template_part('partials/module', 'js-data');
     get_template_part( 'partials/module', 'search' );
 		
 	?>

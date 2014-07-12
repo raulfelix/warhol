@@ -7,14 +7,19 @@
 ?>
 
 <script type="text/javascript">
-  window.LWA = window.LWA || { Views: {}, Modules: {}};
+  window.LWA = { Data:{} };
 
-  LWA.GalleryData = {
-    gallery: [
-    <?php while( $attachments->get() ) : ?>
-      { src: "<?php echo $attachments->src( 'original' ); ?>" },
-    <?php endwhile; ?>
-    ],
-    feature: "<?php echo $feature_src; ?>"
+  LWA.Data.Gallery = {
+    feature: '<?php echo $feature_src; ?>',
+    inline: []
   };
+
+  <?php while( $attachments->get() ) : ?>
+    LWA.Data.Gallery.inline.push({
+      src: '<?php echo $attachments->src( "original" ); ?>',
+      width: '<?php echo $attachments->width( "original" ); ?>',
+      height: '<?php echo $attachments->height( "original" ); ?>'
+    });
+  <?php endwhile; ?>
+
 </script>

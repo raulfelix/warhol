@@ -1,7 +1,8 @@
 /* global LWA, Sly, imagesLoaded, Handlebars */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
 
-LWA.Views.Gallery = (function() {
+var Views = window.Namespace('Views');
+
+Views.Gallery = (function() {
 
   var Modal = {
     
@@ -147,9 +148,9 @@ LWA.Views.Gallery = (function() {
     init: function() {
       var $wrap = $('#header-gallery-thumbs');
 
-      imagesLoaded($wrap, function() {
-        Thumbs.initialiseSly($wrap);
-      });
+      // imagesLoaded($wrap, function() {
+      Thumbs.initialiseSly($('#header-gallery-thumbs'));
+      // });
      
       $('#gallery-thumbs').click(Thumbs.toggle);
     },
@@ -196,25 +197,28 @@ LWA.Views.Gallery = (function() {
     },
 
     state: {
-      sly: undefined
+      sly: undefined,
+      responsive: undefined,
+      isTouch: false,
+      loader: false
     },
 
     template: Handlebars.gallery_inline,
 
     init: function() {
-      var loader = LWA.Modules.Spinner('#header-gallery .loader-icon', {show: true});
-      if (window.matchMedia && window.matchMedia("(min-width: 750px)").matches) {
-        this.renderGallery();
-        
-        LWA.Modules.Loader({
-          imageContent: '#inline-gallery-frame .slidee',
-          hiddenContent: '#header-gallery .m-wrap',
-          loader: loader,
-          callback: Inline.initialiseSly
-        });
+      this.state.responsive = LWA.Modules.Util.getResponsive();
+      this.state.isTouch = !this.state.responsive.BP3.match();
+      this.state.loader = LWA.Modules.Spinner('#header-gallery .loader-icon', {show: true});
 
-      } else {
-        $('#gallery-thumbs').hide();
+      Handlebars.registerHelper('getWidth', function() {
+        return Math.round(this.width * (748 / this.height));
+      });
+
+      this.chooseRendering(this.state.loader);
+    },
+
+    chooseRendering: function(loader) {
+      if (this.state.responsive.BP3.match() && this.state.isTouch !== true) {
         this.renderFeature();
 
         LWA.Modules.Loader({
@@ -222,10 +226,29 @@ LWA.Views.Gallery = (function() {
           hiddenContent: '#header-gallery .m-wrap',
           loader: loader
         });
+        
+        this.state.isTouch = true;
+      }
+      else if (!this.state.responsive.BP3.match() && this.state.isTouch === true) {
+        var wrap = $('#tmpl-gallery-images').html(this.template(LWA.Data.Gallery));
+        wrap.find('img').each(function() {
+          imagesLoaded(this, function(instance) {
+            $(instance.elements[0]).closest('div').removeClass('m-transparent').next().remove();
+          });
+        });
+
+        Inline.initialiseSlider();
+
+        setTimeout(function() {
+          $('#header-gallery-wrap').removeClass('m-transparent');
+          Inline.state.loader.destroy();
+        }, 2000);
+        
+        this.state.isTouch = false;
       }
     },
 
-    initialiseSly: function() {
+    initialiseSlider: function() {
       var $controls = $('#inline-gallery-controls');
       Inline.state.sly = new Sly('#inline-gallery-frame', {
         horizontal: 1,
@@ -261,9 +284,6 @@ LWA.Views.Gallery = (function() {
       if (!Inline.element.title.hasClass('fade') && position >= 1) {
         Inline.element.title.addClass('fade');
         Inline.element.details.addClass('slip-off');
-        // setTimeout(function() {
-        //   Inline.element.title.css('display', 'none');
-        // }, 400);
       }
       else if (Inline.element.title.hasClass('fade') && position === 0) {
         Inline.element.title.removeClass('fade');
@@ -276,7 +296,7 @@ LWA.Views.Gallery = (function() {
     },
 
     reload: function() {
-      Inline.state.sly.reload();
+      Inline.chooseRendering();
     }
   };
 
@@ -300,9 +320,8 @@ LWA.Views.Gallery = (function() {
 
   return {
     init: function() {
-      
-      Inline.init();
       Thumbs.init();
+      Inline.init();
 
       var modalLoad = new imagesLoaded('#modal-gallery-frame');
       modalLoad.on('done', function(instance) {

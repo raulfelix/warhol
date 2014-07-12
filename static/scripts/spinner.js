@@ -1,5 +1,5 @@
 /*global LWA */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.Namespace('Modules');
 
 LWA.Modules.Spinner = function(loaderSelector, opts) {
 
@@ -22,10 +22,16 @@ LWA.Modules.Spinner = function(loaderSelector, opts) {
     }
   }
 
+  function destroy() {
+    $el.remove();
+    $el = undefined;
+  }
+
   init();
 
   return {
     show: show,
-    hide: hide
+    hide: hide,
+    destroy: destroy
   };
 };

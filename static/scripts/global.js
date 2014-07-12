@@ -1,13 +1,49 @@
 /* global LWA, ajaxEndpoint */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.LWA = window.LWA || {};
 
-LWA.Modules.Util = (function() {
-  var
-  $body,
+window.Namespace = function (ns) {
+  var parent = window.LWA, namespace = ns.split('.');
+ 
+  for (var i = 0, length = namespace.length; i < length; i++) {
+    var name = namespace[i];
+    if (typeof parent[name] === 'undefined') {
+      parent[name] = {};
+    }
+    parent = parent[name];
+  }
+  return parent;
+};
+
+
+var Modules = window.Namespace('Modules');
+Modules.Util = (function() {
+  var $body,
   
   Ajax = {
     getUrl: function() {
       return ajaxEndpoint.url;
+    }
+  },
+
+  Responsive = {
+    BP3: {
+      state: undefined,
+      query: '(max-width: 768px)',
+
+      match: function() {
+        console.log(this.state);
+        return this.state;
+      },
+
+      set: function() {
+        console.log('set');
+        this.state = window.matchMedia && window.matchMedia(this.query).matches;
+        console.log(this.state);
+      }
+    },
+
+    setBreakpoints: function() {
+      Responsive.BP3.set();
     }
   },
 
@@ -42,13 +78,13 @@ LWA.Modules.Util = (function() {
     update: function() {
       Metric.setWindowWidth();
       Metric.setWindowHeight();
+      Responsive.setBreakpoints();
     }
   };
 
   function init() {
     $body = $('body');
-    Metric.setWindowWidth();
-    Metric.setWindowHeight();
+    Metric.update();
     $(window).resize(Metric.update);
   }
 
@@ -59,7 +95,10 @@ LWA.Modules.Util = (function() {
     setScroll: Metric.setScrollTop,
     windowWidth: Metric.getWindowWidth,
     windowHeight: Metric.getWindowHeight,
-    getUrl: Ajax.getUrl
+    getUrl: Ajax.getUrl,
+    getResponsive: function () {
+      return Responsive;
+    }
   };
 
 })();

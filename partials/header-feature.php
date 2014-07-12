@@ -37,8 +37,8 @@
   <div class="header-gallery-wrap">
     <?php get_template_part('partials/header', 'nav'); ?>
 
-    <div class="m-wrap m-transparent">
-      <div id="tmpl-gallery-images" data-type="background"></div>
+    <div id="header-gallery-wrap" class="m-wrap m-transparent">
+      <div id="tmpl-gallery-images"></div>
       <div class="header-gallery-content">
         <div class="f-grid f-row">
           <div class="f-1">
@@ -56,7 +56,7 @@
       </div>
       <div id="header-gallery-details" class="slip-in">
         <div class="header-gallery-controls">
-          <button id="gallery-thumbs" class="button button-gallery"><i class="icon-thumbs"></i></button>
+          <button id="gallery-thumbs" class="button button-gallery button-thumbs"><i class="icon-thumbs"></i></button>
           <button id="modal-gallery-button" class="button button-gallery"><i class="icon-expand"></i><span>Launch gallery</span></button>
         </div>
         <div class="header-details">

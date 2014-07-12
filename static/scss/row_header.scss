@@ -225,7 +225,6 @@
 }
 
 .header-gallery {
-  background-color: $black;
 
   .header-gallery-overlay:before {
     content: '';
@@ -314,14 +313,13 @@
   }
 
   .header-gallery-frame {
+    .loader-icon {
+      display: block;
+    }
+    
     li {
       height: 100%;
       position: relative;
-
-      img {
-        height: 100%;
-        width: auto;
-      }
 
       &:hover {
         cursor: pointer;

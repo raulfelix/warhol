@@ -3,21 +3,32 @@ this["Handlebars"] = this["Handlebars"] || {};
 this["Handlebars"]["gallery_inline"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, helper;
-  buffer += "\n      <li class=\"sly-slide header-gallery-overlay\">\n        <img src=\"";
+  var buffer = "", stack1, helper, options;
+  buffer += "\n      <li class=\"sly-slide header-gallery-overlay\" style=\"width: ";
+  options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
+  if (helper = helpers.getWidth) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.getWidth); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.getWidth) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "px;\">\n        <div class=\"m-wrap m-transparent\"><img class=\"m-bg\" src=\"";
   if (helper = helpers.src) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.src); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n      </li>\n    ";
+    + "\"></div>\n        <div class=\"loader-icon\"><i class=\"icon-reload\"></i></div>\n      </li>\n    ";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "";
   return buffer;
   }
 
-  buffer += "<div id=\"inline-gallery-frame\" class=\"header-feature-bg header-gallery-frame frame\" >\n  <ul class=\"slidee\" data-type=\"inline\">\n    ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.gallery), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  buffer += "<div id=\"inline-gallery-frame\" class=\"header-feature-bg header-gallery-frame frame\" >\n  <ul class=\"slidee\">\n    ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.inline), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n  </ul>\n</div>";
   return buffer;

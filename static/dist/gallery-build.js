@@ -5,29 +5,41 @@ this["Handlebars"] = this["Handlebars"] || {};
 this["Handlebars"]["gallery_inline"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, helper;
-  buffer += "\n      <li class=\"sly-slide header-gallery-overlay\">\n        <img src=\"";
+  var buffer = "", stack1, helper, options;
+  buffer += "\n      <li class=\"sly-slide header-gallery-overlay\" style=\"width: ";
+  options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
+  if (helper = helpers.getWidth) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.getWidth); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.getWidth) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "px;\">\n        <div class=\"m-wrap m-transparent\"><img class=\"m-bg\" src=\"";
   if (helper = helpers.src) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.src); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n      </li>\n    ";
+    + "\"></div>\n        <div class=\"loader-icon\"><i class=\"icon-reload\"></i></div>\n      </li>\n    ";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "";
   return buffer;
   }
 
-  buffer += "<div id=\"inline-gallery-frame\" class=\"header-feature-bg header-gallery-frame frame\" >\n  <ul class=\"slidee\" data-type=\"inline\">\n    ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.gallery), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  buffer += "<div id=\"inline-gallery-frame\" class=\"header-feature-bg header-gallery-frame frame\" >\n  <ul class=\"slidee\">\n    ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.inline), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n  </ul>\n</div>";
   return buffer;
   });
 /* global LWA, Sly, imagesLoaded, Handlebars */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
 
-LWA.Views.Gallery = (function() {
+var Views = window.Namespace('Views');
+
+Views.Gallery = (function() {
 
   var Modal = {
     
@@ -173,9 +185,9 @@ LWA.Views.Gallery = (function() {
     init: function() {
       var $wrap = $('#header-gallery-thumbs');
 
-      imagesLoaded($wrap, function() {
-        Thumbs.initialiseSly($wrap);
-      });
+      // imagesLoaded($wrap, function() {
+      Thumbs.initialiseSly($('#header-gallery-thumbs'));
+      // });
      
       $('#gallery-thumbs').click(Thumbs.toggle);
     },
@@ -222,25 +234,28 @@ LWA.Views.Gallery = (function() {
     },
 
     state: {
-      sly: undefined
+      sly: undefined,
+      responsive: undefined,
+      isTouch: false,
+      loader: false
     },
 
     template: Handlebars.gallery_inline,
 
     init: function() {
-      var loader = LWA.Modules.Spinner('#header-gallery .loader-icon', {show: true});
-      if (window.matchMedia && window.matchMedia("(min-width: 750px)").matches) {
-        this.renderGallery();
-        
-        LWA.Modules.Loader({
-          imageContent: '#inline-gallery-frame .slidee',
-          hiddenContent: '#header-gallery .m-wrap',
-          loader: loader,
-          callback: Inline.initialiseSly
-        });
+      this.state.responsive = LWA.Modules.Util.getResponsive();
+      this.state.isTouch = !this.state.responsive.BP3.match();
+      this.state.loader = LWA.Modules.Spinner('#header-gallery .loader-icon', {show: true});
 
-      } else {
-        $('#gallery-thumbs').hide();
+      Handlebars.registerHelper('getWidth', function() {
+        return Math.round(this.width * (748 / this.height));
+      });
+
+      this.chooseRendering(this.state.loader);
+    },
+
+    chooseRendering: function(loader) {
+      if (this.state.responsive.BP3.match() && this.state.isTouch !== true) {
         this.renderFeature();
 
         LWA.Modules.Loader({
@@ -248,10 +263,29 @@ LWA.Views.Gallery = (function() {
           hiddenContent: '#header-gallery .m-wrap',
           loader: loader
         });
+        
+        this.state.isTouch = true;
+      }
+      else if (!this.state.responsive.BP3.match() && this.state.isTouch === true) {
+        var wrap = $('#tmpl-gallery-images').html(this.template(LWA.Data.Gallery));
+        wrap.find('img').each(function() {
+          imagesLoaded(this, function(instance) {
+            $(instance.elements[0]).closest('div').removeClass('m-transparent').next().remove();
+          });
+        });
+
+        Inline.initialiseSlider();
+
+        setTimeout(function() {
+          $('#header-gallery-wrap').removeClass('m-transparent');
+          Inline.state.loader.destroy();
+        }, 2000);
+        
+        this.state.isTouch = false;
       }
     },
 
-    initialiseSly: function() {
+    initialiseSlider: function() {
       var $controls = $('#inline-gallery-controls');
       Inline.state.sly = new Sly('#inline-gallery-frame', {
         horizontal: 1,
@@ -287,9 +321,6 @@ LWA.Views.Gallery = (function() {
       if (!Inline.element.title.hasClass('fade') && position >= 1) {
         Inline.element.title.addClass('fade');
         Inline.element.details.addClass('slip-off');
-        // setTimeout(function() {
-        //   Inline.element.title.css('display', 'none');
-        // }, 400);
       }
       else if (Inline.element.title.hasClass('fade') && position === 0) {
         Inline.element.title.removeClass('fade');
@@ -302,7 +333,7 @@ LWA.Views.Gallery = (function() {
     },
 
     reload: function() {
-      Inline.state.sly.reload();
+      Inline.chooseRendering();
     }
   };
 
@@ -326,9 +357,8 @@ LWA.Views.Gallery = (function() {
 
   return {
     init: function() {
-      
-      Inline.init();
       Thumbs.init();
+      Inline.init();
 
       var modalLoad = new imagesLoaded('#modal-gallery-frame');
       modalLoad.on('done', function(instance) {
