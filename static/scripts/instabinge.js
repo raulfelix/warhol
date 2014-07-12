@@ -1,5 +1,5 @@
 /* global LWA, Sly, Handlebars, imagesLoaded, Hammer */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.Namespace('Views');
 
 LWA.Views.Instabinge = (function() {
 

@@ -1,5 +1,5 @@
 /* global LWA, Handlebars, LWA_endpoint */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.Namespace('Views');
 
 LWA.Views.PostThumbs = (function() {
 

@@ -1,5 +1,5 @@
 /* global LWA, imagesLoaded */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.Namespace('Modules');
 
 /* 
  * Depedencies: 

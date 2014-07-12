@@ -163,7 +163,7 @@ LWA.Views.Navigation = (function() {
 
 LWA.Views.Navigation.init();
 /* global LWA */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.Namespace('Modules');
 
 /*
  * Overlay a modal view setting html element to 
@@ -265,7 +265,7 @@ LWA.Modules.Modal = function(triggerSelector, modalSelector, options) {
 
 };
 /* global LWA */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.Namespace('Views');
 
 LWA.Views.BackUp = (function() {
 
@@ -359,7 +359,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 /* global LWA */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.Namespace('Modules');
 
 /* 
  * Depedencies: 
@@ -403,7 +403,7 @@ LWA.Modules.ButtonLoader = function(selector, opts) {
 
 };
 /* global LWA, Handlebars, LWA_endpoint */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.Namespace('Modules');
 
 LWA.Modules.Search = (function() {
 
@@ -516,7 +516,6 @@ LWA.Modules.Search = (function() {
 
   var Ajax = {
     
-    url: LWA.Data.url,
     params: {
       'action': 'do_ajax',
       'fn': 'search_posts',
@@ -574,7 +573,7 @@ LWA.Modules.Search = (function() {
 
 LWA.Modules.Search.init();
 /* global LWA, imagesLoaded */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.Namespace('Modules');
 
 /* 
  * Depedencies: 
@@ -682,7 +681,7 @@ LWA.Modules.Spinner = function(loaderSelector, opts) {
   };
 };
 /* global LWA */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.Namespace('Modules');
 
 LWA.Modules.Dropdown = function(selector, options) {
 

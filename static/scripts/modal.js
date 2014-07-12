@@ -1,5 +1,5 @@
 /* global LWA */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.Namespace('Modules');
 
 /*
  * Overlay a modal view setting html element to 

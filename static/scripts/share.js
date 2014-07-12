@@ -1,5 +1,5 @@
 /* global LWA */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.Namespace('Modules');
 
 LWA.Modules.Share = (function() {
 

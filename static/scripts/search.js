@@ -1,5 +1,5 @@
 /* global LWA, Handlebars, LWA_endpoint */
-window.LWA = window.LWA || { Views: {}, Modules: {} };
+window.Namespace('Modules');
 
 LWA.Modules.Search = (function() {
 
@@ -112,7 +112,6 @@ LWA.Modules.Search = (function() {
 
   var Ajax = {
     
-    url: LWA.Data.url,
     params: {
       'action': 'do_ajax',
       'fn': 'search_posts',
