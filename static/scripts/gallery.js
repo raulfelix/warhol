@@ -91,6 +91,10 @@ Views.Gallery = (function() {
     },
 
     reload: function() {
+      if (Modal.state.slider === undefined) {
+        return;
+      }
+      
       Modal.state.modal.loader.start();
       
       var currSlideId = Modal.state.slider.currSlideId;
