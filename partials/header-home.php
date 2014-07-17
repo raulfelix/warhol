@@ -21,7 +21,7 @@
         
         <div class="header-slide <?php echo $attrs ? '' : 'header-feature-text' ?>">
           <?php if ($attrs): ?>
-            <div class="header-feature-bg" style="background-image: url(<?php echo $attrs[0]; ?>);"></div>
+            <div class="header-feature-bg" style="background-image: url(<?php echo $attrs[0]; ?>);" data-type="background"></div>
             <div class="blanket-light"></div>
           <?php endif; ?>
           <div class="f-grid f-row">
