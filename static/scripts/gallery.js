@@ -8,126 +8,121 @@ Views.Gallery = (function() {
     
     state: {
       modal: undefined,
-      sly: undefined,
-      count: undefined,
+      slider: undefined,
       responsive: {
-        width: 200,
         height: 120,
-        widthTouch: 40,
         heightTouch: 160
       }
     },
 
     elements: {
       $imgs: undefined,
-      $total: undefined,
-      $caption: undefined
-    },
-
-    onActivate: function(eventName, position) {
-      var e = $(this.items[position].el);
-      Modal.elements.$total.html((position + 1) + ' / ' + Modal.state.count);
-      Modal.elements.$caption.html(e.data('title'));
+      $total: undefined
     },
 
     init: function() {
-      // init modal
-      Modal.state.modal =
-        LWA.Modules.Modal('#modal-gallery-button', '#modal-gallery', { closeable: true });
 
-      // cache elements
-      this.elements.$imgs = Modal.state.modal.el().find('#modal-gallery-frame img');
-      this.elements.$total = Modal.state.modal.el().find('.modal-gallery-count');
-      this.elements.$caption = Modal.state.modal.el().find('.modal-gallery-caption');
-      Modal.state.count = this.elements.$imgs.length;
+      if (Modal.state.slider !== undefined) {
+        return;
+      }
 
-      this.setModalRowHeight();
-      this.setImageDimensions();
+      Modal.elements.$slider = $('#modal-gallery-frame .royalSlider');
+      Modal.elements.$imgs = Modal.elements.$slider.find('img');
+      Modal.elements.$total = Modal.state.modal.el().find('.modal-gallery-count');
 
-      setTimeout(function() {
-        Modal.state.sly = new Sly('#modal-gallery-frame', {
-          horizontal: 1,
-          itemNav: 'forceCentered',
-          smart: 1,
-          activateMiddle: 1,
-          mouseDragging: 0,
-          touchDragging: 1,
-          releaseSwing: 0,
-          startAt: 0,
-          speed: 240,
-          elasticBounds: 1,
-          easing: 'swing',
-          prev: Modal.state.modal.el().find('.sly-prev'),
-          next: Modal.state.modal.el().find('.sly-next')
+      Modal.state.modal.el().find('.sly-prev').click(Modal.prev);
+      Modal.state.modal.el().find('.sly-next').click(Modal.next);
+
+      Modal.setModalRowHeight();
+
+      Modal.state.slider = Modal.elements.$slider.royalSlider({
+        keyboardNavEnabled: true,
+        sliderDrag: false,
+        navigateByClick: false,
+        transitionSpeed: 260,
+        startSlideId: 0,
+        controlNavigation: 'none',
+        fadeinLoadedSlide: false,
+        globalCaption: true,
+        addActiveClass: true,
+        arrowsNav: false
+      }).data('royalSlider');
+
+      Modal.state.slider.ev.on('rsAfterSlideChange', function(event) {
+        Modal.onActivate(Modal.state.slider.currSlideId);
+      });
+
+      Modal.onActivate(0);
+
+      Modal.elements.$imgs.each(function() {
+        imagesLoaded(this, function(instance) {
+          $(instance.elements[0]).removeClass('m-transparent').next().remove();
         });
-        Modal.state.sly.on('active', Modal.onActivate);
-        Modal.state.sly.init();
-      }, 2000);
+      });
+    },
+
+    next: function() {
+      Modal.state.slider.next();
+    },
+
+    prev: function() {
+      Modal.state.slider.prev();
+    },
+
+    onActivate: function(position) {
+      Modal.elements.$total.html((position + 1) + ' / ' + Modal.state.slider.numSlides);
     },
 
     setModalRowHeight: function() {
-      var h;
-      if (window.matchMedia && window.matchMedia("(max-width: 599px)").matches) {
-        h = $(window).height() - Modal.state.responsive.heightTouch;
-      } else {
-        h = $(window).height() - Modal.state.responsive.height;
-      }
-      Modal.state.modal.el().find('#modal-gallery-frame').css('height', h);
-    },
-
-    /* 
-      if viewport is more narrow than natural width
-        - use viewport width
-        - set image to have 100% width, height: auto
-      else
-        - use image width
-        - set image to have auto width, height: 100% 
-    */
-    setImageDimensions: function() {
-      var w, originalViewport = $(window).width(), viewport, viewportHeight, className = 'modal-gallery-height';
-
-      if (window.matchMedia && window.matchMedia('(max-width: 599px)').matches) {
-        viewport = originalViewport - Modal.state.responsive.widthTouch;
-      } else {
-        viewport = originalViewport - Modal.state.responsive.width;
-      }
-      viewportHeight = Modal.state.modal.el().find('#modal-gallery-frame').height();
-
-      Modal.elements.$imgs.each(function() {
-        w = this.width;
-        if (viewport < w) {
-          this.className = 'modal-gallery-width';
-          
-          var img = this;
-          setTimeout(function() {
-            if (viewportHeight < img.height) {
-              $(img).addClass('modal-gallery-height');
-            }
-          }, 100);
-          
-        } else {
-          $(this).addClass('modal-gallery-height');
-        }
-
-        $(this).closest('li').css('width', originalViewport);
-      });
+      var extraHeight = LWA.Modules.Util.getResponsive().BP1.match() ? Modal.state.responsive.heightTouch : Modal.state.responsive.height;
+      Modal.elements.$slider.css('height', LWA.Modules.Util.windowHeight() - extraHeight);
+      Modal.elements.$slider.find('.rsOverflow').css('height', LWA.Modules.Util.windowHeight() - extraHeight);
     },
 
     clearDimensions: function() {
-      Modal.elements.$imgs.each(function() {
-        $(this)
-          .removeClass('modal-gallery-height modal-gallery-width')
-          .closest('li')
-          .attr('style', null);
-      });
+      Modal.elements.$slider.height('auto').width(LWA.Modules.Util.windowWidth());
+      var fragment = $(document.createDocumentFragment());
+      for (var i = 0; i < Modal.state.slider.slides.length; i++) {
+        Modal.state.slider.slides[i].content.find('img').removeClass('modal-gallery-height modal-gallery-width');
+        fragment.append(Modal.state.slider.slides[i].content);
+      }
+      Modal.elements.$slider.children().remove();
+      Modal.elements.$slider.append(fragment);
     },
 
     reload: function() {
-      $('#modal-gallery-frame ul').css('width', '100%');
+      Modal.state.modal.loader.start();
+      
+      var currSlideId = Modal.state.slider.currSlideId;
+      
       Modal.clearDimensions();
+      Modal.state.slider.destroy();
+      Modal.state.slider = undefined;
+
       Modal.setModalRowHeight();
-      Modal.setImageDimensions();
-      Modal.state.sly.reload();
+
+      Modal.state.slider = Modal.elements.$slider.royalSlider({
+        keyboardNavEnabled: true,
+        sliderDrag: false,
+        navigateByClick: false,
+        transitionSpeed: 260,
+        startSlideId: currSlideId,
+        controlNavigation: 'none',
+        fadeinLoadedSlide: false,
+        globalCaption: true,
+        addActiveClass: true,
+        arrowsNav: false
+      }).data('royalSlider');
+
+      Modal.state.slider.ev.on('rsAfterSlideChange', function(event) {
+        Modal.onActivate(Modal.state.slider.currSlideId);
+      });
+
+      Modal.onActivate(currSlideId);
+
+      setTimeout(function() {
+        Modal.state.modal.loader.stop();
+      }, 1000);
     }
   };
 
@@ -270,12 +265,12 @@ Views.Gallery = (function() {
     },
 
     renderGallery: function() {
-      $('#tmpl-gallery-images').html(this.template(LWA.GalleryData));
+      $('#tmpl-gallery-images').html(this.template(LWA.Data.Gallery));
     },
 
     renderFeature: function() {
       $('#tmpl-gallery-images')
-        .css('background-image', 'url(' + LWA.GalleryData.feature + ')')
+        .css('background-image', 'url(' + LWA.Data.Gallery.feature + ')')
         .addClass('header-feature-bg');
     },
 
@@ -323,10 +318,11 @@ Views.Gallery = (function() {
       Thumbs.init();
       Inline.init();
 
-      var modalLoad = new imagesLoaded('#modal-gallery-frame');
-      modalLoad.on('done', function(instance) {
-        Modal.init();
-      });
+      Modal.state.modal =
+        LWA.Modules.Modal('#modal-gallery-button', '#modal-gallery', {
+          closeable: true,
+          open: Modal.init
+        });
 
       $(window).resize(updateSly);
     }

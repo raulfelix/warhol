@@ -15,16 +15,17 @@
   <div class="modal-wrap">
     <div class="modal-wrap-row">
       <div id="modal-gallery-frame" class="modal-view frame">
-        <ul class="slidee">
+        
+        <div class="royalSlider">
           <?php 
             while( $attachments->get() ) : ?>
-            <li class="sly-slide" data-title="<?php echo $attachments->field( 'caption' ); ?>">
-              <img src="<?php echo $attachments->src( 'large' ); ?>">
-            </li>
+              <div class="sly-slide">
+                <img class="rsImg m-wrap m-transparent" src="<?php echo $attachments->src( 'large' ); ?>" alt="<?php echo $attachments->field( 'caption' ); ?>">
+                <?php get_template_part('partials/module', 'util-loader'); ?>
+              </div>
           <?php endwhile; ?>
-        </ul>
+        </div>
       </div>
-      <div class="modal-gallery-caption">This is where the caption will sit and js will change the contents.</div>
       <div class="sly-controls">
         <button class="sly-prev"><i class="icon-arrow-left"></i></button>
         <button class="sly-next"><i class="icon-arrow-right"></i></button>

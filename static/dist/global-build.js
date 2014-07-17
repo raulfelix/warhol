@@ -65,18 +65,29 @@ Modules.Util = (function() {
       query: '(max-width: 768px)',
 
       match: function() {
-        console.log(this.state);
         return this.state;
       },
 
       set: function() {
-        console.log('set');
         this.state = window.matchMedia && window.matchMedia(this.query).matches;
-        console.log(this.state);
+      }
+    },
+
+    BP1: {
+      state: undefined,
+      query: '(max-width: 599px)',
+
+      match: function() {
+        return this.state;
+      },
+
+      set: function() {
+        this.state = window.matchMedia && window.matchMedia(this.query).matches;
       }
     },
 
     setBreakpoints: function() {
+      Responsive.BP1.set();
       Responsive.BP3.set();
     }
   },

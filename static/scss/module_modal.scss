@@ -193,35 +193,30 @@
 
 
 .modal-gallery {
-  display: block;
-  visibility: hidden;
-  
-  &.modal-active {
-    visibility: visible;
-  }
 
-  .modal-gallery-count,
-  .modal-gallery-caption {
+  .rsGCaption {
     color: $white;
     position: absolute;
+    bottom: rem(-40);
+  }
+  
+  .rsActiveSlide .loader-icon {
+    display: block;
   }
 
+  .rsImg {
+    margin-left: auto !important;
+    margin-top: auto !important;
+  }
+  
   .modal-gallery-count {
+    color: $white;
+    position: absolute;
     left: rem(20);
     top: rem(20);
   }
 
-  .modal-gallery-caption {
-    width: 100%;
-    margin: 0 auto;
-    display: inline-block;
-    text-align: center;
-    bottom: rem(20);
-    padding: 0 20%;
-  }
-
   .modal-view {
-    overflow: visible !important;
     width: 100%;
     max-width: 100%;
 
@@ -229,14 +224,16 @@
     img {
       display: inline-block;
       vertical-align: middle;
+      width: auto;
     }
 
-    li {
+    .sly-slide {
       height: 100%;
+      width: 100%;
       text-align: center;
       position: relative;
     }
-    li:before {
+    .sly-slide:before {
       content: '';
       display: inline-block;
       height: 100%;

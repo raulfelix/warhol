@@ -70,6 +70,7 @@ module.exports = function(grunt) {
           ],
           'static/dist/gallery-build.js' : [
             'static/vendor/sly.min.js',
+            'static/vendor/jquery.slider.min.js',
             'static/scripts/precompiled/gallery-template.js',
             'static/scripts/gallery.js'
           ],
