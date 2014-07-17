@@ -140,17 +140,14 @@ function get_gallery_image($as_src) {
  * - else:    get an image from the content 
  */
 function get_thumbnail($src = false, $is_news = false) {
-  if ( $is_news && has_a_feature_image() ) {
+  if ( has_a_feature_image() ) {
     return get_feature_image($src, 'news-thumbnail');
   }
-  else if ( $is_news && has_gallery_image() ) {
+  else if ( has_gallery_image() ) {
     return get_gallery_image($src);
   }
-  else if ( $is_news ) {
+  else {
     return get_content_image($src);
-  }
-  else if ( has_a_feature_image() ) {
-    return get_feature_image($src, 'large');
   }
 }
 

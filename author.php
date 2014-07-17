@@ -44,14 +44,14 @@
 
     if ($order === 'desc') {
       $args = Array(
-        'posts_per_page' => 9,
+        'posts_per_page' => 12,
         'paged' => $paged,
         'author_name' => $author_name,
         'post_type' => array('lwa_feature', 'lwa_news'),
       );
     } else {
       $args = Array(
-        'posts_per_page' => 9,
+        'posts_per_page' => 12,
         'paged' => $paged,
         'author_name' => $author_name,
          'post_type' => array('lwa_feature', 'lwa_news'),
