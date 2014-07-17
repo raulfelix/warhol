@@ -44,14 +44,14 @@
 
     if ($order === 'desc') {
       $args = Array(
-        'posts_per_page' => 6,
+        'posts_per_page' => 9,
         'paged' => $paged,
         'author_name' => $author_name,
         'post_type' => array('lwa_feature', 'lwa_news'),
       );
     } else {
       $args = Array(
-        'posts_per_page' => 6,
+        'posts_per_page' => 9,
         'paged' => $paged,
         'author_name' => $author_name,
          'post_type' => array('lwa_feature', 'lwa_news'),
@@ -60,19 +60,17 @@
       );
     }
 
-    // todo exclude featured post above
     $wp_query = new WP_Query( $args );
-
+    $idx = 1;
     if ( $wp_query->have_posts() ):
       while ( $wp_query->have_posts() ): 
         $wp_query->the_post();
   ?>
-
         <div class="f-1-3 bp1-1-2 thumb-inline">
           <?php get_template_part('partials/article', 'thumb'); ?>
         </div>
-  
-  <?php  
+  <?php
+      generate_inline_thumb_fix($idx++);  
       endwhile;
     endif;
   ?>
