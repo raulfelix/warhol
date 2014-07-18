@@ -11,6 +11,7 @@ function extra_category_fields( $tax ) { ?>
   <?php $sponsor_url = get_term_meta( $tax->term_id, 'c-sponsor-url', true ); ?>
   <?php $hex_value = get_term_meta( $tax->term_id, 'c-category-hex', true ); ?>
   <?php $opacity_value = get_term_meta( $tax->term_id, 'c-category-opacity', true ); ?>
+  <?php $sponsor_link = get_term_meta( $tax->term_id, 'c-sponsor-link', true ); ?>
   
   <tr id="poststuff" class="form-field">
     <th>Category branding</th>
@@ -30,7 +31,7 @@ function extra_category_fields( $tax ) { ?>
         </div>
       </div>
 
-      <div class="c-category-postbox postbox">
+      <div class="c-category-postbox c-category-postbox-dark postbox">
         <h3 class="hndle"><span>Set Sponsor Logo</span></h3>
         <div class="inside">
           <a data-input="#c-sponsor-url" data-uploader-title="Set sponsor image" href="<?php echo get_home_url(); ?>/wp-admin/media-upload.php?type=image" id="set-sponsor-thumbnail" class="thickbox">
@@ -46,14 +47,21 @@ function extra_category_fields( $tax ) { ?>
       </div>
     </td>
   </tr>
-  <tr id="poststuff" class="form-field">
+  <tr id="c-sponsor-link" class="form-field">
+    <th>Sponsor link</th>
+    <td>
+      <input type="text" value="<?php echo $sponsor_link; ?>" id="c-sponsor-link" name="c-sponsor-link"/>
+      <p class="description">Enter fully qualified url such as http://www.somename.com</p>
+    </td>
+  </tr>
+  <tr id="c-hex" class="form-field">
     <th>Hex colour value</th>
     <td>
       <input type="text" value="<?php echo $hex_value; ?>" id="c-category-hex" name="c-category-hex"/>
       <p class="description">A hexidecimal value. Defaults to #000000 if blank</p>
     </td>
   </tr>
-  <tr id="poststuff" class="form-field">
+  <tr id="c-opacity" class="form-field">
     <th>Opacity overlay</th>
     <td>
       <input type="text" value="<?php echo $opacity_value; ?>" id="c-category-opacity" name="c-category-opacity"/>
@@ -78,7 +86,10 @@ function save_category_extras( $term_id ) {
   }
   if (isset($_POST['c-category-opacity'])) {
     update_term_meta( $term_id, 'c-category-opacity', $_POST['c-category-opacity'] );
-  }             
+  }
+  if (isset($_POST['c-sponsor-link'])) {
+    update_term_meta( $term_id, 'c-sponsor-link', $_POST['c-sponsor-link'] );
+  }              
 }
 add_action('edited_featured_tax', 'save_category_extras', 10, 1);
 add_action('edited_news_tax', 'save_category_extras', 10, 1);
@@ -89,6 +100,7 @@ function delete_category_extras( $term_id ) {
   delete_term_meta( $term_id, 'c-sponsor-url' );
   delete_term_meta( $term_id, 'c-category-hex' );
   delete_term_meta( $term_id, 'c-category-opacity' );
+  delete_term_meta( $term_id, 'c-sponsor-link' );
 }
 add_action('delete_featured_tax', 'delete_category_extras', 10, 1);
 add_action('delete_news_tax', 'delete_category_extras', 10, 1);

@@ -50,8 +50,8 @@
     else if ( is_page('info') || is_author()) {
       get_template_part('partials/header', 'info');
     }
-    else if ( is_tax('news_tax') ) {
-      get_template_part('partials/header', 'category-news');
+    else if ( is_tax('news_tax') || is_tax('featured_tax') ) {
+      get_template_part('partials/header', 'category');
     }
     else if ( is_tax('featured_tax') ) {
       get_template_part('partials/header', 'category-featured');
