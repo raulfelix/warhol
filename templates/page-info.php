@@ -21,9 +21,20 @@
 
 <div class="f-grid f-row">
   <?php
-    $users = get_users();
+    $users = get_users(array(
+      'fields' => 'all_with_meta'
+    ));
+
+    $users = array_filter($users, function($u) { return $u->user_login != 'warhol'; });
+    
+    function sort_display($a, $b){
+      return ($a->display_order < $b->display_order) ? -1 : 1;
+    } 
+ 
+    // Sort using our custom comparison function
+    usort($users, "sort_display");
+
     foreach ($users as $user):
-      if ($user->user_login != 'warhol'):
   ?>
   <div class="f-1-3 bp1-1">
     <div class="thumb-author">
@@ -42,7 +53,6 @@
     </div>
   </div>
   <?php
-      endif;
     endforeach; 
   ?>
 </div>
