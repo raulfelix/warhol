@@ -23,6 +23,7 @@
   <?php
     $users = get_users();
     foreach ($users as $user):
+      if ($user->user_login != 'warhol'):
   ?>
   <div class="f-1-3 bp1-1">
     <div class="thumb-author">
@@ -40,7 +41,10 @@
       </div>
     </div>
   </div>
-  <?php endforeach; ?>
+  <?php
+      endif;
+    endforeach; 
+  ?>
 </div>
 
 <div class="article-row f-grid f-row">
