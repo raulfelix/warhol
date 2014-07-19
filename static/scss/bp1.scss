@@ -24,6 +24,7 @@
   // subscribe
   .form-subscribe {
     margin-top: rem(50);
+    margin-bottom: rem(50);
     
     .input {
       margin-right: 0;
@@ -41,4 +42,10 @@
   @import 'row_header_bp1';
   @import 'row_footer_bp1';
   @import 'row_instabinge_bp1';
+}
+
+@media all and (max-height: 500px) {
+  .footer-fixed {
+    position: relative;
+  }
 }
