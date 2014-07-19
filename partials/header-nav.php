@@ -11,7 +11,7 @@
       </div>
       <div class="nav-links">
         <ul class="nav-links-primary">
-          <li><a href="<?php echo get_home_url(); ?>/featured/tuesdays-without">Tuesdays Without</a></li>
+          <li><a href="<?php echo get_home_url(); ?>/featured/tuesday-without">Tuesdays Without</a></li>
           <li><a href="<?php echo get_home_url(); ?>/featured/parties-bullshit">Party &amp; Bullshit</a></li>
           <li><a href="<?php echo get_home_url(); ?>/featured/twentyfour">Twentyfour</a></li>
           <li><a href="<?php echo get_home_url(); ?>/news/news">News</a></li>
