@@ -1,0 +1,40 @@
+.form-row {
+  .form-row-content {
+    max-width: rem(500);
+    padding-top: rem(120);
+    width: 100%;
+
+    h1, p {
+      padding: 0;
+    }
+  }
+}
+
+.form-subscribe {
+  margin-top: rem(90);
+
+  .input {
+    margin-right: rem(185);
+  }
+
+  .button {
+    float: right;
+    margin-top: rem(-54);
+  }
+}
+
+input[type='email'] {
+  border: 2px solid #ddd;
+  border-radius: 40px;
+  font-size: rem(18);
+  height: rem(54);
+  padding: rem(14) rem(30);
+  margin-right: rem(10);
+  min-width: rem(170);
+  width: 100%;
+  color: $black;
+}
+
+input[type='email']:focus {
+  border: 2px solid $pink;
+}

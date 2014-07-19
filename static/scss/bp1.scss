@@ -20,27 +20,18 @@
     width: 100%;
   }
   
-  // instabinge 
-  .instabinge {
-    height: rem(335);
-    padding: rem(40) 0 0 0;
 
-    .h-1 {
-      font-size: rem(20);
-      margin-bottom: rem(40);
-    }
+  // subscribe
+  .form-subscribe {
+    margin-top: rem(50);
     
-    .frame {
-      height: rem(180);
-      .slidee {
-        li {
-          width: rem(151);
-        }
-      }
+    .input {
+      margin-right: 0;
     }
 
-    .instabinge-prev, .instabinge-next {
-      display: none;
+    .button {
+      float: none;
+      margin-top: rem(10);
     }
   }
 
@@ -48,12 +39,6 @@
   @import 'module_thumb_bp1';
   @import 'module_modal_bp1';
   @import 'row_header_bp1';
-  .header {
-    .h-1 {
-      line-height: 1.2;
-    }
-  }
-
   @import 'row_footer_bp1';
   @import 'row_instabinge_bp1';
 }

@@ -11,11 +11,13 @@ header, footer, section, article, figure, figcaption, button, input {
 
 .wf-apercupromedium-n6-loading,
 .wf-apercuprolight-n2-loading {
-  h3, h4, a, button, p, .h-3, .h-4, .h-5,
+  h3, h4, a, button, input, p, 
+  .h-3, .h-4, .h-5,
   .header-category .header-category-h1,
   .header-category .header-category-h2,
   .thumb .thumb-caption,
   .thumb-category .thumb-caption,
+  .article-row-content h1, 
   .article-row-content p, 
   .article-row-content li {
     font-family: 'Trebuchet MS', Arial, sans-serif;  

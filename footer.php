@@ -9,7 +9,10 @@
 	
 	<?php 
 
-		if ( is_page() || is_author() || is_tax('news_tax') || is_tax('featured_tax')) {
+		if ( is_page( array( 'subscribe', 'subscribed' )) ) {
+			get_template_part('partials/footer', 'small-fixed');
+		}
+		else if ( is_page() || is_author() || is_tax('news_tax') || is_tax('featured_tax')) {
 			get_template_part('partials/footer', 'small');
 		} 
 		else {

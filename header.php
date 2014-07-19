@@ -47,7 +47,7 @@
     if ( is_page('home') ) {
       get_template_part('partials/header', 'home');
     } 
-    else if ( is_page('info') || is_author()) {
+    else if ( is_page(array('info', 'subscribe', 'subscribed')) || is_author()) {
       get_template_part('partials/header', 'info');
     }
     else if ( is_tax('news_tax') || is_tax('featured_tax') ) {
