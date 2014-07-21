@@ -11,7 +11,7 @@
 }
 
 .thumb {
-  margin-bottom: rem(60);
+  margin-bottom: rem(40);
   @extend %clearfix;
 
   .thumb-feature {
@@ -64,6 +64,7 @@
   
   .thumb-caption { 
     font-family:"Apercu Pro Light", 'Trebuchet MS', Arial, sans-serif;
+    margin-bottom: 0;
   }
 
   img {
@@ -72,13 +73,6 @@
   }
 }
 
-.thumb-inline {
-  .thumb {
-    height: auto;
-    margin-bottom: 0;
-  }
-  margin-bottom: rem(40);
-}
 
 .thumb-inline-fix,
 .thumb-touch-inline-fix {
@@ -203,6 +197,4 @@
   img {
     width: 100%;
   }
-
-  
 }

@@ -126,7 +126,7 @@ LWA.Views.PostThumbs = (function() {
         desktop = '<div class="thumb-inline-fix"></div>';
 
       $.each(posts, function(o) {
-        posts[o].column_css = 'f-1-3 bp1-1-2 thumb-inline';
+        posts[o].column_css = 'f-1-3 bp1-1-2';
         html += AjaxNews.template(posts[o]);
         if (idx % 2 === 0) {
           html += touch;

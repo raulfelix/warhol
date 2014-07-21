@@ -66,7 +66,7 @@
       while ( $wp_query->have_posts() ): 
         $wp_query->the_post();
   ?>
-        <div class="f-1-3 bp1-1-2 thumb-inline">
+        <div class="f-1-3 bp1-1-2">
           <?php get_template_part('partials/article', 'thumb'); ?>
         </div>
   <?php

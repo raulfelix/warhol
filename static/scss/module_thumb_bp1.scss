@@ -1,20 +1,38 @@
 .thumb {
-  margin-bottom: rem(30);
   
   .thumb-title {
-    font-size: rem(20);
+    font-size: rem(15);
     margin-bottom: rem(5);
+  }
+
+  .thumb-time {
+    left: rem(5);
+    bottom: rem(5);
+  }
+  
+  .thumb-views, 
+  .thumb-time {
+    font-size: rem(12);
   }
 
   .thumb-caption {
     font-size: rem(14);
-    margin-bottom: 0;
+    display: none;
   }
 
   .thumb-feature {
     margin: rem(10) 0;
   }
+
+  .thumb-views {
+    right: rem(5);
+    bottom: rem(5);
+    i {
+      font-size: 15px;
+    }
+  }
 }
+
 
 .thumb-touch-inline-fix {
   display: block;
@@ -30,47 +48,6 @@
   }
 }
   
-.thumb-inline {
-  margin-bottom: rem(16);
-
-  .thumb {
-    margin-bottom: rem(0);
-  }
-
-  .thumb-title {
-    font-size: rem(15);
-  }
-
-  .thumb-time {
-    left: rem(5);
-    bottom: rem(5);
-  }
-
-  .thumb-views {
-    right: rem(5);
-    bottom: rem(5);
-    i {
-      font-size: 15px;
-    }
-  }
-
-  .thumb-caption {
-    display: none;
-  }
-   
-  .thumb-views, 
-  .thumb-time {
-    font-size: rem(12);
-  }
-}
-
-.f-row .thumb-inline:nth-child(2n+2):after {
-  content: '.';
-  display: block;
-  visibility: hidden;
-  clear: both;
-}
-
 
 .thumb-category {
   padding-top: 0;
@@ -89,6 +66,7 @@
     margin-bottom: rem(20);
   }
 }
+
 
 .thumb-search {
   padding: 0;
