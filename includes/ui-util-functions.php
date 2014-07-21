@@ -53,7 +53,7 @@ function category($post_type) {
       return array(
         'id' => $term->term_id,
         'name' => enc( $term->name ),
-        'permalink' => get_bloginfo('wpurl') . "/" . ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $term->slug,
+        'permalink' => get_bloginfo('url') . "/" . ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $term->slug,
         'slug' => $term->slug,
         'description' => $term->description
         );
