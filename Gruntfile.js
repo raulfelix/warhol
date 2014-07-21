@@ -46,7 +46,6 @@ module.exports = function(grunt) {
             'static/vendor/jquery.slider.min.js',
             'static/scripts/precompiled/article-template.js',
             'static/scripts/precompiled/instabinge-template.js',
-            'static/vendor/imagesloaded.pkgd.min.js',
             'static/scripts/post-loader.js',
             'static/scripts/home.js',
             'static/scripts/instabinge.js'
@@ -54,7 +53,6 @@ module.exports = function(grunt) {
           'static/dist/global-build.js' : [
             'static/vendor/jquery-2.0.3.min.js',
             'static/vendor/*.js',
-            '!static/vendor/imagesloaded.pkgd.min.js',
             '!static/vendor/sly.min.js',
             '!static/vendor/jquery.slider.min.js',
             'static/scripts/global.js',
@@ -65,8 +63,7 @@ module.exports = function(grunt) {
             'static/scripts/button-loader.js',
             'static/scripts/search.js',
             'static/scripts/load.js',
-            'static/scripts/spinner.js',
-            'static/scripts/dropdown.js'
+            'static/scripts/spinner.js'
           ],
           'static/dist/gallery-build.js' : [
             'static/vendor/sly.min.js',
@@ -75,12 +72,12 @@ module.exports = function(grunt) {
             'static/scripts/gallery.js'
           ],
           'static/dist/single-build.js' : [
-            'static/vendor/imagesloaded.pkgd.min.js',
             'static/scripts/share.js',
             'static/scripts/single.js'
           ],
           'static/dist/category-build.js' : [
-            'static/scripts/dropdown.js'
+            'static/scripts/dropdown.js',
+            'static/scripts/category.js'
           ]
         }
       }

@@ -55,3 +55,9 @@ LWA.Modules.Dropdown = function(selector, options) {
 };
 
 LWA.Modules.Dropdown('#dropdown-sort');
+/* global LWA */
+LWA.Modules.Loader({
+  imageContent: '.header-feature-bg',
+  hiddenContent: '.header-feature .m-wrap',
+  delayReveal: 100
+});

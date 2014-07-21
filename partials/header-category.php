@@ -2,6 +2,7 @@
   /*
    * Header category
    */
+  wp_enqueue_script( 'category' );
 
   if ( is_tax('news_tax') ) {
     $tax = get_term_by('slug', $news_tax, 'news_tax');
@@ -20,7 +21,9 @@
 ?>
 
 <header class="header header-feature header-category">
-  <div class="header-feature-bg" style="background-image: url(<?php echo $feature_url; ?>);"></div>
+  <div class="m-wrap m-transparent">
+    <div class="header-feature-bg" style="background-image: url(<?php echo $feature_url; ?>);" data-type="background"></div>
+  </div>
   <div class="blanket-overlay" style="background-color:<?php echo $hex_value; ?>;opacity: <?php echo $alpha_value; ?>;"></div>
 
   <?php get_template_part('partials/header', 'nav'); ?>
