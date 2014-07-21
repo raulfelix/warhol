@@ -40,6 +40,7 @@
 
     <div id="header-gallery-wrap" class="m-wrap m-transparent">
       <div id="tmpl-gallery-images"></div>
+      <div class="m-overlay blanket-light"></div>
       <div class="header-gallery-content">
         <div class="f-grid f-row">
           <div class="f-1">

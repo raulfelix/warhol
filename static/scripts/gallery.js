@@ -192,7 +192,8 @@ Views.Gallery = (function() {
 
     element: {
       title: $('#header-gallery-title'),
-      details: $('#header-gallery-details')
+      details: $('#header-gallery-details'),
+      overlay: $('#header-gallery .m-overlay')
     },
 
     state: {
@@ -274,7 +275,7 @@ Views.Gallery = (function() {
           $(instance.elements[0]).closest('div').removeClass('m-transparent').next().remove();
         });
       });
-
+      Inline.element.overlay.hide();
       Inline.initialiseSlider();
     },
 
@@ -282,6 +283,7 @@ Views.Gallery = (function() {
       $('#tmpl-gallery-images')
         .css('background-image', 'url(' + LWA.Data.Gallery.feature + ')')
         .addClass('header-feature-bg');
+      Inline.element.overlay.show();
       Inline.showTitle();
     },
 
