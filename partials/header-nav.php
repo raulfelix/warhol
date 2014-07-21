@@ -11,9 +11,9 @@
       </div>
       <div class="nav-links">
         <ul class="nav-links-primary">
-          <li><a href="<?php echo get_home_url(); ?>/featured/tuesday-without">Tuesdays Without</a></li>
+          <li><a href="<?php echo get_home_url(); ?>/featured/tuesday-without">Tuesday Without</a></li>
           <li><a href="<?php echo get_home_url(); ?>/featured/parties-bullshit">Party &amp; Bullshit</a></li>
-          <li><a href="<?php echo get_home_url(); ?>/featured/twentyfour">Twentyfour</a></li>
+          <li><a href="<?php echo get_home_url(); ?>/featured/twentyfour">TwentyFour</a></li>
           <li><a href="<?php echo get_home_url(); ?>/news/news">News</a></li>
           <li><a href="http://www.lifewithoutandy.myshopify.com">Shop</a></li>
         </ul>
