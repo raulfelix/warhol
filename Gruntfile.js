@@ -90,7 +90,7 @@ module.exports = function(grunt) {
       options: {
         sourceMap: true,
         compress: {
-          drop_console: false
+          drop_console: true
         },
         mangle: {
           except: ['jQuery', 'Handlebars']

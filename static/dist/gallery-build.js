@@ -124,7 +124,7 @@ this["Handlebars"] = this["Handlebars"] || {};
 this["Handlebars"]["gallery_inline"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
@@ -139,7 +139,10 @@ function program1(depth0,data) {
   if (helper = helpers.src) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.src); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\"></div>\n        <div class=\"loader-icon\"><i class=\"icon-reload\"></i></div>\n      </li>\n    ";
+    + "\"></div>\n        ";
+  stack1 = (helper = helpers.loader || (depth0 && depth0.loader),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, (data == null || data === false ? data : data.index), options) : helperMissing.call(depth0, "loader", (data == null || data === false ? data : data.index), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n      </li>\n    ";
   return buffer;
   }
 function program2(depth0,data) {
@@ -369,6 +372,12 @@ Views.Gallery = (function() {
         return Math.round(this.width * (748 / this.height));
       });
 
+      Handlebars.registerHelper('loader', function(index) {
+        if (index > 1) {
+          return '<div class="loader-icon"><i class="icon-reload"></i></div>';
+        }
+      });
+      
       this.chooseRendering(this.state.loader);
     },
 
@@ -385,14 +394,7 @@ Views.Gallery = (function() {
         this.state.isTouch = true;
       }
       else if (!this.state.responsive.BP3.match() && this.state.isTouch === true) {
-        var wrap = $('#tmpl-gallery-images').html(this.template(LWA.Data.Gallery));
-        wrap.find('img').each(function() {
-          imagesLoaded(this, function(instance) {
-            $(instance.elements[0]).closest('div').removeClass('m-transparent').next().remove();
-          });
-        });
-
-        Inline.initialiseSlider();
+        Inline.renderGallery();
 
         setTimeout(function() {
           $('#header-gallery-wrap').removeClass('m-transparent');
@@ -425,25 +427,53 @@ Views.Gallery = (function() {
     },
 
     renderGallery: function() {
-      $('#tmpl-gallery-images').html(this.template(LWA.Data.Gallery));
+      var wrap = $('#tmpl-gallery-images').html(this.template(LWA.Data.Gallery));
+      wrap.find('img').each(function() {
+        imagesLoaded(this, function(instance) {
+          $(instance.elements[0]).closest('div').removeClass('m-transparent').next().remove();
+        });
+      });
+
+      Inline.initialiseSlider();
     },
 
     renderFeature: function() {
       $('#tmpl-gallery-images')
         .css('background-image', 'url(' + LWA.Data.Gallery.feature + ')')
         .addClass('header-feature-bg');
+      Inline.showTitle();
+    },
+
+    destroyFeature: function() {
+      $('#tmpl-gallery-images')
+        .css('background-image', 'none')
+        .removeClass('header-feature-bg');
+    },
+
+    destroyGallery: function() {
+      $('#tmpl-gallery-images').html('');
+      Inline.state.sly.destroy();
     },
 
     onActivate: function(eventName, position) {
       Thumbs.setActive(position);
+
       if (!Inline.element.title.hasClass('fade') && position >= 1) {
-        Inline.element.title.addClass('fade');
-        Inline.element.details.addClass('slip-off');
+        Inline.hideTitle();
       }
       else if (Inline.element.title.hasClass('fade') && position === 0) {
-        Inline.element.title.removeClass('fade');
-        Inline.element.details.removeClass('slip-off');
+        Inline.showTitle();
       }
+    },
+
+    showTitle: function() {
+      Inline.element.title.removeClass('fade');
+      Inline.element.details.removeClass('slip-off');
+    },
+
+    hideTitle: function() {
+      Inline.element.title.addClass('fade');
+      Inline.element.details.addClass('slip-off');
     },
 
     setActive: function(position) {
@@ -451,7 +481,21 @@ Views.Gallery = (function() {
     },
 
     reload: function() {
-      Inline.chooseRendering();
+      if (this.state.responsive.BP3.match() && this.state.isTouch !== true) {
+        console.log('render mobile kill desktop');
+        this.destroyGallery();
+        this.renderFeature();
+        this.state.isTouch = true;
+      }
+      else if (!this.state.responsive.BP3.match() && this.state.isTouch === true) {
+        console.log('render desktop kill mobile');
+        this.destroyFeature();
+        this.renderGallery();
+        this.state.isTouch = false;
+      } else if (this.state.isTouch === false) {
+        console.log('reload sly');
+        this.state.sly.reload();
+      }
     }
   };
 

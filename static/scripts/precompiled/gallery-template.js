@@ -3,7 +3,7 @@ this["Handlebars"] = this["Handlebars"] || {};
 this["Handlebars"]["gallery_inline"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
@@ -18,7 +18,10 @@ function program1(depth0,data) {
   if (helper = helpers.src) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.src); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\"></div>\n        <div class=\"loader-icon\"><i class=\"icon-reload\"></i></div>\n      </li>\n    ";
+    + "\"></div>\n        ";
+  stack1 = (helper = helpers.loader || (depth0 && depth0.loader),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, (data == null || data === false ? data : data.index), options) : helperMissing.call(depth0, "loader", (data == null || data === false ? data : data.index), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n      </li>\n    ";
   return buffer;
   }
 function program2(depth0,data) {
