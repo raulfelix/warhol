@@ -272,7 +272,7 @@ Views.Gallery = (function() {
       var wrap = $('#tmpl-gallery-images').html(this.template(LWA.Data.Gallery));
       wrap.find('img').each(function() {
         imagesLoaded(this, function(instance) {
-          $(instance.elements[0]).closest('div').removeClass('m-transparent').next().remove();
+          $(instance.elements[0]).closest('div').removeClass('m-transparent').prev().remove();
         });
       });
       Inline.element.overlay.hide();

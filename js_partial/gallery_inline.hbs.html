@@ -2,8 +2,9 @@
   <ul class="slidee">
     {{#each inline}}
       <li class="sly-slide header-gallery-overlay" style="width: {{#getWidth}}{{/getWidth}}px;">
-        <div class="m-wrap m-transparent"><img class="m-bg" src="{{ src }}"></div>
         {{#loader @index}}{{/loader}}
+        <div class="m-wrap m-transparent"><img class="m-bg" src="{{ src }}"></div>
+        <div class="blanket"></div>
       </li>
     {{/each}}
   </ul>
