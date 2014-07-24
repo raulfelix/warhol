@@ -1,27 +1,24 @@
+<?php
+  $query = new WP_Query(array(
+    'carousel' => 'add-to-homepage-carousel'
+  ));
+?>
+
 <header class="header header-feature header-carousel">
   <div class="m-wrap m-transparent">
     <div class="header-carousel-slides royalSlider rsDefault">
 
       <?php
-        // get items tagged to be in carousel
-        $args = Array(
-          'carousel' => 'add-to-homepage-carousel'
-        );
-
-        $query = new WP_Query( $args );
-
         if ( $query->have_posts() ):
           while ( $query->have_posts() ): 
             $query->the_post();
-      ?>
-
-      <?php 
-        $attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original');
+            $attrsD = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original');
+            $attrsM = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large');
       ?>
         
         <div class="header-slide <?php echo $attrs ? '' : 'header-feature-text' ?>">
-          <?php if ($attrs): ?>
-            <div class="header-feature-bg" style="background-image: url(<?php echo $attrs[0]; ?>);" data-type="background"></div>
+          <?php if ($attrsD): ?>
+            <div class="header-feature-bg" data-type="background" data-desktop="<?php echo $attrsD[0]; ?>" data-mobile="<?php echo $attrsM[0] ?>"></div>
             <div class="blanket-light"></div>
           <?php endif; ?>
           <div class="f-grid f-row">

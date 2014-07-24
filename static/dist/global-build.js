@@ -57,6 +57,7 @@ window.Namespace = function (ns) {
 
 
 var Modules = window.Namespace('Modules');
+
 Modules.Util = (function() {
   var $body,
   
@@ -82,7 +83,7 @@ Modules.Util = (function() {
 
     BP1: {
       state: undefined,
-      query: '(max-width: 599px)',
+      query: '(max-width: 620px)',
 
       match: function() {
         return this.state;
@@ -132,6 +133,15 @@ Modules.Util = (function() {
       Metric.setWindowHeight();
       Responsive.setBreakpoints();
     }
+  },
+
+  // hold off on resize event
+  Delay = function() {
+    var timer = 0;
+    return function(callback, ms) {
+      clearTimeout(timer);
+      timer = setTimeout(callback, ms);
+    };
   };
 
   function init() {
@@ -150,7 +160,8 @@ Modules.Util = (function() {
     getUrl: Ajax.getUrl,
     getResponsive: function () {
       return Responsive;
-    }
+    },
+    delay: new Delay()
   };
 
 })();
