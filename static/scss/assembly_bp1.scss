@@ -11,6 +11,7 @@
   width: 100%;
 }
 
+.section,
 .article-row {
   padding-top: 0;
   
@@ -117,6 +118,10 @@
   .container {
     padding: 0 rem(10);
   }
+}
+
+.section {
+  padding: 0 0 rem(30) 0;
 }
 
 .section-bio {
