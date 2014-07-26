@@ -19,7 +19,8 @@ header, footer, section, article, figure, figcaption, button, input {
   .thumb-category .thumb-caption,
   .article-row-content h1, 
   .article-row-content p, 
-  .article-row-content li {
+  .article-row-content li,
+  .section p, .section li, .section h1, .section h2 {
     font-family: 'Trebuchet MS', Arial, sans-serif;  
   }
 }

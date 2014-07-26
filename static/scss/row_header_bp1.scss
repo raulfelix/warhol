@@ -101,13 +101,17 @@
   }
 
   .nav-links {
-    top: rem(40);
+    top: rem(53);
     margin-left: rem(-160);
     width: rem(320);
     
     .nav-links-primary li {
       font-size: rem(20);
       margin: 0 0 rem(30) 0; 
+    }
+
+    .nav-links-secondary {
+      margin-top: rem(40);
     }
 
     .nav-links-secondary li {
