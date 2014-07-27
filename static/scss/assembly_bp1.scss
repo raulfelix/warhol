@@ -1,50 +1,31 @@
-
-
 .row-up {
   height: rem(80);
   padding-top: rem(16);
 }
 
 
-.article-row-content,
 .details-row {
-  width: 100%;
+  margin-top: 0;
+  padding: rem(40) 0;
+  
+  .button {
+    margin-top: rem(20);
+    width: 100%;
+  }
+
+  .fb-like, 
+  .fb-like span {
+    margin: 0;
+    display: block;
+  }
 }
 
-.section,
-.article-row {
-  padding-top: 0;
-  
-  .article-row-content {
-    padding-top: rem(30);
-    padding-bottom: 0;
+.details-row-secondary {
+  padding: rem(20) 0 0 0;
+}
 
-    img {
-      margin-bottom: rem(10);
-    }
-  }
-
-  p, ul, ol, h1, h2, h3, h4, h5, h6 {
-    padding: 0;
-  }
-
-  blockquote {
-    margin: 0; 
-  }
-  
-  .details-row {
-    margin-top: 0;
-    padding: rem(40) 0;
-    
-    .button {
-      margin-top: rem(20);
-      width: 100%;
-    }
-  }
-
-  .button-row {
-    padding-top: rem(12);
-  }
+.button-row {
+  padding-top: rem(12);
 }
 
 .article-region-row {
@@ -52,26 +33,6 @@
 
   & > div {
     width: 100%;
-  }
-}
-
-
-.details-row .button-share {
-  margin-top: 0;
-}
-
-.details-row {
-  a {
-    float: left;
-  }
-  
-  .fb-like, 
-  .fb-like span {
-    margin: 0;
-    display: block;
-  }
-  .details-row-right {
-    float: right;
   }
 }
 
@@ -120,9 +81,6 @@
   }
 }
 
-.section {
-  padding: 0 0 rem(30) 0;
-}
 
 .section-bio {
   padding: rem(40) 0 rem(60) 0;

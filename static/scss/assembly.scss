@@ -103,14 +103,12 @@
 
 .details-row {
   margin-bottom: 0;
+  padding: 0 rem(40);
+  margin-top: rem(20);
   @extend %clearfix;
 
   span {
     margin: 0 rem(20);
-  }
-
-  .data-views {
-    margin-top: rem(15);
   }
 
   .bullet {
@@ -123,66 +121,31 @@
   }
 
   .button-share {
-    margin-top: rem(-16);
+    margin-top: rem(-23);
     @extend %pull-right;
   }
 
   .details-row-right {
     display: inline-block;
   }
-}
 
-.article-row-content,
-.details-row {
-  width: 83.33333333333334%;
-  margin: 0 auto;
-}
-
-.section {
-  padding: rem(60) 0;
-}
-
-.article-row {
-  
-  .article-row-content {
-    padding: rem(60) 0;
-    
-    img {
-      display: block;
-      width: 100%;
-      margin-bottom: rem(30);
-    }
-
-    iframe {
-      margin: 0 auto;
-      display: block;
+  a {
+    color: $black;
+    &:hover {
+      color: $pink;
+      text-decoration: none;
+      border-bottom: none;
     }
   }
-
-  .article-row-no-break {
-    padding-top: 0;
-  }
-
-  .details-row {
-    margin-top: rem(80);
-    padding: 0 rem(40);
-  }
-
-  .details-row-secondary {
-    margin-top: 0;
-    color: #cccccc;
-    text-align: center;
-    padding: rem(40) rem(80);
-  }
-
-  .arve-play-background, 
-  .arve-play-background:focus, 
-  .arve-play-background:hover {
-    background: url('static/images/play@2x.png') no-repeat center center;
-    background-size: rem(66);
-    opacity: 1;
-  }
 }
+
+.details-row-secondary {
+  margin-top: 0;
+  color: #cccccc;
+  text-align: center;
+  padding: rem(40) rem(80) 0 rem(80);
+}
+
 
 .article-region-row {
   display: table;
@@ -243,8 +206,6 @@
     padding: rem(60) rem(140) 0 rem(140);
   }
 }
-
-
 
 .section-bio {
   padding: rem(100) 0;

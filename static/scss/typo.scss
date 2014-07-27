@@ -74,7 +74,9 @@ h6 {
 img + h3,
 img + h4, 
 img + blockquote, 
-img + p {
+img + p,
+.arve-wrapper + h4,
+.section .arve-wrapper + blockquote {
   margin-top: rem(40);
 }
 
@@ -83,9 +85,32 @@ p + h4 {
   margin-top: rem(46);
 }
 
-.section,
-.article-row-content {
- 
+.section-article {
+  margin: rem(80) 0;
+
+  img {
+    display: block;
+    margin-bottom: rem(30);
+    width: 100%;
+  }
+
+  iframe {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .arve-play-background, 
+  .arve-play-background:focus, 
+  .arve-play-background:hover {
+    background: url('static/images/play@2x.png') no-repeat center center;
+    background-size: rem(66);
+    opacity: 1;
+  }
+}
+
+.section {
+  padding: rem(60) 0;
+
   p, li {
     font-family:"Apercu Pro Light", 'Trebuchet MS', Arial, sans-serif; 
   }

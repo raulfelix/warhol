@@ -14,7 +14,9 @@
   <div class="f-row">
     <div class="f-5-6 f-center">
       <div class="section">
-        <h2><?php the_title(); ?></h2>
+        <div class="section-article">
+          <h2><?php the_title(); ?></h2>
+        </div>
       </div>
     </div>
   </div>

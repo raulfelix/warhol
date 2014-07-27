@@ -8,7 +8,7 @@
 
 <div class="article-row form-row f-grid f-row">
   <div class="f-1">
-    <div class="article-row-content form-row-content">
+    <div class="section form-row-content">
       <h1>Subscribe to our newsletter</h1>
       <p>Enter your email address below to subscribe to a regular(ish) dose of LWA goodness direct to your inbox.</p>
       <div class="form-subscribe">
