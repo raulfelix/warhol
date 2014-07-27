@@ -15,17 +15,14 @@
    
     <div class="details-row details-row-secondary">
       <?php 
-        $words_by = get_post_meta( get_the_id(), 'credits_author_key', true );
-        $photos_by = get_post_meta( get_the_id(), 'credits_photos_key', true );
+        $photos_id = get_post_meta( get_the_id(), 'photos_key', true );
       ?>
 
-      <?php if ($words_by): ?>
-        Words by <?php echo $words_by; ?>
-        <span class="bullet"></span>
-      <?php endif; ?>
+      Words by <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author_meta('display_name'); ?></a>
+      <span class="bullet"></span>
       
-      <?php if ($photos_by): ?>
-        Photos by <?php echo $photos_by; ?>
+      <?php if ($photos_id): ?>
+        Photos by <a href="<?php echo get_author_posts_url( $photos_id ); ?>"><?php the_author_meta('display_name', $photos_id); ?></a>
         <span class="bullet"></span>
       <?php endif; ?>
       

@@ -235,4 +235,49 @@ function generate_inline_thumb_fix($idx) {
     echo '<div class="thumb-inline-fix"></div>';
   }
 }
+
+function custom_authors_query($author_id, $paged, $order, $post_per_page) {
+  global $wpdb, $max_num_pages, $paged;
+
+  $offset = ($paged - 1) * $post_per_page;
+
+  $sql = "
+      SELECT $wpdb->posts.*
+      FROM $wpdb->posts
+      INNER JOIN wp_postmeta ON (wp_posts.ID = wp_postmeta.post_id) WHERE 1=1
+      AND (wp_posts.post_author = " . $author_id . ")
+      AND wp_posts.post_type IN ('lwa_feature', 'lwa_news')
+      AND wp_posts.post_status = 'publish'
+      OR ( (wp_postmeta.meta_key = 'photos_key' AND wp_postmeta.meta_value = " . $author_id . ") )
+      GROUP BY wp_posts.ID
+      ORDER BY $wpdb->posts.post_date DESC
+      LIMIT " . $offset . ", " . $post_per_page . "; ";   
+
+  if ($order !== 'desc') {
+    $sql = "
+      SELECT $wpdb->posts.* 
+      FROM $wpdb->posts 
+      INNER JOIN wp_postmeta ON (wp_posts.ID = wp_postmeta.post_id) 
+      INNER JOIN wp_postmeta AS mt1 ON (wp_posts.ID = mt1.post_id) 
+      WHERE 1=1 
+      AND (wp_posts.post_author = " . $author_id . ") 
+      AND wp_posts.post_type IN ('lwa_feature', 'lwa_news') 
+      AND (wp_posts.post_status = 'publish' OR wp_posts.post_author = " . $author_id . " 
+      AND wp_posts.post_status = 'private') 
+      AND (wp_postmeta.meta_key = '_count-views_all') 
+      OR (mt1.meta_key = 'photos_key' AND CAST(mt1.meta_value AS CHAR) = '" . $author_id . "' AND wp_postmeta.meta_key = '_count-views_all') 
+      GROUP BY wp_posts.ID 
+      ORDER BY wp_postmeta.meta_value+0 DESC 
+      LIMIT " . $offset . ", " . $post_per_page . "; ";
+  }
+
+  $sql_result = $wpdb->get_results( $sql, OBJECT);
+
+  /* Determine the total of results found to calculate the max_num_pages
+   for next_posts_link navigation */
+  $sql_posts_total = $wpdb->get_var( "SELECT FOUND_ROWS();" );
+  $max_num_pages = ceil($sql_posts_total / $post_per_page);
+  return $sql_result;
+}
+
 ?>

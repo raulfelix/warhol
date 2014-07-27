@@ -35,52 +35,70 @@
       <?php get_template_part('partials/module', 'sort'); ?>
       <div class="f-row">
 
-  <?php
-    // get order and default to date otherwise by popularity
-    $order = isset($_GET['orderby']) ? $_GET['orderby'] : 'desc';
+        <?php
+          // get order and default to date otherwise by popularity
+          $order = isset($_GET['orderby']) ? $_GET['orderby'] : 'desc';
+          $paged = (get_query_var('page')) ? get_query_var('page') : 1;
 
-    // get the rest of the articles
-    $paged = (get_query_var('page')) ? get_query_var('page') : 1;
-
-    if ($order === 'desc') {
-      $args = Array(
-        'posts_per_page' => 12,
-        'paged' => $paged,
-        'author_name' => $author_name,
-        'post_type' => array('lwa_feature', 'lwa_news'),
-      );
-    } else {
-      $args = Array(
-        'posts_per_page' => 12,
-        'paged' => $paged,
-        'author_name' => $author_name,
-         'post_type' => array('lwa_feature', 'lwa_news'),
-        'meta_key' => '_count-views_all',
-        'orderby' => 'meta_value_num'
-      );
-    }
-
-    $wp_query = new WP_Query( $args );
-    $idx = 1;
-    if ( $wp_query->have_posts() ):
-      while ( $wp_query->have_posts() ): 
-        $wp_query->the_post();
-  ?>
+          $author_query = custom_authors_query($user->ID, $paged, $order, 12);
+          if ($author_query): 
+            global $post;
+            $idx = 1;
+            foreach( $author_query as $post ):
+              setup_postdata($post);
+        ?>
+        
         <div class="f-1-3 bp1-1-2">
           <?php get_template_part('partials/article', 'thumb'); ?>
         </div>
-  <?php
-      generate_inline_thumb_fix($idx++);  
-      endwhile;
-    endif;
-  ?>
-    </div>
-      <?php get_template_part('partials/module', 'paginate-links'); ?>
+        
+        <?php
+            generate_inline_thumb_fix($idx++);     
+            endforeach;
+          endif;
+        ?>
+      </div>
+
+      <div class="f-row button-row button-row-paginate">
+        <div class="f-1">
+          <?php 
+            $prev_num = null;
+            $next_num = null;
+
+            if ( $max_num_pages > 1 ) {
+              if ( $paged > 1 ) {
+                $prev_num = '?page=' . ($paged - 1);
+              }
+              if ( $paged < $max_num_pages ) {
+                $next_num = '?page=' . ($paged + 1);
+              }
+            }
+
+            // append order query variable
+            $order = isset($_GET['orderby']) ? $_GET['orderby'] : 'desc';
+            if ($prev_num == null) {
+              $order_prev = '?orderby=' . $order;
+            } else {
+              $order_prev = '&orderby=' . $order;
+            }
+
+            if ($next_num == null) {
+              $order_next = '?orderby=' . $order;
+            } else {
+              $order_next = '&orderby=' . $order;
+            }
+          ?>
+          
+          <a class="button button-prev <?php echo $prev_num === null ? 'button-disabled':'' ?>" href="<?php echo $prev_num; ?><?php echo $order_prev; ?>"><i class="icon-arrow-prev"></i>prev</a>
+          <a class="button button-next <?php echo $next_num === null ? 'button-disabled':'' ?>" href="<?php echo $next_num; ?><?php echo $order_next; ?>"><i class="icon-arrow-next"></i>next</a>
+        </div>
+      </div>
     </div>
   </div>
 
 <?php 
   wp_reset_query();
-  
+  wp_enqueue_script( 'dropdown' );
+
   get_footer(); 
 ?>
