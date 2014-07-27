@@ -19,6 +19,13 @@
   .bp1-1 {
     width: 100%;
   }
+
+  .bp1-pull-left {
+    float: left;
+  }
+  .bp1-pull-right {
+    float: right;
+  }
   
 
   // subscribe
@@ -37,6 +44,7 @@
   }
 
   @import 'assembly_bp1';
+  @import 'typo_bp1';
   @import 'module_thumb_bp1';
   @import 'module_modal_bp1';
   @import 'row_header_bp1';

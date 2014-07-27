@@ -72,6 +72,7 @@ function add_scripts() {
   wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/prod/gallery.min.js', array('single'), '', true );
   wp_register_script( 'single', get_template_directory_uri() . '/static/dist/prod/single.min.js', null, '', true );
   wp_register_script( 'category', get_template_directory_uri() . '/static/dist/prod/category.min.js', null, '', true );
+  wp_register_script( 'dropdown', get_template_directory_uri() . '/static/dist/prod/dropdown.min.js', null, '', true );
   wp_localize_script( 'global', 'ajaxEndpoint', array( 'url' => admin_url( 'admin-ajax.php' )));   
   
   wp_enqueue_script( 'global' );
@@ -221,37 +222,6 @@ function create_post_type() {
 }
 
 add_action( 'init', 'create_post_type' );
-
-
-// --------------------------------------------  
-// customisation: disable canonical url
-//
-// done for featured pages (pagination/sorting)
-// expected: ids should match featured pages
-// --------------------------------------------   
-// function disable_redirect_canonical( $redirect_url ) {
-//   if ( is_page( array( 'parties-bullshit', 'tuesdays-without', 'twentyfour', 'news' ) ))
-//     $redirect_url = false;
-//     return $redirect_url;
-// }
-// add_filter('redirect_canonical','disable_redirect_canonical');
-
-
-// --------------------------------------------  
-// customisation: url rewrite 
-//
-// featured page url re-write for consistency 
-// with news categories which are not content
-// managed pages
-// --------------------------------------------  
-// function featured_rewrite_rules() {
-  // this will match single template pages
-  // add_rewrite_rule( 'featured/([^/]+)/([^/]+)', 'index.php?lwa_feature=$matches[2]', 'top' );
-
-  // this will match any featured page
-  // add_rewrite_rule( 'featured/([^/]+)', 'index.php?pagename=$matches[1]', 'top' );
-// }
-// add_action( 'init', 'featured_rewrite_rules' );
 
 
 // --------------------------------------------  

@@ -17,10 +17,10 @@ header, footer, section, article, figure, figcaption, button, input {
   .header-category .header-category-h2,
   .thumb .thumb-caption,
   .thumb-category .thumb-caption,
-  .article-row-content h1, 
-  .article-row-content p, 
-  .article-row-content li,
-  .section p, .section li, .section h1, .section h2 {
+  .section p, 
+  .section li, 
+  .section h1, 
+  .section h2 {
     font-family: 'Trebuchet MS', Arial, sans-serif;  
   }
 }
@@ -42,8 +42,10 @@ blockquote, q {
   quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before, 
+blockquote:after,
+q:before, 
+q:after {
   content: '';
   content: none;
 }
@@ -59,13 +61,15 @@ img {
 }
 
 a {
-  color: #000;
+  color: $black;
   text-decoration: none;
   &:hover {
     color: $pink;
   }
 }
 
-input:focus, button:focus, button:active {
+input:focus, 
+button:focus, 
+button:active {
   outline: none;
 }

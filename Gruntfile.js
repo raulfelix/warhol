@@ -99,7 +99,8 @@ module.exports = function(grunt) {
           'static/dist/prod/home.min.js': ['static/dist/home-build.js'],
           'static/dist/prod/single.min.js': ['static/dist/single-build.js'],
           'static/dist/prod/gallery.min.js': ['static/dist/gallery-build.js'],
-          'static/dist/prod/category.min.js': ['static/dist/category-build.js']
+          'static/dist/prod/category.min.js': ['static/dist/category-build.js'],
+          'static/dist/prod/dropdown.min.js': ['static/scripts/dropdown.js']
         }
       }
     },

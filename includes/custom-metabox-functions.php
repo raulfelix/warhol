@@ -8,9 +8,9 @@ function add_custom_meta_box() {
   $screens = array( 'lwa_feature', 'lwa_news' );
   foreach ( $screens as $screen ) {
     add_meta_box(
-      'credits_id',
-      'Author and photography',
-      'credits_meta_box_callback',
+      'photos_id',
+      'Photos',
+      'photos_meta_box_callback',
       $screen
     );
   }
@@ -19,33 +19,39 @@ function add_custom_meta_box() {
 }
 add_action( 'add_meta_boxes', 'add_custom_meta_box' );
 
-function credits_meta_box_callback( $post ) {
+function photos_meta_box_callback( $post ) {
 
   // Add an nonce field so we can check for it later.
-  wp_nonce_field( 'credits_meta_box', 'credits_meta_box_nonce' );
+  wp_nonce_field( 'photos_meta_box', 'photos_meta_box_nonce' );
 
-  $value = get_post_meta( $post->ID, 'credits_author_key', true );
-  $alpha = get_post_meta( $post->ID, 'credits_photos_key', true );
+  $photos_by_id = get_post_meta( $post->ID, 'photos_key', true );
 
-  echo '<div><label class="label-credits" for="credits_author_new_field">';
-  _e( 'Words by', 'textdomain' );
-  echo '</label> ';
-  echo '<input class="c-credits widefat" type="text" id="credits_author_new_field" name="credits_author_new_field" value="' . esc_attr( $value ) . '"/></div>';
-  echo '<div class="c-field-wrap"><label class="label-credits-photos" for="credits_photos_new_field">';
-  _e( 'Photos by', 'textdomain' );
-  echo '</label> ';
-  echo '<input class="c-credits widefat" type="text" id="credits_photos_new_field" name="credits_photos_new_field" value="' . esc_attr( $alpha ) . '"/></div>';
+  // get all the users in the system and present in a drop down
+  $users = get_users(array(
+    'fields'  => 'all_with_meta',
+    'orderby' => 'display_name'
+  ));
+
+  echo '<select name="photos_author" id="photos_author">';
+  echo '<option value=""></option>';
+
+  foreach ($users as $user): ?>
+    <option value="<?php echo $user->ID ?>" <?php echo $photos_by_id == $user->ID ? 'selected="selected"' : ''?> ><?php echo $user->display_name ?></option>
+  <?php
+  endforeach;
+
+  echo '</select>';
 }
 
-function credits_save_meta_box_data( $post_id ) {
+function photos_save_meta_box_data( $post_id ) {
 
   // Check if our nonce is set.
-  if ( ! isset( $_POST['credits_meta_box_nonce'] ) ) {
+  if ( ! isset( $_POST['photos_meta_box_nonce'] ) ) {
     return;
   }
 
   // Verify that the nonce is valid.
-  if ( ! wp_verify_nonce( $_POST['credits_meta_box_nonce'], 'credits_meta_box' ) ) {
+  if ( ! wp_verify_nonce( $_POST['photos_meta_box_nonce'], 'photos_meta_box' ) ) {
     return;
   }
 
@@ -66,19 +72,17 @@ function credits_save_meta_box_data( $post_id ) {
   }
 
   // Make sure that data is set
-  if ( !isset( $_POST['credits_author_new_field'] ) && !isset( $_POST['credits_photos_new_field'] ) ) {
+  if ( !isset( $_POST['photos_author'] ) ) {
     return;
   }
 
   // Sanitize input
-  $author = sanitize_text_field( $_POST['credits_author_new_field'] );
-  $photos = sanitize_text_field( $_POST['credits_photos_new_field'] );
+  $photos = sanitize_text_field( $_POST['photos_author'] );
 
   // Update the meta field in the database.
-  update_post_meta( $post_id, 'credits_author_key', $author );
-  update_post_meta( $post_id, 'credits_photos_key', $photos );
+  update_post_meta( $post_id, 'photos_key', $photos );
 }
-add_action( 'save_post', 'credits_save_meta_box_data' );
+add_action( 'save_post', 'photos_save_meta_box_data' );
 
 
 /*
