@@ -350,9 +350,9 @@ Views.Gallery = (function() {
   var Inline = {
 
     element: {
-      title: $('#header-gallery-title'),
-      details: $('#header-gallery-details'),
-      overlay: $('#header-gallery .m-overlay')
+      title: $('.header-gallery-title'),
+      overlay: $('#header-gallery .m-overlay'),
+      gallery: $('#header-gallery-wrap')
     },
 
     state: {
@@ -368,6 +368,8 @@ Views.Gallery = (function() {
       this.state.responsive = LWA.Modules.Util.getResponsive();
       this.state.isTouch = !this.state.responsive.BP3.match();
       this.state.loader = LWA.Modules.Spinner('#header-gallery .loader-icon', {show: true});
+
+      this.element.title.on('webkitTransitionEnd transitionend msTransitionEnd oTransitionEnd', Inline.onTransitionEnd);
 
       Handlebars.registerHelper('getWidth', function() {
         return Math.round(this.width * (748 / this.height));
@@ -460,22 +462,27 @@ Views.Gallery = (function() {
     onActivate: function(eventName, position) {
       Thumbs.setActive(position);
 
-      if (!Inline.element.title.hasClass('fade') && position >= 1) {
+      if (!Inline.element.gallery.hasClass('animate-gallery') && position >= 1) {
         Inline.hideTitle();
       }
-      else if (Inline.element.title.hasClass('fade') && position === 0) {
+      else if (Inline.element.gallery.hasClass('animate-gallery') && position === 0) {
         Inline.showTitle();
       }
     },
 
     showTitle: function() {
-      Inline.element.title.removeClass('fade');
-      Inline.element.details.removeClass('slip-off');
+      Inline.element.title.css('display', '');
+      setTimeout(function() { Inline.element.gallery.removeClass('animate-gallery'); }, 200);
     },
 
     hideTitle: function() {
-      Inline.element.title.addClass('fade');
-      Inline.element.details.addClass('slip-off');
+      Inline.element.gallery.addClass('animate-gallery');
+    },
+
+    onTransitionEnd: function(ev) {
+      if (Inline.element.gallery.hasClass('animate-gallery')) {
+        Inline.element.title.css('display', 'none');
+      }
     },
 
     setActive: function(position) {

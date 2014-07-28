@@ -3,10 +3,11 @@
   // check if there is a gallery associated with the post
   $attachments = new Attachments( 'my_attachments', get_the_id() );
   $post_type = get_post_type( get_the_ID() );
+
   if ( $attachments->exist() && $post_type != 'lwa_news' ):
     wp_enqueue_script( 'gallery' );
     get_template_part('partials/module', 'js-gallery');
-  ?>
+?>
  
 <div id="modal-gallery" class="modal modal-transparent modal-gallery">
   <button class="modal-action modal-close"><i class="icon-close"></i></button>
@@ -41,22 +42,25 @@
     <div id="header-gallery-wrap" class="m-wrap m-transparent">
       <div id="tmpl-gallery-images"></div>
       <div class="m-overlay blanket-light"></div>
-      <div class="header-gallery-content">
-        <div class="f-grid f-row">
-          <div class="f-1">
+      
+      <div class="f-grid f-row sly-controls">
+        <div id="inline-gallery-controls" class="f-1">
+          <button class="sly-prev"><i class="icon-arrow-left"></i></button>
+          <button class="sly-next"><i class="icon-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <div class="f-grid f-row header-gallery-title">
+        <div class="f-1 content-wrap">
+          <div class="content-row">
             <div class="header-content">
-              <div id="header-gallery-title" class="h-1"><?php echo get_the_title(); ?></div>
-            </div>
-            <div id="inline-gallery-controls" class="sly-controls">
-              <div class="f-1">
-                <button class="sly-prev"><i class="icon-arrow-left"></i></button>
-                <button class="sly-next"><i class="icon-arrow-right"></i></button>
-              </div>
+              <div class="h-1"><?php echo get_the_title(); ?></div>
             </div>
           </div>
         </div>
       </div>
-      <div id="header-gallery-details" class="slip-in">
+
+      <div class="header-gallery-details">
         <div class="header-gallery-controls">
           <button id="gallery-thumbs" class="button button-gallery button-thumbs"><i class="icon-thumbs"></i></button>
           <button id="modal-gallery-button" class="button button-gallery"><i class="icon-expand"></i><span>Launch gallery</span></button>

@@ -224,7 +224,35 @@
   }
 }
 
+
 .header-gallery {
+
+  .m-wrap {
+    height: 100%;
+  }
+
+  .header-gallery-title {
+    opacity: 1;
+    @include transition(opacity 300ms ease-out);
+  }
+
+  .header-gallery-details {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    @include transition(bottom 300ms ease-out);
+  }
+
+  .sly-controls {
+    height: auto;
+    position: relative;
+    z-index: 1;
+    
+    .sly-prev, 
+    .sly-next {
+      top: rem(384);
+    }
+  }
 
   .header-gallery-overlay .blanket {
     background: none;
@@ -254,21 +282,6 @@
     @extend %relative;
   }
   
-  .header-gallery-content {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    text-align: center;
-  }
-
-  .header-content {
-    position: absolute;
-    width: 100%;
-    margin-top: rem(-45);
-    .h-1 {
-      margin: 0;
-    }
-  }
 
   .header-gallery-controls {
     bottom: rem(160);
@@ -330,6 +343,20 @@
     }
   }
 }
+
+//---------------------------------
+// Animate gallery elements
+//---------------------------------
+.animate-gallery {
+  .header-gallery-title {
+    opacity: 0;
+  }
+
+  .header-gallery-details  {
+    bottom: -380px;
+  }
+}
+
 
 .logo {
   @extend %pull-left;

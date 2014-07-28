@@ -12,20 +12,6 @@
   vertical-align: middle;
 }
 
-.fade {
-  opacity: 0;
-  @include transition(opacity 300ms ease-out);
-}
-
-.slip-in {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  @include transition(bottom 300ms ease-out);
-}
-.slip-off {
-  bottom: -380px;
-}
 
 .m-wrap {
   opacity: 1;
@@ -229,13 +215,14 @@
     font-size: 30px;
     outline: none;
     position: absolute;
-    top: 50%;
   }
 
   .sly-prev {
     left: rem(20);
+    top: 50%;
   }
   .sly-next {
+    top: 50%;
     right: rem(20);
   }
 
