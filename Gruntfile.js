@@ -9,7 +9,7 @@ module.exports = function(grunt) {
           style: 'compressed'
         },
         files: {
-          'style.css': 'static/scss/master.scss'
+          'static/scss/style.css': 'static/scss/master.scss'
         }
       }
     },
@@ -122,6 +122,19 @@ module.exports = function(grunt) {
           "static/scripts/precompiled/gallery-template.js": ["js_partial/gallery_inline.hbs.html"]
         }
       }
+    },
+
+    killer: {
+      options: {
+        file: 'functions.php',
+        length: 12
+      },
+      bust: {
+        files: {
+          'static/dist/js': ['static/dist/prod/*.js'],
+          'static/dist/css': ['static/scss/style.css']
+        }
+      }
     }
 
   });
@@ -132,6 +145,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-killer');
 
   grunt.registerTask('default', ['sass', 'concat']);
 };
