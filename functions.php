@@ -67,20 +67,18 @@ add_action('admin_enqueue_scripts', 'enqueue_custom_admin_scripts');
 // add app JS in footer of page
 // ------------------------------ 
 function add_scripts() {
-  $version = '1.0.4';
 
-  wp_register_style( 'style', get_template_directory_uri() . '/style.css', null, $version, 'all' );
+  wp_register_style( 'style', get_template_directory_uri() . '/static/dist/css/22a2701bb4a5.style.css', null, null, 'all' );
 
-  wp_register_script( 'global', get_template_directory_uri() . '/static/dist/prod/global.min.js', null, $version, true );
-  wp_register_script( 'home', get_template_directory_uri() . '/static/dist/prod/home.min.js', null, $version, true );
-  wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/prod/gallery.min.js', array('single'), $version, true );
-  wp_register_script( 'single', get_template_directory_uri() . '/static/dist/prod/single.min.js', null, $version, true );
-  wp_register_script( 'category', get_template_directory_uri() . '/static/dist/prod/category.min.js', null, $version, true );
-  wp_register_script( 'dropdown', get_template_directory_uri() . '/static/dist/prod/dropdown.min.js', null, $version, true );
+  wp_register_script( 'global', get_template_directory_uri() . '/static/dist/js/e858685477c9.global.min.js', null, null, true );
+  wp_register_script( 'home', get_template_directory_uri() . '/static/dist/js/c032012af43d.home.min.js', null, null, true );
+  wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/js/f0bcb446de70.gallery.min.js', array('single'), null, true );
+  wp_register_script( 'single', get_template_directory_uri() . '/static/dist/js/da6bcd7308b0.single.min.js', null, null, true );
+  wp_register_script( 'category', get_template_directory_uri() . '/static/dist/js/593e1d9d304e.category.min.js', null, null, true );
+  wp_register_script( 'dropdown', get_template_directory_uri() . '/static/dist/js/9b902e92d844.dropdown.min.js', null, null, true );
   wp_localize_script( 'global', 'ajaxEndpoint', array( 'url' => admin_url( 'admin-ajax.php' )));   
 
   wp_enqueue_style( 'style' );
-  
   wp_enqueue_script( 'global' );
 }
 add_action( 'wp_enqueue_scripts', 'add_scripts', 999 );

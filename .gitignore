@@ -3,3 +3,5 @@
 .sass-cache/
 node_modules/
 static/images/test-images
+static/dist/css/manifest.json
+static/dist/js/manifest.json
