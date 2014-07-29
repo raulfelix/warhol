@@ -67,7 +67,7 @@ add_action('admin_enqueue_scripts', 'enqueue_custom_admin_scripts');
 // add app JS in footer of page
 // ------------------------------ 
 function add_scripts() {
-  $version = '1.0.3';
+  $version = '1.0.4';
 
   wp_register_style( 'style', get_template_directory_uri() . '/style.css', null, $version, 'all' );
 

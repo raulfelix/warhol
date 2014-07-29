@@ -375,6 +375,9 @@
   width: 100%;
   z-index: 100000;
 
+  .blanket-alpha {
+    background: #ff0;
+  }
   .nav-item {
     @extend %pull-right;
     margin-top: rem(60);
