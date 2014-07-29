@@ -13,7 +13,6 @@
   <title></title>
 
   <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/static/images/favicon.ico">
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
 
   <script type="text/javascript" src="http://fast.fonts.net/jsapi/2193ac1a-a011-45fb-ba43-962a973eeea9.js"></script>
   <script type="text/javascript">
