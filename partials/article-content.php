@@ -19,9 +19,11 @@
           $photos_id = get_post_meta( get_the_id(), 'photos_key', true );
         ?>
 
-        Words by <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author_meta('display_name'); ?></a>
-        <span class="bullet"></span>
-        
+        <?php if (get_the_author_meta('user_login') != 'warhol'): ?>
+          Words by <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author_meta('display_name'); ?></a>
+          <span class="bullet"></span>
+        <?php endif; ?>
+
         <?php if ($photos_id): ?>
           Photos by <a href="<?php echo get_author_posts_url( $photos_id ); ?>"><?php the_author_meta('display_name', $photos_id); ?></a>
           <span class="bullet"></span>
