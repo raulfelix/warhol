@@ -5,7 +5,7 @@
 ?>
 
 <header class="header header-feature header-carousel">
-  <div class="m-wrap m-transparent">
+  <div class="m-wrap m-transparent" style="display:none;">
     <div class="header-carousel-slides royalSlider rsDefault">
 
       <?php

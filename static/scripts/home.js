@@ -59,6 +59,7 @@ LWA.Views.Home = (function() {
     },
 
     setImages: function(type) {
+      $('.header-feature .m-wrap').attr('style', '');
       $('.header-feature-bg').each(function() {
         $(this).css('background-image', 'url(' + $(this).data(type) + ')');
       });

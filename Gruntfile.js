@@ -124,7 +124,7 @@ module.exports = function(grunt) {
       }
     },
 
-    killer: {
+    asset_cachekiller: {
       options: {
         file: 'functions.php',
         length: 12
@@ -145,7 +145,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-killer');
+  grunt.loadNpmTasks('grunt-asset-cachekiller');
 
   grunt.registerTask('default', ['sass', 'concat']);
 };
