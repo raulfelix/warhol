@@ -1,4 +1,4 @@
-/* global LWA */
+/* global LWA, ga */
 window.Namespace('Modules');
 
 LWA.Modules.Share = (function() {
@@ -19,6 +19,8 @@ LWA.Modules.Share = (function() {
   }
 
   function positionContent() {
+    ga('send', 'event', 'button', 'click', 'Share');
+
     var contentHeight = modal.$el.find('.modal-view').height();
     if (LWA.Modules.Util.windowHeight() > contentHeight) {
       modal.$el.find('.modal-view').css('margin-top', (LWA.Modules.Util.windowHeight() - contentHeight) / 2 );

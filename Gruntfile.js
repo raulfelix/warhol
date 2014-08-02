@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: ['static/scripts/*.js', 'js_partial/*.hbs.html'],
-        tasks: ['jshint', 'handlebars', 'concat', 'uglify'],
+        tasks: ['jshint', 'handlebars', 'concat', 'uglify', 'asset_cachekiller'],
       },
       src: {
         files: ['static/scss/*.scss'],

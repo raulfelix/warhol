@@ -11,61 +11,47 @@ LWA.Views.Instabinge = (function() {
     YEAR_IN_SECONDS   : 365 * 24 * 60 * 60,
 
     convert: function(now, unixSeconds) {
-      var
-        since,
-        calc,
-        diff = (now/1000) - unixSeconds;
+      var diff = (now/1000) - unixSeconds;
       
       if ( diff < Time.HOUR_IN_SECONDS ) {
-        calc = Math.round( diff / Time.MINUTE_IN_SECONDS );
-        if ( calc <= 1 ) {
-          calc = 1;
-        }
-        since = calc + 'min';
-      } else if ( diff < Time.DAY_IN_SECONDS && diff >= Time.HOUR_IN_SECONDS ) {
-        calc = Math.round( diff / Time.HOUR_IN_SECONDS );
-        if ( calc <= 1 ) {
-          calc = 1;
-        }
-        since = calc + 'h';
-      } else if ( diff < Time.WEEK_IN_SECONDS && diff >= Time.DAY_IN_SECONDS ) {
-        calc = Math.round( diff / Time.DAY_IN_SECONDS );
-        if ( calc <= 1 ) {
-          calc = 1;
-        }
-        since = calc + 'd';
-      } else if ( diff < 30 * Time.DAY_IN_SECONDS && diff >= Time.WEEK_IN_SECONDS ) {
-        calc = Math.round( diff / Time.WEEK_IN_SECONDS );
-        if ( calc <= 1 ) {
-          calc = 1;
-        }
-        since = calc + 'w';
-      } else if ( diff < Time.YEAR_IN_SECONDS && diff >= 30 * Time.DAY_IN_SECONDS ) {
-        calc = Math.round( diff / ( 30 * Time.DAY_IN_SECONDS ) );
-        if ( calc <= 1 ) {
-          calc = 1;
-        }
-        since = calc + 'm';
-      } else if ( diff >= Time.YEAR_IN_SECONDS ) {
-        calc = Math.round( diff / Time.YEAR_IN_SECONDS );
-        if ( calc <= 1 ){
-          calc = 1;
-        }
-        since = calc + 'y';
+        return Time.label(Math.round( diff / Time.MINUTE_IN_SECONDS ), 'min');
       }
+      else if ( diff < Time.DAY_IN_SECONDS && diff >= Time.HOUR_IN_SECONDS ) {
+        return Time.label(Math.round( diff / Time.HOUR_IN_SECONDS ), 'h');
+      }
+      else if ( diff < Time.WEEK_IN_SECONDS && diff >= Time.DAY_IN_SECONDS ) {
+        return Time.label(Math.round( diff / Time.DAY_IN_SECONDS ), 'd');
+      }
+      else if ( diff < 30 * Time.DAY_IN_SECONDS && diff >= Time.WEEK_IN_SECONDS ) {
+        return Time.label(Math.round( diff / Time.WEEK_IN_SECONDS ), 'w');
+      }
+      else if ( diff < Time.YEAR_IN_SECONDS && diff >= 30 * Time.DAY_IN_SECONDS ) {
+        return Time.label(Math.round( diff / ( 30 * Time.DAY_IN_SECONDS ) ), 'm');
+      }
+      else if ( diff >= Time.YEAR_IN_SECONDS ) {
+        return Time.label(Math.round( diff / Time.YEAR_IN_SECONDS ), 'y');
+      }
+    },
 
-      return since;
+    label: function(value, postfix) {
+      return value <= 1 ? '1' + postfix : value + postfix;
     }
   };
+
   var Ajax = {
 
     cache: [],
-    feedUrl: 'https://api.instagram.com/v1/users/self/feed?access_token=9513217.1f648b0.783f3c9408a64877b9783ccc25bb983f&callback=?',
+
+    params: {
+      'action': 'do_ajax',
+      'fn': 'instagram'
+    },
+
     get: function(callback) {
-      $.getJSON(Ajax.feedUrl)
+      $.getJSON(LWA.Modules.Util.getUrl(), Ajax.params)
         .done(function(response) {
           Ajax.cache.push(response.data);
-          Ajax.feedUrl = response.pagination.next_url + '&callback=?';
+          Ajax.params.next_max_id = response.pagination.next_max_id;
           if (callback) {
             callback(response);
           } else {

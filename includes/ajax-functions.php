@@ -117,6 +117,8 @@ function ajax_handler() {
     case 'search_posts':
       $output = search_posts($_REQUEST['s'], $_REQUEST['page'], $_REQUEST['posts_per_page']);
       break;
+    case 'instagram':
+      $output = get_instagram_feed($_REQUEST['next_max_id']);
   }
  
   wp_reset_query();
@@ -137,6 +139,34 @@ function ajax_handler() {
 // -----------------------------------
 function enc($text) {
   return html_entity_decode($text, ENT_COMPAT, 'UTF-8');
+}
+
+
+// ------------------------ 
+// instagram ajax
+// ------------------------
+function get_instagram_feed($next_max_id) {
+  $access_token = get_option( 'instagram_access_token', 'nothing' );
+  $url = 'https://api.instagram.com/v1/users/self/feed?access_token=' . $access_token . '&count=60';
+  
+  if ($next_max_id) {
+    $url = $url . '&max_id=' . $next_max_id;
+  }
+
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_URL, $url);
+  $jsonData = curl_exec($ch);
+
+  if (false === $jsonData) {
+    throw new Exception("Error: _makeOAuthCall() - cURL error: " . curl_error($ch));
+  }
+  
+  curl_close($ch);
+  return json_decode($jsonData);
 }
 
 ?>
