@@ -157,7 +157,7 @@ function program2(depth0,data) {
   buffer += "\n  </ul>\n</div>";
   return buffer;
   });
-/* global LWA, Sly, imagesLoaded, Handlebars */
+/* global LWA, Sly, imagesLoaded, Handlebars, ga */
 
 var Views = window.Namespace('Views');
 
@@ -171,7 +171,8 @@ Views.Gallery = (function() {
       responsive: {
         height: 120,
         heightTouch: 160
-      }
+      },
+      startTime: 0
     },
 
     elements: {
@@ -180,6 +181,7 @@ Views.Gallery = (function() {
     },
 
     init: function() {
+      Modal.state.startTime = new Date().getTime();
 
       if (Modal.state.slider !== undefined) {
         return;
@@ -208,6 +210,7 @@ Views.Gallery = (function() {
       }).data('royalSlider');
 
       Modal.state.slider.ev.on('rsAfterSlideChange', function(event) {
+        ga('send', 'event', 'Gallery', 'click', 'Modal navigate', { 'page': location.pathName });
         Modal.onActivate(Modal.state.slider.currSlideId);
       });
 
@@ -218,6 +221,11 @@ Views.Gallery = (function() {
           $(instance.elements[0]).removeClass('m-transparent').next().remove();
         });
       });
+    },
+
+    destroy: function() {
+      var endTime = new Date().getTime();
+      ga('send', 'timing', 'Gallery', 'Modal view', endTime - Modal.state.startTime, 'Gallery modal', { 'page': location.pathName });
     },
 
     next: function() {
@@ -460,6 +468,8 @@ Views.Gallery = (function() {
     },
 
     onActivate: function(eventName, position) {
+      ga('send', 'event', 'Gallery', 'click', 'Inline navigate', { 'page': location.pathName });
+      
       Thumbs.setActive(position);
 
       if (!Inline.element.gallery.hasClass('animate-gallery') && position >= 1) {
@@ -534,7 +544,8 @@ Views.Gallery = (function() {
       Modal.state.modal =
         LWA.Modules.Modal('#modal-gallery-button', '#modal-gallery', {
           closeable: true,
-          open: Modal.init
+          open: Modal.init,
+          close: Modal.destroy
         });
 
       $(window).resize(updateSly);
