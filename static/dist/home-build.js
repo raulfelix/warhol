@@ -633,7 +633,7 @@ LWA.Views.Home = (function() {
 })();
 
 LWA.Views.Home.init();
-/* global LWA, Sly, Handlebars, imagesLoaded, Hammer */
+/* global LWA, Sly, Handlebars, imagesLoaded, ga */
 window.Namespace('Views');
 
 LWA.Views.Instabinge = (function() {
@@ -745,6 +745,7 @@ LWA.Views.Instabinge = (function() {
       View.element.$frame.on('click', 'li', function(ev) {
         View.state.modal.show();
         Modal.initializeSlider(View.state.sly.getIndex($(ev.currentTarget)));
+        ga('send', 'event', 'modal', 'click', 'Instabinge');
       });
 
       Ajax.get();
@@ -773,7 +774,8 @@ LWA.Views.Instabinge = (function() {
 
     state: {
       slider: undefined,
-      modal: undefined
+      modal: undefined,
+      startTime: 0
     },
 
     template: Handlebars.instabinge_thumb_modal,
@@ -796,6 +798,7 @@ LWA.Views.Instabinge = (function() {
     initializeSlider: function(index) {
       View.state.modal.loader.start();
 
+      this.state.startTime = new Date().getTime();
       this.render(index);
       this.element.$frame.royalSlider({
         keyboardNavEnabled: true,
@@ -839,10 +842,12 @@ LWA.Views.Instabinge = (function() {
 
     next: function() {
       Modal.state.slider.next();
+      ga('send', 'event', 'modal', 'click', 'Instabinge next');
     },
 
     prev: function() {
       Modal.state.slider.prev();
+      ga('send', 'event', 'modal', 'click', 'Instabinge prev');
     },
 
     handleImageLoad: function(wrapper, images, callback) {
@@ -867,6 +872,10 @@ LWA.Views.Instabinge = (function() {
     },
 
     destroy: function() {
+      var endTime = new Date().getTime();
+      ga('send', 'timing', 'Instabinge', 'Modal view', endTime - Modal.state.startTime, 'Instabinge modal');
+      Modal.state.startTime = 0;
+      
       Modal.state.slider.destroy();
       Modal.state.slider = undefined;
       Modal.element.$frame.html('');
