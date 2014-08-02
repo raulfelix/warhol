@@ -156,7 +156,6 @@ function get_instagram_feed($next_max_id) {
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
   curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
-  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($ch, CURLOPT_URL, $url);
   $jsonData = curl_exec($ch);
