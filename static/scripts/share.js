@@ -5,7 +5,8 @@ LWA.Modules.Share = (function() {
 
   var modal, buttonUrl;
 
-  function share() {
+  function share(ev) {
+    ga('send', 'event', 'Share', 'click', $(ev.currentTarget).data('name'), {'page': location.pathname });
     window.open(
       $(this).data('href'),
       '',
@@ -19,7 +20,7 @@ LWA.Modules.Share = (function() {
   }
 
   function positionContent() {
-    ga('send', 'event', 'button', 'click', 'Share');
+    ga('send', 'event', 'Share', 'click', 'Share modal open');
 
     var contentHeight = modal.$el.find('.modal-view').height();
     if (LWA.Modules.Util.windowHeight() > contentHeight) {

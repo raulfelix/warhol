@@ -223,8 +223,8 @@ function generate_share_link($key) {
         "&media=" . urlencode(get_search_thumbnail()) . "&description=" . urlencode(get_the_title());
       break;
   }
-
-  return "<button class='button button-social' data-href={$args}>{$key}</button>";
+  $key_lower = strtolower($key);
+  return "<button class='button button-social' data-name={$key_lower} data-href={$args}>{$key}</button>";
 }
 
 function generate_inline_thumb_fix($idx) {
