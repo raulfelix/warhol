@@ -210,7 +210,7 @@ Views.Gallery = (function() {
       }).data('royalSlider');
 
       Modal.state.slider.ev.on('rsAfterSlideChange', function(event) {
-        ga('send', 'event', 'Gallery', 'click', 'Modal navigate', { 'page': location.pathName });
+        ga('send', 'event', 'Gallery', 'click', 'Gallery modal navigate', { 'page': location.pathName });
         Modal.onActivate(Modal.state.slider.currSlideId);
       });
 
@@ -468,7 +468,7 @@ Views.Gallery = (function() {
     },
 
     onActivate: function(eventName, position) {
-      ga('send', 'event', 'Gallery', 'click', 'Inline navigate', { 'page': location.pathName });
+      ga('send', 'event', 'Gallery', 'click', 'Gallery inline navigate', { 'page': location.pathName });
       
       Thumbs.setActive(position);
 
