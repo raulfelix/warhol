@@ -102,7 +102,7 @@ LWA.Views.Instabinge = (function() {
       });
 
       View.state.sly.on('moveEnd', function(eventName) {
-        ga('send', 'event', 'Instabinge', 'click', 'Inline navigate');
+        ga('send', 'event', 'Instabinge', 'click', 'Instabinge inline navigate');
 
         if (this.pos.dest === this.pos.end) {
           Ajax.get(View.append);
@@ -112,7 +112,7 @@ LWA.Views.Instabinge = (function() {
       View.element.$frame.on('click', 'li', function(ev) {
         View.state.modal.show();
         Modal.initializeSlider(View.state.sly.getIndex($(ev.currentTarget)));
-        ga('send', 'event', 'Instabinge', 'click', 'Show modal');
+        ga('send', 'event', 'Instabinge', 'click', 'Instabinge show modal');
       });
 
       Ajax.get();
@@ -185,7 +185,7 @@ LWA.Views.Instabinge = (function() {
       });
      
       this.state.slider.ev.on('rsAfterSlideChange', function(event) {
-        ga('send', 'event', 'Instabinge', 'click', 'Modal navigate');
+        ga('send', 'event', 'Instabinge', 'click', 'Instabinge modal navigate');
         if (Modal.state.slider.numSlides - 1 === Modal.state.slider.currSlideId) {
           Ajax.get(Modal.onLoad);
         }
