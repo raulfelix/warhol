@@ -431,7 +431,7 @@ LWA.Modules.ButtonLoader = function(selector, opts) {
   };
 
 };
-/* global LWA, Handlebars, LWA_endpoint */
+/* global LWA, Handlebars, LWA_endpoint, ga */
 window.Namespace('Modules');
 
 LWA.Modules.Search = (function() {
@@ -493,6 +493,7 @@ LWA.Modules.Search = (function() {
       var term = View.element.input.val();
       if (term.length !== 0) {
         View.loader.start();
+        ga('send', 'pageview', '/search.php?q=' + term);
         
         Ajax.setNextPage(1);
         Ajax.setTerm(term);
