@@ -1,5 +1,6 @@
 
 
+.button-loader .button-loader-icon,
 .loader-icon {
   display: none;
   position: absolute;
@@ -11,7 +12,8 @@
   margin-left: rem(-16);
   z-index: 100;
   
-  .icon-reload {
+  .icon-reload, 
+  .icon-loader {
     font-size: 32px;
     color: #fff;
     width: rem(32);
@@ -41,16 +43,21 @@
   color: $pink;
 }
 
-.button-loader .loader-icon {
+.button-loader .button-loader-icon {
   width: rem(24);
   height: rem(24);
   margin-top: rem(-12);
   margin-left: rem(-12);
-  .icon-reload {
+  
+  .icon-loader {
     font-size: 24px;
     width: rem(24);
     height: rem(24);
   }
+}
+
+.button-loader-active .button-loader-icon {
+  display: block;
 }
 
 @-moz-keyframes spin {

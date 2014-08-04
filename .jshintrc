@@ -1,4 +1,9 @@
 {
+  "predef" : [
+    "console",
+    "ButtonLoader"
+  ],
+
   "bitwise"       : true,
   "curly"         : true,
   "eqeqeq"        : true,

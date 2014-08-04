@@ -11,7 +11,6 @@
         </div>
         <button id="js-search" class="button button-search button-loader button-icon" type="text">
           <span class="button-text text"><i class="icon icon-search"></i>Search</span>
-          <?php get_template_part('partials/module', 'util-loader'); ?>
         </button>
       </div>
     </div>

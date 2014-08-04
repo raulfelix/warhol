@@ -53,7 +53,6 @@
     <div class="button-row">
       <a id="ajax-load-features" class="button button-large button-loader" href="javascript:void(0)">
         <span class="button-text">load more features</span>
-        <?php get_template_part('partials/module', 'util-loader'); ?>
       </a>
     </div>
   </div>
@@ -94,7 +93,6 @@
       <div class="button-row">
         <a id="ajax-load-news" class="button button-large button-loader" href="javascript:void(0)">
           <span class="button-text">load more news</span>
-          <?php get_template_part('partials/module', 'util-loader'); ?>
         </a>
       </div>
     </div>

@@ -21,7 +21,7 @@ module.exports = function(grunt) {
       },
       src: {
         files: ['static/scss/*.scss'],
-        tasks: ['sass'],
+        tasks: ['sass', 'asset_cachekiller'],
         options: {
           interrupt: true,
           reload: true

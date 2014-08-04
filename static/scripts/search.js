@@ -59,7 +59,6 @@ LWA.Modules.Search = (function() {
     onClick: function() {
       var term = View.element.input.val();
       if (term.length !== 0) {
-        View.loader.start();
         ga('send', 'pageview', '/search.php?q=' + term);
         
         Ajax.setNextPage(1);
@@ -71,6 +70,8 @@ LWA.Modules.Search = (function() {
           View.element.overflow.infinitescroll('destroy');
           View.element.overflow.data('infinitescroll', null);
         }
+      } else {
+        View.loader.stop();
       }
     },
 
@@ -83,6 +84,7 @@ LWA.Modules.Search = (function() {
 
     onKeyUp: function(ev) {
       if (ev.keyCode === 13) {
+        View.loader.start();
         View.onClick();
       }
     },
@@ -155,10 +157,11 @@ LWA.Modules.Search = (function() {
 
   return {
     init: function() {
-      View.loader = LWA.Modules.ButtonLoader('#js-search');
+      View.loader = new ButtonLoader(document.getElementById('js-search'), {
+        onStart: View.onClick
+      });
 
       // init events
-      View.loader.el.click(View.onClick);
       View.element.input.keyup(View.onKeyUp);
 
       Handlebars.registerPartial('search_next_link', Handlebars.search_next_link);
