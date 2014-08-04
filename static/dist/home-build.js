@@ -333,8 +333,7 @@ LWA.Views.PostThumbs = (function() {
     },
 
     state: {
-      loader: undefined,
-      loading: false
+      loader: undefined
     },
 
     template: Handlebars.article_thumb,
@@ -348,8 +347,9 @@ LWA.Views.PostThumbs = (function() {
     done: function(response) {
       AjaxFeature.params.page = response.nextPage;
       AjaxFeature.render(response.posts);
-      AjaxFeature.renderButton();
-      AjaxFeature.hide();
+      AjaxFeature.state.loader.stop();
+
+      renderButton('ajax-load-features', AjaxFeature.params.page);
     },
 
     render: function(posts) {
@@ -380,36 +380,12 @@ LWA.Views.PostThumbs = (function() {
       scrollPage(e);
     },
 
-    renderButton: function() {
-      if (this.params.page === false) {
-        AjaxFeature.state.loader.el.addClass('button-disabled');
-      }
-    },
-
-    isLoadable: function() {
-      return this.params.page !== false && this.state.loading === false;
-    },
-
-    onClick: function() {
-      if (AjaxFeature.isLoadable()) {
-        AjaxFeature.show();
-        get(AjaxFeature.done, AjaxFeature.params);
-      }
-    },
-
-    show: function() {
-      AjaxFeature.state.loading = true;
-      AjaxFeature.state.loader.start();
-    },
-
-    hide: function() {
-      AjaxFeature.state.loading = false;
-      AjaxFeature.state.loader.stop();
-    },
-
     init: function() {
-      AjaxFeature.state.loader = LWA.Modules.ButtonLoader('#ajax-load-features');
-      AjaxFeature.state.loader.el.click(AjaxFeature.onClick);
+      AjaxFeature.state.loader = new ButtonLoader(document.getElementById('ajax-load-features'), {
+        onStart: function() {
+          get(AjaxFeature.done, AjaxFeature.params);
+        }
+      });
     }
   };
 
@@ -420,7 +396,6 @@ LWA.Views.PostThumbs = (function() {
     },
 
     state: {
-      loading: false,
       loader: undefined
     },
 
@@ -435,8 +410,9 @@ LWA.Views.PostThumbs = (function() {
     done: function(response) {
       AjaxNews.params.page = response.nextPage;
       AjaxNews.render(response.posts);
-      AjaxNews.renderButton();
-      AjaxNews.hide();
+      AjaxNews.state.loader.stop();
+
+      renderButton('ajax-load-news', AjaxNews.params.page);
     },
 
     render: function(posts) {
@@ -463,36 +439,12 @@ LWA.Views.PostThumbs = (function() {
       scrollPage(e);
     },
 
-    renderButton: function() {
-      if (this.params.page === false) {
-        this.state.loader.el.addClass('button-disabled');
-      }
-    },
-
-    isLoadable: function() {
-      return this.params.page !== false && this.state.loading === false;
-    },
-
-    onClick: function() {
-      if (AjaxNews.isLoadable()) {
-        AjaxNews.show();
-        get(AjaxNews.done, AjaxNews.params);
-      }
-    },
-
-    show: function() {
-      this.state.loading = true;
-      this.state.loader.start();
-    },
-
-    hide: function() {
-      this.state.loading = false;
-      this.state.loader.stop();
-    },
-
     init: function() {
-      this.state.loader = LWA.Modules.ButtonLoader('#ajax-load-news');
-      this.state.loader.el.click(this.onClick);
+      AjaxNews.state.loader = new ButtonLoader(document.getElementById('ajax-load-news'), {
+        onStart: function() {
+          get(AjaxNews.done, AjaxNews.params);
+        }
+      });
     }
   };
 
@@ -504,6 +456,12 @@ LWA.Views.PostThumbs = (function() {
       .fail(function(response) {
         console.log(response);
       });
+  }
+
+  function renderButton(id, page) {
+    if (page === false) {
+      document.getElementById(id).className = 'button-disabled';
+    }
   }
 
   function scrollPage(element) {
