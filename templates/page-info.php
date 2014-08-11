@@ -17,6 +17,7 @@
           endwhile; endif;
         ?>
       </div>
+      <a name="disclaimer" href="#disclaimer"></a>
     </div>
   </div>
 </div>
