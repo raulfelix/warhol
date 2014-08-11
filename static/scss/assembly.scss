@@ -87,21 +87,23 @@
   }
 }
 
+.article-detail {
+  display: inline-block;
+  margin: 0 rem(40) 0 0;
+}
+
 .details-row {
   margin-bottom: 0;
   padding: 0 rem(40);
   margin-top: rem(20);
   @extend %clearfix;
 
-  span {
-    margin: 0 rem(20);
-  }
-
   .bullet {
     background-color: #cccccc;
     display: inline-block;
     vertical-align: middle;
     border-radius: 20px;
+    margin: 0 rem(40);
     height: rem(5);
     width: rem(5);
   }

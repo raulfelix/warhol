@@ -3,7 +3,9 @@
     <div class="section">
       <div class="details-row">
         <?php $category = category($post->post_type); ?>
-        <a class="bp1-pull-left" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
+        <a class="article-detail bp1-pull-left" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
+        <span class="article-detail bp1-pull-left"><?php when(); ?></span>
+
         <div class="details-row-right bp1-pull-right">
           <span class="fb-like" data-href="<?php echo the_permalink(); ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></span>
         </div>

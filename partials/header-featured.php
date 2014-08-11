@@ -22,11 +22,6 @@
       </div>
     </div>
   </div>
-  
-  <div class="header-details">
-    <span><?php when(); ?></span>
-    <span class="thumb-views"><i class="icon-views"></i><?php views(); ?></span>
-  </div>
 
   <?php get_template_part('partials/module', 'util-loader'); ?>
 </header>

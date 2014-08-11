@@ -42,7 +42,6 @@
                   <?php get_thumbnail(false, true); ?>
                   <div class="m-overlay blanket-light"></div>  
                   <span class="thumb-time"><?php when(); ?></span>
-                  <span class="thumb-views data-views"><i class="icon-views"></i><?php views(); ?></span>
                 </a>
               </div>
             </div>

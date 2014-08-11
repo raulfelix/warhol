@@ -6,13 +6,9 @@
   }
 
   .thumb-time {
+    font-size: rem(12);
     left: rem(5);
     bottom: rem(5);
-  }
-  
-  .thumb-views, 
-  .thumb-time {
-    font-size: rem(12);
   }
 
   .thumb-caption {
@@ -22,14 +18,6 @@
 
   .thumb-feature {
     margin: rem(10) 0;
-  }
-
-  .thumb-views {
-    right: rem(5);
-    bottom: rem(5);
-    i {
-      font-size: 15px;
-    }
   }
 }
 
@@ -42,12 +30,6 @@
   display: none;
 }
 
-.thumb-views {
-  i {
-    font-size: 20px;
-  }
-}
-  
 
 .thumb-category {
   padding-top: 0;

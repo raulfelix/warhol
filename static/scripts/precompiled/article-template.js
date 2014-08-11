@@ -26,10 +26,6 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.when) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.when); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</span>\n      <span class=\"thumb-views data-views\"><i class=\"icon-views\"></i>";
-  if (helper = helpers.views) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.views); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
     + "</span>\n    </a>\n    <a href=\"";
   if (helper = helpers.permalink) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.permalink); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }

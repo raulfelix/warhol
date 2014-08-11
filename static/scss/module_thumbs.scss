@@ -34,19 +34,12 @@
     }
   }
 
-  .thumb-time, .thumb-views {
+  .thumb-time {
+    left: rem(10);
     @extend %absolute;
     font-size: rem(14);
     color: $white;
     bottom: rem(10);
-  }
-
-  .thumb-time {
-    left: rem(10);
-  }
-
-  .thumb-views {
-    right: rem(10);
   }
 
   .thumb-link {
@@ -148,16 +141,6 @@
 
   .h-5 {
     margin-bottom: 0;
-  }
-}
-
-.thumb-views {
-  display: inline-block;
-  i {
-    font-size: 24px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: rem(-4);
   }
 }
 

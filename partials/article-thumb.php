@@ -11,7 +11,6 @@
      <?php get_thumbnail(false, $post->post_type === 'lwa_news' ? true : false); ?>  
      <div class="m-overlay blanket-light"></div>
     <span class="thumb-time"><?php when(); ?></span>
-    <span class="thumb-views data-views"><i class="icon-views"></i><?php views(); ?></span>
   </a>
   <a href="<?php echo the_permalink(); ?>" class="h-2 thumb-title"><?php the_title(); ?></a>
   <div class="h-5 thumb-caption"><?php the_subtitle(); ?></div>

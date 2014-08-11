@@ -65,10 +65,6 @@
           <button id="gallery-thumbs" class="button button-gallery button-thumbs"><i class="icon-thumbs"></i></button>
           <button id="modal-gallery-button" class="button button-gallery"><i class="icon-expand"></i><span>Launch gallery</span></button>
         </div>
-        <div class="header-details">
-          <span><?php when(); ?></span>
-          <span class="thumb-views"><i class="icon-views"></i><?php views(); ?></span>
-        </div>
       </div>
     </div>
   </div>
