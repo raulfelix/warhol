@@ -49,6 +49,16 @@
   }
 }
 
+.button-white {
+  color: $white;
+  border-color: $white;
+  &:hover {
+    color: $white;
+    background-color: transparent;
+    border-color: $white;
+  }
+}
+
 .button-up {
   padding-left: 54px;
   i {

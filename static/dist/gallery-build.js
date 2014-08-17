@@ -172,12 +172,14 @@ Views.Gallery = (function() {
         height: 120,
         heightTouch: 160
       },
-      startTime: 0
+      startTime: 0,
+      previousPosition: 0
     },
 
     elements: {
       $imgs: undefined,
-      $total: undefined
+      $total: undefined,
+      $home: undefined
     },
 
     init: function() {
@@ -190,6 +192,7 @@ Views.Gallery = (function() {
       Modal.elements.$slider = $('#modal-gallery-frame .royalSlider');
       Modal.elements.$imgs = Modal.elements.$slider.find('img');
       Modal.elements.$total = Modal.state.modal.el().find('.modal-gallery-count');
+      Modal.elements.$home = Modal.state.modal.el().find('#modal-gallery-home');
 
       Modal.state.modal.el().find('.sly-prev').click(Modal.prev);
       Modal.state.modal.el().find('.sly-next').click(Modal.next);
@@ -221,6 +224,11 @@ Views.Gallery = (function() {
           $(instance.elements[0]).removeClass('m-transparent').next().remove();
         });
       });
+
+      Modal.elements.$home.click(function() {
+        Modal.state.slider.goTo(0);
+        Modal.onActivate(0);
+      });
     },
 
     destroy: function() {
@@ -238,6 +246,13 @@ Views.Gallery = (function() {
 
     onActivate: function(position) {
       Modal.elements.$total.html((position + 1) + ' / ' + Modal.state.slider.numSlides);
+
+      if (position !== 0 && Modal.state.previousPosition > position) {
+        Modal.elements.$home.addClass('gallery-home-active');
+      } else if (position === 0) {
+        Modal.elements.$home.removeClass('gallery-home-active');
+      }
+      Modal.state.previousPosition = position;
     },
 
     setModalRowHeight: function() {
@@ -360,14 +375,16 @@ Views.Gallery = (function() {
     element: {
       title: $('.header-gallery-title'),
       overlay: $('#header-gallery .m-overlay'),
-      gallery: $('#header-gallery-wrap')
+      gallery: $('#header-gallery-wrap'),
+      home: $('#inline-gallery-home')
     },
 
     state: {
       sly: undefined,
       responsive: undefined,
       isTouch: false,
-      loader: false
+      loader: false,
+      previousPosition: 0
     },
 
     template: Handlebars.gallery_inline,
@@ -389,6 +406,9 @@ Views.Gallery = (function() {
         }
       });
       
+      Inline.element.home.click(function() {
+        Inline.state.sly.activate(0);
+      });
       this.chooseRendering(this.state.loader);
     },
 
@@ -472,15 +492,23 @@ Views.Gallery = (function() {
       
       Thumbs.setActive(position);
 
+      if (Inline.state.previousPosition > position && !Inline.element.home.hasClass('gallery-home-active')) {
+        // going left
+        Inline.element.home.addClass('gallery-home-active');
+      }
+
       if (!Inline.element.gallery.hasClass('animate-gallery') && position >= 1) {
         Inline.hideTitle();
       }
       else if (Inline.element.gallery.hasClass('animate-gallery') && position === 0) {
         Inline.showTitle();
       }
+
+      Inline.state.previousPosition = position;
     },
 
     showTitle: function() {
+      Inline.element.home.removeClass('gallery-home-active');
       Inline.element.title.css('display', '');
       setTimeout(function() { Inline.element.gallery.removeClass('animate-gallery'); }, 200);
     },

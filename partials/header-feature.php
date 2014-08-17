@@ -27,6 +27,7 @@
           <?php endwhile; ?>
         </div>
       </div>
+      <button class="gallery-home button button-white" id="modal-gallery-home">back to start</button>
       <div class="sly-controls">
         <button class="sly-prev"><i class="icon-arrow-left"></i></button>
         <button class="sly-next"><i class="icon-arrow-right"></i></button>
@@ -45,6 +46,7 @@
       
       <div class="f-grid f-row sly-controls">
         <div id="inline-gallery-controls" class="f-1">
+          <button class="gallery-home button button-white" id="inline-gallery-home">back to start</button>
           <button class="sly-prev"><i class="icon-arrow-left"></i></button>
           <button class="sly-next"><i class="icon-arrow-right"></i></button>
         </div>

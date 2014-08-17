@@ -346,6 +346,19 @@
   }
 }
 
+.gallery-home {
+  left: rem(-60);
+  top: rem(372);
+  opacity: 0;
+  position: absolute;
+  @include transition(opacity 200ms ease, left 200ms ease);
+}
+
+.gallery-home-active {
+  left: rem(140);
+  opacity: 1;
+}
+
 
 .logo {
   @extend %pull-left;

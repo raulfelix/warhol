@@ -49,8 +49,8 @@ function save_extra_profile_fields( $user_id ) {
   if ( !current_user_can( 'edit_user', $user_id ) )
     return false;
 
-  update_usermeta( $user_id, 'location', $_POST['location'] );
-  update_usermeta( $user_id, 'display_order', $_POST['display_order'] );
+  update_user_meta( $user_id, 'location', $_POST['location'] );
+  update_user_meta( $user_id, 'display_order', $_POST['display_order'] );
 }
 add_action( 'personal_options_update', 'save_extra_profile_fields' );
 add_action( 'edit_user_profile_update', 'save_extra_profile_fields' );
