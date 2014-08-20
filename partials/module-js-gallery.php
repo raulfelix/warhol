@@ -18,7 +18,8 @@
     LWA.Data.Gallery.inline.push({
       src: '<?php echo $attachments->src( "original" ); ?>',
       width: '<?php echo $attachments->width( "original" ); ?>',
-      height: '<?php echo $attachments->height( "original" ); ?>'
+      height: '<?php echo $attachments->height( "original" ); ?>',
+      caption: '<?php echo $attachments->field( "caption" ); ?>'
     });
   <?php endwhile; ?>
 

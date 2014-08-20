@@ -197,18 +197,13 @@
   .rsGCaption {
     color: $white;
     position: absolute;
-    bottom: rem(-40);
+    bottom: rem(-90);
   }
   
   .sly-slide .loader-icon {
     display: block;
   }
 
-  .rsImg {
-    margin-left: auto !important;
-    margin-top: auto !important;
-  }
-  
   .modal-gallery-count {
     color: $white;
     position: absolute;
@@ -226,37 +221,22 @@
     width: 100%;
     max-width: 100%;
 
-    // used for initial width calculation
     img {
-      display: inline-block;
-      vertical-align: middle;
       width: auto;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-height:100%;
+      max-width:100%;
     }
 
     .sly-slide {
       height: 100%;
       width: 100%;
-      text-align: center;
       position: relative;
-    }
-    .sly-slide:before {
-      content: '';
-      display: inline-block;
-      height: 100%;
-      vertical-align: middle;
-      text-align: left;
-      margin-left: -5px;
-      width: 0px;
-    }
-
-    .modal-gallery-width {
-      width: 100%;
-      height: auto;
-    }
-
-    .modal-gallery-height {
-      height: 100%;
-      width: auto;
     }
   }
 

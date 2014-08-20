@@ -69,6 +69,7 @@ module.exports = function(grunt) {
             'static/vendor/sly.min.js',
             'static/vendor/jquery.slider.min.js',
             'static/scripts/precompiled/gallery-template.js',
+            'static/scripts/lazyload.js',
             'static/scripts/gallery.js'
           ],
           'static/dist/single-build.js' : [
@@ -119,7 +120,7 @@ module.exports = function(grunt) {
           "static/scripts/precompiled/article-template.js": ["js_partial/article_thumb.hbs.html"],
           "static/scripts/precompiled/search-template.js": ["js_partial/search_thumb.hbs.html", "js_partial/search_next_link.hbs.html"],
           "static/scripts/precompiled/instabinge-template.js": ["js_partial/instabinge_thumb.hbs.html", "js_partial/instabinge_thumb_modal.hbs.html", "js_partial/instabinge_single_thumb_modal.hbs.html"],
-          "static/scripts/precompiled/gallery-template.js": ["js_partial/gallery_inline.hbs.html"]
+          "static/scripts/precompiled/gallery-template.js": ["js_partial/gallery_inline.hbs.html", "js_partial/gallery_modal.hbs.html"]
         }
       }
     },

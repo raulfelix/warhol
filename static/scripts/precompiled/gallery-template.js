@@ -17,7 +17,7 @@ function program1(depth0,data) {
   buffer += "px;\">\n        ";
   stack1 = (helper = helpers.loader || (depth0 && depth0.loader),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, (data == null || data === false ? data : data.index), options) : helperMissing.call(depth0, "loader", (data == null || data === false ? data : data.index), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        <div class=\"m-wrap m-transparent\"><img class=\"m-bg\" src=\"";
+  buffer += "\n        <div class=\"m-wrap m-transparent\"><img class=\"m-bg\" data-img-src=\"";
   if (helper = helpers.src) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.src); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -35,4 +35,29 @@ function program2(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n  </ul>\n</div>";
   return buffer;
+  });
+
+this["Handlebars"]["gallery_modal"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n<div class=\"sly-slide\">\n  <img class=\"m-wrap m-transparent\" data-img-src=\"";
+  if (helper = helpers.src) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.src); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n  <span class=\"rsCaption\">";
+  if (helper = helpers.caption) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.caption); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n  <div class=\"loader-icon\"><i class=\"icon-reload\"></i></div>\n</div>\n";
+  return buffer;
+  }
+
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.inline), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
   });

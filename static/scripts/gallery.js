@@ -56,15 +56,10 @@ Views.Gallery = (function() {
         heightTouch: 160
       },
       startTime: 0,
-      previousPosition: 0
+      prevPos: 0
     },
 
-    elements: {
-      $imgs: undefined,
-      $total: undefined
-    },
-
-
+    template: Handlebars.gallery_modal,
 
     NextUp: {
       
@@ -102,7 +97,6 @@ Views.Gallery = (function() {
 
       onActivate: function(event) {
         var position = this.state.slider.currSlideId;
-        console.log(this.isFirst(), position);
 
         if (this.isFirst()) {
           this.deactivate();
@@ -163,42 +157,49 @@ Views.Gallery = (function() {
       if (Modal.state.slider !== undefined) {
         return;
       }
-
-      Modal.elements.$slider = $('#modal-gallery-frame .royalSlider');
-      Modal.elements.$imgs = Modal.elements.$slider.find('img');
-      Modal.elements.$total = Modal.state.modal.el().find('.modal-gallery-count');
+      
+      Modal.elements = {
+        $slider: $('#modal-gallery-frame .royalSlider'),
+        $total: Modal.state.modal.el().find('.modal-gallery-count')
+      };
 
       Modal.state.modal.el().find('.sly-prev').click(Modal.prev);
       Modal.state.modal.el().find('.sly-next').click(Modal.next);
+
+      // add slides and initialise helpers
+      Modal.elements.$slider.html(Modal.template(LWA.Data.Gallery));
+
+      Modal.NextUp.init();
       Modal.state.startAgain = new StartAgain($('#modal-gallery-home'), Modal.startAgain);
+      Modal.state.lazyImage  = new LazyImage(Modal.elements.$slider.find('img'), {
+        onLoad: function onLoad(instance) {
+          $(instance.elements[0]).removeClass('m-transparent').next().remove();
+        }
+      });
+      Modal.state.lazyImage.load(0);
+      Modal.buildSlider(0);
+    },
 
-      Modal.setModalRowHeight();
-
+    buildSlider: function(startAt) {
       Modal.state.slider = Modal.elements.$slider.royalSlider({
+        arrowsNav: false,
         sliderDrag: false,
         navigateByClick: false,
-        transitionSpeed: 260,
-        startSlideId: 0,
-        controlNavigation: 'none',
         fadeinLoadedSlide: false,
+        controlNavigation: 'none',
         globalCaption: true,
         addActiveClass: true,
-        arrowsNav: false
+        startSlideId: startAt,
+        transitionSpeed: 260
       }).data('royalSlider');
 
       Modal.state.slider.ev.on('rsAfterSlideChange', function(event) {
         ga('send', 'event', 'Gallery', 'click', 'Gallery modal navigate', { 'page': location.pathName });
         Modal.onActivate(Modal.state.slider.currSlideId);
       });
-      Modal.onActivate(0);
 
-      Modal.elements.$imgs.each(function() {
-        imagesLoaded(this, function(instance) {
-          $(instance.elements[0]).removeClass('m-transparent').next().remove();
-        });
-      });
-
-      Modal.NextUp.init();
+      Modal.onActivate(startAt);
+      Modal.setFrameHeight();
     },
 
     startAgain: function() {
@@ -236,37 +237,28 @@ Views.Gallery = (function() {
     },
 
     onActivate: function(position) {
+      this.state.lazyImage.load(position);
+
       position = position + 1;
       this.elements.$total.html(position + ' / ' + this.state.slider.numSlides);
 
-      if (position === 1 || Helper.isRight(this.state.previousPosition, position)) {
-        Modal.state.startAgain.hide();
+      if (position === 1 || Helper.isRight(this.state.prevPos, position)) {
+        this.state.startAgain.hide();
       } else {
-        Modal.state.startAgain.show();
+        this.state.startAgain.show();
       }
 
       // if is last slide enable the next up slider
-      if (position === Modal.state.slider.numSlides) {
-        Modal.NextUp.enable();
+      if (position === this.state.slider.numSlides) {
+        this.NextUp.enable();
       }
-      this.state.previousPosition = position;
+
+      this.state.prevPos = position;
     },
 
-    setModalRowHeight: function() {
+    setFrameHeight: function() {
       var extraHeight = LWA.Modules.Util.getResponsive().BP1.match() ? Modal.state.responsive.heightTouch : Modal.state.responsive.height;
-      Modal.elements.$slider.css('height', LWA.Modules.Util.windowHeight() - extraHeight);
       Modal.elements.$slider.find('.rsOverflow').css('height', LWA.Modules.Util.windowHeight() - extraHeight);
-    },
-
-    clearDimensions: function() {
-      Modal.elements.$slider.height('auto').width(LWA.Modules.Util.windowWidth());
-      var fragment = $(document.createDocumentFragment());
-      for (var i = 0; i < Modal.state.slider.slides.length; i++) {
-        Modal.state.slider.slides[i].content.find('img').removeClass('modal-gallery-height modal-gallery-width');
-        fragment.append(Modal.state.slider.slides[i].content);
-      }
-      Modal.elements.$slider.children().remove();
-      Modal.elements.$slider.append(fragment);
     },
 
     reload: function() {
@@ -276,31 +268,9 @@ Views.Gallery = (function() {
       
       Modal.state.modal.loader.start();
       
-      var currSlideId = Modal.state.slider.currSlideId;
-      
-      Modal.clearDimensions();
-      Modal.state.slider.destroy();
-      Modal.state.slider = undefined;
-
-      Modal.setModalRowHeight();
-
-      Modal.state.slider = Modal.elements.$slider.royalSlider({
-        sliderDrag: false,
-        navigateByClick: false,
-        transitionSpeed: 260,
-        startSlideId: currSlideId,
-        controlNavigation: 'none',
-        fadeinLoadedSlide: false,
-        globalCaption: true,
-        addActiveClass: true,
-        arrowsNav: false
-      }).data('royalSlider');
-
-      Modal.state.slider.ev.on('rsAfterSlideChange', function(event) {
-        Modal.onActivate(Modal.state.slider.currSlideId);
-      });
-
-      Modal.onActivate(currSlideId);
+      Modal.elements.$slider.find('.rsOverflow').css('width', '');
+      Modal.state.slider.updateSliderSize(true);
+      Modal.setFrameHeight();
 
       setTimeout(function() {
         Modal.state.modal.loader.stop();
@@ -454,13 +424,11 @@ Views.Gallery = (function() {
     },
 
     renderGallery: function() {
-      var wrap = $('#tmpl-gallery-images').html(this.template(LWA.Data.Gallery));
-      wrap.find('img').each(function() {
-        imagesLoaded(this, function(instance) {
-          $(instance.elements[0]).closest('div').removeClass('m-transparent').prev().remove();
-        });
-      });
       Inline.element.overlay.hide();
+
+      var wrap = $('#tmpl-gallery-images').html(this.template(LWA.Data.Gallery));
+      Inline.state.lazyImage = new LazyImage(wrap.find('img'));
+      Inline.state.lazyImage.load(0);
       Inline.initialiseSlider();
     },
 
@@ -506,7 +474,7 @@ Views.Gallery = (function() {
       if (Inline.isEnd()) {
         Inline.element.gallery.addClass('gallery-end');
       }
-
+      Inline.state.lazyImage.load(position);
       Inline.state.previousPosition = position;
     },
 
@@ -576,18 +544,8 @@ Views.Gallery = (function() {
     }
   };
 
-  // hold off on resize event
-  var delay = (function() {
-    var timer = 0;
-    return function(callback, ms){
-      clearTimeout(timer);
-      timer = setTimeout(callback, ms);
-    };
-  })();
-
   function updateSly() {
-    delay(function() {
-      console.log('Resize...');
+    LWA.Modules.Util.delay(function() {
       Inline.reload();
       Thumbs.reload();
       Modal.reload();

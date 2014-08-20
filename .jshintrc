@@ -1,7 +1,9 @@
 {
   "predef" : [
     "console",
-    "ButtonLoader"
+    "ButtonLoader",
+    "LazyImage",
+    "imagesLoaded"
   ],
 
   "bitwise"       : true,

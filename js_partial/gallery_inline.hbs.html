@@ -3,7 +3,7 @@
     {{#each inline}}
       <li class="sly-slide header-gallery-overlay" style="width: {{#getWidth}}{{/getWidth}}px;">
         {{#loader @index}}{{/loader}}
-        <div class="m-wrap m-transparent"><img class="m-bg" src="{{ src }}"></div>
+        <div class="m-wrap m-transparent"><img class="m-bg" data-img-src="{{ src }}"></div>
         <div class="blanket"></div>
       </li>
     {{/each}}

@@ -16,15 +16,7 @@
   <div class="modal-wrap">
     <div class="modal-wrap-row">
       <div id="modal-gallery-frame" class="modal-view frame">
-        <div class="royalSlider">
-          <?php 
-            while( $attachments->get() ): ?>
-              <div class="sly-slide">
-                <img class="rsImg m-wrap m-transparent" src="<?php echo $attachments->src( 'large' ); ?>" alt="<?php echo $attachments->field( 'caption' ); ?>">
-                <?php get_template_part('partials/module', 'util-loader'); ?>
-              </div>
-          <?php endwhile; ?>
-        </div>
+        <div class="royalSlider"></div>
       </div>
       <button class="gallery-home button button-white" id="modal-gallery-home">back to start</button>
       <div class="sly-controls">

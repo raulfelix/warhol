@@ -68,11 +68,11 @@ add_action('admin_enqueue_scripts', 'enqueue_custom_admin_scripts');
 // ------------------------------ 
 function add_scripts() {
 
-  wp_register_style( 'style', get_template_directory_uri() . '/static/dist/css/e1b2c6848755.style.css', null, null, 'all' );
+  wp_register_style( 'style', get_template_directory_uri() . '/static/dist/css/0c9484771b76.style.css', null, null, 'all' );
 
   wp_register_script( 'global', get_template_directory_uri() . '/static/dist/js/15a9a8c46cc9.global.min.js', null, null, true );
   wp_register_script( 'home', get_template_directory_uri() . '/static/dist/js/4e25b3be3d19.home.min.js', null, null, true );
-  wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/js/e1faf25f6536.gallery.min.js', array('single'), null, true );
+  wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/js/edee925d3589.gallery.min.js', array('single'), null, true );
   wp_register_script( 'single', get_template_directory_uri() . '/static/dist/js/12f8726f36f6.single.min.js', null, null, true );
   wp_register_script( 'category', get_template_directory_uri() . '/static/dist/js/593e1d9d304e.category.min.js', null, null, true );
   wp_register_script( 'dropdown', get_template_directory_uri() . '/static/dist/js/9b902e92d844.dropdown.min.js', null, null, true );
