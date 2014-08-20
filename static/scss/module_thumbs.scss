@@ -16,10 +16,8 @@
 
   .thumb-feature {
     margin: rem(20) 0;
-    opacity: 1;
     @extend %block;
     @extend %relative;
-    @include transition(opacity 200ms ease);
 
     &:hover {
       .blanket-light {

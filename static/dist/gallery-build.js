@@ -163,6 +163,48 @@ var Views = window.Namespace('Views');
 
 Views.Gallery = (function() {
 
+  var Helper = {
+    isRight: function(previous, current) {
+      return previous < current;
+    }
+  };
+
+  
+  var StartAgain = function(element, callback) {
+    var self = this,
+      ACTIVE = 'gallery-home-active';
+
+    self.show = function() {
+      element.addClass(ACTIVE);
+    };
+
+    self.hide = function() {
+      element.removeClass(ACTIVE);
+    };
+
+    element.click(function() {
+      callback.call(self);
+    });
+  };
+
+  // @param: wrapping dom element
+  var FinalSlide = function(element) {
+    var self = this,
+      ACTIVE = 'gallery-next-active';
+
+    self.show = function() {
+      element.addClass(ACTIVE);
+    };
+
+    self.hide = function() {
+      element.removeClass(ACTIVE);
+    };
+
+    self.isActive = function() {
+      return element.hasClass(ACTIVE);
+    };
+  };
+
   var Modal = {
     
     state: {
@@ -178,9 +220,101 @@ Views.Gallery = (function() {
 
     elements: {
       $imgs: undefined,
-      $total: undefined,
-      $home: undefined
+      $total: undefined
     },
+
+
+
+    NextUp: {
+      
+      state: {
+        pos: 0
+      },
+
+      isFirst: function() {
+        return this.state.slider.currSlideId === 0;
+      },
+
+      isEnabled: function() {
+        return this.elements.slider.hasClass('gallery-next-enable');
+      },
+
+      isActivated: function() {
+        return this.elements.slider.hasClass('gallery-next-active');
+      },
+      
+      activate: function() {
+        this.elements.slider.addClass('gallery-next-active');
+      },
+
+      deactivate: function() {
+        this.elements.slider.removeClass('gallery-next-active');
+      },
+
+      enable: function() {
+        this.elements.slider.addClass('gallery-next-enable');
+      },
+
+      disable: function() {
+        this.elements.slider.removeClass('gallery-next-enable');
+      },
+
+      onActivate: function(event) {
+        var position = this.state.slider.currSlideId;
+        console.log(this.isFirst(), position);
+
+        if (this.isFirst()) {
+          this.deactivate();
+        } else {
+          this.activate();
+        }
+
+        // if is swipe at position 0
+        if (this.isFirst() && position === this.state.pos) {
+          this.disable();
+          Modal.prev();
+        }
+        this.state.pos = position;
+      },
+
+      destroy: function() {
+        this.state.slider.goTo(0);
+        this.disable();
+        this.deactivate();
+        Modal.state.slider.goTo(0);
+        Modal.onActivate(0);
+      },
+
+      init: function() {
+        this.elements = {
+          slider: $('#modal-slider-next')
+        };
+
+        var container = this.elements.slider.find('.royalSlider');
+        this.state.slider = container.css({
+          'width': LWA.Modules.Util.windowWidth(),
+          'height': LWA.Modules.Util.windowHeight()
+        })
+        .royalSlider({
+          sliderDrag: false,
+          navigateByClick: false,
+          transitionSpeed: 260,
+          startSlideId: 0,
+          controlNavigation: 'none',
+          fadeinLoadedSlide: false,
+          addActiveClass: true,
+          arrowsNav: false
+        }).data('royalSlider');
+
+        this.state.slider.ev.on('rsBeforeAnimStart', function(event) {
+          Modal.NextUp.onActivate(event);
+        });
+
+        container.find('#modal-gallery-home').click(function() { Modal.NextUp.destroy(); });
+      }
+    },
+
+
 
     init: function() {
       Modal.state.startTime = new Date().getTime();
@@ -192,15 +326,14 @@ Views.Gallery = (function() {
       Modal.elements.$slider = $('#modal-gallery-frame .royalSlider');
       Modal.elements.$imgs = Modal.elements.$slider.find('img');
       Modal.elements.$total = Modal.state.modal.el().find('.modal-gallery-count');
-      Modal.elements.$home = Modal.state.modal.el().find('#modal-gallery-home');
 
       Modal.state.modal.el().find('.sly-prev').click(Modal.prev);
       Modal.state.modal.el().find('.sly-next').click(Modal.next);
+      Modal.state.startAgain = new StartAgain($('#modal-gallery-home'), Modal.startAgain);
 
       Modal.setModalRowHeight();
 
       Modal.state.slider = Modal.elements.$slider.royalSlider({
-        keyboardNavEnabled: true,
         sliderDrag: false,
         navigateByClick: false,
         transitionSpeed: 260,
@@ -216,7 +349,6 @@ Views.Gallery = (function() {
         ga('send', 'event', 'Gallery', 'click', 'Gallery modal navigate', { 'page': location.pathName });
         Modal.onActivate(Modal.state.slider.currSlideId);
       });
-
       Modal.onActivate(0);
 
       Modal.elements.$imgs.each(function() {
@@ -225,10 +357,15 @@ Views.Gallery = (function() {
         });
       });
 
-      Modal.elements.$home.click(function() {
+      Modal.NextUp.init();
+    },
+
+    startAgain: function() {
+      if (Modal.NextUp.isEnabled()) {
+        Modal.NextUp.destroy();
+      } else {
         Modal.state.slider.goTo(0);
-        Modal.onActivate(0);
-      });
+      }
     },
 
     destroy: function() {
@@ -237,22 +374,41 @@ Views.Gallery = (function() {
     },
 
     next: function() {
+      if (LWA.hasNextPost && Modal.NextUp.isEnabled()) {
+        Modal.NextUp.activate();
+        Modal.NextUp.state.slider.goTo(1);
+        Modal.state.startAgain.show();
+        return;
+      }
       Modal.state.slider.next();
     },
 
     prev: function() {
+      if (Modal.NextUp.isActivated()) {
+        Modal.NextUp.deactivate();
+        Modal.NextUp.state.slider.goTo(0);
+        Modal.state.startAgain.hide();
+        return;
+      }
+      Modal.NextUp.disable();
       Modal.state.slider.prev();
     },
 
     onActivate: function(position) {
-      Modal.elements.$total.html((position + 1) + ' / ' + Modal.state.slider.numSlides);
+      position = position + 1;
+      this.elements.$total.html(position + ' / ' + this.state.slider.numSlides);
 
-      if (position !== 0 && Modal.state.previousPosition > position) {
-        Modal.elements.$home.addClass('gallery-home-active');
-      } else if (position === 0) {
-        Modal.elements.$home.removeClass('gallery-home-active');
+      if (position === 1 || Helper.isRight(this.state.previousPosition, position)) {
+        Modal.state.startAgain.hide();
+      } else {
+        Modal.state.startAgain.show();
       }
-      Modal.state.previousPosition = position;
+
+      // if is last slide enable the next up slider
+      if (position === Modal.state.slider.numSlides) {
+        Modal.NextUp.enable();
+      }
+      this.state.previousPosition = position;
     },
 
     setModalRowHeight: function() {
@@ -288,7 +444,6 @@ Views.Gallery = (function() {
       Modal.setModalRowHeight();
 
       Modal.state.slider = Modal.elements.$slider.royalSlider({
-        keyboardNavEnabled: true,
         sliderDrag: false,
         navigateByClick: false,
         transitionSpeed: 260,
@@ -375,8 +530,7 @@ Views.Gallery = (function() {
     element: {
       title: $('.header-gallery-title'),
       overlay: $('#header-gallery .m-overlay'),
-      gallery: $('#header-gallery-wrap'),
-      home: $('#inline-gallery-home')
+      gallery: $('#header-gallery-wrap')
     },
 
     state: {
@@ -405,11 +559,33 @@ Views.Gallery = (function() {
           return '<div class="loader-icon"><i class="icon-reload"></i></div>';
         }
       });
-      
-      Inline.element.home.click(function() {
-        Inline.state.sly.activate(0);
-      });
+        
+      var $controls = $('#inline-gallery-controls');
+      $controls.find('.sly-prev').click(Inline.prev);
+      $controls.find('.sly-next').click(Inline.next);
+
+      this.state.finalSlide = new FinalSlide(Inline.element.gallery);
+      this.state.startAgain = new StartAgain($('#inline-gallery-home'), this.reset);
+
       this.chooseRendering(this.state.loader);
+    },
+
+    initialiseSlider: function() {
+      Inline.state.sly = new Sly('#inline-gallery-frame', {
+        horizontal: 1,
+        itemNav: 'centered',
+        smart: 1,
+        activateOn: 'click',
+        touchDragging: 0,
+        releaseSwing: 1,
+        startAt: 0,
+        speed: 300,
+        elasticBounds: 1,
+        easing: 'swing'
+      });
+
+      Inline.state.sly.init();
+      Inline.state.sly.on('active', Inline.onActivate);
     },
 
     chooseRendering: function(loader) {
@@ -434,27 +610,6 @@ Views.Gallery = (function() {
         
         this.state.isTouch = false;
       }
-    },
-
-    initialiseSlider: function() {
-      var $controls = $('#inline-gallery-controls');
-      Inline.state.sly = new Sly('#inline-gallery-frame', {
-        horizontal: 1,
-        itemNav: 'centered',
-        smart: 1,
-        activateOn: 'click',
-        touchDragging: 1,
-        releaseSwing: 1,
-        startAt: 0,
-        speed: 300,
-        elasticBounds: 1,
-        easing: 'swing',
-        prev: $controls.find('.sly-prev'),
-        next: $controls.find('.sly-next')
-      });
-
-      Inline.state.sly.init();
-      Inline.state.sly.on('active', Inline.onActivate);
     },
 
     renderGallery: function() {
@@ -492,23 +647,54 @@ Views.Gallery = (function() {
       
       Thumbs.setActive(position);
 
-      if (Inline.state.previousPosition > position && !Inline.element.home.hasClass('gallery-home-active')) {
-        // going left
-        Inline.element.home.addClass('gallery-home-active');
+      if (Inline.state.previousPosition > position) {
+        Inline.state.startAgain.show();
+      } else {
+        Inline.state.startAgain.hide();
       }
 
-      if (!Inline.element.gallery.hasClass('animate-gallery') && position >= 1) {
+      if (position > 0) {
         Inline.hideTitle();
-      }
-      else if (Inline.element.gallery.hasClass('animate-gallery') && position === 0) {
+      } else {
         Inline.showTitle();
+        Inline.element.gallery.removeClass('gallery-end');
+        Inline.state.startAgain.hide();
+      }
+
+      // mark end of gallery
+      if (Inline.isEnd()) {
+        Inline.element.gallery.addClass('gallery-end');
       }
 
       Inline.state.previousPosition = position;
     },
 
+    next: function() {
+      // show next slide
+      if (LWA.hasNextPost && Inline.isEnd()) {
+        Inline.state.finalSlide.show();
+        Inline.state.startAgain.show();
+        return;
+      }
+      Inline.state.sly.next();
+    },
+
+    prev: function() {
+      if (Inline.state.finalSlide.isActive()) {
+        Inline.state.finalSlide.hide();
+        Inline.state.startAgain.hide();
+        return;
+      }
+      
+      Inline.state.sly.prev();
+      Inline.element.gallery.removeClass('gallery-end');
+    },
+
+    isEnd: function() {
+      return this.state.sly.items.length - 1 === this.state.sly.rel.activeItem;
+    },
+
     showTitle: function() {
-      Inline.element.home.removeClass('gallery-home-active');
       Inline.element.title.css('display', '');
       setTimeout(function() { Inline.element.gallery.removeClass('animate-gallery'); }, 200);
     },
@@ -527,20 +713,23 @@ Views.Gallery = (function() {
       Inline.state.sly.activate(position);
     },
 
+    reset: function() {
+      Inline.state.sly.activate(0);
+      Inline.state.finalSlide.hide();
+    },
+
     reload: function() {
       if (this.state.responsive.BP3.match() && this.state.isTouch !== true) {
-        console.log('render mobile kill desktop');
         this.destroyGallery();
         this.renderFeature();
         this.state.isTouch = true;
       }
       else if (!this.state.responsive.BP3.match() && this.state.isTouch === true) {
-        console.log('render desktop kill mobile');
         this.destroyFeature();
         this.renderGallery();
         this.state.isTouch = false;
-      } else if (this.state.isTouch === false) {
-        console.log('reload sly');
+      }
+      else if (this.state.isTouch === false) {
         this.state.sly.reload();
       }
     }

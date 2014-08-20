@@ -3,12 +3,6 @@
   background-color: $pink;
   @extend %relative;
 
-  .header-content {
-    text-align: center;
-    width: 66.66666666666666%;
-    margin: 0 auto;
-  }
-
   .link {
     display: block;
     &:hover {
@@ -21,6 +15,12 @@
   background-color: $black;
   height: rem(150);
   overflow: visible;
+}
+
+.header-content {
+  text-align: center;
+  width: 66.66666666666666%;
+  margin: 0 auto;
 }
 
 
@@ -333,6 +333,87 @@
   }
 }
 
+
+//---------------------------------
+// Next gallery slide
+//---------------------------------
+.gallery-next-overlay,
+.gallery-next-wrap {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  bottom: 0;
+  top: 0;
+  @include transition(all 200ms ease);
+}
+.gallery-next-overlay {
+  display: none;
+}
+.gallery-next-wrap {
+  @include transform(translate3d(100%, 0, 0));
+}
+
+.gallery-end .gallery-next-overlay {
+  display: block
+}
+.gallery-next-active { 
+  .gallery-next-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  .gallery-next-wrap {
+    @include transform(translate3d(0, 0, 0));
+  }
+  .sly-next {
+    opacity: 0.3;
+  }
+}
+
+.gallery-next {
+  text-align: center;
+  .h-1, .h-3, .h-4 {
+    color: $white;
+  }
+
+  .h-1 {
+    margin-bottom: 0;
+  }
+  .h-3 {
+    margin: rem(60) 0 rem(80) 0;
+  }
+  .h-4, .thumb {
+    margin-bottom: 0;
+  }
+
+  .thumb .thumb-feature {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: rem(20);
+    img {
+      width: 100%;
+    }
+  }
+}
+
+
+//---------------------------------
+// Back to start button
+//---------------------------------
+.gallery-home {
+  left: rem(-60);
+  top: rem(372);
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  @include transition(all 200ms ease);
+}
+
+.gallery-home-active {
+  opacity: 1;
+  left: rem(140);
+}
+
+
 //---------------------------------
 // Animate gallery elements
 //---------------------------------
@@ -346,18 +427,6 @@
   }
 }
 
-.gallery-home {
-  left: rem(-60);
-  top: rem(372);
-  opacity: 0;
-  position: absolute;
-  @include transition(opacity 200ms ease, left 200ms ease);
-}
-
-.gallery-home-active {
-  left: rem(140);
-  opacity: 1;
-}
 
 
 .logo {

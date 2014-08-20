@@ -214,6 +214,7 @@
     position: absolute;
     left: rem(20);
     top: rem(20);
+    z-index: 1;
   }
 
   .gallery-home {
@@ -258,4 +259,29 @@
       width: auto;
     }
   }
+
+  //-----------------------
+  // Next gallery slide
+  //-----------------------
+  .gallery-next-overlay .royalSlider {
+    height: 100%;
+  }
+  .gallery-next-enable {
+    display: block;
+  }
+  .gallery-next-active {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  .gallery-next-slide {
+    height: 100%;
+  }
+
+  .modal-gallery-home {
+    display: none;
+    position: absolute;
+    bottom: rem(40);
+    left: 50%;
+    margin-left: rem(-85);
+  }
+
 }

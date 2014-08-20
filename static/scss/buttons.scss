@@ -52,7 +52,7 @@
 .button-white {
   color: $white;
   border-color: $white;
-  &:hover {
+  &:hover, &:active {
     color: $white;
     background-color: transparent;
     border-color: $white;

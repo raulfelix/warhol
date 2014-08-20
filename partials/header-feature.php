@@ -16,10 +16,9 @@
   <div class="modal-wrap">
     <div class="modal-wrap-row">
       <div id="modal-gallery-frame" class="modal-view frame">
-        
         <div class="royalSlider">
           <?php 
-            while( $attachments->get() ) : ?>
+            while( $attachments->get() ): ?>
               <div class="sly-slide">
                 <img class="rsImg m-wrap m-transparent" src="<?php echo $attachments->src( 'large' ); ?>" alt="<?php echo $attachments->field( 'caption' ); ?>">
                 <?php get_template_part('partials/module', 'util-loader'); ?>
@@ -34,6 +33,25 @@
       </div>
     </div>
   </div>
+
+  <div id="modal-slider-next" class="gallery-next-overlay">
+    <div class="royalSlider">
+      <div class="gallery-next-slide"></div>
+      <div class="gallery-next-slide">
+        <div class="f-grid f-row">
+          <div class="f-1 content-wrap">
+            <div class="content-row">
+              <div class="header-content">
+                <?php get_template_part('partials/gallery', 'next'); ?>
+                <button class="button button-white modal-gallery-home" id="modal-gallery-home">back to start</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <header id="header-gallery" class="header header-feature header-gallery">
@@ -57,6 +75,20 @@
           <div class="content-row">
             <div class="header-content">
               <div class="h-1"><?php echo get_the_title(); ?></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-next-overlay">
+        <div class="gallery-next-wrap">
+          <div class="f-grid f-row">
+            <div class="f-1 content-wrap">
+              <div class="content-row">
+                <div class="header-content">
+                  <?php get_template_part('partials/gallery', 'next'); ?>
+                </div>
+              </div>
             </div>
           </div>
         </div>

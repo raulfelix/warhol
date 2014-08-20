@@ -74,9 +74,44 @@
      padding: 0;
   }
 
-  .gallery-home-active {
-    left: 50%;
+
+  .gallery-home {
+    left: rem(-85);
     margin-left: rem(-85);
   }
 
+  .gallery-home-active {
+    left: 50%;
+  }
+
+  .modal-gallery-home {
+    display: block;
+  }
+
+  //---------------------------------
+  // Next gallery slide
+  //---------------------------------
+  .gallery-next {
+    .thumb {
+      margin: 0 rem(10);
+    }
+    .thumb .thumb-feature {
+      width: 100%;
+    }
+  }
+
+  .gallery-next {
+    .h-1 {
+      font-size: 30px;
+      display: block;
+      margin: rem(16) 0 rem(6) 0;
+    }
+    .h-3 {
+      font-size: 20px;
+      margin: 0 0 rem(20) 0;
+    }
+    .h-4 {
+      font-size: 14px;
+    }
+  }
 }
