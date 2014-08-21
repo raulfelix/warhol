@@ -251,7 +251,6 @@ Views.Gallery = (function() {
     }
   };
 
-  
   var StartAgain = function(element, callback) {
     var self = this,
       ACTIVE = 'gallery-home-active';
@@ -391,14 +390,13 @@ Views.Gallery = (function() {
     },
 
 
-
     init: function() {
       Modal.state.startTime = new Date().getTime();
 
       if (Modal.state.slider !== undefined) {
         return;
       }
-      
+
       Modal.elements = {
         $slider: $('#modal-gallery-frame .royalSlider'),
         $total: Modal.state.modal.el().find('.modal-gallery-count')
@@ -412,8 +410,8 @@ Views.Gallery = (function() {
 
       Modal.NextUp.init();
       Modal.state.startAgain = new StartAgain($('#modal-gallery-home'), Modal.startAgain);
-      Modal.state.lazyImage  = new LazyImage(Modal.elements.$slider.find('img'), {
-        onLoad: function onLoad(instance) {
+      Modal.state.lazyImage = new LazyImage(Modal.elements.$slider.find('img'), {
+        onLoad: function(instance) {
           $(instance.elements[0]).removeClass('m-transparent').next().remove();
         }
       });
@@ -489,16 +487,15 @@ Views.Gallery = (function() {
         this.state.startAgain.show();
       }
 
-      // if is last slide enable the next up slider
       if (position === this.state.slider.numSlides) {
         this.NextUp.enable();
       }
-
       this.state.prevPos = position;
     },
 
     setFrameHeight: function() {
       var extraHeight = LWA.Modules.Util.getResponsive().BP1.match() ? Modal.state.responsive.heightTouch : Modal.state.responsive.height;
+      Modal.elements.$slider.css('height', LWA.Modules.Util.windowHeight() - extraHeight);
       Modal.elements.$slider.find('.rsOverflow').css('height', LWA.Modules.Util.windowHeight() - extraHeight);
     },
 
@@ -509,6 +506,7 @@ Views.Gallery = (function() {
       
       Modal.state.modal.loader.start();
       
+      Modal.elements.$slider.css('width', '');
       Modal.elements.$slider.find('.rsOverflow').css('width', '');
       Modal.state.slider.updateSliderSize(true);
       Modal.setFrameHeight();
@@ -535,11 +533,7 @@ Views.Gallery = (function() {
 
     init: function() {
       var $wrap = $('#header-gallery-thumbs');
-
-      // imagesLoaded($wrap, function() {
       Thumbs.initialiseSly($('#header-gallery-thumbs'));
-      // });
-     
       $('#gallery-thumbs').click(Thumbs.toggle);
     },
 
