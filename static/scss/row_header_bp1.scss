@@ -85,6 +85,11 @@
 
   .header-gallery-controls {
     bottom: rem(74);
+    position: relative;
+    width: 100%;
+    text-align: center;
+    left: auto;
+    margin-left: 0;
   }
 }
 
