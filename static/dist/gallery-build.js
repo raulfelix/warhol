@@ -408,7 +408,9 @@ Views.Gallery = (function() {
       // add slides and initialise helpers
       Modal.elements.$slider.html(Modal.template(LWA.Data.Gallery));
 
-      Modal.NextUp.init();
+      if (LWA.hasNextPost) {
+        Modal.NextUp.init();
+      }
       Modal.state.startAgain = new StartAgain($('#modal-gallery-home'), Modal.startAgain);
       Modal.state.lazyImage = new LazyImage(Modal.elements.$slider.find('img'), {
         onLoad: function(instance) {
@@ -442,7 +444,7 @@ Views.Gallery = (function() {
     },
 
     startAgain: function() {
-      if (Modal.NextUp.isEnabled()) {
+      if (LWA.hasNextPost && Modal.NextUp.isEnabled()) {
         Modal.NextUp.destroy();
       } else {
         Modal.state.slider.goTo(0);
@@ -450,6 +452,7 @@ Views.Gallery = (function() {
     },
 
     destroy: function() {
+      Modal.startAgain();
       var endTime = new Date().getTime();
       ga('send', 'timing', 'Gallery', 'Modal view', endTime - Modal.state.startTime, 'Gallery modal', { 'page': location.pathName });
     },
@@ -465,13 +468,15 @@ Views.Gallery = (function() {
     },
 
     prev: function() {
-      if (Modal.NextUp.isActivated()) {
+      if (LWA.hasNextPost && Modal.NextUp.isActivated()) {
         Modal.NextUp.deactivate();
         Modal.NextUp.state.slider.goTo(0);
         Modal.state.startAgain.hide();
         return;
       }
-      Modal.NextUp.disable();
+      if (LWA.hasNextPost) {
+        Modal.NextUp.disable();
+      }
       Modal.state.slider.prev();
     },
 
@@ -487,7 +492,7 @@ Views.Gallery = (function() {
         this.state.startAgain.show();
       }
 
-      if (position === this.state.slider.numSlides) {
+      if (LWA.hasNextPost && position === this.state.slider.numSlides) {
         this.NextUp.enable();
       }
       this.state.prevPos = position;
