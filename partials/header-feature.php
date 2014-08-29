@@ -28,7 +28,7 @@
 
   <div id="modal-slider-next" class="gallery-next-overlay" data-closeable="0">
     <div class="royalSlider">
-      <div class="gallery-next-slide"></div>
+      <div class="gallery-next-slide" data-closeable="0"></div>
       <div class="gallery-next-slide" data-closeable="0">
         <div class="f-grid f-row" data-closeable="0">
           <div class="f-1 content-wrap" data-closeable="0">
