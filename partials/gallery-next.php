@@ -9,9 +9,9 @@
     LWA.hasNextPost = true;
   </script>
 
-  <div class="gallery-next">
+  <div class="gallery-next" data-closeable="0">
     <div class="h-3">Next up...</div>
-    <div class="thumb">
+    <div class="thumb" data-closeable="0">
       <a href="<?php echo get_permalink( $next_post->ID ); ?>" class="thumb-feature">
         <?php 
           if ( strlen( $post_thumbnail_id) > 0  ) { 
