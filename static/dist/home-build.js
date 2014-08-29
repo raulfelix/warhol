@@ -498,9 +498,9 @@ LWA.Views.Home = (function() {
 
       Carousel.element.wrap = $('.header-feature .m-wrap');
       Carousel.element.carousel = Carousel.element.wrap.find('.header-carousel-slides');
-
       Carousel.state.slider = Carousel.element.carousel.royalSlider({
         arrowsNav: false,
+        addActiveClass: true,
         autoPlay: {
           delay: 5000,
           enabled: true,
@@ -513,6 +513,10 @@ LWA.Views.Home = (function() {
         transitionSpeed: 500,
         transitionType: 'fade'
       }).data('royalSlider');
+
+      // mark the first slide in carousel after initialisation
+      Carousel.state.slider.currSlide.holder.addClass('first-slide');
+      setTimeout(function() { Carousel.state.slider.currSlide.holder.addClass('first-slide-active'); }, 1650);
     },
 
     next: function() {

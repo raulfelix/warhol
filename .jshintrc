@@ -3,7 +3,8 @@
     "console",
     "ButtonLoader",
     "LazyImage",
-    "imagesLoaded"
+    "imagesLoaded",
+    "royalSlider"
   ],
 
   "bitwise"       : true,

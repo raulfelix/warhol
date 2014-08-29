@@ -94,6 +94,21 @@
 }
 
 
+//---------------------------------
+// Animate carousel
+//---------------------------------
+.header-slide .header-content,
+.rsSlide.rsActiveSlide.first-slide .header-content {
+  opacity: 0;
+  @include transform(translate3d(rem(-20), 0, 0));
+}
+.rsSlide.rsActiveSlide.first-slide-active .header-content {
+  opacity: 1;
+  @include transform(translate3d(0, 0, 0));
+}
+
+
+
 .nav {
 
   .logo {

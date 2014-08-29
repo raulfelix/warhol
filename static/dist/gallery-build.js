@@ -321,10 +321,12 @@ Views.Gallery = (function() {
       
       activate: function() {
         this.elements.slider.addClass('gallery-next-active');
+        Modal.elements.$next.hide();
       },
 
       deactivate: function() {
         this.elements.slider.removeClass('gallery-next-active');
+        Modal.elements.$next.show();
       },
 
       enable: function() {
@@ -399,7 +401,8 @@ Views.Gallery = (function() {
 
       Modal.elements = {
         $slider: $('#modal-gallery-frame .royalSlider'),
-        $total: Modal.state.modal.el().find('.modal-gallery-count')
+        $total: Modal.state.modal.el().find('.modal-gallery-count'),
+        $next: Modal.state.modal.el().find('.sly-next')
       };
 
       Modal.state.modal.el().find('.sly-prev').click(Modal.prev);
