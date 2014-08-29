@@ -4,7 +4,7 @@
   $attachments = new Attachments( 'my_attachments', get_the_id() );
   $post_type = get_post_type( get_the_ID() );
 
-  if ( $attachments->exist() && $post_type != 'lwa_news' ):
+  if ( $attachments->exist()):
     wp_enqueue_script( 'gallery' );
     get_template_part('partials/module', 'js-gallery');
 ?>
