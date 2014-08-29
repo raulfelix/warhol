@@ -195,7 +195,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n<div class=\"modal-slide\">\n  <div class=\"instabinge-pod-wrap\">\n    <div class=\"modal-view-image\">\n      <div class=\"loader-icon\"><i class=\"icon-reload\"></i></div>\n      <div class=\"m-wrap m-transparent\"><img class=\"m-bg\" src=\""
+  buffer += "\n<div class=\"modal-slide\" data-closeable=\"0\">\n  <div class=\"instabinge-pod-wrap\">\n    <div class=\"modal-view-image\">\n      <div class=\"loader-icon\"><i class=\"icon-reload\"></i></div>\n      <div class=\"m-wrap m-transparent\"><img class=\"m-bg\" src=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.images)),stack1 == null || stack1 === false ? stack1 : stack1.standard_resolution)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\"></div>\n    </div>\n    <div class=\"modal-view-details\">\n      <div class=\"instabinge-profile\">\n        <div class=\"instabinge-profile-img\">\n          <img src=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.profile_picture)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
@@ -286,7 +286,7 @@ function program5(depth0,data) {
   return buffer;
   }
 
-  buffer += "<div class=\"modal-slide\">\n  <div class=\"instabinge-pod-wrap\">\n    <div class=\"modal-view-image\">\n      <div class=\"loader-icon\"><i class=\"icon-reload\"></i></div>\n      <div class=\"m-wrap m-transparent\"><img class=\"m-bg\" src=\""
+  buffer += "<div class=\"modal-slide\" data-closeable=\"0\">\n  <div class=\"instabinge-pod-wrap\">\n    <div class=\"modal-view-image\">\n      <div class=\"loader-icon\"><i class=\"icon-reload\"></i></div>\n      <div class=\"m-wrap m-transparent\"><img class=\"m-bg\" src=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.images)),stack1 == null || stack1 === false ? stack1 : stack1.standard_resolution)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\"></div>\n    </div>\n    <div class=\"modal-view-details\">\n      <div class=\"instabinge-profile\">\n        <div class=\"instabinge-profile-img\">\n          <img src=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.user)),stack1 == null || stack1 === false ? stack1 : stack1.profile_picture)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))

@@ -70,9 +70,9 @@ function add_scripts() {
 
   wp_register_style( 'style', get_template_directory_uri() . '/static/dist/css/84bd7f42608d.style.css', null, null, 'all' );
 
-  wp_register_script( 'global', get_template_directory_uri() . '/static/dist/js/15a9a8c46cc9.global.min.js', null, null, true );
-  wp_register_script( 'home', get_template_directory_uri() . '/static/dist/js/fce6b2cabc40.home.min.js', null, null, true );
-  wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/js/34e6a155a459.gallery.min.js', array('single'), null, true );
+  wp_register_script( 'global', get_template_directory_uri() . '/static/dist/js/ef5f22f6611d.global.min.js', null, null, true );
+  wp_register_script( 'home', get_template_directory_uri() . '/static/dist/js/cd3fe0150a87.home.min.js', null, null, true );
+  wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/js/68999b61bcf7.gallery.min.js', array('single'), null, true );
   wp_register_script( 'single', get_template_directory_uri() . '/static/dist/js/12f8726f36f6.single.min.js', null, null, true );
   wp_register_script( 'category', get_template_directory_uri() . '/static/dist/js/593e1d9d304e.category.min.js', null, null, true );
   wp_register_script( 'dropdown', get_template_directory_uri() . '/static/dist/js/9b902e92d844.dropdown.min.js', null, null, true );

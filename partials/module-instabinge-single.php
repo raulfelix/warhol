@@ -1,7 +1,7 @@
 <div id="modal-instabinge" class="modal modal-transparent modal-instabinge">
   <button class="modal-action modal-close"><i class="icon-close"></i></button>
   <div class="modal-wrap">
-    <div class="modal-wrap-row">
+    <div class="modal-wrap-row" data-closeable="0">
       <div class="modal-view">
         <div id="modal-instabinge-slider" class="royalSlider rsDefault"></div>
       </div>

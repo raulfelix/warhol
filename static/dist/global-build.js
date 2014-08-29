@@ -252,8 +252,9 @@ LWA.Modules.Modal = function(triggerSelector, modalSelector, options) {
   };
 
   function canClose(ev) {
-    if (ev.target.nodeName !== 'IMG' && ev.target.nodeName !== 'I' && ev.target.className === 'modal-wrap-row' || ev.target.className === 'sly-slide active' || ev.target.className === 'modal-slide') {
+    if ($(ev.target).data('closeable') === 0) {
       Actions.close();
+      ev.preventDefault();
     }
   }
 

@@ -45,7 +45,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n<div class=\"sly-slide\">\n  <img class=\"m-wrap m-transparent\" data-img-src=\"";
+  buffer += "\n<div class=\"sly-slide\" data-closeable=\"0\">\n  <img class=\"m-wrap m-transparent\" data-img-src=\"";
   if (helper = helpers.src) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.src); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)

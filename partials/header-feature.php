@@ -14,8 +14,8 @@
   <div class="modal-gallery-count"></div>
   
   <div class="modal-wrap">
-    <div class="modal-wrap-row">
-      <div id="modal-gallery-frame" class="modal-view frame">
+    <div class="modal-wrap-row" data-closeable="0">
+      <div id="modal-gallery-frame" class="modal-view frame" data-closeable="0">
         <div class="royalSlider"></div>
       </div>
       <button class="gallery-home button button-white" id="modal-gallery-home">back to start</button>
@@ -26,14 +26,14 @@
     </div>
   </div>
 
-  <div id="modal-slider-next" class="gallery-next-overlay">
+  <div id="modal-slider-next" class="gallery-next-overlay" data-closeable="0">
     <div class="royalSlider">
       <div class="gallery-next-slide"></div>
-      <div class="gallery-next-slide">
-        <div class="f-grid f-row">
-          <div class="f-1 content-wrap">
-            <div class="content-row">
-              <div class="header-content">
+      <div class="gallery-next-slide" data-closeable="0">
+        <div class="f-grid f-row" data-closeable="0">
+          <div class="f-1 content-wrap" data-closeable="0">
+            <div class="content-row" data-closeable="0">
+              <div class="header-content" data-closeable="0">
                 <?php get_template_part('partials/gallery', 'next'); ?>
                 <button class="button button-white modal-gallery-home" id="modal-gallery-home">back to start</button>
               </div>
