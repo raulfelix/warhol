@@ -33,7 +33,6 @@
 .header-feature {
   background-color: $black;
   color: $white;
-  overflow: hidden;
   @include transition(height 300ms ease);
 
   .link, 
@@ -215,6 +214,7 @@
 
 
 .header-gallery {
+  overflow: hidden;
 
   .m-wrap {
     height: 100%;
@@ -512,7 +512,7 @@
 }
 
 .nav-active {
-  height: rem(585);
+  height: rem(640);
 
   .nav-menu .icon-menu {
     @extend %icon-close;

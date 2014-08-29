@@ -47,8 +47,7 @@
 
 .header-feature,
 .header-carousel .header-carousel-slides,
-.header-gallery .header-gallery-wrap,
-.nav-active {
+.header-gallery .header-gallery-wrap {
   height: rem(400);
 }
 
@@ -74,6 +73,7 @@
 }
 
 .header-gallery {
+  overflow: visible;
   &.header-gallery-thumbs-active {
     height: rem(550);
   }
@@ -93,6 +93,10 @@
   }
 }
 
+.header-gallery-thumbs {
+  display: none;
+}
+
 
 //---------------------------------
 // Animate carousel
@@ -107,7 +111,9 @@
   @include transform(translate3d(0, 0, 0));
 }
 
-
+.nav-active {
+  height: rem(460);
+}
 
 .nav {
 
