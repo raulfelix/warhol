@@ -893,6 +893,9 @@ table.wrapper {
 
 
 @media only screen and (max-width: 620px) {
+  .green + .column-top {
+    line-height: 0px; 
+  }
   .two-col .column table:nth-last-child(2) td h2:last-child {
     margin-bottom: 0;
   }
@@ -924,9 +927,6 @@ table.wrapper {
   [class*=wrapper] .one-col .column:last-child table:nth-last-child(2) td h3:last-child,
   [class*=wrapper] .two-col .column:last-child table:nth-last-child(2) td h3:last-child,
   [class*=wrapper] .three-col .column:last-child table:nth-last-child(2) td h3:last-child,
-  [class*=wrapper] .one-col .column:last-child table:nth-last-child(2) td p:last-child,
-  [class*=wrapper] .two-col .column:last-child table:nth-last-child(2) td p:last-child,
-  [class*=wrapper] .three-col .column:last-child table:nth-last-child(2) td p:last-child,
   [class*=wrapper] .one-col .column:last-child table:nth-last-child(2) td ol:last-child,
   [class*=wrapper] .two-col .column:last-child table:nth-last-child(2) td ol:last-child,
   [class*=wrapper] .three-col .column:last-child table:nth-last-child(2) td ol:last-child,
@@ -935,9 +935,7 @@ table.wrapper {
   [class*=wrapper] .three-col .column:last-child table:nth-last-child(2) td ul:last-child {
     Margin-bottom: 25px !important;
   }
-  [class*=wrapper] .one-col p,
-  [class*=wrapper] .two-col p,
-  [class*=wrapper] .three-col p,
+
   [class*=wrapper] .one-col ol,
   [class*=wrapper] .two-col ol,
   [class*=wrapper] .three-col ol,
@@ -973,7 +971,7 @@ table.wrapper {
   }
   [class*=wrapper] .column-bottom {
     font-size: 17px !important;
-    line-height: 17px !important;
+    line-height: 0 !important;
   }
   [class*=wrapper] .first .column-bottom,
   [class*=wrapper] .three-col .second .column-bottom {
