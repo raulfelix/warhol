@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   min-width: 100%;
-  font-family: Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
 }
 table {
   border-collapse: collapse;
@@ -295,7 +295,7 @@ table.wrapper {
 .wrapper .footer .social .facebook,
 .wrapper .footer .social .twitter,
 .wrapper .footer .social .forward {
-  font-family: Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
 }
 @media screen and (min-width: 0) {
   .wrapper h1,
@@ -309,17 +309,17 @@ table.wrapper {
   .wrapper .footer .social .facebook,
   .wrapper .footer .social .twitter,
   .wrapper .footer .social .forward {
-    font-family: Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
   }
 }
 .wrapper h2,
 .wrapper h3 {
-  font-family: Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
 }
 @media screen and (min-width: 0) {
   .wrapper h2,
   .wrapper h3 {
-    font-family: Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
   }
 }
 .wrapper a {
