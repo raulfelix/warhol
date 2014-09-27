@@ -1069,7 +1069,7 @@ table.wrapper {
     padding-top: 15px!important;
     padding-bottom: 10px!important;
   }
-  [class*=wrapper] .footer *[class*=column] td {
+  [class*=wrapper] .footer *[class*=column] td, .bp-mobile-center {
     text-align: center!important;
   }
   [class*=wrapper] .footer *[class*=column] .padded {
