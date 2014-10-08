@@ -5,6 +5,14 @@
 
   get_header();
 ?>
+  <!-- LWA_leaderboard_01 -->
+  <div id='div-gpt-ad-1412722263572-0' class="row-ad">
+    <script type='text/javascript'>
+      googletag.cmd.push(function() { 
+        googletag.display('div-gpt-ad-1412722263572-0'); 
+      });
+    </script>
+  </div>
 
   <div id="fb-root"></div>
   <script>

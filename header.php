@@ -50,6 +50,29 @@
 
   </script>
 
+  <script async src="//www.googletagservices.com/tag/js/gpt.js"> </script>
+ 
+  <script type='text/javascript'>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    
+    googletag.cmd.push(function() {
+      var mapping = googletag.sizeMapping().
+
+      addSize([1009, 0], [970, 90]).
+      addSize([759, 0], [728, 90]).  
+      addSize([487, 0], [468, 60]).  
+      addSize([1, 0], [300, 250]).
+      build();
+
+      googletag
+        .defineSlot('/27068509/LWA_leaderboard_01', [970, 90], 'div-gpt-ad-1412722263572-0')
+        .defineSizeMapping(mapping)
+        .addService(googletag.pubads());
+
+      googletag.enableServices();
+    });
+  </script>
 </head>
 
 <body>

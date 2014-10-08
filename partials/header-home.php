@@ -81,6 +81,15 @@
   <?php get_template_part('partials/module', 'util-loader'); ?>
 </header>
 
+<!-- LWA_leaderboard_01 -->
+<div id='div-gpt-ad-1412722263572-0' class="row-ad">
+  <script type='text/javascript'>
+    googletag.cmd.push(function() { 
+      googletag.display('div-gpt-ad-1412722263572-0'); 
+    });
+  </script>
+</div>
+
 <?php
   wp_reset_query();
 ?>

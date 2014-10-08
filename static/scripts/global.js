@@ -1,4 +1,4 @@
-/* global LWA, ajaxEndpoint */
+/* global LWA, ajaxEndpoint, googletag */
 window.LWA = window.LWA || {};
 
 window.Namespace = function (ns) {
@@ -125,6 +125,30 @@ Modules.Util = (function() {
 
 })();
 
+
+// DPF ad refresh on orientation changes
+var DFP = window.Namespace('DFP');
+
+DFP.Watch = (function() {
+  
+  function refresh() {
+    LWA.Modules.Util.delay(function() {
+      googletag.pubads().refresh();
+    }, 200);
+  }
+  
+  function init() {
+    $(window).resize(refresh);
+  }
+  
+  return {
+    init: init
+  };
+  
+})();
+
 $(document).ready(function() {
   LWA.Modules.Modal('.nav-search a', '#modal-search', { close: LWA.Modules.Search.close });
+  
+  DFP.Watch.init();
 });
