@@ -34,6 +34,7 @@ Our website is built using the latest HTML5, CSS3 and Javascript features to pro
 2. Create a database and edit **wp-config.php** with database settings
 3. Install Wordpress
 4. Create Wordpress options (wp_options) to store the Instagram API access token. Name it: **instagram_access_token**
+5. Turn off google analytics tracking for non-production installs by editing header.php ga code element
 
 
 ## Theme ##
@@ -54,25 +55,25 @@ In order for the LWA theme to function the following plugins are required:
 
 ##### BAW Post View Count settings #####
 
-* Set the **Count format:**  %count%
+* Set the **Count format:**  `%count%`
 * Deselect posts and check **featured/news** for count tracking
 
 ## Navigation structure ##
 1. Create pages to match primary nav elements
 2. Create categories to tag by
-3. Add the **Add to homepage carousel** category under **carousel**
+3. Add the `Add to homepage carousel` category under **carousel**
 
 ## Site Settings ##
 ##### Site Address #####
-1. Go to **Settings > General**
-2. Set the "Site address" field to a root URL removing the `/wordpress`
+1. Go to `Settings > General`
+2. Set the `Site address` field to a root URL removing the `/wordpress`
 
 ##### Site home page #####
-1. Go to **Settings > Reading**
-2. Set a static front page to the **home** template
+1. Go to `Settings > Reading`
+2. Set a static front page to the `home` template
 
 ##### Site pretty permalinks #####
-1. Go to **Settings > Permalinks**
+1. Go to `Settings > Permalinks`
 2. Set permalinks to `postname`
 
 ##### Site/Server settings #####
