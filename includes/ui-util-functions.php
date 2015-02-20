@@ -240,9 +240,9 @@ function custom_authors_query($author_id, $paged, $order, $post_per_page) {
   global $wpdb, $max_num_pages, $paged;
 
   $offset = ($paged - 1) * $post_per_page;
-
+  
   $sql = "
-      SELECT $wpdb->posts.*
+      SELECT SQL_CALC_FOUND_ROWS $wpdb->posts.*
       FROM $wpdb->posts
       INNER JOIN wp_postmeta ON (wp_posts.ID = wp_postmeta.post_id) WHERE 1=1
       AND (wp_posts.post_author = " . $author_id . ")
@@ -255,7 +255,7 @@ function custom_authors_query($author_id, $paged, $order, $post_per_page) {
 
   if ($order !== 'desc') {
     $sql = "
-      SELECT $wpdb->posts.* 
+      SELECT SQL_CALC_FOUND_ROWS $wpdb->posts.* 
       FROM $wpdb->posts 
       INNER JOIN wp_postmeta ON (wp_posts.ID = wp_postmeta.post_id) 
       INNER JOIN wp_postmeta AS mt1 ON (wp_posts.ID = mt1.post_id) 
