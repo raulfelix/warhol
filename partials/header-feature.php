@@ -66,7 +66,27 @@
         <div class="f-1 content-wrap">
           <div class="content-row">
             <div class="header-content">
+              <?php
+                $category = category($post->post_type); 
+                $logo_url = get_term_meta( $category['id'], 'c-sponsor-url', true );
+
+                if ($logo_url):
+              ?>
+              <div class="header-feature-category">
+                <a class="link h-5" href="<?php echo $category['permalink']; ?>">
+                  <span class="header-feature-category-item"><?php echo $category['name']; ?></span>
+                  <i class="header-feature-category-item icon-close"></i>
+                  <img class="category-logo" src="<?php echo $logo_url; ?>">
+                </a>
+              </div>
               <div class="h-1"><?php echo get_the_title(); ?></div>
+              
+              <?php else: ?>
+              
+              <a class="link h-5" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
+              <div class="h-1"><?php echo get_the_title(); ?></div>
+              
+              <?php endif; ?>
             </div>
           </div>
         </div>
