@@ -309,8 +309,10 @@
       left: 0;
     }
 
-    .sly-prev, .sly-next {
-      margin-top: rem(-10);
+    .sly-prev,
+    .sly-next {
+      top: auto;
+      bottom: rem(55);
     }
   }
 

@@ -182,6 +182,27 @@ function program1(depth0,data) {
   if(stack1 || stack1 === 0) { return stack1; }
   else { return ''; }
   });
+
+this["Handlebars"]["gallery_thumb"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n<li><img src=\"";
+  if (helper = helpers.src) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.src); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" width=\"150\" height=\"150\"></li>\n";
+  return buffer;
+  }
+
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.thumbnails), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  });
 (function(window, undefined) {
   'use strict';
 
@@ -528,7 +549,9 @@ Views.Gallery = (function() {
   var Thumbs = {
 
     state: {
-      sly: undefined
+      sly: undefined,
+      initialised: false,
+      template: Handlebars.gallery_thumb,
     },
 
     elements: {
@@ -536,11 +559,18 @@ Views.Gallery = (function() {
     },
 
     toggle: function() {
+      if (!Thumbs.initialised) {
+        Thumbs.initialised = true;
+        Thumbs.render();
+        /* delay initialisation after adding items to
+        enable the next button */
+        Thumbs.state.sly.init();
+        Thumbs.state.sly.on('active', Thumbs.onActivate);
+      }
       Thumbs.elements.$header.toggleClass('header-gallery-thumbs-active');
     },
 
     init: function() {
-      var $wrap = $('#header-gallery-thumbs');
       Thumbs.initialiseSly($('#header-gallery-thumbs'));
       $('#gallery-thumbs').click(Thumbs.toggle);
     },
@@ -561,9 +591,6 @@ Views.Gallery = (function() {
         prevPage: $wrap.find('.sly-prev'),
         nextPage: $wrap.find('.sly-next')
       });
-
-      Thumbs.state.sly.init();
-      Thumbs.state.sly.on('active', Thumbs.onActivate);
     },
 
     onActivate: function(eventName, position) {
@@ -576,6 +603,11 @@ Views.Gallery = (function() {
 
     reload: function() {
       Thumbs.state.sly.reload();
+    },
+    
+    render: function() {
+      var li = $(Thumbs.state.template({thumbnails: LWA.Data.Gallery.thumbnails}));
+      Thumbs.state.sly.add(li);
     }
   };
 

@@ -11,7 +11,8 @@
 
   LWA.Data.Gallery = {
     feature: '<?php echo $feature_src; ?>',
-    inline: []
+    inline: [],
+    thumbnails: []
   };
 
   <?php while( $attachments->get() ) : ?>
@@ -20,6 +21,10 @@
       width: '<?php echo $attachments->width( "original" ); ?>',
       height: '<?php echo $attachments->height( "original" ); ?>',
       caption: '<?php echo $attachments->field( "caption" ); ?>'
+    });
+  
+    LWA.Data.Gallery.thumbnails.push({
+      src: '<?php echo $attachments->src( "thumbnail" ); ?>'
     });
   <?php endwhile; ?>
 

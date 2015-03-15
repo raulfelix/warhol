@@ -118,14 +118,7 @@
   <?php get_template_part('partials/module', 'util-loader'); ?>
 
   <div id="header-gallery-thumbs" class="header-gallery-thumbs frame">
-    <ul class="slidee">
-      <?php 
-        $attachments->rewind();
-        while( $attachments->get() ) : 
-      ?>
-        <li><?php echo $attachments->image( 'thumbnail' ); ?></li>
-      <?php endwhile; ?>
-    </ul>
+    <ul class="slidee"></ul>
     <div class="sly-controls">
       <button class="sly-prev"><i class="icon-arrow-left"></i></button>
       <button class="sly-next"><i class="icon-arrow-right"></i></button>

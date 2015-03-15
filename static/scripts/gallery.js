@@ -287,7 +287,9 @@ Views.Gallery = (function() {
   var Thumbs = {
 
     state: {
-      sly: undefined
+      sly: undefined,
+      initialised: false,
+      template: Handlebars.gallery_thumb,
     },
 
     elements: {
@@ -295,11 +297,18 @@ Views.Gallery = (function() {
     },
 
     toggle: function() {
+      if (!Thumbs.initialised) {
+        Thumbs.initialised = true;
+        Thumbs.render();
+        /* delay initialisation after adding items to
+        enable the next button */
+        Thumbs.state.sly.init();
+        Thumbs.state.sly.on('active', Thumbs.onActivate);
+      }
       Thumbs.elements.$header.toggleClass('header-gallery-thumbs-active');
     },
 
     init: function() {
-      var $wrap = $('#header-gallery-thumbs');
       Thumbs.initialiseSly($('#header-gallery-thumbs'));
       $('#gallery-thumbs').click(Thumbs.toggle);
     },
@@ -320,9 +329,6 @@ Views.Gallery = (function() {
         prevPage: $wrap.find('.sly-prev'),
         nextPage: $wrap.find('.sly-next')
       });
-
-      Thumbs.state.sly.init();
-      Thumbs.state.sly.on('active', Thumbs.onActivate);
     },
 
     onActivate: function(eventName, position) {
@@ -335,6 +341,11 @@ Views.Gallery = (function() {
 
     reload: function() {
       Thumbs.state.sly.reload();
+    },
+    
+    render: function() {
+      var li = $(Thumbs.state.template({thumbnails: LWA.Data.Gallery.thumbnails}));
+      Thumbs.state.sly.add(li);
     }
   };
 
