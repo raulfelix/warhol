@@ -55,7 +55,8 @@ Views.Gallery = (function() {
         heightTouch: 160
       },
       startTime: 0,
-      prevPos: 0
+      prevPos: 0,
+      isActive: false
     },
 
     template: Handlebars.gallery_modal,
@@ -153,7 +154,8 @@ Views.Gallery = (function() {
 
     init: function() {
       Modal.state.startTime = new Date().getTime();
-
+      Modal.state.isActive = true;
+      
       if (Modal.state.slider !== undefined) {
         return;
       }
@@ -181,6 +183,22 @@ Views.Gallery = (function() {
       });
       Modal.state.lazyImage.load(0);
       Modal.buildSlider(0);
+      
+      Modal.initKeyboardNav();
+    },
+    
+    initKeyboardNav: function() {
+      $(document).keydown(function(ev) {
+        if (Modal.state.isActive === true) {
+          if (ev.which === 37) {
+            // left
+            Modal.prev();
+          } else if (ev.which === 39) {
+            //right
+            Modal.next();
+          }
+        }
+      });
     },
 
     buildSlider: function(startAt) {
@@ -215,6 +233,8 @@ Views.Gallery = (function() {
 
     destroy: function() {
       Modal.startAgain();
+      Modal.state.isActive = false;
+      
       var endTime = new Date().getTime();
       ga('send', 'timing', 'Gallery', 'Modal view', endTime - Modal.state.startTime, 'Gallery modal', { 'page': location.pathName });
     },
@@ -392,6 +412,24 @@ Views.Gallery = (function() {
       this.state.startAgain = new StartAgain($('#inline-gallery-home'), this.reset);
 
       this.chooseRendering(this.state.loader);
+      
+      if (this.state.isTouch === false) {
+        this.initKeyboardNav();
+      }
+    },
+    
+    initKeyboardNav: function() {
+      $(document).keydown(function(ev) {
+        if (Modal.state.isActive === false) {
+          if (ev.which === 37) {
+            // left
+            Inline.prev();
+          } else if (ev.which === 39) {
+            //right
+            Inline.next();
+          }
+        }
+      });
     },
 
     initialiseSlider: function() {
