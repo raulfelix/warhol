@@ -17,7 +17,15 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: ['static/scripts/*.js', 'js_partial/*.hbs.html'],
-        tasks: ['jshint', 'handlebars', 'concat', 'uglify', 'asset_cachekiller'],
+        tasks: [
+          'jshint',
+          'handlebars',
+          'concat',
+          'uglify',
+          'asset_cachekiller',
+          'copy',
+          'clean'
+        ],
       },
       src: {
         files: ['static/scss/*.scss'],
@@ -41,7 +49,7 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         files: {
-          'static/dist/home-build.js' : [
+          'static/dist/js/home-build.js' : [
             'static/vendor/sly.min.js',
             'static/vendor/jquery.slider.min.js',
             'static/scripts/precompiled/article-template.js',
@@ -50,7 +58,7 @@ module.exports = function(grunt) {
             'static/scripts/home.js',
             'static/scripts/instabinge.js'
           ],
-          'static/dist/global-build.js' : [
+          'static/dist/js/global-build.js' : [
             'static/vendor/jquery-2.0.3.min.js',
             'static/vendor/*.js',
             '!static/vendor/sly.min.js',
@@ -65,18 +73,18 @@ module.exports = function(grunt) {
             'static/scripts/load.js',
             'static/scripts/spinner.js'
           ],
-          'static/dist/gallery-build.js' : [
+          'static/dist/js/gallery-build.js' : [
             'static/vendor/sly.min.js',
             'static/vendor/jquery.slider.min.js',
             'static/scripts/precompiled/gallery-template.js',
             'static/scripts/lazyload.js',
             'static/scripts/gallery.js'
           ],
-          'static/dist/single-build.js' : [
+          'static/dist/js/single-build.js' : [
             'static/scripts/share.js',
             'static/scripts/single.js'
           ],
-          'static/dist/category-build.js' : [
+          'static/dist/js/category-build.js' : [
             'static/scripts/dropdown.js',
             'static/scripts/category.js'
           ]
@@ -96,12 +104,12 @@ module.exports = function(grunt) {
       },
       my_target: {
         files: {
-          'static/dist/prod/global.min.js': ['static/dist/global-build.js'],
-          'static/dist/prod/home.min.js': ['static/dist/home-build.js'],
-          'static/dist/prod/single.min.js': ['static/dist/single-build.js'],
-          'static/dist/prod/gallery.min.js': ['static/dist/gallery-build.js'],
-          'static/dist/prod/category.min.js': ['static/dist/category-build.js'],
-          'static/dist/prod/dropdown.min.js': ['static/scripts/dropdown.js']
+          'static/dist/build/global.min.js': ['static/dist/js/global-build.js'],
+          'static/dist/build/home.min.js': ['static/dist/js/home-build.js'],
+          'static/dist/build/single.min.js': ['static/dist/js/single-build.js'],
+          'static/dist/build/gallery.min.js': ['static/dist/js/gallery-build.js'],
+          'static/dist/build/category.min.js': ['static/dist/js/category-build.js'],
+          'static/dist/build/dropdown.min.js': ['static/scripts/dropdown.js']
         }
       }
     },
@@ -145,10 +153,29 @@ module.exports = function(grunt) {
       },
       bust: {
         files: {
-          'static/dist/js': ['static/dist/prod/*.js'],
+          'static/dist/js': ['static/dist/build/*.js'],
           'static/dist/css': ['static/scss/style.css']
         }
       }
+    },
+    
+    copy: {
+      dist: {
+        files: [
+          {
+            expand: true,
+            cwd: 'static/dist/build',
+            src: ['*.map'],
+            dest: 'static/dist/js'
+          }
+        ] 
+      }
+    },
+    
+    clean: {
+      dist: [
+        'static/dist/build'  
+      ]
     }
 
   });
@@ -156,10 +183,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-asset-cachekiller');
 
-  grunt.registerTask('default', ['sass', 'concat']);
+  grunt.registerTask('build', ['jshint', 'handlebars', 'concat', 'uglify', 'asset_cachekiller', 'copy', 'clean']);
 };
