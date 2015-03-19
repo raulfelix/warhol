@@ -11,16 +11,14 @@
     <?php
 
       // get the most recent feature articles
-      $feature_args = Array(
-        'post_type' => 'lwa_feature',
-        'posts_per_page' => 4
-      );
+      $paged = (get_query_var('page')) ? get_query_var('page') : 1;
+      $feature_query = custom_home_feature_query(1, 4);
 
-      $feature_query = new WP_Query( $feature_args );
-      $count = 0;
-      if ( $feature_query->have_posts() ):
-        while ( $feature_query->have_posts() ): 
-          $feature_query->the_post();
+      if ($feature_query): 
+        global $post;
+        $count = 0;
+        foreach( $feature_query as $post ):
+          setup_postdata($post);
     ?>
         
       <?php if ($count == 0): ?>
@@ -39,7 +37,7 @@
 
 
     <?php
-        endwhile;
+        endforeach;
       endif;
 
       if ($count == 1) {
@@ -66,7 +64,9 @@
           // get all article in the 'news' category
           $news_args = Array(
             'post_type' => 'lwa_news',
-            'posts_per_page' => 6
+            'posts_per_page' => 6,
+            'meta_key' => 'news_featured_key',
+            'meta_compare' => 'NOT EXISTS'
           );
 
           $news_query = new WP_Query( $news_args );

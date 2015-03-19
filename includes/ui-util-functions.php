@@ -280,4 +280,29 @@ function custom_authors_query($author_id, $paged, $order, $post_per_page) {
   return $sql_result;
 }
 
+
+function custom_home_feature_query($page_num, $post_per_page) {
+  global $wpdb, $max_num_pages;
+
+  $offset = ($page_num - 1) * $post_per_page;
+
+  $sql = "SELECT SQL_CALC_FOUND_ROWS $wpdb->posts.* 
+    FROM $wpdb->posts 
+    INNER JOIN wp_postmeta ON ( wp_posts.ID = wp_postmeta.post_id ) 
+    WHERE 1=1 
+    AND wp_posts.post_type = 'lwa_feature' 
+    OR wp_posts.post_type = 'lwa_news' 
+    AND wp_postmeta.meta_key = 'news_featured_key'
+    AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'private') 
+    GROUP BY wp_posts.ID 
+    ORDER BY wp_posts.post_date DESC 
+    LIMIT " . $offset . ", " . $post_per_page . "; ";
+  
+  $sql_result = $wpdb->get_results( $sql, OBJECT);
+  
+  $sql_posts_total = $wpdb->get_var( "SELECT FOUND_ROWS();" );
+  $max_num_pages = ceil($sql_posts_total / $post_per_page);
+  
+  return $sql_result;
+}
 ?>

@@ -56,7 +56,9 @@ function fetch_posts($page, $post_per_page, $post_type) {
     'post_type' => $post_type,
     'posts_per_page' => $post_per_page,
     'paged' => $page,
-    'post_status' => 'publish'
+    'post_status' => 'publish',
+    'meta_key' => 'news_featured_key',
+    'meta_compare' => 'NOT EXISTS'
   );
 
   $wp_query = new WP_Query( $args );
@@ -95,7 +97,43 @@ function fetch_posts($page, $post_per_page, $post_type) {
 }
 
 function get_next_featured_posts($page = 2) {
-  return fetch_posts($page, 4, 'lwa_feature');
+  global $max_num_pages;
+
+  $feature_query = custom_home_feature_query($page, 4);
+
+  $data = Array (
+    'posts' => Array(),
+    'nextPage' => false,
+    '$max_num_pages' => $max_num_pages
+  );
+
+  // check if there is more data to fetch
+  if ( $max_num_pages > 1 ) {
+    if ( $page < $max_num_pages ) {
+      $data['nextPage'] = $page + 1;
+    }
+  }
+  if ($feature_query) {
+    global $post;
+    
+    $idx = 0;
+    foreach( $feature_query as $post ) {
+      setup_postdata($post);
+      
+      $data['posts'][$idx] = Array(
+        'title'     => enc(get_the_title()),
+        'subtitle'  => enc(get_the_subtitle()),
+        'permalink' => get_the_permalink(),
+        'thumbnail' => get_thumbnail(true, false),
+        'views'     => get_views(),
+        'when'      => get_when(),
+        'category'  => category($post->post_type)
+      );
+      $idx++;
+    }
+  }
+
+  return $data;
 }
 
 function get_next_news_posts($page = 2) {

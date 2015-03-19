@@ -16,6 +16,7 @@ function add_custom_meta_box() {
   }
 
   add_meta_box('shop_url', 'Shop URL', 'shop_meta_box_callback', 'lwa_shop');
+  add_meta_box('news_featured_url', 'Show post in featured section', 'news_featured_meta_box_callback', 'lwa_news');
 }
 add_action( 'add_meta_boxes', 'add_custom_meta_box' );
 
@@ -140,5 +141,59 @@ function shop_save_meta_box_data( $post_id ) {
   update_post_meta( $post_id, 'shop_url_key', $shop_url );
 }
 add_action( 'save_post', 'shop_save_meta_box_data' );
+
+
+/*
+ * Add a news post to featured setion on homepage
+ */
+function news_featured_meta_box_callback( $post ) {
+
+  // Add an nonce field so we can check for it later.
+  wp_nonce_field( 'news_featured_meta_box', 'news_featured_meta_box_nonce' );
+
+  $value = get_post_meta( $post->ID, 'news_featured_key', true );
+  if ($value == "" || $value == 0) {
+    $checked = "";  
+  } else {
+    $checked = "checked";  
+  }
+  echo '<div><label class="selectit" for=news_featured_field"><input type="checkbox" id="news_featured_field" name="news_featured_field" value="' . esc_attr( $value ) . '" ' . $checked .'/> Display as featured post</label></div>';
+}
+
+function news_featured_save_meta_box_data( $post_id ) {
+
+  if ( ! isset( $_POST['news_featured_meta_box_nonce'] ) ) {
+    return;
+  }
+
+  if ( ! wp_verify_nonce( $_POST['news_featured_meta_box_nonce'], 'news_featured_meta_box' ) ) {
+    return;
+  }
+
+  // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+    return;
+  }
+
+  // Check the user's permissions
+  if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+    if ( ! current_user_can( 'edit_page', $post_id ) ) {
+      return;
+    }
+  } else {
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+      return;
+    }
+  }
+
+  
+  if ( !isset( $_POST['news_featured_field'] ) ) {
+    // todo delete row from table if not set otherwise flag with a 1
+    delete_post_meta($post_id, 'news_featured_key');
+  } else {
+    update_post_meta( $post_id, 'news_featured_key', 1 );
+  }
+}
+add_action( 'save_post', 'news_featured_save_meta_box_data' );
 
 ?>
