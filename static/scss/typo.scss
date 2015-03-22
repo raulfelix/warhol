@@ -95,8 +95,8 @@ p + h4 {
   }
 
   iframe {
-    display: block;
-    margin: 0 auto;
+    display: block !important;
+    margin: 0 auto !important;
   }
 
   .arve-play-background, 
