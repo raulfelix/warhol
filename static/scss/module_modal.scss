@@ -265,3 +265,45 @@
   }
 
 }
+
+.modal-subscribe {
+  background-color: rgba(0,0,0,0.6);
+  
+  .modal-close {
+    color: $pink;
+  }
+  .modal-box {
+    margin: 0 auto;
+    max-width: rem(610);
+    background-color: $white;
+    padding: rem(40);
+    position: relative;
+  }
+  
+  h1 {
+    margin-bottom: rem(12);  
+  }
+  .modal-subscribe-logo {
+    float: none;
+    margin: 0 auto rem(20);
+    width: rem(100);
+  }
+  
+  .form-details {
+    text-align: center;
+    
+    a {
+      font-size: 13px;
+      margin-top: rem(20);
+      display: inline-block;
+    }
+  }
+  
+  .form-subscribe {
+    margin: 0;
+  }
+}
+
+.CoverPop-open .modal-subscribe {
+  display: block;
+}

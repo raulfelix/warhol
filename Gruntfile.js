@@ -63,6 +63,7 @@ module.exports = function(grunt) {
             'static/vendor/*.js',
             '!static/vendor/sly.min.js',
             '!static/vendor/jquery.slider.min.js',
+            '!static/vendor/cover-pop.min.js',
             'static/scripts/global.js',
             'static/scripts/nav.js',
             'static/scripts/modal.js',
@@ -81,6 +82,7 @@ module.exports = function(grunt) {
             'static/scripts/gallery.js'
           ],
           'static/dist/js/single-build.js' : [
+            'static/vendor/cover-pop.min.js',
             'static/scripts/share.js',
             'static/scripts/single.js'
           ],
