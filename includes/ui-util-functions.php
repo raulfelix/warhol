@@ -290,10 +290,10 @@ function custom_home_feature_query($page_num, $post_per_page) {
     FROM $wpdb->posts 
     INNER JOIN wp_postmeta ON ( wp_posts.ID = wp_postmeta.post_id ) 
     WHERE 1=1 
-    AND wp_posts.post_type = 'lwa_feature' 
+    AND wp_posts.post_type = 'lwa_feature' AND (wp_posts.post_status = 'publish')
     OR wp_posts.post_type = 'lwa_news' 
     AND wp_postmeta.meta_key = 'news_featured_key'
-    AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'private') 
+    AND (wp_posts.post_status = 'publish') 
     GROUP BY wp_posts.ID 
     ORDER BY wp_posts.post_date DESC 
     LIMIT " . $offset . ", " . $post_per_page . "; ";
