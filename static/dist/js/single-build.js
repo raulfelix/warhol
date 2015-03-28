@@ -110,6 +110,6 @@ LWA.Views.Subscribe = (function() {
     $('#js-subscribe-form').submit(subscribe);
   }
 
-//  init();
+  init();
 
 })();
