@@ -22,12 +22,13 @@ LWA.Views.Subscribe = (function() {
     ev.preventDefault();
     
     $.getJSON(this.action + '?callback=?', $(this).serialize(), function(data) {
-      updateCookie(COOKIE, 180);
       CoverPop.close();
      
       // error
       if (data.Status === 400) {
         updateCookie(COOKIE, 1);
+      } else {
+        updateCookie(COOKIE, 180);
       }
     });
   }
@@ -39,8 +40,8 @@ LWA.Views.Subscribe = (function() {
   }
   
   function alreadySubscribed() {
-    updateCookie(COOKIE, 30);
     CoverPop.close();
+    updateCookie(COOKIE, 30);
   }
 
   function init() {
