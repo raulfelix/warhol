@@ -35,7 +35,7 @@ LWA.Views.Subscribe = (function() {
   function updateCookie(name, days) {
     var date = new Date();
     date.setTime(+ date + (days * 86400000));
-    document.cookie = name + '=true; expires=' + date.toGMTString() + '; path=/';
+    document.cookie = name + '=true; expires=' + date.toUTCString() + '; path=/';
   }
   
   function alreadySubscribed() {
