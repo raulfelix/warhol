@@ -27,7 +27,7 @@ Activate the theme from within Wordpress admin console
 In order for the LWA theme to function the following plugins are required:
 
 * [Video Embedder](http://nextgenthemes.com/plugins/advanced-responsive-video-embedder/)
-* [Attachments](https://github.com/jchristopher/attachment)
+* [Attachments](https://github.com/jchristopher/attachments)
 * BAW Post Views Count
 * KIA Subtitle
 * Simple Term Meta
