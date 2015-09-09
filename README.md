@@ -98,25 +98,3 @@ define('WP_USE_THEMES', true);
 require( dirname( __FILE__ ) . '/wordpress/wp-blog-header.php' );
 
 ```
-
------------------------
-
-# Server details #
-
-### [Production server](http://www.lifewithoutandy.com) ###
-
-| Param            | Value                            |
-| ------------------ | ------------------------------ |
-| Username      | av02044                       |
-| Password       | TsG67.b86jgXz            |
-| Host                | 216.243.143.227         |
-| DB Password | ue32.Ag4Ed5TT           |
-
-### [Test server](http://216.243.141.186/) ###
-
-| Param            | Value                            |
-| ------------------ | ------------------------------ |
-| Username      | av02516                       |
-| Password       | dJHF9v.RQ4twP          |
-| Host               | 216.243.141.186          |
-| DB Password | 4z58K9h.gGS4q          |
