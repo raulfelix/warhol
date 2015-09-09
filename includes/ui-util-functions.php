@@ -244,12 +244,12 @@ function custom_authors_query($author_id, $paged, $order, $post_per_page) {
   $sql = "
       SELECT SQL_CALC_FOUND_ROWS $wpdb->posts.*
       FROM $wpdb->posts
-      INNER JOIN wp_postmeta ON (wp_posts.ID = wp_postmeta.post_id) WHERE 1=1
-      AND (wp_posts.post_author = " . $author_id . ")
-      AND wp_posts.post_type IN ('lwa_feature', 'lwa_news')
-      AND wp_posts.post_status = 'publish'
-      OR ( (wp_postmeta.meta_key = 'photos_key' AND wp_postmeta.meta_value = " . $author_id . ") )
-      GROUP BY wp_posts.ID
+      INNER JOIN lwa_postmeta ON (lwa_posts.ID = lwa_postmeta.post_id) WHERE 1=1
+      AND (lwa_posts.post_author = " . $author_id . ")
+      AND lwa_posts.post_type IN ('lwa_feature', 'lwa_news')
+      AND lwa_posts.post_status = 'publish'
+      OR ( (lwa_postmeta.meta_key = 'photos_key' AND lwa_postmeta.meta_value = " . $author_id . ") )
+      GROUP BY lwa_posts.ID
       ORDER BY $wpdb->posts.post_date DESC
       LIMIT " . $offset . ", " . $post_per_page . "; ";   
 
@@ -257,17 +257,17 @@ function custom_authors_query($author_id, $paged, $order, $post_per_page) {
     $sql = "
       SELECT SQL_CALC_FOUND_ROWS $wpdb->posts.* 
       FROM $wpdb->posts 
-      INNER JOIN wp_postmeta ON (wp_posts.ID = wp_postmeta.post_id) 
-      INNER JOIN wp_postmeta AS mt1 ON (wp_posts.ID = mt1.post_id) 
+      INNER JOIN lwa_postmeta ON (lwa_posts.ID = lwa_postmeta.post_id) 
+      INNER JOIN lwa_postmeta AS mt1 ON (lwa_posts.ID = mt1.post_id) 
       WHERE 1=1 
-      AND (wp_posts.post_author = " . $author_id . ") 
-      AND wp_posts.post_type IN ('lwa_feature', 'lwa_news') 
-      AND (wp_posts.post_status = 'publish' OR wp_posts.post_author = " . $author_id . " 
-      AND wp_posts.post_status = 'private') 
-      AND (wp_postmeta.meta_key = '_count-views_all') 
-      OR (mt1.meta_key = 'photos_key' AND CAST(mt1.meta_value AS CHAR) = '" . $author_id . "' AND wp_postmeta.meta_key = '_count-views_all') 
-      GROUP BY wp_posts.ID 
-      ORDER BY wp_postmeta.meta_value+0 DESC 
+      AND (lwa_posts.post_author = " . $author_id . ") 
+      AND lwa_posts.post_type IN ('lwa_feature', 'lwa_news') 
+      AND (lwa_posts.post_status = 'publish' OR lwa_posts.post_author = " . $author_id . " 
+      AND lwa_posts.post_status = 'private') 
+      AND (lwa_postmeta.meta_key = '_count-views_all') 
+      OR (mt1.meta_key = 'photos_key' AND CAST(mt1.meta_value AS CHAR) = '" . $author_id . "' AND lwa_postmeta.meta_key = '_count-views_all') 
+      GROUP BY lwa_posts.ID 
+      ORDER BY lwa_postmeta.meta_value+0 DESC 
       LIMIT " . $offset . ", " . $post_per_page . "; ";
   }
 
@@ -288,14 +288,14 @@ function custom_home_feature_query($page_num, $post_per_page) {
 
   $sql = "SELECT SQL_CALC_FOUND_ROWS $wpdb->posts.* 
     FROM $wpdb->posts 
-    INNER JOIN wp_postmeta ON ( wp_posts.ID = wp_postmeta.post_id ) 
+    INNER JOIN lwa_postmeta ON ( lwa_posts.ID = lwa_postmeta.post_id ) 
     WHERE 1=1 
-    AND wp_posts.post_type = 'lwa_feature' AND (wp_posts.post_status = 'publish')
-    OR wp_posts.post_type = 'lwa_news' 
-    AND wp_postmeta.meta_key = 'news_featured_key'
-    AND (wp_posts.post_status = 'publish') 
-    GROUP BY wp_posts.ID 
-    ORDER BY wp_posts.post_date DESC 
+    AND lwa_posts.post_type = 'lwa_feature' AND (lwa_posts.post_status = 'publish')
+    OR lwa_posts.post_type = 'lwa_news' 
+    AND lwa_postmeta.meta_key = 'news_featured_key'
+    AND (lwa_posts.post_status = 'publish') 
+    GROUP BY lwa_posts.ID 
+    ORDER BY lwa_posts.post_date DESC 
     LIMIT " . $offset . ", " . $post_per_page . "; ";
   
   $sql_result = $wpdb->get_results( $sql, OBJECT);
