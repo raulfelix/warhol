@@ -38,7 +38,7 @@
 }
 
 .blanket,
-.blanket-light, 
+.blanket-light,
 .blanket-overlay {
   top: 0;
   @extend %absolute;
@@ -59,9 +59,9 @@
 // Rows
 //------------------
 .row-up {
-  background-color: $blue;
-  height: rem(160);
-  padding-top: rem(56);
+  background-color: $black;
+  height: rem(120);
+  padding-top: rem(40);
   @extend %text-center;
   @extend %relative;
 }
@@ -153,7 +153,7 @@
     width: 100%;
     padding-top: rem(35);
   }
- 
+
   .button-search {
     float: right;
     margin-top: rem(-54);
@@ -197,7 +197,7 @@
 
 .section-bio {
   padding: rem(100) 0;
-  
+
   .thumb-author, .h-5 {
     margin-bottom: 0;
   }
@@ -234,7 +234,7 @@
     cursor: pointer;
   }
 
-  .disabled, 
+  .disabled,
   .disabled:hover {
     opacity: 0.4;
     color: $white;
@@ -247,7 +247,7 @@
 //------------------
 .row-ad {
   text-align: center;
-  background-color: #f5f5f5;
+  background-color: $black;
   padding: 16px 0;
   height: 122px;
 }
@@ -257,16 +257,16 @@
 
 @media all and (min-width: 1px) {
   .row-ad {
-    height: 282px; 
+    height: 282px;
   }
 }
 @media all and (min-width: 487px) {
   .row-ad {
-    height: 92px; 
+    height: 92px;
   }
 }
 @media all and (min-width: 759px) {
   .row-ad {
-    height: 122px; 
+    height: 122px;
   }
 }

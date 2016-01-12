@@ -1,51 +1,46 @@
 .button {
   background-color: transparent;
-  border: 2px solid $pink;
+  border: 2px solid $black;
   border-radius: 40px;
+  color: $black;
+  font-size: rem(24);
+  font-family: $font-secondary;
+
   display: inline-block;
-  font-size: rem(18);
-  height: rem(54);
-  padding: rem(14) rem(30);
+  height: rem(38);
+  line-height: rem(38);
+  padding: 0 rem(30);
   margin: 0 auto;
-  min-width: rem(170);
+  min-width: rem(200);
+  text-transform: uppercase;
   @extend %relative;
   @extend %pink;
   @extend %text-center;
-  
+
   &:hover {
     cursor: pointer;
     color: $white;
-    background-color: $pink;
-    border-color: $pink;
+    background-color: $black;
+    border-color: $black;
   }
 
   &:focus, &:active {
     outline: none;
   }
-
-  &:active {
-    @include transition(none);
-    color: #fff;
-    background-color: $highlight;
-    border-color: $highlight;
-  }
 }
 
-.button-large {
-  width: rem(296);
-}
 
 .button-disabled {
   display: none;
 }
 
 .button-black {
-  color: $black;
-  border-color: $black;
+  color: $white;
+  border-color: $white;
   &:hover {
-    color: $blue;
-    background-color: $black;
-    border-color: $black;
+    color: $black;
+    background-color: $white;
+    border-color: $white;
   }
 }
 
@@ -142,14 +137,14 @@
   }
 }
 
-.button-next .icon-arrow-next, 
+.button-next .icon-arrow-next,
 .button-prev .icon-arrow-prev {
   font-size: 24px;
   top: rem(12);
   @extend %absolute;
 }
 
-.button-prev, 
+.button-prev,
 .button-next {
   min-width: 0;
   width: rem(115);
@@ -180,7 +175,7 @@
   padding: rem(12) rem(24) rem(12) rem(46);
   margin: 0 rem(10);
 
-  .icon-thumbs, 
+  .icon-thumbs,
   .icon-expand {
     font-size: 24px;
     position: absolute;
@@ -213,8 +208,8 @@
   min-width: rem(210);
 
   &:hover, &:active {
-    background-color: $pink; 
-    border-color: $pink; 
+    background-color: $pink;
+    border-color: $pink;
     .dropdown-label {
       color: $white;
     }
@@ -225,7 +220,7 @@
     border-radius: 40px;
     display: block;
     padding: rem(14) rem(50) rem(14) rem(30);
-  }  
+  }
 
   .icon-dropdown {
     right: rem(18);
