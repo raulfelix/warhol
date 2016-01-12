@@ -35,7 +35,7 @@
   color: $white;
   @include transition(height 300ms ease);
 
-  .link, 
+  .link,
   .link:hover {
     color: $white;
   }
@@ -68,11 +68,11 @@
       margin-bottom: 0;
       vertical-align: bottom;
     }
-    
+
     .icon-close {
       margin: 0 rem(20);
     }
-    
+
     .category-logo {
       width: rem(90);
       position: relative;
@@ -102,7 +102,7 @@
   .header-slide {
     height: 100%;
   }
-  
+
   .rsBullets {
     left: 0;
     right: 0;
@@ -156,7 +156,7 @@
     left: rem(10);
     z-index: 100000;
   }
-  
+
   .header-carousel-control.next {
     left: auto;
     right: rem(10);
@@ -198,10 +198,10 @@
     bottom: rem(20);
     text-align: right;
 
-    .header-category-h2 { 
+    .header-category-h2 {
       display: inline-block;
-      vertical-align: bottom; 
-      margin: 0 rem(10) 0 0;    
+      vertical-align: bottom;
+      margin: 0 rem(10) 0 0;
     }
 
     img {
@@ -236,8 +236,8 @@
     height: auto;
     position: relative;
     z-index: 1;
-    
-    .sly-prev, 
+
+    .sly-prev,
     .sly-next {
       top: rem(384);
     }
@@ -266,11 +266,11 @@
   &.header-gallery-thumbs-active {
     height: rem(898);
   }
-  
+
   .header-gallery-wrap {
     @extend %relative;
   }
-  
+
 
   .header-gallery-controls {
     bottom: rem(160);
@@ -284,12 +284,12 @@
   .header-gallery-thumbs {
     height: rem(150);
     position: relative;
-    
+
     li {
       width: rem(150);
       position: relative;
       @extend %pull-left;
-      
+
       &:hover {
         opacity: 0.8;
         cursor: pointer;
@@ -320,7 +320,7 @@
     .loader-icon {
       display: block;
     }
-    
+
     li {
       height: 100%;
       position: relative;
@@ -358,7 +358,7 @@
 .gallery-end .gallery-next-overlay {
   display: block
 }
-.gallery-next-active { 
+.gallery-next-active {
   .gallery-next-overlay {
     background-color: rgba(0, 0, 0, 0.8);
   }
@@ -436,7 +436,7 @@
 // Animate carousel
 //
 // .first-slide is used to force initial
-// transition ignoring rsActive as this 
+// transition ignoring rsActive as this
 // class is added too soon
 //---------------------------------
 .header-slide .header-content,
@@ -461,7 +461,7 @@
   height: rem(83);
   margin-top: rem(35);
 }
-  
+
 .nav {
   top: 0;
   @extend %absolute;
@@ -491,14 +491,14 @@
     margin-left: rem(-194);
     width: rem(388);
     text-align: center;
-    
+
     li {
       list-style: none;
     }
 
     .nav-links-primary li {
       font-size: rem(24);
-      margin: 0 0 rem(40) 0; 
+      margin: 0 0 rem(40) 0;
     }
 
     .nav-links-secondary {
@@ -508,7 +508,7 @@
     .nav-links-secondary li {
       display: inline-block;
       font-size: rem(16);
-      margin: 0 rem(30); 
+      margin: 0 rem(30);
     }
   }
 }

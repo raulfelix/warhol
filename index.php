@@ -49,7 +49,7 @@
     <div id="tmpl_featured"></div>
 
     <div class="button-row">
-      <a id="ajax-load-features" class="button button-large button-loader" href="javascript:void(0)">
+      <a id="ajax-load-features" class="button button-loader" href="javascript:void(0)">
         <span class="button-text">load more features</span>
       </a>
     </div>
@@ -91,7 +91,7 @@
       </div>
 
       <div class="button-row">
-        <a id="ajax-load-news" class="button button-large button-loader" href="javascript:void(0)">
+        <a id="ajax-load-news" class="button button-loader" href="javascript:void(0)">
           <span class="button-text">load more news</span>
         </a>
       </div>

@@ -13,5 +13,5 @@
     <span class="thumb-time"><?php when(); ?></span>
   </a>
   <a href="<?php echo the_permalink(); ?>" class="h-2 thumb-title"><?php the_title(); ?></a>
-  <div class="h-5 thumb-caption"><?php the_subtitle(); ?></div>
+  <div class="thumb-caption"><?php the_subtitle(); ?></div>
 </div>

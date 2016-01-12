@@ -9,7 +9,7 @@
         <div class="details-row-right bp1-pull-right">
           <span class="fb-like" data-href="<?php echo the_permalink(); ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></span>
         </div>
-        <button class="button button-share"><i class="icon-share"></i>share this</button>
+        <button class="button button-share">share this</button>
       </div>
       
       <div class="section-article">
