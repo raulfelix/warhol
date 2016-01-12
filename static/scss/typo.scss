@@ -1,7 +1,20 @@
+@font-face {
+	font-family: 'Tungsten Narrow';
+	src: url('../../fonts/TungstenNarrow-Medium.eot');
+	src: url('../../fonts/TungstenNarrow-Medium.eot?#iefix') format('embedded-opentype'),
+		url('../../fonts/TungstenNarrow-Medium.woff2') format('woff2'),
+		url('../../fonts/TungstenNarrow-Medium.woff') format('woff'),
+		url('../../fonts/TungstenNarrow-Medium.ttf') format('truetype'),
+		url('../../fonts/TungstenNarrow-Medium.svg#TungstenNarrow-Medium') format('svg');
+	font-weight: 500;
+	font-style: normal;
+}
+
 .h-1 {
-  font-size: rem(70);
+  font-family: Verdana, Arial;
+  font-weight: bold;
+  font-size: rem(50);
   margin-bottom: rem(30);
-  @extend %gothic;
 }
 
 .h-2 {
@@ -19,9 +32,11 @@
 }
 
 .h-5 {
-  font-size: rem(14);
+  font-family: $font-secondary;
+  font-size: rem(20);
   margin-bottom: rem(35);
 }
+
 
 .link-pink {
   color: $highlight;
@@ -72,8 +87,8 @@ h6 {
 }
 
 img + h3,
-img + h4, 
-img + blockquote, 
+img + h4,
+img + blockquote,
 img + p,
 .arve-wrapper + h4,
 .section .arve-wrapper + blockquote {
@@ -99,8 +114,8 @@ p + h4 {
     margin: 0 auto !important;
   }
 
-  .arve-play-background, 
-  .arve-play-background:focus, 
+  .arve-play-background,
+  .arve-play-background:focus,
   .arve-play-background:hover {
     background: url('../../images/play@2x.png') no-repeat center center;
     background-size: rem(66);
@@ -112,7 +127,7 @@ p + h4 {
   padding: rem(60) 0;
 
   p, li {
-    font-family:"Apercu Pro Light", 'Trebuchet MS', Arial, sans-serif; 
+    font-family:"Apercu Pro Light", 'Trebuchet MS', Arial, sans-serif;
   }
 
   p, ol, ul, h1, h2, h3, h4, h5, h6 {
@@ -122,7 +137,7 @@ p + h4 {
   ol, ul {
     margin-bottom: rem(30);
   }
-  
+
   li {
     font-size: rem(16);
     margin-left: rem(18);

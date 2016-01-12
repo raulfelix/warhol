@@ -9,12 +9,11 @@
   display: inline-block;
   height: rem(38);
   line-height: rem(38);
-  padding: 0 rem(30);
   margin: 0 auto;
   min-width: rem(200);
+  padding: 0 rem(30);
   text-transform: uppercase;
   @extend %relative;
-  @extend %pink;
   @extend %text-center;
 
   &:hover {
@@ -202,51 +201,57 @@
 }
 
 .dropdown {
-  background-color: #F6F6F6;
-  padding: 0;
+  background-color: $white;
+  font-size: rem(16);
   text-align: left;
-  min-width: rem(210);
 
-  &:hover, &:active {
-    background-color: $pink;
-    border-color: $pink;
+  padding: 0;
+  min-width: rem(210);
+  
+  &:hover, 
+  &:active {
+    background-color: $black;
+    border-color: $black;
     .dropdown-label {
       color: $white;
     }
   }
 
   .dropdown-label {
-    @extend %pink;
+    font-family: $font-secondary;
+    font-size: rem(24);
     border-radius: 40px;
     display: block;
-    padding: rem(14) rem(50) rem(14) rem(30);
+    text-align: center;
+    padding: 0;
   }
 
   .icon-dropdown {
+    font-size: 16px;
     right: rem(18);
-    top: rem(15);
+    top: rem(10);
     @extend %absolute;
-    @include transition(all 200ms ease);
+    @include transition(transform 200ms ease);
   }
 
   .dropdown-items {
-    top: rem(51);
-    width: 100%;
     background-color: $white;
     display: none;
     @include box-shadow(1px 1px 3px rgba(0,0,0,0.4));
+    
     @extend %absolute;
+    top: rem(40);
+    width: 100%;
     z-index: 100;
 
     .dropdown-item {
       border-top: 1px solid #ddd;
-      padding: rem(10) rem(14);
+      font-family: $font-secondary;
+      font-size: rem(20);
+      margin-bottom: -1px;
+      padding: rem(5) rem(12);
       @extend %block;
       @extend %relative;
-
-      &:first-child {
-        border-top: none;
-      }
     }
 
     .dropdown-item-active {
@@ -256,18 +261,17 @@
 }
 
 .dropdown-active {
-  background-color: $pink;
+  background-color: $black;
+  
   .dropdown-label {
     color: $white;
   }
+  
   .dropdown-items {
     display: block;
   }
 
   .icon-dropdown {
     @include transform(rotate(180deg));
-  }
-  .icon-dropdown:before {
-    // content: "\e606";
   }
 }

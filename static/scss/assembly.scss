@@ -88,6 +88,8 @@
 }
 
 .article-detail {
+  font-family: $font-secondary;
+  font-size: rem(24);
   display: inline-block;
   margin: 0 rem(40) 0 0;
 }
@@ -95,7 +97,6 @@
 .details-row {
   margin-bottom: 0;
   padding: 0 rem(40);
-  margin-top: rem(20);
   @extend %clearfix;
 
   .bullet {
@@ -109,7 +110,7 @@
   }
 
   .button-share {
-    margin-top: rem(-23);
+    margin-top: rem(-9);
     @extend %pull-right;
   }
 

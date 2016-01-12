@@ -13,21 +13,6 @@
   <title><?php wp_title(''); ?></title>
 
   <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/static/images/favicon.ico">
-
-  <script type="text/javascript" src="http://fast.fonts.net/jsapi/2193ac1a-a011-45fb-ba43-962a973eeea9.js"></script>
-  <script type="text/javascript">
-    WebFontConfig = { fontdeck: { id: '45215' } };
-
-    (function() {
-      var wf = document.createElement('script');
-      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-      wf.type = 'text/javascript';
-      wf.async = 'true';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(wf, s);
-    })();
-  </script>
   
   <?php if ( is_single() ): ?>
     <meta property="og:title" content="<?php echo the_title() ?>" />
