@@ -1,5 +1,6 @@
-<nav class="nav">
-  <div class="blanket blanket-alpha"></div>
+
+<nav class="header-nav nav">
+  <!-- <div class="blanket blanket-alpha"></div> -->
   <div class="f-grid f-row">
     <div class="f-1">
       <a href="<?php echo get_home_url(); ?>" class="logo"></a>
@@ -17,11 +18,7 @@
           <li><a href="<?php echo get_home_url(); ?>/featured/frames">Frames</a></li>
           <li><a href="<?php echo get_home_url(); ?>/news/news">News</a></li>
           <li><a href="http://www.lifewithoutandy.myshopify.com">Shop</a></li>
-        </ul>
-        <ul class="nav-links-secondary">
-          <li><a href="<?php echo get_permalink(get_page_by_title('contributors')); ?>">Contributors</a></li>
           <li><a href="<?php echo get_permalink(get_page_by_title('info')); ?>">Info</a></li>
-          <li><a href="<?php echo get_permalink(get_page_by_title('subscribe')); ?>">Subscribe</a></li>
         </ul>
       </div>
     </div>

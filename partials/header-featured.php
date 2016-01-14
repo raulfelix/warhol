@@ -2,6 +2,8 @@
   $img_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original');
 ?>
 
+<?php get_template_part('partials/header', 'social'); ?>
+  
 <header id="header-feature" class="header header-feature">
   <div class="m-wrap m-transparent">
     <div class="header-feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);" data-type="background"></div>

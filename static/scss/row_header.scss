@@ -23,7 +23,6 @@
   margin: 0 auto;
 }
 
-
 .header-feature,
 .header-carousel .header-carousel-slides,
 .header-gallery .header-gallery-wrap {
@@ -336,6 +335,20 @@
 }
 
 
+.header-social {
+  background-color: #333333;
+  height: rem(25);
+  text-align: right;
+  padding-right: rem(5);
+  
+  .header-social-link {
+    color: $white;
+    line-height: rem(25);
+    margin-left: rem(5);
+  }
+}
+
+
 //---------------------------------
 // Next gallery slide
 //---------------------------------
@@ -457,21 +470,23 @@
   background: url('../../images/logo@2x.png') no-repeat left center;
   background-size: 100% auto;
   display: block;
-  width: rem(112);
-  height: rem(83);
-  margin-top: rem(35);
+  width: rem(66);
+  height: rem(60);
 }
 
 .nav {
+  background-color: rgba(0,0,0,0.6);
+  height: rem(60);
+  
+  position: absolute;
   top: 0;
-  @extend %absolute;
-  height: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   z-index: 100000;
 
   .nav-item {
     @extend %pull-right;
-    margin-top: rem(60);
+    margin-top: rem(14);
     a {
       color: $white;
       display: block;
@@ -494,6 +509,7 @@
 
     li {
       list-style: none;
+      font-family: $font-secondary;
     }
 
     .nav-links-primary li {
@@ -525,4 +541,59 @@
   .nav-links {
     display: block;
   }
+}
+
+@media all and (min-width: 621px) {
+  .nav {
+
+    .nav-menu {
+      display: none;
+    }
+    
+    .nav-search {
+      margin-right: 0;
+    }
+
+    .nav-links {
+      display: block;
+      left: rem(100);
+      top: rem(0);
+      height: rem(60);
+      margin-left: 0;
+      position: absolute;
+      text-align: left;
+      width: auto;
+
+      ul {
+        height: 100%;
+      }
+      
+      li {
+        list-style: none;
+        display: inline-block;
+      }
+
+      .nav-links-primary li {
+        margin: 0 rem(20) 0 0;
+      }
+      
+      .nav-links-primary a,
+      .nav-links-secondary a {
+        line-height: rem(60);
+        font-family: $font-secondary;
+      }
+      
+      .nav-links-primary a {
+        color: $white;
+        font-size: rem(24);
+      }
+
+      .nav-links-secondary a {
+        color: $black;
+        font-size: rem(20);
+      }
+    }
+  }
+
+  
 }

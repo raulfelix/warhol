@@ -20,6 +20,8 @@
   $alpha_value  = ($opacity) ? $opacity : '0.6';
 ?>
 
+<?php get_template_part('partials/header', 'social'); ?>
+
 <header class="header header-feature header-category">
   <div class="m-wrap m-transparent">
     <div class="header-feature-bg" style="background-image: url(<?php echo $feature_url; ?>);" data-type="background"></div>

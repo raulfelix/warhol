@@ -3,9 +3,9 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    sass: {                             
-      dist: {                           
-        options: {                 
+    sass: {
+      dist: {
+        options: {
           style: 'compressed'
         },
         files: {
@@ -131,17 +131,17 @@ module.exports = function(grunt) {
             "js_partial/article_thumb.hbs.html"
           ],
           "static/scripts/precompiled/search-template.js": [
-            "js_partial/search_thumb.hbs.html", 
+            "js_partial/search_thumb.hbs.html",
             "js_partial/search_next_link.hbs.html"
           ],
           "static/scripts/precompiled/instabinge-template.js": [
-            "js_partial/instabinge_thumb.hbs.html", 
-            "js_partial/instabinge_thumb_modal.hbs.html", 
+            "js_partial/instabinge_thumb.hbs.html",
+            "js_partial/instabinge_thumb_modal.hbs.html",
             "js_partial/instabinge_single_thumb_modal.hbs.html"
           ],
           "static/scripts/precompiled/gallery-template.js": [
             "js_partial/gallery_inline.hbs.html",
-            "js_partial/gallery_modal.hbs.html", 
+            "js_partial/gallery_modal.hbs.html",
             "js_partial/gallery_thumb.hbs.html"
           ]
         }
@@ -160,7 +160,7 @@ module.exports = function(grunt) {
         }
       }
     },
-    
+
     copy: {
       dist: {
         files: [
@@ -170,13 +170,13 @@ module.exports = function(grunt) {
             src: ['*.map'],
             dest: 'static/dist/js'
           }
-        ] 
+        ]
       }
     },
-    
+
     clean: {
       dist: [
-        'static/dist/build'  
+        'static/dist/build'
       ]
     }
 
