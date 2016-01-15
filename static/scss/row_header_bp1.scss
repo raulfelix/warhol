@@ -111,30 +111,43 @@
   @include transform(translate3d(0, 0, 0));
 }
 
+
+//--------------
+// Navigation
+//-------------
 .nav-active {
-  height: rem(460);
+  .nav-secondary-bg {
+    background-color: rgba(255,255,255,0.97);
+    height: rem(490);
+    position: absolute;
+    top: rem(60);
+    left: 0;
+    right: 0;
+  }
+  
+  .nav-links {
+    display: block;
+  }
 }
 
 .nav {
 
-  .logo {
-    margin-top: rem(15);
-    width: rem(58);
-    height: rem(44);
-  }
- 
-  .nav-menu, .nav-item {
-    margin-top: rem(20);
-  }
+  .nav-search {
+    margin-right: rem(40);
+  } 
 
   .nav-links {
-    top: rem(53);
+    top: rem(90);
     margin-left: rem(-160);
     width: rem(320);
     
+    .nav-link {
+      color: $black;
+    }
+    
     .nav-links-primary li {
-      font-size: rem(20);
-      margin: 0 0 rem(30) 0; 
+      font-size: rem(36);
+      margin: 0 0 rem(16) 0; 
     }
 
     .nav-links-secondary {
