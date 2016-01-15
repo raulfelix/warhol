@@ -28,7 +28,7 @@
                 $args = array(
                   'orderby' => 'name',
                   'order' => 'ASC',
-                  'parent' => 7,
+                  'parent' => 6,
                   'taxonomy' => 'news_tax'
                 );
                 $categories = get_categories($args);
