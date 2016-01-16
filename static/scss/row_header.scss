@@ -238,7 +238,7 @@
 
     .sly-prev,
     .sly-next {
-      top: rem(384);
+      top: rem(373);
     }
   }
 
@@ -391,13 +391,15 @@
     color: $white;
   }
 
-  .h-1 {
-    margin-bottom: 0;
-  }
   .h-3 {
-    margin: rem(60) 0 rem(80) 0;
+    font-family: $font-secondary;
+    margin: rem(20) 0 rem(40) 0;
   }
-  .h-4, .thumb {
+  .h-4 {
+    margin-top: rem(6);
+  }
+  
+  .thumb {
     margin-bottom: 0;
   }
 
