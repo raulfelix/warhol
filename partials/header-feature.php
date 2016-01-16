@@ -45,7 +45,7 @@
   </div>
 
 </div>
-
+<?php get_template_part('partials/header', 'social'); ?>
 <header id="header-gallery" class="header header-feature header-gallery">
   <div class="header-gallery-wrap">
     <?php get_template_part('partials/header', 'nav'); ?>
