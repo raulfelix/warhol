@@ -190,7 +190,15 @@ DFP.Watch = (function() {
 })();
 
 $(document).ready(function() {
-  LWA.Modules.Modal('.nav-search a', '#modal-search', { close: LWA.Modules.Search.close });
+  LWA.Modules.Modal('.nav-search', '#modal-search', {
+    open: function() {
+      $('.nav-search i').toggleClass('icon-close');
+    },
+    close: function() {
+      $('.nav-search i').toggleClass('icon-close');
+      LWA.Modules.Search.close();
+    }
+  });
   
   DFP.Watch.init();
 });
@@ -444,6 +452,7 @@ LWA.Modules.Search = (function() {
 
     element: {
       input: $('.input-search input'),
+      clear: $('#search-clear'),
       overflow: $('.search-row-results'),
       container: $('.search-row-results').find('.container')
     },
@@ -485,9 +494,10 @@ LWA.Modules.Search = (function() {
           View.element.overflow.infinitescroll('destroy');
           View.element.overflow.data('infinitescroll', null);
         }
-      } else {
-        View.loader.stop();
       }
+      // else {
+        // View.loader.stop();
+      // }
     },
 
     onClose: function() {
@@ -499,7 +509,6 @@ LWA.Modules.Search = (function() {
 
     onKeyUp: function(ev) {
       if (ev.keyCode === 13) {
-        View.loader.start();
         View.onClick();
       }
     },
@@ -553,7 +562,7 @@ LWA.Modules.Search = (function() {
     },
 
     done: function(response) {
-      View.loader.stop();
+      // View.loader.stop();
       View.render(response);
     },
 
@@ -572,13 +581,8 @@ LWA.Modules.Search = (function() {
 
   return {
     init: function() {
-      View.loader = new ButtonLoader(document.getElementById('js-search'), {
-        onStart: View.onClick
-      });
-
-      // init events
       View.element.input.keyup(View.onKeyUp);
-
+      View.element.clear.click(View.onClose);
       Handlebars.registerPartial('search_next_link', Handlebars.search_next_link);
     },
     close: View.onClose

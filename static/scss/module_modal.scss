@@ -3,7 +3,6 @@
   top: 0;
   left: 0; 
   bottom: 0;
-  height: 100%;
   width: 100%;
   position: fixed;
   z-index: 100001;
@@ -61,6 +60,8 @@
 
 
 .modal-search {
+  top: rem(85);
+  
   .modal-view {
     height: auto;
     position: relative;

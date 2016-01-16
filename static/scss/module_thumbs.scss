@@ -130,13 +130,14 @@
   }
   
   .thumb-link {
-    font-size: 16px;
+    font-size: rem(20);
     margin-bottom: rem(5);
+    text-transform: uppercase;
   }
 
   .h-2 {
     font-size: 24px;
-    margin-bottom: 0;
+    margin-bottom: rem(5);
   }
 
   .h-5 {

@@ -150,9 +150,7 @@
 .search-row {
 
   .search-row-input {
-    padding: 0 rem(140);
     width: 100%;
-    padding-top: rem(35);
   }
 
   .button-search {
@@ -162,18 +160,19 @@
   }
 
   .input-search {
-    margin-right: rem(180);
-
+    padding: rem(10) 0;
     input {
       background-color: transparent;
       border: none;
-      font-size: rem(24);
-      padding: rem(20) 0 rem(8) 0;
+      background-color: #ddd;
+      font-size: rem(18);
+      padding: rem(4) rem(8);
       width: 100%;
     }
     .input-search-underline {
       height: 2px;
-      background-color: $pink;
+      margin-top: rem(10);
+      background-color: $black;
     }
   }
 }
@@ -182,17 +181,16 @@
   left: 0;
   right: 0;
   bottom: 0;
-  top: rem(95);
+  top: rem(50);
+  position: absolute;
+  width: 100%;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  width: 100%;
-  height: auto;
-  position: absolute;
 
   .container {
     max-width: rem(1140);
     margin: 0 auto;
-    padding: rem(60) rem(140) 0 rem(140);
+    padding-top: rem(10);
   }
 }
 

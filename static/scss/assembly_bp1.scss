@@ -50,43 +50,6 @@
   padding-bottom: rem(20);
 }
 
-.search-row {
-
-  .logo {
-    margin-top: rem(15);
-    width: rem(58);
-    height: rem(44);
-  }
-  
-  .search-row-input {
-    top: rem(60);
-    right: rem(10);
-    left: rem(10);
-    width: auto;
-    padding: 0;
-  }
-
-  .button-search {
-    position: relative;
-    top: auto;
-    right: auto;
-    margin: rem(20) 0;
-    width: 100%;
-  }
-
-  .input-search {
-    width: 100%;
-  }
-}
-
-.search-row-results {
-  top: rem(212);
-  .container {
-    padding: 0 rem(10);
-  }
-}
-
-
 .section-bio {
   padding: rem(40) 0 rem(60) 0;
   .thumb-author {
