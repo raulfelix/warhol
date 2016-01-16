@@ -148,15 +148,7 @@ DFP.Watch = (function() {
 })();
 
 $(document).ready(function() {
-  LWA.Modules.Modal('.nav-search', '#modal-search', {
-    open: function() {
-      $('.nav-search i').toggleClass('icon-close');
-    },
-    close: function() {
-      $('.nav-search i').toggleClass('icon-close');
-      LWA.Modules.Search.close();
-    }
-  });
+  LWA.Modules.Modal('.nav-search', '#modal-search', { close: LWA.Modules.Search.close });
   
   DFP.Watch.init();
 });
