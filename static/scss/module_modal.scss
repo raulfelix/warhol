@@ -219,7 +219,6 @@
 
   .gallery-home {
     top: 50%;
-    margin-top: rem(-15);
   }
 
   .modal-view {
@@ -275,7 +274,7 @@
   background-color: rgba(0,0,0,0.6);
   
   .modal-close {
-    color: $pink;
+    color: $black;
   }
   .modal-box {
     margin: 0 auto;
@@ -289,18 +288,20 @@
     margin-bottom: rem(12);  
   }
   .modal-subscribe-logo {
+    background: url("../../images/logoAlt@2x.png") no-repeat left center;
+    background-size: 100% auto;
     float: none;
     margin: 0 auto rem(20);
-    width: rem(100);
+    width: rem(70);
   }
   
   .form-details {
     text-align: center;
-    
     a {
-      font-size: 13px;
-      margin-top: rem(20);
-      display: inline-block;
+      font-size: rem(13);
+      margin: rem(20) auto 0 auto;
+      display: block;
+      text-align: center;
     }
   }
   

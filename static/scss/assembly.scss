@@ -129,10 +129,11 @@
 }
 
 .details-row-secondary {
+  font-size: rem(13);
   margin-top: 0;
   color: #cccccc;
   text-align: center;
-  padding: rem(40) rem(80) 0 rem(80);
+  padding: rem(40) rem(60) 0 rem(60);
 }
 
 
@@ -161,14 +162,7 @@
 
   .input-search {
     padding: rem(10) 0;
-    input {
-      background-color: transparent;
-      border: none;
-      background-color: #ddd;
-      font-size: rem(18);
-      padding: rem(4) rem(8);
-      width: 100%;
-    }
+
     .input-search-underline {
       height: 2px;
       margin-top: rem(10);
