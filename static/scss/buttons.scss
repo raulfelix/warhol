@@ -138,19 +138,19 @@
 
 .button-next .icon-arrow-next,
 .button-prev .icon-arrow-prev {
-  font-size: 24px;
-  top: rem(12);
+  font-size: 20px;
+  top: rem(6);
   @extend %absolute;
 }
 
 .button-prev,
 .button-next {
   min-width: 0;
-  width: rem(115);
+  width: rem(110);
 }
 
 .button-prev {
-  padding-left: rem(34);
+  padding-left: rem(20);
   padding-right: 0;
   .icon-arrow-prev {
     left: rem(20);
@@ -159,7 +159,7 @@
 
 .button-next {
   padding-left: 0;
-  padding-right: rem(34);
+  padding-right: rem(20);
   .icon-arrow-next {
     right: rem(20);
     left: auto;
