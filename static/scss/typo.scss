@@ -49,13 +49,14 @@
 // reserved for content editing articles
 //---------------------------------------
 p {
-  font-size: rem(16);
+  font-size: rem(13);
   line-height: 1.7;
   margin: 0 0 rem(30) 0;
 }
 
 h1 {
   font-size: rem(22);
+	font-weight: bold;
   margin: 0 0 rem(30) 0;
   line-height: 1.3;
 }
@@ -127,7 +128,7 @@ p + h4 {
   padding: rem(60) 0;
 
   p, li {
-    font-family:"Apercu Pro Light", 'Trebuchet MS', Arial, sans-serif;
+    font-family: verdana, Arial;
   }
 
   p, ol, ul, h1, h2, h3, h4, h5, h6 {

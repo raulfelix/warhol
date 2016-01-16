@@ -13,7 +13,7 @@
 
   .modal-action {
     background-color: transparent;
-    color: $pink;
+    color: $black;
     display: block;
     font-size: rem(24);
     @extend %absolute;
@@ -76,11 +76,13 @@
   
   .button {
     margin: 0 rem(5);
-    font-family: "Apercu Pro Medium", 'Trebuchet MS', Arial, sans-serif;
   }
 
   .button-url {
     margin: 0;
+    font-family: verdana, Arial;
+    font-size: rem(12);
+    text-transform: none;
   }
 }
 
@@ -91,11 +93,13 @@
 .modal-share-primary {
   font-size: rem(40);
   margin-bottom: rem(50);
-  font-family:'AvantGardeGothicITCW01B 731063';
+  font-family: verdana, Arial;
+  font-weight: bold;
 }
 
 .modal-share-secondary {
   font-size: rem(24);
+  font-family: $font-secondary;
   margin-bottom: rem(60);
 }
 
