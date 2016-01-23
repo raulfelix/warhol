@@ -9,23 +9,6 @@ header, footer, section, article, figure, figcaption, button, input {
   @include box-sizing(border-box);
 }
 
-// .wf-apercupromedium-n6-loading,
-// .wf-apercuprolight-n2-loading {
-//   h3, h4, a, button, input, p, 
-//   .h-3, .h-4, .h-5,
-//   .header-category .header-category-h1,
-//   .header-category .header-category-h2,
-//   .thumb .thumb-caption,
-//   .thumb-category .thumb-caption,
-//   .section p, 
-//   .section li, 
-//   .section h1, 
-//   .section h2,
-//   .article-detail {
-//     font-family: 'Trebuchet MS', Arial, sans-serif;  
-//   }
-// }
-
 html {
   font-size: 100%;
   overflow-x: hidden; 
@@ -65,7 +48,7 @@ a {
   color: $black;
   text-decoration: none;
   &:hover {
-    color: $pink;
+    color: $highlight;
   }
 }
 

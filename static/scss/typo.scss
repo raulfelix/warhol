@@ -38,13 +38,6 @@
 }
 
 
-.link-pink {
-  color: $highlight;
-  &:hover {
-    color: $pink;
-  }
-}
-
 //---------------------------------------
 // reserved for content editing articles
 //---------------------------------------
@@ -146,10 +139,10 @@ p + h4 {
   }
 
   a {
-    color: $pink;
+    color: $highlight;;
     padding-bottom: 1px;
     &:hover {
-      border-bottom: 1px solid $pink;
+      border-bottom: 1px solid $highlight;
     }
   }
 
