@@ -13,7 +13,7 @@
 
 .header-small {
   background-color: $black;
-  height: rem(150);
+  height: rem(120);
   overflow: visible;
 }
 
@@ -478,6 +478,7 @@
     a {
       color: $white;
       font-family: $font-secondary;
+      text-transform: uppercase;
     }
   }
   

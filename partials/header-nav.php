@@ -78,7 +78,15 @@
             <?php  echo getSubNav($news, 'news_tax'); ?>
           </li>
           <li><a class="nav-link" href="http://www.lifewithoutandy.myshopify.com">Shop</a></li>
-          <li><a class="nav-link" href="<?php echo get_permalink(get_page_by_title('info')); ?>">Info</a></li>
+          <li>
+            <a class="nav-link" href="<?php echo get_permalink(get_page_by_title('info')); ?>">Info</a>
+            <div class="nav-links-secondary">
+              <div class="f-grid f-row">
+                <a class="nav-sublink" href="<?php echo get_permalink(get_page_by_title('contributors')); ?>">contributors</a>
+                <a class="nav-sublink" href="<?php echo get_permalink(get_page_by_title('subscribe')); ?>">Subscribe</a>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
