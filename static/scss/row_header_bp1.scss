@@ -51,26 +51,6 @@
   height: rem(400);
 }
 
-.header-category {
-  height: rem(150);
-  
-  .header-category-h1 {
-    font-size: 22px;
-    margin-bottom: rem(10);
-  }
-  .header-category-h2,
-  .header-category-branded .header-category-h2 {
-    display: none;
-  }
-
-  .header-category-branded {
-    bottom: rem(12);
-    right: rem(5);
-    img {
-      width: rem(90);
-    }
-  }
-}
 
 .header-gallery {
   overflow: visible;

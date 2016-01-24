@@ -30,31 +30,6 @@
       while ( $feature_query->have_posts() ): 
         $feature_query->the_post();
         $post_ID_no_repeat = get_the_ID();
-
-        if ( $paged == 1 ):
-  ?>
-
-        <div class="f-grid">
-          <div class="f-row thumb-category">
-            <div class="f-2-3 bp1-1">
-              <div class="thumb">
-                <a href="<?php echo the_permalink(); ?>" class="thumb-feature">
-                  <?php get_thumbnail(false, true); ?>
-                  <div class="m-overlay blanket-light"></div>  
-                  <span class="thumb-time"><?php when(); ?></span>
-                </a>
-              </div>
-            </div>
-            <div class="f-1-3 bp1-1">
-              <p>Latest</p>
-              <a href="<?php echo the_permalink(); ?>" class="thumb-title"><?php the_title(); ?></a>
-              <div class="thumb-caption"><?php the_subtitle(); ?></div>
-            </div>
-          </div>
-        </div>
-
-  <?php  
-        endif;
       endwhile;
     endif;
 

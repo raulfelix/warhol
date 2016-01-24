@@ -16,17 +16,20 @@
     <div class="f-1 content-wrap">
       <div class="content-row">
         <div class="m-wrap m-transparent header-content">
-          <?php 
+          <?php
             $category = category($post->post_type); 
-            $logo_url = get_term_meta( $category['id'], 'c-sponsor-url', true );
+            $logo_src_url = get_term_meta( $category['id'], 'c-sponsor-url', true ); 
+            $sponsor_link = get_term_meta( $category['id'], 'c-sponsor-link', true );
             
-            if ($logo_url):
+            if ($logo_src_url):
           ?>
           <div class="header-feature-category">
             <a class="link h-5" href="<?php echo $category['permalink']; ?>">
               <span class="header-feature-category-item"><?php echo $category['name']; ?></span>
-              <i class="header-feature-category-item icon-close"></i>
-              <img class="category-logo" src="<?php echo $logo_url; ?>">
+            </a>
+            <i class="header-feature-category-item icon-close"></i>
+            <a class="link h-5" href="<?php echo $sponsor_link ?>">
+              <img class="category-logo" src="<?php echo $logo_src_url; ?>">
             </a>
           </div>
           <div class="h-1"><?php the_title(); ?></div>

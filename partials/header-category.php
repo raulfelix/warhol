@@ -3,48 +3,57 @@
    * Header category
    */
   wp_enqueue_script( 'category' );
+?>
 
-  if ( is_tax('news_tax') ) {
-    $tax = get_term_by('slug', $news_tax, 'news_tax');
-  }
-  else {
-    $tax = get_term_by('slug', $featured_tax, 'featured_tax');
-  }
-
-  $feature_url  = get_term_meta( $tax->term_id, 'c-feature-url', true );
-  $logo_url     = get_term_meta( $tax->term_id, 'c-sponsor-url', true ); 
-  $hex          = get_term_meta( $tax->term_id, 'c-category-hex', true );
-  $opacity      = get_term_meta( $tax->term_id, 'c-category-opacity', true );
-  $sponsor_link = get_term_meta( $tax->term_id, 'c-sponsor-link', true );
-  $hex_value    = ($hex) ? $hex : '#000000';
-  $alpha_value  = ($opacity) ? $opacity : '0.6';
+<?php      
+  $img_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original');
 ?>
 
 <?php get_template_part('partials/header', 'social'); ?>
-
-<header class="header header-feature header-category">
+  
+<header id="header-feature" class="header header-feature">
   <div class="m-wrap m-transparent">
-    <div class="header-feature-bg" style="background-image: url(<?php echo $feature_url; ?>);" data-type="background"></div>
+    <div class="header-feature-bg" style="background-image: url(<?php echo $img_url[0] ?>);" data-type="background"></div>
+    <div class="m-overlay blanket-light"></div>
   </div>
-  <div class="blanket-overlay" style="background-color:<?php echo $hex_value; ?>;opacity: <?php echo $alpha_value; ?>;"></div>
-
+  
   <?php get_template_part('partials/header', 'nav'); ?>
+
   <div class="f-grid f-row">
-    <div class="f-1">
-      <div class="header-category-content">
-        <div class="header-category-h1"><?php echo $tax->name; ?></div>
-        <div class="header-category-h2"><?php echo $tax->description; ?></div>
-      </div>
-      <div class="f-1-2 header-category-branded">
-        <?php if ( $logo_url ): ?>
-          <div class="header-category-h2">in partnership with</div>
-          <?php if ( $sponsor_link ): ?>
-            <a href="<?php echo $sponsor_link; ?>" target="_blank"><img src="<?php echo $logo_url; ?>"></a>
+    <div class="f-1 content-wrap">
+      <div class="content-row">
+        <div class="m-wrap m-transparent header-content">
+          <?php
+            $category = category($post->post_type); 
+            $logo_src_url = get_term_meta( $category['id'], 'c-sponsor-url', true ); 
+            $sponsor_link = get_term_meta( $category['id'], 'c-sponsor-link', true );
+            
+            if ($logo_src_url):
+          ?>
+          <div class="header-feature-category">
+            <a class="link h-5" href="<?php echo $category['permalink']; ?>">
+              <span class="header-feature-category-item"><?php echo $category['name']; ?></span>
+            </a>
+            <i class="header-feature-category-item icon-close"></i>
+            <a class="link h-5" href="<?php echo $sponsor_link ?>">
+              <img class="category-logo" src="<?php echo $logo_src_url; ?>">
+            </a>
+          </div>
+          <a class="link h-1" href="<?php echo the_permalink(); ?>"><?php the_title(); ?></a>
+          <div class="h-4"><?php the_subtitle(); ?></div>
+          
           <?php else: ?>
-            <img src="<?php echo $logo_url; ?>">
+          
+          <a class="link h-5" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
+          <a class="link h-1" href="<?php echo the_permalink(); ?>"><?php the_title(); ?></a>
+          <div class="h-4"><?php the_subtitle(); ?></div>
+          
           <?php endif; ?>
-        <?php endif; ?>
+          
+        </div>
       </div>
     </div>
   </div>
+
+  <?php get_template_part('partials/module', 'util-loader'); ?>
 </header>
