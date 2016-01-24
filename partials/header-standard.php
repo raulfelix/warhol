@@ -1,5 +1,4 @@
 <header class="header">
-  <?php get_template_part('partials/header', 'nav'); ?>
   <div class="f-grid f-row">
     <div class="f-1 content-wrap">
       <div class="content-row">

@@ -4,8 +4,6 @@
   ));
 ?>
 
-<?php get_template_part('partials/header', 'social'); ?>
-
 <header class="header header-feature header-carousel">
   <div class="m-wrap m-transparent" style="display:none;">
     <div class="header-carousel-slides royalSlider rsDefault">
@@ -79,7 +77,6 @@
     </div>
   </div>
   
-  <?php get_template_part('partials/header', 'nav'); ?>
   <?php get_template_part('partials/module', 'util-loader'); ?>
 </header>
 

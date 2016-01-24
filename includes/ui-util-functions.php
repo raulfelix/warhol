@@ -305,4 +305,26 @@ function custom_home_feature_query($page_num, $post_per_page) {
   
   return $sql_result;
 }
+
+
+//----------------------
+// Get subcategories
+// ---------------------
+function getSubNav($id, $taxonomy) {
+  $args = array(
+    'orderby' => 'name',
+    'order' => 'ASC',
+    'parent' => $id,
+    'taxonomy' => $taxonomy
+  );
+  $categories = get_categories($args);
+  
+  $pieces = explode("_", $taxonomy);
+  
+  $links = '<div class="nav-links-secondary"><div class="f-grid f-row">';
+  foreach ($categories as $category) { 
+    $links = $links . '<a class="nav-sublink" href="' . get_home_url() . '/' . $pieces[0] . '/' . $category->slug . '">' . $category->name . '</a>';
+  }
+  return $links . '</div></div>';
+}
 ?>

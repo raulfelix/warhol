@@ -1,3 +1,20 @@
+<?php
+
+  // get all top level feartured categories
+  $cats = get_categories(array(
+    'orderby' => 'name',
+    'order' => 'ASC',
+    'parent' => 0,
+    'taxonomy' => 'featured_tax'
+  ));
+  
+  $newsCats = get_categories(array(
+    'orderby' => 'name',
+    'order' => 'ASC',
+    'parent' => 0,
+    'taxonomy' => 'news_tax'
+  ));
+?>
 
 <nav class="header-nav nav">
   <div class="nav-primary-bg"></div>
@@ -14,30 +31,26 @@
     
       <div class="nav-links">
         <ul class="nav-links-primary">
-          <li><a class="nav-link" href="<?php echo get_home_url(); ?>/featured/tuesday-without">Tuesday Without</a></li>
-          <li><a class="nav-link" href="<?php echo get_home_url(); ?>/featured/party-bullshit">Party &amp; Bullshit</a></li>
-          <li><a class="nav-link" href="<?php echo get_home_url(); ?>/featured/twentyfour">TwentyFour</a></li>
+          <li>
+            <a class="nav-link" href="<?php echo get_home_url(); ?>/featured/tuesday-without">Tuesday Without</a>
+            <?php echo getSubNav($cats[2]->term_id, 'featured_tax'); ?>
+          </li>
+          
+          <li>
+            <a class="nav-link" href="<?php echo get_home_url(); ?>/featured/party-bullshit">Party &amp; Bullshit</a>
+            <?php echo getSubNav($cats[1]->term_id, 'featured_tax'); ?>
+          </li>
+          <li>
+            <a class="nav-link" href="<?php echo get_home_url(); ?>/featured/twentyfour">TwentyFour</a>
+            <?php echo getSubNav($cats[3]->term_id, 'featured_tax'); ?>
+          </li>
           <li>
             <a class="nav-link" href="<?php echo get_home_url(); ?>/featured/frames">Frames</a>
+            <?php echo getSubNav($cats[0]->term_id, 'featured_tax'); ?>
           </li>
           <li>
             <a class="nav-link" href="<?php echo get_home_url(); ?>/news/news">News</a>
-            <div class="nav-links-secondary">
-              <div class="f-grid f-row">
-              <?php
-                $args = array(
-                  'orderby' => 'name',
-                  'order' => 'ASC',
-                  'parent' => 6,
-                  'taxonomy' => 'news_tax'
-                );
-                $categories = get_categories($args);
-                foreach ($categories as $category) { 
-                  echo '<a class="nav-sublink" href="' . get_home_url() . '/news/' . $category->slug . '">' . $category->name . '</a>';
-                }
-                ?>
-              </div>
-            </div>
+            <?php  echo getSubNav($newsCats[1]->term_id, 'news_tax'); ?>
           </li>
           <li><a class="nav-link" href="http://www.lifewithoutandy.myshopify.com">Shop</a></li>
           <li><a class="nav-link" href="<?php echo get_permalink(get_page_by_title('info')); ?>">Info</a></li>
