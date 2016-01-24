@@ -8,6 +8,25 @@
     'taxonomy' => 'featured_tax'
   ));
   
+  $tuesday = 0;
+  $party = 0;
+  $twentyfour = 0;
+  $frames = 0;
+  
+  $length = count($cats);
+  for ($i = 0; $i < $length; $i++) {
+    
+    if ($i == 0) {
+      $frames = $cats[$i]->term_id;
+    } elseif ($i == 1) {
+      $party = $cats[$i]->term_id;
+    } elseif ($i == 2) {
+      $tuesday = $cats[$i]->term_id;
+    } elseif ($i == 3) {
+      $twentyfour = $cats[$i]->term_id;
+    }
+  }
+  
   $newsCats = get_categories(array(
     'orderby' => 'name',
     'order' => 'ASC',
@@ -33,20 +52,20 @@
         <ul class="nav-links-primary">
           <li>
             <a class="nav-link" href="<?php echo get_home_url(); ?>/featured/tuesday-without">Tuesday Without</a>
-            <?php echo getSubNav($cats[2]->term_id, 'featured_tax'); ?>
+            <?php echo getSubNav($tuesday, 'featured_tax'); ?>
           </li>
           
           <li>
             <a class="nav-link" href="<?php echo get_home_url(); ?>/featured/party-bullshit">Party &amp; Bullshit</a>
-            <?php echo getSubNav($cats[1]->term_id, 'featured_tax'); ?>
+            <?php echo getSubNav($party, 'featured_tax'); ?>
           </li>
           <li>
             <a class="nav-link" href="<?php echo get_home_url(); ?>/featured/twentyfour">TwentyFour</a>
-            <?php echo getSubNav($cats[3]->term_id, 'featured_tax'); ?>
+            <?php echo getSubNav($twentyfour, 'featured_tax'); ?>
           </li>
           <li>
             <a class="nav-link" href="<?php echo get_home_url(); ?>/featured/frames">Frames</a>
-            <?php echo getSubNav($cats[0]->term_id, 'featured_tax'); ?>
+            <?php echo getSubNav($frames, 'featured_tax'); ?>
           </li>
           <li>
             <a class="nav-link" href="<?php echo get_home_url(); ?>/news/news">News</a>
