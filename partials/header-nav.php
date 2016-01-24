@@ -33,7 +33,7 @@
     'parent' => 0,
     'taxonomy' => 'news_tax'
   ));
-  var_dump($newsCats);
+  
   foreach ($newsCats as $cat) {
     if ($cat->slug == 'news') {
       $news = $cat->term_id;
