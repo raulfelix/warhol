@@ -83,7 +83,9 @@
 </head>
 
 <body>
-
+  <?php get_template_part('partials/header', 'social'); ?>
+  <?php get_template_part('partials/header', 'nav'); ?>
+  
   <?php 
     if ( is_page('home') ) {
       get_template_part('partials/header', 'home');
