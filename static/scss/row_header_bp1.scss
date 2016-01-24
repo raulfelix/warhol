@@ -96,6 +96,7 @@
 // Navigation
 //-------------
 .nav-active {
+  bottom: 0;
   .nav-secondary-bg {
     background-color: rgba(255,255,255,0.97);
     height: rem(490);
@@ -103,6 +104,7 @@
     top: rem(60);
     left: 0;
     right: 0;
+    height: 100%;
   }
   
   .nav-links {
