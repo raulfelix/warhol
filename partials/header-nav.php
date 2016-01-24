@@ -13,18 +13,18 @@
   $twentyfour = 0;
   $frames = 0;
   
-  $length = count($cats);
-  for ($i = 0; $i < $length; $i++) {
-    
+  $i = 0;
+  foreach ($cats as $cat) {
     if ($i == 0) {
-      $frames = $cats[$i]->term_id;
+      $frames = $cat->term_id;
     } elseif ($i == 1) {
-      $party = $cats[$i]->term_id;
+      $party = $cat->term_id;
     } elseif ($i == 2) {
-      $tuesday = $cats[$i]->term_id;
+      $tuesday = $cat->term_id;
     } elseif ($i == 3) {
-      $twentyfour = $cats[$i]->term_id;
+      $twentyfour = $cat->term_id;
     }
+    $i++;
   }
   
   $newsCats = get_categories(array(
@@ -33,6 +33,12 @@
     'parent' => 0,
     'taxonomy' => 'news_tax'
   ));
+  var_dump($newsCats);
+  foreach ($newsCats as $cat) {
+    if ($cat->slug == 'news') {
+      $news = $cat->term_id;
+    } 
+  }
 ?>
 
 <nav class="header-nav nav">
@@ -69,7 +75,7 @@
           </li>
           <li>
             <a class="nav-link" href="<?php echo get_home_url(); ?>/news/news">News</a>
-            <?php  echo getSubNav($newsCats[1]->term_id, 'news_tax'); ?>
+            <?php  echo getSubNav($news, 'news_tax'); ?>
           </li>
           <li><a class="nav-link" href="http://www.lifewithoutandy.myshopify.com">Shop</a></li>
           <li><a class="nav-link" href="<?php echo get_permalink(get_page_by_title('info')); ?>">Info</a></li>
