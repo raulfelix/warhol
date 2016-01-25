@@ -6,6 +6,7 @@
     'carousel' => 'editors-pick',
     'order' => 'DESC',
     'posts_per_page' => '2',
+    'post__not_in' => array( $post->ID ),
     'tax_query' => array(
   		array(
   			'taxonomy' => $post->post_type == 'lwa_feature' ? 'featured_tax' : 'news_tax',
