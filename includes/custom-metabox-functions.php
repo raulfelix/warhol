@@ -157,7 +157,10 @@ function news_featured_meta_box_callback( $post ) {
   } else {
     $checked = "checked";  
   }
-  echo '<div><label class="selectit" for=news_featured_field"><input type="checkbox" id="news_featured_field" name="news_featured_field" value="' . esc_attr( $value ) . '" ' . $checked .'/> Display as featured post</label></div>';
+  echo '<div>
+    <label class="selectit" for=news_featured_field">
+      <input type="checkbox" id="news_featured_field" name="news_featured_field" value="' . esc_attr( $value ) . '" ' . $checked .'/> Display as featured post</label>
+      </div>';
 }
 
 function news_featured_save_meta_box_data( $post_id ) {

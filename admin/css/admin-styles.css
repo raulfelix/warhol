@@ -2,6 +2,10 @@
   display: none;
 }
 
+#carousel-tabs li:last-child {
+  display: none;
+}
+
 .label-heximus {
   display: block;
   margin-bottom: 5px;

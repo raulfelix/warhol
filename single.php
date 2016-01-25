@@ -38,6 +38,7 @@
       get_template_part( 'partials/article', 'content' );
       get_template_part( 'partials/module', 'share' );
       get_template_part( 'partials/module', 'subscribe' );
+      get_template_part( 'partials/module', 'editors-pick' );
     endwhile; endif;
   ?>
   

@@ -117,6 +117,40 @@ p + h4 {
   }
 }
 
+.picks {
+	padding-bottom: rem(40);
+	
+	.picks-row {
+		font-size: 36px;
+		font-family: $font-secondary;
+		letter-spacing: 4px;
+		text-transform: uppercase;
+		text-align: center;
+		padding-bottom: rem(10);
+	}
+	
+	.picks-title {
+		background-color: $white;
+		display: inline-block;
+		padding: 0 rem(30);
+		position: relative;
+		z-index: 2;
+	}
+	
+	.picks-underline {
+		background-color: $black;
+		display: block;
+
+		height: 1px;
+		position: absolute;
+		left: rem(10);
+		top: rem(20);
+		right: rem(10);
+		z-index: 1;
+	}
+}
+
+
 .section {
   padding: rem(60) 0;
 

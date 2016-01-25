@@ -68,12 +68,12 @@ add_action('admin_enqueue_scripts', 'enqueue_custom_admin_scripts');
 // ------------------------------ 
 function add_scripts() {
 
-  wp_register_style( 'style', get_template_directory_uri() . '/static/dist/css/da470f869d20.style.css', null, null, 'all' );
+  wp_register_style( 'style', get_template_directory_uri() . '/static/dist/css/9e17c4cd44a0.style.css', null, null, 'all' );
 
   wp_register_script( 'global', get_template_directory_uri() . '/static/dist/js/a34ee02c9949.global.min.js', null, null, true );
   wp_register_script( 'home', get_template_directory_uri() . '/static/dist/js/cd3fe0150a87.home.min.js', null, null, true );
   wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/js/acdf4e6cef0d.gallery.min.js', array('single'), null, true );
-  wp_register_script( 'single', get_template_directory_uri() . '/static/dist/js/5676b3eb4301.single.min.js', null, null, true );
+  wp_register_script( 'single', get_template_directory_uri() . '/static/dist/js/1083caec5a48.single.min.js', null, null, true );
   wp_register_script( 'category', get_template_directory_uri() . '/static/dist/js/593e1d9d304e.category.min.js', null, null, true );
   wp_register_script( 'dropdown', get_template_directory_uri() . '/static/dist/js/9b902e92d844.dropdown.min.js', null, null, true );
   wp_localize_script( 'global', 'ajaxEndpoint', array( 'url' => admin_url( 'admin-ajax.php' )));   
@@ -149,9 +149,9 @@ function register_custom_taxonomies() {
   register_taxonomy( 'news_tax', 'lwa_news', $args );
 
   $carousel_labels = array(
-    'name'              => _x( 'Carousel', 'taxonomy general name' ),
-    'singular_name'     => _x( 'Carousel', 'taxonomy singular name' ),
-    'menu_name'         => __( 'Carousel' ),
+    'name'              => _x( 'Settings', 'taxonomy general name' ),
+    'singular_name'     => _x( 'Settings', 'taxonomy singular name' ),
+    'menu_name'         => __( 'Choose post settings' ),
   );
 
   $carousel_args = array(
