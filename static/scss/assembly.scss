@@ -95,8 +95,8 @@
 }
 
 .details-row {
-  margin-bottom: 0;
-  padding: 0 rem(40);
+  margin-top: rem(50);
+  // padding: 0 rem(40);
   @extend %clearfix;
 
   .bullet {
@@ -196,6 +196,20 @@
   }
 }
 
+.section-popular {
+  background-color: #F4F4F4;
+  margin: rem(20) 0;
+  padding: rem(16);
+  
+  h5 {
+    border-bottom: 1px solid $black;
+    font-family: $font-secondary;
+    font-size: 22px;
+    text-transform: uppercase;
+    padding-bottom: rem(5);
+  }
+}
+
 .sly-controls {
   .sly-next,
   .sly-prev,
@@ -231,6 +245,46 @@
   .disabled:hover {
     opacity: 0.4;
     color: $white;
+  }
+}
+
+
+.frame-inline {
+  height: rem(500);
+  position: relative;
+  
+  .shades {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.6;
+    background-color: $black;
+  }
+  
+  .active {
+    .shades {
+      display: none;
+    }
+  }
+  
+  .sly-prev,
+  .sly-next {
+    top: 50%;
+    margin-top: rem(-16);
+  }
+  
+  .sly-slide {
+    height: 100%;
+    position: relative;
+  }
+  
+  img {
+    display: inline;
+    width: auto !important;
+    height: 100%;
+    margin-bottom: 0;
   }
 }
 

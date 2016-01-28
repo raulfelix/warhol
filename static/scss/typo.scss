@@ -48,8 +48,7 @@ p {
 }
 
 h1 {
-  font-size: rem(22);
-	font-weight: bold;
+  font-size: rem(24);
   margin: 0 0 rem(30) 0;
   line-height: 1.3;
 }
@@ -94,9 +93,14 @@ p + h4 {
   margin-top: rem(46);
 }
 
-.section-article {
-  margin: rem(80) 0;
 
+.section-article {
+
+	h1 {
+		font-family: $font-secondary;
+		letter-spacing: 2px;
+	}
+	
   img {
     display: block;
     margin-bottom: rem(30);
@@ -116,6 +120,7 @@ p + h4 {
     opacity: 1;
   }
 }
+
 
 .picks {
 	padding-bottom: rem(40);
@@ -159,7 +164,7 @@ p + h4 {
   }
 
   p, ol, ul, h1, h2, h3, h4, h5, h6 {
-    padding: 0 rem(40);
+    // padding: 0 rem(40);
   }
 
   ol, ul {

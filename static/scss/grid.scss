@@ -21,6 +21,25 @@
 
   @extend %clearfix;
   padding: 0 rem(10);
+  
+  // fixed
+  .f-3-4-fixed {
+    margin-right: rem(320);
+    float: none;
+  }
+
+  .f-300 {
+    position: absolute;
+    right: rem(16);
+    top: rem(66);
+    padding: 0;
+    width: rem(300);
+  }
+
+}
+
+.relative {
+  position: relative;
 }
 
 // proportions
