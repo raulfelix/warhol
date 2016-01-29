@@ -419,6 +419,8 @@
   display: block;
   width: rem(66);
   height: rem(60);
+  position: relative;
+  z-index: 101;
 }
 
 
