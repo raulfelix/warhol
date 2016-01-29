@@ -10,8 +10,12 @@
   }
 }
 
+.modal-share-actions,
+.modal-share-primary {
+  padding: 0 rem(20);
+}
+
 .modal-share-actions {
-  padding: 0;
   text-align: center;
   width: 100%;
 }
@@ -30,13 +34,16 @@
   }
 }
 
-.modal-share-primary {
+.modal-share-primary,
+.modal-share-secondary {
   font-size: rem(20);
+}
+
+.modal-share-primary {
   margin-bottom: rem(30);
 }
 
 .modal-share-secondary {
-  font-size: rem(12);
   margin-bottom: rem(13);
 }
 

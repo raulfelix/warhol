@@ -1,3 +1,15 @@
-@media all and (max-width: 71.188em) { 
-
+@media all and (max-width: 850px) { 
+  
+  .f-row.relative {
+    min-height: 0;
+  }
+  
+  .bp4-1 {
+    width: 100%;
+  }
+  
+  .bp4-gone {
+    display: none;
+  }
+  
 }

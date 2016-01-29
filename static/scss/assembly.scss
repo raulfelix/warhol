@@ -298,8 +298,14 @@
   padding: 16px 0;
   height: 122px;
 }
+
+.row-ad-large {
+  text-align: center;
+  background-color: $black;
+  padding: 16px 0;
+}
 .row-bg-dark {
-  background-color: #eaeaea;
+  background-color: $black;
 }
 
 @media all and (min-width: 1px) {

@@ -54,14 +54,19 @@
         .defineSlot('/27068509/LWA_leaderboard_01', [970, 90], 'div-gpt-ad-1412722263572-0')
         .defineSizeMapping(mapping)
         .addService(googletag.pubads());
+      
+      var bottomLeaderBoardmapping = googletag.sizeMapping().
+        addSize([1024, 0], [970, 250]).
+        addSize([980, 0], [728, 90]).
+        addSize([1, 0], [468, 60]).  
+        build();
         
-      googletag.defineSlot('/27068509/LWA_sidebar_01', [300, 250], 'div-gpt-ad-1453979832228-0')
+      googletag.defineSlot('/27068509/LWA_sidebar_01', [300, 250], 'div-gpt-ad-1453979832228-0').addService(googletag.pubads());
+      googletag.defineSlot('/27068509/LWA_sidebar_02', [300, 600], 'div-gpt-ad-1453981103890-0').addService(googletag.pubads());
+      googletag.defineSlot('/27068509/LWA_leaderboad_bottom', [[970, 250], [468, 60], [728, 90]], 'div-gpt-ad-1454062789936-0')
+        .defineSizeMapping(bottomLeaderBoardmapping)
         .addService(googletag.pubads());
-        
-      googletag.defineSlot('/27068509/LWA_sidebar_02', [300, 600], 'div-gpt-ad-1453981103890-0').addService(googletag.pubads());;
-      // googletag.pubads().enableSingleRequest();
-      // googletag.enableServices();
-
+      googletag.pubads().enableSingleRequest();
       googletag.enableServices();
     });
   </script>

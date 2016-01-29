@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="f-row relative">
-    <div class="f-3-4-fixed bp1-1">
+    <div class="f-3-4-fixed bp4-1">
       <div class="section">
         <div class="section-article">
           <?php the_content(); ?>
@@ -40,7 +40,7 @@
       </div>
     </div>
     
-    <div class="f-300">
+    <div class="f-300 bp4-gone">
       
       <!-- /27068509/LWA_sidebar_01 -->
       <div id='div-gpt-ad-1453979832228-0' style='height:250px; width:300px;'>
@@ -96,5 +96,13 @@
       </div>
 
     </div>
+  </div>
+</div>
+<div class="row-ad-large">
+  <!-- /27068509/LWA_leaderboad_bottom -->
+  <div id='div-gpt-ad-1454062789936-0'>
+    <script type='text/javascript'>
+      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1454062789936-0'); });
+    </script>
   </div>
 </div>
