@@ -1,7 +1,6 @@
 /* global LWA, CoverPop */
 window.Namespace('Views');
 
-
 LWA.Modules.Loader({
   imageContent: '.header-feature-bg',
   hiddenContent: '#header-feature .m-wrap',

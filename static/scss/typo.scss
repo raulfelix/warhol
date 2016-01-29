@@ -163,9 +163,6 @@ p + h4 {
     font-family: verdana, Arial;
   }
 
-  p, ol, ul, h1, h2, h3, h4, h5, h6 {
-    // padding: 0 rem(40);
-  }
 
   ol, ul {
     margin-bottom: rem(30);
@@ -178,7 +175,7 @@ p + h4 {
   }
 
   a {
-    color: $highlight;;
+    color: $highlight;
     padding-bottom: 1px;
     &:hover {
       border-bottom: 1px solid $highlight;
