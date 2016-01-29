@@ -24,14 +24,15 @@
   
   // fixed
   .f-3-4-fixed {
-    margin-right: rem(320);
+    margin-right: rem(316);
     float: none;
   }
 
   .f-300 {
+    height: auto;
     position: absolute;
     right: rem(16);
-    top: rem(66);
+    top: rem(60);
     padding: 0;
     width: rem(300);
   }
@@ -40,7 +41,7 @@
 
 .relative {
   position: relative;
-  min-height: rem(1610);
+  min-height: rem(1605);
 }
 
 // proportions
