@@ -249,6 +249,7 @@ function custom_authors_query($author_id, $paged, $order, $post_per_page) {
       AND lwa_posts.post_type IN ('lwa_feature', 'lwa_news')
       AND lwa_posts.post_status = 'publish'
       OR ( (lwa_postmeta.meta_key = 'photos_key' AND lwa_postmeta.meta_value = " . $author_id . ") )
+      OR ( (lwa_postmeta.meta_key = 'filmed_key' AND lwa_postmeta.meta_value = " . $author_id . ") )
       GROUP BY lwa_posts.ID
       ORDER BY $wpdb->posts.post_date DESC
       LIMIT " . $offset . ", " . $post_per_page . "; ";   
@@ -266,6 +267,7 @@ function custom_authors_query($author_id, $paged, $order, $post_per_page) {
       AND lwa_posts.post_status = 'private') 
       AND (lwa_postmeta.meta_key = '_count-views_all') 
       OR (mt1.meta_key = 'photos_key' AND CAST(mt1.meta_value AS CHAR) = '" . $author_id . "' AND lwa_postmeta.meta_key = '_count-views_all') 
+      OR (mt1.meta_key = 'filmed_key' AND CAST(mt1.meta_value AS CHAR) = '" . $author_id . "' AND lwa_postmeta.meta_key = '_count-views_all') 
       GROUP BY lwa_posts.ID 
       ORDER BY lwa_postmeta.meta_value+0 DESC 
       LIMIT " . $offset . ", " . $post_per_page . "; ";

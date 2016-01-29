@@ -7,12 +7,7 @@
 function add_custom_meta_box() {
   $screens = array( 'lwa_feature', 'lwa_news' );
   foreach ( $screens as $screen ) {
-    add_meta_box(
-      'photos_id',
-      'Photos',
-      'photos_meta_box_callback',
-      $screen
-    );
+    add_meta_box('photos_id', 'Credits', 'photos_meta_box_callback', $screen);
   }
 
   add_meta_box('shop_url', 'Shop URL', 'shop_meta_box_callback', 'lwa_shop');
@@ -26,6 +21,7 @@ function photos_meta_box_callback( $post ) {
   wp_nonce_field( 'photos_meta_box', 'photos_meta_box_nonce' );
 
   $photos_by_id = get_post_meta( $post->ID, 'photos_key', true );
+  $filmed_by_id = get_post_meta( $post->ID, 'filmed_key', true );
 
   // get all the users in the system and present in a drop down
   $users = get_users(array(
@@ -33,7 +29,8 @@ function photos_meta_box_callback( $post ) {
     'orderby' => 'display_name'
   ));
 
-  echo '<select name="photos_author" id="photos_author">';
+  echo '<label class="selectit label-heximus">Photos by</label>';
+  echo '<select name="photos_author" id="photos_author" style="margin-bottom: 20px;">';
   echo '<option value=""></option>';
 
   foreach ($users as $user): ?>
@@ -42,24 +39,29 @@ function photos_meta_box_callback( $post ) {
   endforeach;
 
   echo '</select>';
+  
+  echo '<label class="selectit label-heximus">Filmed by</label>';
+  echo '<select name="filmed_author" id="filmed_author">';
+  echo '<option value=""></option>';
+
+  foreach ($users as $user): ?>
+    <option value="<?php echo $user->ID ?>" <?php echo $filmed_by_id == $user->ID ? 'selected="selected"' : ''?> ><?php echo $user->display_name ?></option>
+  <?php
+  endforeach;
+
+  echo '</select>';
 }
 
 function photos_save_meta_box_data( $post_id ) {
 
+  // Bail if we're doing an auto save
+  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+  
   // Check if our nonce is set.
-  if ( ! isset( $_POST['photos_meta_box_nonce'] ) ) {
-    return;
-  }
+  if ( ! isset( $_POST['photos_meta_box_nonce'] ) ) return;
 
   // Verify that the nonce is valid.
-  if ( ! wp_verify_nonce( $_POST['photos_meta_box_nonce'], 'photos_meta_box' ) ) {
-    return;
-  }
-
-  // If this is an autosave, our form has not been submitted, so we don't want to do anything.
-  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-    return;
-  }
+  if ( ! wp_verify_nonce( $_POST['photos_meta_box_nonce'], 'photos_meta_box' ) ) return;
 
   // Check the user's permissions
   if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
@@ -73,15 +75,15 @@ function photos_save_meta_box_data( $post_id ) {
   }
 
   // Make sure that data is set
-  if ( !isset( $_POST['photos_author'] ) ) {
-    return;
-  }
+  if ( !isset( $_POST['photos_author'] ) ) return;
 
   // Sanitize input
   $photos = sanitize_text_field( $_POST['photos_author'] );
+  $filmed = sanitize_text_field( $_POST['filmed_author'] );
 
   // Update the meta field in the database.
   update_post_meta( $post_id, 'photos_key', $photos );
+  update_post_meta( $post_id, 'filmed_key', $filmed );
 }
 add_action( 'save_post', 'photos_save_meta_box_data' );
 

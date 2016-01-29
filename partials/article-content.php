@@ -23,6 +23,7 @@
         <div class="details-row details-row-secondary">
           <?php 
             $photos_id = get_post_meta( get_the_id(), 'photos_key', true );
+            $filmed_id = get_post_meta( get_the_id(), 'filmed_key', true );
           ?>
 
           <?php if (get_the_author_meta('user_login') != 'warhol'): ?>
@@ -32,6 +33,11 @@
 
           <?php if ($photos_id): ?>
             Photos by <a href="<?php echo get_author_posts_url( $photos_id ); ?>"><?php the_author_meta('display_name', $photos_id); ?></a>
+            <span class="bullet"></span>
+          <?php endif; ?>
+          
+          <?php if ($filmed_id): ?>
+            Filmed by <a href="<?php echo get_author_posts_url( $filmed_id ); ?>"><?php the_author_meta('display_name', $filmed_id); ?></a>
             <span class="bullet"></span>
           <?php endif; ?>
           
@@ -98,6 +104,7 @@
     </div>
   </div>
 </div>
+
 <div class="row-ad-large">
   <!-- /27068509/LWA_leaderboad_bottom -->
   <div id='div-gpt-ad-1454062789936-0'>
