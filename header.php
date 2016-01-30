@@ -43,7 +43,6 @@
     
     googletag.cmd.push(function() {
       var mapping = googletag.sizeMapping().
-
       addSize([1009, 0], [970, 90]).
       addSize([759, 0], [728, 90]).  
       addSize([487, 0], [468, 60]).  
@@ -58,12 +57,13 @@
       var bottomLeaderBoardmapping = googletag.sizeMapping().
         addSize([1024, 0], [970, 250]).
         addSize([980, 0], [728, 90]).
-        addSize([1, 0], [468, 60]).  
+        addSize([487, 0], [468, 60]).
+        addSize([1, 0], [300, 250]). 
         build();
         
       googletag.defineSlot('/27068509/LWA_sidebar_01', [300, 250], 'div-gpt-ad-1453979832228-0').addService(googletag.pubads());
       googletag.defineSlot('/27068509/LWA_sidebar_02', [300, 600], 'div-gpt-ad-1453981103890-0').addService(googletag.pubads());
-      googletag.defineSlot('/27068509/LWA_leaderboad_bottom', [[970, 250], [468, 60], [728, 90]], 'div-gpt-ad-1454062789936-0')
+      googletag.defineSlot('/27068509/LWA_leaderboard_bottom', [970, 250], 'div-gpt-ad-1454150799057-0')
         .defineSizeMapping(bottomLeaderBoardmapping)
         .addService(googletag.pubads());
       googletag.pubads().enableSingleRequest();
