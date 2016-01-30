@@ -61,6 +61,13 @@
         addSize([1, 0], [300, 250]). 
         build();
         
+      googletag
+        .defineSlot('/27068509/LWA_leaderboard_bottom_article', [[300, 250], [728, 90], [970, 250], [468, 60]], 'div-gpt-ad-1454153553644-0')
+        .defineSizeMapping(bottomLeaderBoardmapping)
+        .addService(googletag.pubads());
+      // googletag.pubads().enableSingleRequest();
+      // googletag.enableServices();
+        
       googletag.defineSlot('/27068509/LWA_sidebar_01', [300, 250], 'div-gpt-ad-1453979832228-0').addService(googletag.pubads());
       googletag.defineSlot('/27068509/LWA_sidebar_02', [300, 600], 'div-gpt-ad-1453981103890-0').addService(googletag.pubads());
       googletag.defineSlot('/27068509/LWA_leaderboard_bottom', [970, 250], 'div-gpt-ad-1454150799057-0')
