@@ -8,16 +8,12 @@
     'taxonomy' => 'featured_tax'
   ));
   
-  
-  
   $tuesday = 0;
   $party = 0;
   $twentyfour = 0;
   $frames = 0;
   
-  $i = 0;
   foreach ($cats as $cat) {
-    var_dump($cat->slug);
     if ($cat->slug == 'frames') {
       $frames = $cat->term_id;
     } elseif ($cat->slug == 'party-bullshit') {
@@ -27,7 +23,6 @@
     } elseif ($cat->slug == 'twentyfour') {
       $twentyfour = $cat->term_id;
     }
-    $i++;
   }
   
   $newsCats = get_categories(array(
