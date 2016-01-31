@@ -74,7 +74,7 @@
       </li>
       <li>
         <a class="nav-link" href="<?php echo get_home_url(); ?>/news/news">News</a>
-        <?php  echo getSubNav($news, 'news_tax'); ?>
+        <?php  echo getSubNav(0, 'news_tax'); ?>
       </li>
       <li><a class="nav-link" href="http://www.lifewithoutandy.myshopify.com">Shop</a></li>
       <li>
