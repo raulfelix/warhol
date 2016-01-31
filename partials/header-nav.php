@@ -8,6 +8,8 @@
     'taxonomy' => 'featured_tax'
   ));
   
+  
+  
   $tuesday = 0;
   $party = 0;
   $twentyfour = 0;
@@ -15,13 +17,14 @@
   
   $i = 0;
   foreach ($cats as $cat) {
-    if ($i == 0) {
+    var_dump($cat->slug);
+    if ($cat->slug == 'frames') {
       $frames = $cat->term_id;
-    } elseif ($i == 1) {
+    } elseif ($cat->slug == 'party-bullshit') {
       $party = $cat->term_id;
-    } elseif ($i == 2) {
+    } elseif ($cat->slug == 'tuesday-without') {
       $tuesday = $cat->term_id;
-    } elseif ($i == 3) {
+    } elseif ($cat->slug == 'twentyfour') {
       $twentyfour = $cat->term_id;
     }
     $i++;
