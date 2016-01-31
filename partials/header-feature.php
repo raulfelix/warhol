@@ -66,15 +66,34 @@
             <div class="header-content">
               <?php
                 $category = category($post->post_type); 
-                $logo_url = get_term_meta( $category['id'], 'c-sponsor-url', true );
-
-                if ($logo_url):
+                $logo_src_url = get_term_meta( $category['id'], 'c-sponsor-url', true ); 
+                $sponsor_link = get_term_meta( $category['id'], 'c-sponsor-link', true );
+                
+                $post_sponsor_src = get_post_meta($post->ID, 'post_sponsor_src', true);
+                $post_sponsor_url = get_post_meta($post->ID, 'post_sponsor_url', true);
+                
+                if ($post_sponsor_src) {
+                  $logo_src_url = $post_sponsor_src;
+                }
+                
+                if ($post_sponsor_url) {
+                  $sponsor_link = $post_sponsor_url;
+                  if (strpos($sponsor_link, 'http://') !== false) {
+                    // has http included;
+                  } else {
+                    $sponsor_link = 'http://' . $sponsor_link;
+                  }
+                }
+                
+                if ($logo_src_url):
               ?>
               <div class="header-feature-category">
                 <a class="link h-5" href="<?php echo $category['permalink']; ?>">
                   <span class="header-feature-category-item"><?php echo $category['name']; ?></span>
-                  <i class="header-feature-category-item icon-close"></i>
-                  <img class="category-logo" src="<?php echo $logo_url; ?>">
+                </a>
+                <i class="header-feature-category-item icon-close"></i>
+                <a class="link h-5" href="<?php echo $sponsor_link ?>" target="_blank">
+                  <img class="category-logo" src="<?php echo $logo_src_url; ?>">
                 </a>
               </div>
               <div class="h-1"><?php echo get_the_title(); ?></div>

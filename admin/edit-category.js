@@ -25,7 +25,7 @@ jQuery('#set-category-thumbnail, #set-sponsor-thumbnail').live('click', function
     console.log(attachment);
 
     $inputField.attr('value', attachment.url);
-    $link.html('<img src="' + attachment.url + '" style="width: 200px;">');
+    $link.html('<img src="' + attachment.url + '">');
     $linkRemove.show();
   });
 

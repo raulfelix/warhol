@@ -8,6 +8,7 @@ function add_custom_meta_box() {
   $screens = array( 'lwa_feature', 'lwa_news' );
   foreach ( $screens as $screen ) {
     add_meta_box('photos_id', 'Credits', 'photos_meta_box_callback', $screen);
+    add_meta_box('post_sponsor', 'Sponsor details', 'post_sponsor_meta_box_callback', $screen);
   }
 
   add_meta_box('shop_url', 'Shop URL', 'shop_meta_box_callback', 'lwa_shop');
@@ -81,9 +82,18 @@ function photos_save_meta_box_data( $post_id ) {
   $photos = sanitize_text_field( $_POST['photos_author'] );
   $filmed = sanitize_text_field( $_POST['filmed_author'] );
 
-  // Update the meta field in the database.
-  update_post_meta( $post_id, 'photos_key', $photos );
-  update_post_meta( $post_id, 'filmed_key', $filmed );
+  // if the value is empty remove it from DB
+  if ( strlen($photos) == 0 ) {
+    delete_post_meta($post_id, 'photos_key');
+  } else {
+    update_post_meta( $post_id, 'photos_key', $photos );
+  }
+  
+  if ( strlen($filmed) == 0 ) {
+    delete_post_meta($post_id, 'filmed_key');
+  } else {
+    update_post_meta( $post_id, 'filmed_key', $filmed );
+  }
 }
 add_action( 'save_post', 'photos_save_meta_box_data' );
 
@@ -201,4 +211,86 @@ function news_featured_save_meta_box_data( $post_id ) {
 }
 add_action( 'save_post', 'news_featured_save_meta_box_data' );
 
+
+//
+// Post sponsor
+// 
+function post_sponsor_meta_box_callback( $post ) {
+
+  // Add an nonce field so we can check for it later.
+  wp_nonce_field( 'post_sponsor_meta_box', 'post_sponsor_meta_box_nonce' );
+
+  $sponsor_src = get_post_meta( $post->ID, 'post_sponsor_src', true );
+  $sponsor_url = get_post_meta( $post->ID, 'post_sponsor_url', true );
+  
+  ?>
+    <label for="post_sponsor_url" style="font-weight:bold;margin-bottom: 5px; display:block;">Logo</label>
+  
+    <a class="c-post-dark-wrapper" data-input="#c-sponsor-url" data-uploader-title="Set sponsor image" href="<?php echo get_home_url(); ?>/wp-admin/media-upload.php?type=image" id="set-sponsor-thumbnail">
+      <?php if ($sponsor_src): ?>
+        <img src="<?php echo $sponsor_src; ?>">
+      <?php else: ?>
+        Set image
+      <?php endif; ?>
+    </a>
+  
+    <a data-input="#c-sponsor-url" href="#" id="c-sponsor-url-remove" style="display: <?php echo ($sponsor_src) ? 'block':'none'?>;" class="c-remove">Remove image</a>
+    <input type="hidden" value="<?php echo $sponsor_src; ?>" id="c-sponsor-url" name="post_sponsor_src"/>
+    
+    <div class="c-field-wrap">
+      <label for="post_sponsor_url" style="font-weight:bold;margin: 5px 0; display:block;">Website</label>
+      <input type="text" value="<?php echo $sponsor_url; ?>" name="post_sponsor_url"/>
+      <p class="description">Enter a url e.g. www.name.com</p>
+    </div>
+  <?php
+}
+
+//
+// Post sponsor
+// 
+function post_sponsor_save_meta_box_data( $post_id ) {
+
+  // Bail if we're doing an auto save
+  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+  
+  // Check if our nonce is set.
+  if ( ! isset( $_POST['post_sponsor_meta_box_nonce'] ) ) return;
+
+  // Verify that the nonce is valid.
+  if ( ! wp_verify_nonce( $_POST['post_sponsor_meta_box_nonce'], 'post_sponsor_meta_box' ) ) return;
+
+  // Check the user's permissions
+  if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+    if ( ! current_user_can( 'edit_page', $post_id ) ) {
+      return;
+    }
+  } else {
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+      return;
+    }
+  }
+
+  // Make sure that data is set
+  if ( !isset( $_POST['post_sponsor_src'] ) || !isset( $_POST['post_sponsor_url'] ) ) return;
+
+  // Sanitize input
+  $value = sanitize_text_field( $_POST['post_sponsor_src'] );
+  $value1 = sanitize_text_field( $_POST['post_sponsor_url'] );
+
+  // if the value is empty remove it from DB
+  if ( strlen($value) == 0 ) {
+    delete_post_meta($post_id, 'post_sponsor_src');
+  } else {
+    update_post_meta( $post_id, 'post_sponsor_src', $value );
+  }
+  
+  // if the value is empty remove it from DB
+  if ( strlen($value1) == 0 ) {
+    delete_post_meta($post_id, 'post_sponsor_url');
+  } else {
+    update_post_meta( $post_id, 'post_sponsor_url', $value1 );
+  }
+  
+}
+add_action( 'save_post', 'post_sponsor_save_meta_box_data' );
 ?>

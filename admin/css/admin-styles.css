@@ -17,6 +17,9 @@
 .c-field-wrap {
   margin-top: 10px;
 }
+.c-field-wrap input {
+  width: 100%;
+}
 .c-credits {
   margin-top: 5px;
 }
@@ -47,4 +50,18 @@
 .c-inline-field input {
   display: inline-block;
   width: auto;
+}
+
+/*
+custom post sponsor logo
+*/
+.c-post-dark-wrapper {
+  background-color: #333;
+  color: #fff;
+  display: block;
+  padding: 20px;
+  text-align: center;
+}
+.c-post-dark-wrapper img {
+  width: 120px;
 }
