@@ -1,0 +1,64 @@
+.gallery {
+  // height: rem(500);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: rem(30);
+  
+  &.loading {
+    background-color: $grey;
+    
+    .slidee {
+      visibility: hidden;
+    }
+  }
+  
+  
+  .slidee {
+    height: rem(500);
+  }
+  
+  
+  .shades {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.6;
+    background-color: $black;
+  }
+  
+  
+  .active {
+    .shades {
+      display: none;
+    }
+  }
+  
+  
+  .sly-prev,
+  .sly-next {
+    top: 50%;
+    margin-top: rem(-16);
+  }
+  
+  
+  .sly-slide {
+    height: 100%;
+    position: relative;
+    float: left;
+  }
+  
+  img {
+    display: inline;
+    width: auto !important;
+    height: 100%;
+    margin-bottom: 0;
+    opacity: 0;
+    @include transition(all 200ms ease);
+  }
+  
+  .image-loaded {
+    opacity: 1;
+  }
+}
