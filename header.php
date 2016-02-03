@@ -12,7 +12,9 @@
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
   <title><?php wp_title(''); ?></title>
 
-  <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/static/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_template_directory_uri(); ?>/static/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="<?php echo get_template_directory_uri(); ?>/static/images/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_template_directory_uri(); ?>/static/images/favicon-16x16.png">
   
   <?php if ( is_single() ): ?>
     <meta property="og:title" content="<?php echo the_title() ?>" />
