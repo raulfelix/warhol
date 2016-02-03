@@ -515,7 +515,7 @@ LWA.Modules.Search = (function() {
       View.reset = View.element.overflow.infinitescroll({
         loading: {
           selector: '.loader-container',
-          msg: $('<div class="loader-icon loader-icon-pink"><i class="icon-reload"></i></div>'),
+          msg: $('<div class="loader-icon loader-icon-black"><i class="icon-reload"></i></div>'),
           finishedMessage: undefined,
         },
         behavior: 'local',

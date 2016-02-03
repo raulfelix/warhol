@@ -68,9 +68,9 @@ add_action('admin_enqueue_scripts', 'enqueue_custom_admin_scripts');
 // ------------------------------ 
 function add_scripts() {
 
-  wp_register_style( 'style', get_template_directory_uri() . '/static/dist/css/350cdd633e9a.style.css', null, null, 'all' );
+  wp_register_style( 'style', get_template_directory_uri() . '/static/dist/css/dd0c4a473165.style.css', null, null, 'all' );
 
-  wp_register_script( 'global', get_template_directory_uri() . '/static/dist/js/a34ee02c9949.global.min.js', null, null, true );
+  wp_register_script( 'global', get_template_directory_uri() . '/static/dist/js/102a9d4a898b.global.min.js', null, null, true );
   wp_register_script( 'home', get_template_directory_uri() . '/static/dist/js/cd3fe0150a87.home.min.js', null, null, true );
   wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/js/acdf4e6cef0d.gallery.min.js', array('single'), null, true );
   wp_register_script( 'single', get_template_directory_uri() . '/static/dist/js/5676b3eb4301.single.min.js', null, null, true );

@@ -1,12 +1,12 @@
 .header {
   height: rem(600);
-  background-color: $pink;
+  background-color: $grey;
   @extend %relative;
 
   .link {
     display: block;
     &:hover {
-      color: $white;
+      color: $black;
     }
   }
 }
@@ -51,7 +51,7 @@
   }
 
   .header-feature-text {
-    background-color: $pink;
+    background-color: $grey;
   }
 
   .header-feature-category {
@@ -245,7 +245,7 @@
 
     .active:before {
       content: '';
-      background-color: $pink;
+      background-color: $black;
       height: rem(20);
       width: 100%;
       position: absolute;
