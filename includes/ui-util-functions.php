@@ -50,12 +50,19 @@ function category($post_type) {
   
   if ($terms) {
     foreach ( $terms as $term ) {
+      $p = false;
+      if ($term->parent) {
+        $p = get_term($term->parent, $post_type === 'lwa_feature' ? 'featured_tax' : 'news_tax');
+      }
+      
       return array(
         'id' => $term->term_id,
         'name' => enc( $term->name ),
         'permalink' => get_bloginfo('url') . "/" . ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $term->slug,
         'slug' => $term->slug,
-        'description' => $term->description
+        'description' => $term->description,
+        'parent' => $p ? $p->name : null,
+        'parentPermalink' => $p ? get_bloginfo('url') . "/" . ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $p->slug : null
         );
     }
   }
@@ -331,6 +338,11 @@ function getSubNav($id, $taxonomy) {
 }
 
 
+
+// ----------------------------------- 
+// Gets the category of article sub 
+// category.  
+// -----------------------------------
 function render_header_category($category, $post) {
   $sponsor_src = get_term_meta( $category['id'], 'c-sponsor-url', true ); 
   $sponsor_url = get_term_meta( $category['id'], 'c-sponsor-link', true );

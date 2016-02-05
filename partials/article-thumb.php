@@ -6,6 +6,13 @@
 ?>
 
 <div class="thumb">
+  <?php 
+    if ($category['parent']):
+  ?>
+  <a class="h-5 thumb-link" href="<?php echo $category['parentPermalink']; ?>"><?php echo $category['parent']; ?></a>&nbsp;<span class="colon">:</span>
+  <?php 
+    endif;
+  ?>
   <a class="h-5 thumb-link" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
   <a href="<?php echo the_permalink(); ?>" class="thumb-feature">
      <?php get_thumbnail(false, $post->post_type === 'lwa_news' ? true : false); ?>  

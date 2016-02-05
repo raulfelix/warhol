@@ -43,7 +43,8 @@
 
   .thumb-link {
     color: #000;
-    margin-bottom: rem(5);
+    margin-bottom: 0;
+    text-transform: uppercase;
     &:hover {
       color: $highlight;
     }
@@ -63,6 +64,10 @@
   img {
     width: 100%;
     display: block;
+  }
+  
+  .colon {
+    font-family: $font-secondary;
   }
 }
 
