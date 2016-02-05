@@ -14,47 +14,18 @@
         <div class="m-wrap m-transparent header-content">
           <?php
             $category = category($post->post_type); 
-            $logo_src_url = get_term_meta( $category['id'], 'c-sponsor-url', true ); 
-            $sponsor_link = get_term_meta( $category['id'], 'c-sponsor-link', true );
+            $output = render_header_category($category, $post);
             
-            $post_sponsor_src = get_post_meta($post->ID, 'post_sponsor_src', true);
-            $post_sponsor_url = get_post_meta($post->ID, 'post_sponsor_url', true);
-            
-            if ($post_sponsor_src) {
-              $logo_src_url = $post_sponsor_src;
-            }
-            
-            if ($post_sponsor_url) {
-              $sponsor_link = $post_sponsor_url;
-              if (strpos($sponsor_link, 'http://') !== false) {
-                // has http included;
-              } else {
-                $sponsor_link = 'http://' . $sponsor_link;
-              }
-            }
-            
-            if ($logo_src_url):
+            if ($output):
+              echo $output;
           ?>
-          <div class="header-feature-category">
-            <a class="link h-5" href="<?php echo $category['permalink']; ?>">
-              <span class="header-feature-category-item"><?php echo $category['name']; ?></span>
-            </a>
-            <i class="header-feature-category-item icon-close"></i>
-            <a class="link h-5" href="<?php echo $sponsor_link ?>" target="_blank">
-              <img class="category-logo" src="<?php echo $logo_src_url; ?>">
-            </a>
-          </div>
-          <div class="h-1"><?php the_title(); ?></div>
-          <div class="h-4"><?php the_subtitle(); ?></div>
-          
+            <div class="h-1"><?php the_title(); ?></div>
+            <div class="h-4"><?php the_subtitle(); ?></div>
           <?php else: ?>
-          
-          <a class="link h-5" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
-          <div class="h-1"><?php the_title(); ?></div>
-          <div class="h-4"><?php the_subtitle(); ?></div>
-          
+            <a class="link h-5" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
+            <div class="h-1"><?php the_title(); ?></div>
+            <div class="h-4"><?php the_subtitle(); ?></div>
           <?php endif; ?>
-          
         </div>
       </div>
     </div>

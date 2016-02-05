@@ -329,4 +329,46 @@ function getSubNav($id, $taxonomy) {
   }
   return $links . '</div></div>';
 }
+
+
+function render_header_category($category, $post) {
+  $sponsor_src = get_term_meta( $category['id'], 'c-sponsor-url', true ); 
+  $sponsor_url = get_term_meta( $category['id'], 'c-sponsor-link', true );
+  $sponsor_url = fix_url($sponsor_url);
+  
+  $post_sponsor_src = get_post_meta($post->ID, 'post_sponsor_src', true);
+  $post_sponsor_url = get_post_meta($post->ID, 'post_sponsor_url', true);
+  $post_sponsor_url = fix_url($post_sponsor_url);
+  
+  if (!$post_sponsor_src && !$sponsor_src) {
+    return false;
+  }
+  
+  if ($post_sponsor_src) {
+    $sponsor_src = $post_sponsor_src;
+    $sponsor_url = $post_sponsor_url;
+  }
+  
+  return '<div class="header-feature-category">
+    <a class="link h-5" href="' . $category['permalink'] . '">
+      <span class="header-feature-category-item">' . $category['name'] . '</span>
+    </a>
+    <i class="header-feature-category-item icon-close"></i>
+    <a class="link h-5" href="' . $sponsor_url . '" target="_blank">
+      <img class="category-logo" src="' . $sponsor_src . '">
+    </a>
+  </div>';
+}
+
+function fix_url($url) {
+  if ($url) {
+    if (strpos($url, 'http://') !== false) {
+      // has http included;
+      return $url; 
+    } else {
+      return 'http://' . $url;
+    }
+  }
+}
+
 ?>
