@@ -261,7 +261,6 @@ function program1(depth0,data) {
 
 })(window);
 /* global LWA, Sly, imagesLoaded, Handlebars, ga */
-
 var Views = window.Namespace('Views');
 
 Views.Gallery = (function() {

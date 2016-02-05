@@ -44,5 +44,6 @@
   
 <?php
   wp_enqueue_script( 'single' );
+  wp_enqueue_script( 'bundle' );
   get_footer(); 
 ?>

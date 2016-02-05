@@ -1,5 +1,4 @@
 /* global LWA, Sly, imagesLoaded, Handlebars, ga */
-
 var Views = window.Namespace('Views');
 
 Views.Gallery = (function() {

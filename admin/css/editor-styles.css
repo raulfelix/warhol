@@ -57,11 +57,11 @@ li {
 }
 
 a {
-  color:#F197D5;
+  color: #8F8F8F;
   padding-bottom: 1px;
   &:hover {
     text-decoration: none;
-    border-bottom: 1px solid #F197D5;
+    border-bottom: 1px solid #8F8F8F;
   }
 }
 
