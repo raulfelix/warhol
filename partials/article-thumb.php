@@ -9,7 +9,7 @@
   <?php 
     if ($category['parent']):
   ?>
-  <a class="h-5 thumb-link" href="<?php echo $category['parentPermalink']; ?>"><?php echo $category['parent']; ?></a>&nbsp;<span class="colon">:</span>
+  <a class="h-5 thumb-link" href="<?php echo $category['parentPermalink']; ?>"><?php echo $category['parent']; ?></a><span class="colon">:</span>
   <?php 
     endif;
   ?>
