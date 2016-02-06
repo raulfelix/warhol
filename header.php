@@ -55,6 +55,11 @@
         .defineSlot('/27068509/LWA_leaderboard_01', [970, 90], 'div-gpt-ad-1412722263572-0')
         .defineSizeMapping(mapping)
         .addService(googletag.pubads());
+        
+      googletag
+        .defineSlot('/27068509/LWA_leaderboard_02', [970, 90], 'div-gpt-ad-1454759838428-0')
+        .defineSizeMapping(mapping)
+        .addService(googletag.pubads());
       
       var bottomLeaderBoardmapping = googletag.sizeMapping().
         addSize([1024, 0], [970, 250]).
