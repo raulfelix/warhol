@@ -1,7 +1,4 @@
-/* global LWA */
-window.Namespace('Modules');
-
-LWA.Modules.Dropdown = function(selector, options) {
+module.exports = function(selector, options) {
 
   var Dropdown = {
 
@@ -52,6 +49,5 @@ LWA.Modules.Dropdown = function(selector, options) {
 
   Dropdown.init(selector, options);
   Events.init();
+  
 };
-
-LWA.Modules.Dropdown('#dropdown-sort');

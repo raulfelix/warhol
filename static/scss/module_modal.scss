@@ -63,8 +63,9 @@
   top: rem(85);
   
   .modal-view {
-    height: auto;
-    position: relative;
+    top: 0;
+    bottom: 0;
+    position: absolute;;
     z-index: 2;
   }
 }

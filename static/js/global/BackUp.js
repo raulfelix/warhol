@@ -1,7 +1,4 @@
-/* global LWA */
-window.Namespace('Views');
-
-LWA.Views.BackUp = (function() {
+module.exports = (function() {
 
   var $body;
 
@@ -19,5 +16,3 @@ LWA.Views.BackUp = (function() {
   };
 
 })();
-
-LWA.Views.BackUp.init();

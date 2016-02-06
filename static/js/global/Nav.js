@@ -1,7 +1,4 @@
-/* global LWA */
-window.Namespace('Views');
-
-LWA.Views.Navigation = (function() {
+module.exports = (function() {
 
   var $nav;
 
@@ -24,5 +21,3 @@ LWA.Views.Navigation = (function() {
   };
 
 })();
-
-LWA.Views.Navigation.init();

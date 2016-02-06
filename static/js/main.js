@@ -1,14 +1,10 @@
-// main app
-// 
 var React = require('react');
 var ReactDom = require('react-dom');
-
-// var gallery = require('./Gallery');
-// gallery.init();
-
-
 var FeatureFeed = require('./home/FeatureFeed.react');
 var NewsFeed = require('./home/NewsFeed.react');
+var Home = require('./home/home.js');
+
+Home.init();
 
 ReactDom.render(
   React.createElement(FeatureFeed),

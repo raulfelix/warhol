@@ -148,7 +148,7 @@ DFP.Watch = (function() {
 })();
 
 $(document).ready(function() {
-  LWA.Modules.Modal('.nav-search', '#modal-search', { close: LWA.Modules.Search.close });
+  LWA.Modules.Modal('.nav-search', '#modal-search');
   
   DFP.Watch.init();
 });

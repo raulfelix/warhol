@@ -56,3 +56,13 @@
     margin-bottom: rem(60);
   }
 }
+
+.search-row {
+  .search-row-input {
+    padding: 0 rem(10);
+  }
+  
+  .search-row-results .container {
+    padding: rem(10) rem(10) 0 rem(10);
+  }
+}

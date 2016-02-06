@@ -22,7 +22,6 @@
   <div id="news-waypoint" class="section-thumb-bg"></div>
 
 <?php 
-  wp_enqueue_script( 'home' );
-  wp_enqueue_script( 'bundle' );
+  wp_enqueue_script( 'index' );
   get_footer(); 
 ?>

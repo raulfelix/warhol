@@ -1,7 +1,4 @@
-/* global LWA */
-window.Namespace('Views');
-
-LWA.Views.Home = (function() {
+module.exports = (function() {
 
   var Carousel = {
     
@@ -111,5 +108,3 @@ LWA.Views.Home = (function() {
   };
 
 })();
-
-LWA.Views.Home.init();

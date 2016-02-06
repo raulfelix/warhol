@@ -1,19 +1,4 @@
-/* global LWA, CoverPop */
-window.Namespace('Views');
-
-LWA.Modules.Loader({
-  imageContent: '.header-feature-bg',
-  hiddenContent: '#header-feature .m-wrap',
-  loader: LWA.Modules.Spinner('#header-feature .loader-icon', {show: true})
-});
-
-LWA.Modules.Loader({
-  imageContent: '.media-target-footer',
-  hiddenContent: '.footer-next-feature .m-wrap'
-});
-
-
-LWA.Views.Subscribe = (function() {
+module.exports = (function() {
 
   var COOKIE = '_lwa_subcribe';
   
@@ -57,6 +42,8 @@ LWA.Views.Subscribe = (function() {
     $('#js-subscribe-form').submit(subscribe);
   }
 
-  init();
-
+  return {
+    init: init
+  };
+  
 })();

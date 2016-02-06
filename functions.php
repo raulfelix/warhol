@@ -68,19 +68,21 @@ add_action('admin_enqueue_scripts', 'enqueue_custom_admin_scripts');
 // ------------------------------ 
 function add_scripts() {
 
-  wp_register_style( 'style', get_template_directory_uri() . '/static/dist/css/35c51cb57c44.style.css', null, null, 'all' );
+  wp_register_style( 'style', get_template_directory_uri() . '/static/dist/css/055629a2f64b.style.css', null, null, 'all' );
 
-  wp_register_script( 'global', get_template_directory_uri() . '/static/dist/js/b00b4f6f7d96.global.min.js', null, null, true );
-  wp_register_script( 'home', get_template_directory_uri() . '/static/dist/js/dc835ba47b97.home.min.js', null, null, true );
-  wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/js/47d35961023d.gallery.min.js', array('single'), null, true );
-  wp_register_script( 'single', get_template_directory_uri() . '/static/dist/js/43c38008004c.single.min.js', null, null, true );
-  wp_register_script( 'category', get_template_directory_uri() . '/static/dist/js/ff8b114b6358.category.min.js', null, null, true );
-  wp_register_script( 'dropdown', get_template_directory_uri() . '/static/dist/js/3969a91231d2.dropdown.min.js', null, null, true );
-  wp_register_script( 'bundle', get_template_directory_uri() . '/build/dist/js/4fb9f204b0fd.bundle.js', null, null, true );
+  wp_register_script( 'global', get_template_directory_uri() . '/static/dist/js/1327c8cd2fc0.global.min.js', null, null, true );
+  wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/js/27323ae010fb.gallery.min.js', array('single'), null, true );
+  
+  wp_register_script( 'single', get_template_directory_uri() . '/build/dist/js/025b7515a823.single.entry.js', null, null, true );
+  wp_register_script( 'everywhere', get_template_directory_uri() . '/build/dist/js/0d3c7143ef02.everywhere.entry.js', null, null, true );
+  wp_register_script( 'index', get_template_directory_uri() . '/build/dist/js/970eb8492500.index.entry.js', null, null, true );
+  wp_register_script( 'category', get_template_directory_uri() . '/build/dist/js/eb3ee061c9b1.category.entry.js', null, null, true );
+  
   wp_localize_script( 'global', 'ajaxEndpoint', array( 'url' => admin_url( 'admin-ajax.php' )));   
 
   wp_enqueue_style( 'style' );
   wp_enqueue_script( 'global' );
+  wp_enqueue_script( 'everywhere' );
 }
 add_action( 'wp_enqueue_scripts', 'add_scripts', 999 );
 

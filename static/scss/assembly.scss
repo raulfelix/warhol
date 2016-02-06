@@ -2,6 +2,26 @@
   overflow: hidden;
 }
 
+
+.frame {
+  width: 100%;
+
+  .slidee {
+    height: 100%;
+    list-style: none;
+  }
+
+  .sly-slide {
+    float: left;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+
+
 // centered content
 .content-wrap {
   display: table;
@@ -150,8 +170,14 @@
 
 .search-row {
 
+  left: 0;
+  right: 0;
+  
   .search-row-input {
-    width: 100%;
+    max-width: 1140px;
+    margin: auto;
+    height: auto;
+    padding: 0 rem(20);
   }
 
   .button-search {
@@ -184,7 +210,7 @@
   .container {
     max-width: rem(1140);
     margin: 0 auto;
-    padding-top: rem(10);
+    padding: rem(10) rem(20) 0 rem(20);
   }
 }
 

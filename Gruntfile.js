@@ -51,42 +51,18 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         files: {
-          'static/dist/js/home-build.js' : [
-            'static/vendor/jquery.slider.min.js',
-            'static/scripts/home.js'
-          ],
           'static/dist/js/global-build.js' : [
             'static/vendor/jquery-2.0.3.min.js',
             'static/vendor/*.js',
-            '!static/vendor/sly.min.js',
-            '!static/vendor/jquery.slider.min.js',
-            '!static/vendor/cover-pop.min.js',
             'static/scripts/global.js',
-            'static/scripts/nav.js',
             'static/scripts/modal.js',
-            'static/scripts/back-up.js',
-            'static/scripts/precompiled/search-template.js',
-            'static/scripts/button-loader.js',
-            'static/scripts/search.js',
             'static/scripts/load.js',
             'static/scripts/spinner.js'
           ],
           'static/dist/js/gallery-build.js' : [
-            'static/vendor/sly.min.js',
-            'static/vendor/jquery.slider.min.js',
             'static/scripts/precompiled/gallery-template.js',
             'static/scripts/lazyload.js',
             'static/scripts/gallery.js'
-          ],
-          'static/dist/js/single-build.js' : [
-            'static/vendor/sly.min.js',
-            'static/vendor/cover-pop.min.js',
-            'static/scripts/share.js',
-            'static/scripts/single.js'
-          ],
-          'static/dist/js/category-build.js' : [
-            'static/scripts/dropdown.js',
-            'static/scripts/category.js'
           ]
         }
       }
@@ -105,11 +81,7 @@ module.exports = function(grunt) {
       my_target: {
         files: {
           'static/dist/build/global.min.js': ['static/dist/js/global-build.js'],
-          'static/dist/build/home.min.js': ['static/dist/js/home-build.js'],
-          'static/dist/build/single.min.js': ['static/dist/js/single-build.js'],
-          'static/dist/build/gallery.min.js': ['static/dist/js/gallery-build.js'],
-          'static/dist/build/category.min.js': ['static/dist/js/category-build.js'],
-          'static/dist/build/dropdown.min.js': ['static/scripts/dropdown.js']
+          'static/dist/build/gallery.min.js': ['static/dist/js/gallery-build.js']
         }
       }
     },
@@ -125,10 +97,6 @@ module.exports = function(grunt) {
         },
 
         files: {
-          "static/scripts/precompiled/search-template.js": [
-            "js_partial/search_thumb.hbs.html",
-            "js_partial/search_next_link.hbs.html"
-          ],
           "static/scripts/precompiled/gallery-template.js": [
             "js_partial/gallery_inline.hbs.html",
             "js_partial/gallery_modal.hbs.html",
@@ -147,7 +115,12 @@ module.exports = function(grunt) {
         files: {
           'static/dist/js': ['static/dist/build/*.js'],
           'static/dist/css': ['static/scss/style.css'],
-          'build/dist/js': ['build/dist/js/bundle.js']
+          'build/dist/js': [
+            'build/dist/js/everywhere.entry.js',
+            'build/dist/js/index.entry.js',
+            'build/dist/js/category.entry.js',
+            'build/dist/js/single.entry.js'
+          ]
         }
       }
     },
@@ -167,18 +140,26 @@ module.exports = function(grunt) {
 
     clean: {
       dist: [
-        'static/dist/build'
+        'build/dist/js/everywhere.entry.js',
+        'build/dist/js/index.entry.js',
+        'build/dist/js/category.entry.js',
+        'build/dist/js/single.entry.js'
       ]
     },
     
     webpack: {
       
       options: {
-        entry: './static/js/main',
+        entry: {
+          index: './static/js/main',
+          everywhere: './static/js/global',
+          category: './static/js/category',
+          single: './static/js/single'
+        },
         devtool: 'source-map',
         output: {
           path: './build/dist/js/',
-          filename: 'bundle.js'
+          filename: '[name].entry.js'
         },
         module: {
           loaders: [
@@ -200,8 +181,6 @@ module.exports = function(grunt) {
       
       prod: {
         plugins: [ 
-          // do not load moment locales
-          // new ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/),
           // minify
           new UglifyJsPlugin({minimize: true})
         ]
@@ -209,8 +188,7 @@ module.exports = function(grunt) {
       
       dev: {
         plugins: [ 
-          // do not load moment locales
-          // new ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/) 
+      
         ]
       }
     }

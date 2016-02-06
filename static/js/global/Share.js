@@ -1,7 +1,4 @@
-/* global LWA, ga */
-window.Namespace('Modules');
-
-LWA.Modules.Share = (function() {
+module.exports = (function() {
 
   var modal, buttonUrl;
 
@@ -40,5 +37,3 @@ LWA.Modules.Share = (function() {
   };
 
 })();
-
-LWA.Modules.Share.init();
