@@ -61,7 +61,7 @@ function category($post_type) {
         'permalink' => get_bloginfo('url') . "/" . ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $term->slug,
         'slug' => $term->slug,
         'description' => $term->description,
-        'parent' => $p ? $p->name : null,
+        'parent' => $p ? enc( $p->name ) : null,
         'parentPermalink' => $p ? get_bloginfo('url') . "/" . ($post_type === 'lwa_feature' ? 'featured' : 'news') . "/". $p->slug : null
         );
     }

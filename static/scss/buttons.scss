@@ -63,11 +63,21 @@
   }
 }
 
+
 .button-loader {
-  .button-loader-icon {
-    display: none;
+  min-width: rem(200);
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
   }
 }
+
 
 .button-loader-active,
 .button-loader-active:active,
@@ -75,32 +85,9 @@
   background-color: $black;
   border-color: $black;
   color: $white;
-
-  .button-text {
-    visibility: hidden;
-  }
-
-  .loader-icon {
-    display: block;
-  }
 }
 
 
-// button hides text and shows spinner
-.button-loading,
-.button-loading:hover,
-.button-loading:active {
-  background-color: transparent;
-  color: $black;
-}
-
-.button-loading .loader {
-  display: block;
-}
-
-.button-loading span {
-  visibility: hidden;
-}
 
 .button-share {
   width: auto;

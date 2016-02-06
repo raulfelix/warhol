@@ -68,7 +68,9 @@
   
   .colon {
     font-family: $font-secondary;
-    margin-left: rem(3);
+    font-weight: 500;
+  	font-style: normal;
+    padding: 0 rem(3);
   }
 }
 

@@ -32,7 +32,7 @@ function Strip(frame, loader, imgs) {
     itemNav: 'centered',
     smart: 1,
     activateOn: 'click',
-    touchDragging: 0,
+    touchDragging: 1,
     releaseSwing: 1,
     startAt: 0,
     speed: 300,
@@ -40,6 +40,9 @@ function Strip(frame, loader, imgs) {
     easing: 'swing'
   });
   
+  sly.on('active', function(eventName, idx) {
+    console.log(idx);
+  });
   
   $(frame.getElementsByClassName('sly-next')[0]).click(function() {
     sly.next();

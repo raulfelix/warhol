@@ -81,6 +81,7 @@ function fetch_posts($page, $post_per_page, $post_type) {
       $wp_query->the_post();
       
       $data['posts'][$idx] = Array(
+        'id'        => get_the_id(),
         'title'     => enc(get_the_title()),
         'subtitle'  => enc(get_the_subtitle()),
         'permalink' => get_the_permalink(),
@@ -96,7 +97,7 @@ function fetch_posts($page, $post_per_page, $post_type) {
   return $data;
 }
 
-function get_next_featured_posts($page = 2) {
+function get_next_featured_posts($page) {
   global $max_num_pages;
 
   $feature_query = custom_home_feature_query($page, 4);
@@ -121,6 +122,7 @@ function get_next_featured_posts($page = 2) {
       setup_postdata($post);
       
       $data['posts'][$idx] = Array(
+        'id'        => get_the_id(),
         'title'     => enc(get_the_title()),
         'subtitle'  => enc(get_the_subtitle()),
         'permalink' => get_the_permalink(),
@@ -136,7 +138,7 @@ function get_next_featured_posts($page = 2) {
   return $data;
 }
 
-function get_next_news_posts($page = 2) {
+function get_next_news_posts($page) {
   return fetch_posts($page, 6, 'lwa_news');
 }
 

@@ -52,13 +52,8 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'static/dist/js/home-build.js' : [
-            'static/vendor/sly.min.js',
             'static/vendor/jquery.slider.min.js',
-            'static/scripts/precompiled/article-template.js',
-            'static/scripts/precompiled/instabinge-template.js',
-            'static/scripts/post-loader.js',
-            'static/scripts/home.js',
-            'static/scripts/instabinge.js'
+            'static/scripts/home.js'
           ],
           'static/dist/js/global-build.js' : [
             'static/vendor/jquery-2.0.3.min.js',
@@ -130,17 +125,9 @@ module.exports = function(grunt) {
         },
 
         files: {
-          "static/scripts/precompiled/article-template.js": [
-            "js_partial/article_thumb.hbs.html"
-          ],
           "static/scripts/precompiled/search-template.js": [
             "js_partial/search_thumb.hbs.html",
             "js_partial/search_next_link.hbs.html"
-          ],
-          "static/scripts/precompiled/instabinge-template.js": [
-            "js_partial/instabinge_thumb.hbs.html",
-            "js_partial/instabinge_thumb_modal.hbs.html",
-            "js_partial/instabinge_single_thumb_modal.hbs.html"
           ],
           "static/scripts/precompiled/gallery-template.js": [
             "js_partial/gallery_inline.hbs.html",
@@ -198,7 +185,10 @@ module.exports = function(grunt) {
             {
               test: /\.js?$/,
               exclude: /(node_modules|bower_components)/,
-              loader: 'babel'
+              loader: 'babel',
+              query: {
+                presets: ['react', 'es2015']
+              }
             },
             {
               include: /\.json$/, 

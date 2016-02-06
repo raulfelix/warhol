@@ -283,3 +283,19 @@
     height: 122px;
   }
 }
+
+
+.row-loader {
+  position: relative;
+  padding: rem(40) 0;
+  
+  i {
+    font-size: 24px;
+    color: $black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: rem(-16);
+    margin-top: rem(-16);
+  }
+}
