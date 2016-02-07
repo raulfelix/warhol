@@ -108,9 +108,9 @@
 
 <div class="row-ad-large">
   <!-- /27068509/LWA_leaderboard_bottom_article -->
-<div id='div-gpt-ad-1454153553644-0'>
-<script type='text/javascript'>
-googletag.cmd.push(function() { googletag.display('div-gpt-ad-1454153553644-0'); });
-</script>
-</div>
+  <div id='div-gpt-ad-1454813276057-0'>
+    <script type='text/javascript'>
+      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1454813276057-0'); });
+    </script>
+  </div>
 </div>
