@@ -60,7 +60,20 @@
 
 
 .modal-search {
+  display: block;
+  visibility: hidden;
   top: rem(85);
+  left: 0; 
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+
+  &.modal-active {
+    display: block;
+    visibility: visible;
+    z-index: 100001;
+  }
   
   .modal-view {
     top: 0;
