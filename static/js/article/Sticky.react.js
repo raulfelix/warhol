@@ -16,20 +16,14 @@ module.exports = React.createClass({
   },
   
   onEnter: function(e, position) {
-    console.log('enter', position);
-    
     if (position === 'above') {
-      // if stuck unstick it
       this._local.ad.style.position = 'relative';
       this._local.ad.style.top = 'auto';
       this._local.ad.style.zIndex = '1';
     }
-    
   },
   
   onLeave: function(e, position) {
-    console.log('leave', position);
-      // stick the add in place
     if (position === 'above') {
       this._local.ad.style.position = 'fixed';
       this._local.ad.style.top = '0';
