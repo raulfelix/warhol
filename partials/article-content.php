@@ -93,8 +93,9 @@
         endif;
         wp_reset_query();
        ?>
-       
-       <!-- /27068509/LWA_sidebar_02 -->
+      
+      <div id="LWA_sidebar_02-waypoint"></div> 
+      <!-- /27068509/LWA_sidebar_02 -->
       <div id='div-gpt-ad-1453981103890-0' style='height:600px; width:300px;'>
         <script type='text/javascript'>
         googletag.cmd.push(function() { googletag.display('div-gpt-ad-1453981103890-0'); });
