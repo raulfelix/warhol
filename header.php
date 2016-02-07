@@ -63,7 +63,7 @@
       
       var bottomLeaderBoardmapping = googletag.sizeMapping().
         addSize([1024, 0], [970, 250]).
-        addSize([980, 0], [728, 90]).
+        addSize([759, 0], [728, 90]).
         addSize([487, 0], [468, 60]).
         addSize([1, 0], [300, 250]). 
         build();
