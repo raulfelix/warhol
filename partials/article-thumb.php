@@ -6,6 +6,7 @@
 ?>
 
 <div class="thumb">
+  <div>
   <?php 
     if ($category['parent']):
   ?>
@@ -14,6 +15,7 @@
     endif;
   ?>
   <a class="h-5 thumb-link" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
+  </div>
   <a href="<?php echo the_permalink(); ?>" class="thumb-feature">
      <?php get_thumbnail(false, $post->post_type === 'lwa_news' ? true : false); ?>  
      <div class="m-overlay blanket-light"></div>

@@ -15,17 +15,10 @@
           <?php
             $category = category($post->post_type); 
             $output = render_header_category($category, $post);
-            
-            if ($output):
-              echo $output;
+            echo $output;
           ?>
-            <div class="h-1"><?php the_title(); ?></div>
-            <div class="h-4"><?php the_subtitle(); ?></div>
-          <?php else: ?>
-            <a class="link h-5" href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a>
-            <div class="h-1"><?php the_title(); ?></div>
-            <div class="h-4"><?php the_subtitle(); ?></div>
-          <?php endif; ?>
+          <div class="h-1"><?php the_title(); ?></div>
+          <div class="h-4"><?php the_subtitle(); ?></div>
         </div>
       </div>
     </div>

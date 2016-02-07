@@ -350,24 +350,33 @@ function render_header_category($category, $post) {
   $post_sponsor_url = get_post_meta($post->ID, 'post_sponsor_url', true);
   $post_sponsor_url = fix_url($post_sponsor_url);
   
-  if (!$post_sponsor_src && !$sponsor_src) {
-    return false;
-  }
-  
   if ($post_sponsor_src) {
     $sponsor_src = $post_sponsor_src;
     $sponsor_url = $post_sponsor_url;
   }
+
+  $cat_parent = '';
+  if ($category['parent']) {
+    $cat_parent = '<a class="h-5 link" href="' . $category['parentPermalink'] . '">'. $category['parent'] . '</a><span class="colon">:</span>';
+  }
   
-  return '<div class="header-feature-category">
-    <a class="link h-5" href="' . $category['permalink'] . '">
-      <span class="header-feature-category-item">' . $category['name'] . '</span>
-    </a>
-    <i class="header-feature-category-item icon-close"></i>
-    <a class="link h-5" href="' . $sponsor_url . '" target="_blank">
-      <img class="category-logo" src="' . $sponsor_src . '">
-    </a>
-  </div>';
+  if (!$post_sponsor_src && !$sponsor_src) {
+    return '<div class="header-feature-category">' . $cat_parent .
+      '<a class="link h-5" href="' . $category['permalink'] . '">
+        <span class="header-feature-category-item">' . $category['name'] . '</span>
+      </a>
+    </div>';
+  } else {
+    return '<div class="header-feature-category">' . $cat_parent .
+      '<a class="link h-5" href="' . $category['permalink'] . '">
+        <span class="header-feature-category-item">' . $category['name'] . '</span>
+      </a>
+      <i class="header-feature-category-item icon-close"></i>
+      <a class="link h-5" href="' . $sponsor_url . '" target="_blank">
+        <img class="category-logo" src="' . $sponsor_src . '">
+      </a>
+    </div>';
+  }
 }
 
 function fix_url($url) {
