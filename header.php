@@ -73,12 +73,13 @@
         .addService(googletag.pubads());
   
         
-      googletag.defineSlot('/27068509/LWA_sidebar_01', [300, 250], 'div-gpt-ad-1453979832228-0').addService(googletag.pubads());
-      googletag.defineSlot('/27068509/LWA_sidebar_02', [300, 600], 'div-gpt-ad-1453981103890-0').addService(googletag.pubads());
-      // googletag.defineSlot('/27068509/LWA_leaderboard_bottom', [970, 250], 'div-gpt-ad-1454150799057-0')
-      //   .defineSizeMapping(bottomLeaderBoardmapping)
-      //   .addService(googletag.pubads());
-      // googletag.pubads().enableSingleRequest();
+      googletag.defineSlot('/27068509/LWA_sidebar_01', [300, 250], 'div-gpt-ad-1453979832228-0')
+        .addService(googletag.pubads());
+      googletag.defineSlot('/27068509/LWA_sidebar_02', [300, 600], 'div-gpt-ad-1453981103890-0')
+        .addService(googletag.pubads());
+
+
+      googletag.pubads().enableSingleRequest();
       googletag.enableServices();
     });
   </script>
