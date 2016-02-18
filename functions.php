@@ -68,7 +68,7 @@ add_action('admin_enqueue_scripts', 'enqueue_custom_admin_scripts');
 // ------------------------------ 
 function add_scripts() {
 
-  wp_register_style( 'style', get_template_directory_uri() . '/static/dist/css/cd239f9afecc.style.css', null, null, 'all' );
+  wp_register_style( 'style', get_template_directory_uri() . '/static/dist/css/dfe5d1016a96.style.css', null, null, 'all' );
 
   wp_register_script( 'global', get_template_directory_uri() . '/static/dist/js/1327c8cd2fc0.global.min.js', null, null, true );
   wp_register_script( 'gallery', get_template_directory_uri() . '/static/dist/js/27323ae010fb.gallery.min.js', array('single'), null, true );
