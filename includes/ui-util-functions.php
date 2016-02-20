@@ -330,11 +330,15 @@ function getSubNav($id, $taxonomy) {
   
   $pieces = explode("_", $taxonomy);
   
-  $links = '<div class="nav-links-secondary"><div class="f-grid f-row">';
-  foreach ($categories as $category) { 
-    $links = $links . '<a class="nav-sublink" href="' . get_home_url() . '/' . $pieces[0] . '/' . $category->slug . '">' . $category->name . '</a>';
+  if (count($categories) > 0) {
+    $links = '<div class="nav-links-secondary"><div class="f-grid f-row">';
+    foreach ($categories as $category) { 
+      $links = $links . '<a class="nav-sublink" href="' . get_home_url() . '/' . $pieces[0] . '/' . $category->slug . '">' . $category->name . '</a>';
+    }
+    return $links . '</div></div>';
   }
-  return $links . '</div></div>';
+  
+  return false;
 }
 
 // ----------------------------------- 

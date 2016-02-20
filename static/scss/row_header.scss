@@ -486,6 +486,9 @@
     }
   }
   
+  .nav-touch-toggle {
+    display: none;
+  }
   
   .nav-links-secondary {
     display: none;
@@ -556,7 +559,7 @@
         
         &:hover {
           color: #8F8F8F;
-          & + .nav-links-secondary {
+          & + button + div.nav-links-secondary {
             display: block;
           }
         }

@@ -57,28 +57,55 @@
     <ul class="nav-links-primary">
       <li>
         <a class="nav-link" href="<?php echo get_home_url(); ?>/featured/tuesday-without">Tuesday Without</a>
-        <?php echo getSubNav($tuesday, 'featured_tax'); ?>
+        <?php 
+          $links = getSubNav($tuesday, 'featured_tax'); 
+          if ($links) {
+            echo '<button type="button" class="nav-touch-toggle">+</button>';
+            echo $links;
+          }
+        ?>
       </li>
       
       <li>
         <a class="nav-link" href="<?php echo get_home_url(); ?>/featured/party-bullshit">Party &amp; Bullshit</a>
-        <?php echo getSubNav($party, 'featured_tax'); ?>
+        <?php $links = getSubNav($party, 'featured_tax'); 
+          if ($links) {
+            echo '<button type="button" class="nav-touch-toggle">+</button>';
+            echo $links;
+          }
+        ?>
       </li>
       <li>
         <a class="nav-link" href="<?php echo get_home_url(); ?>/featured/twentyfour">TwentyFour</a>
-        <?php echo getSubNav($twentyfour, 'featured_tax'); ?>
+        <?php $links = getSubNav($twentyfour, 'featured_tax');
+          if ($links) {
+            echo '<button type="button" class="nav-touch-toggle">+</button>';
+            echo $links;
+          }
+         ?>
       </li>
       <li>
         <a class="nav-link" href="<?php echo get_home_url(); ?>/featured/frames">Frames</a>
-        <?php echo getSubNav($frames, 'featured_tax'); ?>
+        <?php $links = getSubNav($frames, 'featured_tax');
+          if ($links != false) {
+            echo '<button type="button" class="nav-touch-toggle">+</button>';
+            echo $links;
+          }
+         ?>
       </li>
       <li>
         <a class="nav-link" href="<?php echo get_home_url(); ?>/news/news">News</a>
-        <?php  echo getSubNav(0, 'news_tax'); ?>
+        <?php $links = getSubNav(0, 'news_tax');
+          if ($links) {
+            echo '<button type="button" class="nav-touch-toggle">+</button>';
+            echo $links;
+          }
+         ?>
       </li>
       <li><a class="nav-link" href="http://www.lifewithoutandy.myshopify.com">Shop</a></li>
       <li>
         <a class="nav-link" href="<?php echo get_permalink(get_page_by_title('info')); ?>">Info</a>
+        <button type="button" class="nav-touch-toggle">+</button>
         <div class="nav-links-secondary">
           <div class="f-grid f-row">
             <a class="nav-sublink" href="<?php echo get_permalink(get_page_by_title('contributors')); ?>">contributors</a>

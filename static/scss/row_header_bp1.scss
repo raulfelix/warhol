@@ -114,31 +114,75 @@
 
 .nav {
 
+  .nav-touch-toggle {
+    background-color: transparent;
+    display: inline-block;
+    position: absolute;
+    top: rem(16);
+    font-size: 24px;
+    height: 32px;
+    width: 32px;
+  }
+  
+  .nav-links-primary {
+    margin: auto;
+    width: rem(300);
+    li {
+      font-size: rem(36);
+      margin: 0 0 rem(16) 0; 
+      position: relative;
+      overflow: hidden;
+    }
+  }
+  
+  .nav-links-secondary {
+    background-color: transparent;
+    border-top: 1px solid $black;
+    border-bottom: 1px solid $black;
+    display: block;
+    
+    & > div {
+      padding: 0;
+    }
+    
+    li {
+      display: inline-block;
+      margin: 0 rem(20);
+      
+      &:after {
+        content: '';
+        display: block;
+        clear: both;
+        height: 1px;
+      }
+    }
+    
+    a {
+      display: block;
+      margin: rem(16) 0;
+      padding: 0;
+    }
+  }
+  
+  
   .nav-search {
     margin-right: rem(40);
   } 
-
+  
+  
   .nav-links {
-    top: rem(90);
-    margin-left: rem(-160);
-    width: rem(320);
+    top: rem(60);
+    left: 0;
+    right: 0;
+    width: auto;
+    margin-left: 0;
+    bottom: 0;
+    padding-top: rem(30);
+    overflow-y: scroll;
+    -webkit-overflow-scroll: touch;
     
     .nav-link {
       color: $black;
-    }
-    
-    .nav-links-primary li {
-      font-size: rem(36);
-      margin: 0 0 rem(16) 0; 
-    }
-
-    .nav-links-secondary {
-      margin-top: rem(40);
-    }
-
-    .nav-links-secondary li {
-      font-size: rem(14);
-      margin: 0 rem(20); 
     }
   }
 }
