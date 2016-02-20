@@ -88,6 +88,13 @@
     </div>
   </div>
 
+  <!-- /27068509/LWA_leaderboard_bottom_category -->
+  <div id='div-gpt-ad-1455969211544-0' class="row-ad row-bg-dark">
+    <script type='text/javascript'>
+      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1455969211544-0'); });
+    </script>
+  </div>
+  
 <?php 
   wp_reset_query();
   

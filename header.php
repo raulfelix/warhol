@@ -78,7 +78,10 @@
       googletag.defineSlot('/27068509/LWA_sidebar_02', [300, 600], 'div-gpt-ad-1453981103890-0')
         .addService(googletag.pubads());
 
-
+      googletag.defineSlot('/27068509/LWA_leaderboard_bottom_category', [970, 90], 'div-gpt-ad-1455969211544-0')
+        .defineSizeMapping(bottomLeaderBoardmapping)
+        .addService(googletag.pubads());
+        
       googletag.pubads().enableSingleRequest();
       googletag.enableServices();
     });
