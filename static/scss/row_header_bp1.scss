@@ -179,7 +179,7 @@
     bottom: 0;
     padding-top: rem(30);
     overflow-y: scroll;
-    -webkit-overflow-scroll: touch;
+    -webkit-overflow-scrolling: touch;
     
     .nav-link {
       color: $black;
