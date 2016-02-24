@@ -7,25 +7,38 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       page: 1,
-      posts: [],
-      hasCompleteASearch: false
+      posts: null,
+      hasCompleteASearch: false,
+      term: ''
     };
   },
   
   render: function() {
+    var nodes;
+    
     var s = {
       opacity: this.state.page === false || this.state.page === 1 ? 0 : 1
     };
     
-    var nodes = this.state.posts.map(function(post, idx) {
-      return <SearchThumb data={post} key={idx} />
-    });
+    if (this.state.isLoading) {
+      s.opacity = 1;
+    }
+    
+    if (this.state.posts !== null && this.state.posts.length === 0) {
+      nodes = <span>There are no results to display</span>
+    } else if (this.state.posts !== null) {
+      nodes = this.state.posts.map(function(post, idx) {
+        return <SearchThumb data={post} key={idx} />
+      });
+    }
     
     return (
       <div className="modal-view search-row">
         <div className="search-row-input">
           <div className="input-search input-clearable">
-            <input type="text"
+            <input
+              type="text"
+              ref="field"
               placeholder="Search and press enter"
               value={this.state.term}
               onKeyUp={this.onKeyUp}
@@ -37,7 +50,9 @@ module.exports = React.createClass({
           </div>
         </div>
         <div className="search-row-results">
-          <div className="container">{nodes}</div>
+          <div className="container">
+            {nodes}
+          </div>
           <div className="row-loader" style={s}><i className="icon-loader is-loading"></i></div>
           <Waypoint onEnter={this.onEnter} />
         </div> 
@@ -45,32 +60,51 @@ module.exports = React.createClass({
     )
   },
   
+  /**
+   * Clear the search results and 
+   * refocus on the input field.
+   */
   reset: function() {
     this.setState({
-      posts: [],
+      posts: null,
       page: 1,
       hasCompleteASearch: false,
       term: ''
-    })
+    });
+    this.refs.field.focus();
   },
   
+  
+  /**
+   * When text is entered in search field.
+   * @param  {object} e 
+   */
   onChange: function(e) {
     this.setState({
-      term: e.target.value
-    })
+      term: e.target.value,
+      hasCompleteASearch: false
+    });
   },
   
+  
+  /**
+   * Listen for the enter button.
+   * @param  {object} e
+   */
   onKeyUp: function(e) {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && this.state.term.length > 0) {
       this.setState({
         page: 1,
-        posts: [],
+        posts: null,
         hasCompleteASearch: true
       }, this.load);
     }
   },
   
   
+  /**
+   * Waypoint callback
+   */
   onEnter: function() {
     if (this.state.hasCompleteASearch && this.state.page !== false) {
       this.load();
@@ -78,8 +112,13 @@ module.exports = React.createClass({
   },
   
   
+  /**
+   * Fetch the search data.
+   */
   load: function() {
-    var self = this;
+    this.setState({
+      isLoading: true
+    });
     $.getJSON(LWA.Modules.Util.getUrl(), {
       'action': 'do_ajax',
       'fn': 'search_posts',
@@ -87,15 +126,29 @@ module.exports = React.createClass({
       'posts_per_page': 7,
       's': this.state.term
     })
-    .done(function(response) {
-      self.setState({
-        page: response.nextPage,
-        posts: self.state.posts.concat(response.posts)
-      });
-    })
+    .done(this.onSearchLoad)
     .fail(function(response) {
       console.log(response);
     });
+  },
+  
+  
+  /**
+   * When search results load.
+   * @param  {object} response { posts: [], nextPage: true }
+   */
+  onSearchLoad: function(response) {
+    var posts = this.state.posts ? this.state.posts : [];
+    this.setState({
+      page: response.nextPage,
+      posts: posts.concat(response.posts),
+      isLoading: false
+    });
+    
+    // if there are results blur the search field
+    if (response.posts.length > 0) {
+      this.refs.field.blur();
+    }
   }
   
 });
