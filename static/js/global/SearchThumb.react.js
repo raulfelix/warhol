@@ -1,6 +1,11 @@
 var React = require('react');
 
 module.exports = function(props) {
+  
+  if (!props.data.category) {
+    props.data.category = {};
+  }
+  
   return (
     <div className="thumb thumb-search">
       <a className="thumb-feature" href={props.data.permalink}>
