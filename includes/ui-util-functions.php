@@ -87,14 +87,14 @@ function has_gallery_image() {
   return $attachments->exist();
 }
 
-function get_feature_image($as_src, $size) {
+function get_feature_image($as_src, $size, $allAttrs) {
   if ( $as_src == false ) {
     echo the_post_thumbnail( $size );
   } else {
 
     $attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), $size );
     if ( $attrs ) {
-      return $attrs[0];
+      return $attrs;
     }
   }
 }
@@ -117,7 +117,7 @@ function get_content_image($as_src) {
       if ($as_src === false) {
         echo '<img src="' . $img_path[0] . '" />';
       } else {
-        return $img_path[0];
+        return $img_path;
       }  
     } 
   }
@@ -130,7 +130,11 @@ function get_gallery_image($as_src) {
     if ( $as_src == false ) {
       echo $attachments->image( 'news-thumbnail', 0 );
     } else {
-      return $attachments->src( 'news-thumbnail', 0 ); 
+      return [
+        $attachments->src( 'news-thumbnail', 0 ),
+        $attachments->width('news-thumbnail', 0 ),
+        $attachments->height('news-thumbnail', 0 )
+      ]; 
     }
   } 
   else {
@@ -146,15 +150,15 @@ function get_gallery_image($as_src) {
  * - elseif:  there is a gallery image 
  * - else:    get an image from the content 
  */
-function get_thumbnail($src = false, $is_news = false) {
+function get_thumbnail($src = false, $is_news = false, $allAttrs) {
   if ( has_a_feature_image() ) {
-    return get_feature_image($src, 'news-thumbnail');
+    return get_feature_image($src, 'news-thumbnail', $allAttrs);
   }
   else if ( has_gallery_image() ) {
-    return get_gallery_image($src);
+    return get_gallery_image($src, $allAttrs);
   }
   else {
-    return get_content_image($src);
+    return get_content_image($src, $allAttrs);
   }
 }
 
@@ -163,7 +167,7 @@ function get_thumbnail($src = false, $is_news = false) {
  */
 function get_search_thumbnail() {
   if ( has_a_feature_image() ) {
-    return get_feature_image(true, 'news-thumbnail');
+    return get_feature_image(true, 'news-thumbnail', true);
   }
   else if ( has_gallery_image() ) {
     return get_gallery_image(true);
@@ -472,7 +476,7 @@ function fix_url($url) {
   
  	// Filter gallery CSS
  	$output = apply_filters( 'gallery_style', "
- 		<div id='$selector' class='gallery frame-inline galleryid-{$id}'><div class='slidee'>"
+ 		<div id='$selector' class='swiper-container galleryid-{$id}'><div class='swiper-wrapper'>"
  	);
   
  	// Iterate through the attachments in this gallery instance
@@ -486,7 +490,7 @@ function fix_url($url) {
    $height = $img[2];
    
  		// Start itemtag
- 		$output .= "<div class='sly-slide'>";
+ 		$output .= "<div class='swiper-slide'>";
   
  		$output .= "<img data-src='". $img[0] . "' data-width='". $width . "' data-height='". $height . "'>";
   

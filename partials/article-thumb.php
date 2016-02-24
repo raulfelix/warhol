@@ -20,7 +20,7 @@
   ?>
   </div>
   <a href="<?php echo the_permalink(); ?>" class="thumb-feature">
-     <?php get_thumbnail(false, $post->post_type === 'lwa_news' ? true : false); ?>  
+     <?php get_thumbnail(false, $post->post_type === 'lwa_news' ? true : false, false); ?>  
      <div class="m-overlay blanket-light"></div>
     <span class="thumb-time"><?php when(); ?></span>
   </a>

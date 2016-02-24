@@ -80,7 +80,7 @@
           <div class="thumb thumb-popular">
             <a href="<?php echo the_permalink(); ?>" class="h-4 thumb-title"><?php the_title(); ?></a>
             <a href="<?php echo the_permalink(); ?>" class="thumb-feature">
-              <?php get_thumbnail(false, true); ?>  
+              <?php get_thumbnail(false, true, false); ?>  
               <div class="m-overlay blanket-light"></div>
             </a>
           </div>

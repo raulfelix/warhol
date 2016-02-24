@@ -37,7 +37,7 @@
         <div class="f-1-2">
           <div class="thumb">
             <a href="<?php echo the_permalink(); ?>" class="thumb-feature">
-               <?php get_thumbnail(false, $type === 'lwa_news' ? true : false); ?>  
+               <?php get_thumbnail(false, $type === 'lwa_news' ? true : false, false); ?>  
                <div class="m-overlay blanket-light"></div>
               <span class="thumb-time"><?php when(); ?></span>
             </a>

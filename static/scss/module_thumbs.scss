@@ -211,3 +211,20 @@
     width: 100%;
   }
 }
+
+.thumb-loading {
+  background-color: #E2E2E2;
+  
+  .m-overlay,
+  img {
+    opacity: 0;
+    @include transition(opacity 200ms ease);
+  }
+  
+  &.is-loaded {
+    .m-overlay, 
+    img {
+      opacity: 1;
+    }
+  }
+}

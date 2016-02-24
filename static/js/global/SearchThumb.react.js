@@ -1,4 +1,5 @@
 var React = require('react');
+var Thumb = require('../shared/Thumb.react');
 
 module.exports = function(props) {
   
@@ -9,8 +10,7 @@ module.exports = function(props) {
   return (
     <div className="thumb thumb-search">
       <a className="thumb-feature" href={props.data.permalink}>
-        <img src={ props.data.thumbnail} />
-        <div className="m-overlay blanket-light"></div>
+        <Thumb data={props.data.thumbnail} width={169} />
         <span className="thumb-time">{props.data.when}</span>
       </a>
       <div className="thumb-details">

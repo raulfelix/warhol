@@ -8,6 +8,14 @@ module.exports = React.createClass({
   mixins: [FeedMixin],
   
   getInitialState: function() {
+    var width = document.body.offsetWidth > 1160 ? 1160 : document.body.offsetWidth;
+    
+    if (width <= 700) {
+      width = (width - 60) / 2;
+    } else {
+      width = (width - 80) / 3;
+    }
+    
     return {
       page: 1,
       posts: [],
@@ -31,7 +39,9 @@ module.exports = React.createClass({
       }
       nodes.push(
         <div key={id} className="f-1-3 bp1-1-2">
-          <PostThumb data={this.state.posts[i]} />
+          <PostThumb
+            data={this.state.posts[i]}
+            width={this.state.width} />
         </div>
       );
     }
@@ -48,6 +58,9 @@ module.exports = React.createClass({
   },
   
   
+  /**
+   * Load more news posts
+   */
   onEnter: function() {
     this.load('get_next_news_posts');
   }

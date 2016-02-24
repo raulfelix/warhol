@@ -85,7 +85,7 @@ function fetch_posts($page, $post_per_page, $post_type) {
         'title'     => enc(get_the_title()),
         'subtitle'  => enc(get_the_subtitle()),
         'permalink' => get_the_permalink(),
-        'thumbnail' => get_thumbnail(true, $post_type === 'lwa_news' ? true : false),
+        'thumbnail' => get_thumbnail(true, $post_type === 'lwa_news' ? true : false, true),
         'views'     => get_views(),
         'when'      => get_when(),
         'category'  => category($post_type)
@@ -126,7 +126,7 @@ function get_next_featured_posts($page) {
         'title'     => enc(get_the_title()),
         'subtitle'  => enc(get_the_subtitle()),
         'permalink' => get_the_permalink(),
-        'thumbnail' => get_thumbnail(true, false),
+        'thumbnail' => get_thumbnail(true, false, true),
         'views'     => get_views(),
         'when'      => get_when(),
         'category'  => category($post->post_type)

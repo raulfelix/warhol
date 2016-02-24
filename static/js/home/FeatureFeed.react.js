@@ -8,9 +8,18 @@ module.exports = React.createClass({
   mixins: [FeedMixin],
   
   getInitialState: function() {
+    var width = document.body.offsetWidth > 1160 ? 1160 : document.body.offsetWidth;
+    
+    if (width <= 700) {
+      width = (width - 40);
+    } else {
+      width = (width - 60) / 2;
+    }
+      
     return {
       page: 1,
-      posts: []
+      posts: [],
+      width: width
     }
   },
   
@@ -28,7 +37,9 @@ module.exports = React.createClass({
       }
       nodes.push(
         <div key={id} className="f-1-2 bp1-1">
-          <PostThumb data={this.state.posts[i]} />
+          <PostThumb
+            data={this.state.posts[i]}
+            width={this.state.width} />
         </div>
       );
     }
@@ -50,25 +61,16 @@ module.exports = React.createClass({
   
   
   onLoad: function() {
-  
     this.load('get_next_featured_posts', this.done);
   },
   
   
   done: function() {
-    
     if (this.state.page === false) {
       this.refs.submit.kill();
     } else {
       this.refs.submit.stop();
     }
-    
-    
-    // var element = ReactDOM.findDOMNode(this);
-    // $('html,body').animate({
-    //   scrollTop: $(element).offset().top - 20
-    // }, 500);
-    // 
   }
     
 });
