@@ -1,8 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Subscribe = require('./article/Subscribe');
+var Gallery = require('./Gallery');
 
 Subscribe.init();
+Gallery.init();
 
 LWA.Modules.Loader({
   imageContent: '.header-feature-bg',
