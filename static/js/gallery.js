@@ -10,7 +10,7 @@ function Strip(frame, loader, imgs) {
       setHeights(imgs, 240);
       frame.style.height = '240px';
     }
-    else if (window.matchMedia('(max-width: 550px)').matches) {
+    else if (window.matchMedia('(max-width: 650px)').matches) {
       setHeights(imgs, 360);
       frame.style.height = '360px';
     } else {
