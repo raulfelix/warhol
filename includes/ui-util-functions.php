@@ -476,7 +476,7 @@ function fix_url($url) {
   
  	// Filter gallery CSS
  	$output = apply_filters( 'gallery_style', "
- 		<div id='$selector' class='swiper-container galleryid-{$id}'><div class='swiper-wrapper'>"
+ 		<div id='$selector' class='swiper-container galleryid-{$id}'>"
  	);
   
  	// Iterate through the attachments in this gallery instance
@@ -492,7 +492,7 @@ function fix_url($url) {
  		// Start itemtag
  		$output .= "<div class='swiper-slide'>";
   
- 		$output .= "<img data-src='". $img[0] . "' data-width='". $width . "' data-height='". $height . "'>";
+ 		$output .= "<img src='". $img[0] . "' data-width='". $width . "' data-height='". $height . "'>";
   
  		// End itemtag
  		$output .= "<div class='shades'></div></div>";
@@ -503,12 +503,11 @@ function fix_url($url) {
  	}
   
  	// End gallery output
- 	$output .= "</div>
-    <div class='sly-controls'>
-      <button class='gallery-home button button-white' id='inline-gallery-home'>back to start</button>
-      <button class='sly-prev'><i class='icon-arrow-left'></i></button>
-      <button class='sly-next'><i class='icon-arrow-right'></i></button>
-    </div></div>";
+ 	$output .= "</div>";
+  //   <div class='sly-controls'>
+  //     <button class='sly-prev'><i class='icon-arrow-left'></i></button>
+  //     <button class='sly-next'><i class='icon-arrow-right'></i></button>
+  //   </div></div>";
   
  	return $output;
   

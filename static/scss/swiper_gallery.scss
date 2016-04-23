@@ -1,10 +1,114 @@
-.swiper-container {
-  overflow: hidden;
+/* Slider */
+.slick-slider {
   position: relative;
-  width: 100%;
-  height: 100%;
-  margin-bottom: rem(10);
+  display: block;
+  @include box-sizing(border-box);
   
+  img {
+    display: block;
+    outline: none;
+    padding: 0 !important;
+    height: 400px !important;
+    width: auto !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .slick-slide {
+    position: relative;
+    outline: none !important;
+  }
+}
+
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.slick-list:focus {
+  outline: none;
+}
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  @include transform(translate3d(0, 0, 0));
+}
+
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  &:before,
+  &:after {
+    display: table;
+    content: '';
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.slick-loading .slick-track {
+  visibility: hidden;
+}
+
+.slick-slide {
+  display: none;
+  float: left;
+  height: 100%;
+  min-height: 1px;
+}
+
+
+.slick-slide.slick-loading img
+{
+    display: none;
+}
+.slick-slide.dragging img
+{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide
+{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+
+.slick-arrow.slick-hidden {
+  display: none;
+}
+
+
+.swiper-container {
+
+  .sly-next,
+  .sly-prev {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 32px;
+    top: 50%;
+    position: absolute;
+    z-index: 1000;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .sly-prev {
+    left: 16px;
+  }
+  .sly-next {
+    right: 16px;
+  }
   .shades {
     position: absolute;
     top: 0;
@@ -15,38 +119,9 @@
     background-color: $black;
   }
   
-  .active {
+  .slick-active {
     .shades {
       display: none;
     }
   }
-  
-  img {
-    height: 100% !important;
-    width: auto !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  
-  .sly-controls {
-    display: block !important;
-    .sly-prev,
-    .sly-next {
-      margin-top: rem(-16);
-    }
-  }
-}
-
-.swiper-wrapper,
-.swiper-slide {
-  height: 100%;
-}
-
-.swiper-slide {
-  float: left;
-  position: relative;
-}
-
-.swiper-slide-active .shades {
-  opacity: 0;
 }
