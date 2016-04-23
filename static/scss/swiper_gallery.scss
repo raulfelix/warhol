@@ -19,6 +19,15 @@
   }
 }
 
+@media all and ('max-width: 520px') {
+  .swiper-container {
+    img {
+      height: 280px !important;
+    }
+  }
+}
+
+
 .slick-list {
   position: relative;
   display: block;
